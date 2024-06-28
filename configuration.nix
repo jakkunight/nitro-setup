@@ -10,7 +10,8 @@
       ./system/hardware-configuration.nix
       ./system/disko-config.nix
       ./system/bootloader.nix
-      ./system/networking.nix    
+      ./system/networking.nix
+      ./system/fonts.nix    
       ./system/i18n.nix
       ./system/graphics.nix
       ./system/audio.nix
