@@ -1,16 +1,21 @@
 # Here goes my Hyprland setup:
 { config, lib, pkgs, ... }@inputs: {
   # Display Manager:
-  services.displayManager.sddm.enable = true;
-  services.displayManager.defaultSession = "hyprland";
-  services.displayManager.sddm.wayland.enable = true;
-
+  services.displayManager = {
+    sddm.enable = true;
+    defaultSession = "hyprland";
+    sddm.wayland.enable = true;
+  };
+  
   # Swaylock:
   environment.systemPackages = with pkgs; [
     swaylock
+    swaylock-effects
   ];
 
   security.pam.services.swaylock = {};
   
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+  };
 }

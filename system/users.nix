@@ -1,5 +1,5 @@
 # User management:
-{ config, lib, pkgs, ... }@inputs: {
+{ config, lib, pkgs, inputs, ... }: {
   # Allow unfree software:
   nixpkgs.config.allowUnfree = true;
 
@@ -16,5 +16,13 @@
       discord
       steam
     ];
+  };
+
+  # Home-Manager stuff:
+  home-manager = {
+    extraSpecialArgs = { inherit inputs };
+    users = {
+      jakku = import ../jakku;
+    };
   };
 }
