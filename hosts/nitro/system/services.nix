@@ -12,4 +12,8 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
+
+  # USB external drives:
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
 }

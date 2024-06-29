@@ -15,6 +15,7 @@
       brave
       discord
       steam
+      xfce.thunar
     ];
   };
 
