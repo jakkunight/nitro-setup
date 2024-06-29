@@ -18,13 +18,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = inputs@{ self, nixpkgs, ... }: {
+  outputs = { self, nixpkgs, ... }@inputs: {
     # NOTE: 'nixos' is the default hostname set by the installer
     nixosConfigurations = {
       nitro = nixpkgs.lib.nixosSystem {
         # NOTE: Change this to aarch64-linux if you are on ARM
         system = "x86_64-linux";
-        extraSpecialArgs = { inherit inputs; };
+        #extraSpecialArgs = { inherit inputs; };
         modules = [
           ./hosts/nitro/configuration.nix
           inputs.disko.nixosModules.disko

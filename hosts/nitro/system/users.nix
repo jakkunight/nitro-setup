@@ -19,10 +19,10 @@
   };
 
   # Home-Manager stuff:
-  home-manager = {
-    extraSpecialArgs = { inherit inputs };
-    users = {
-      jakku = import ../jakku;
-    };
-  };
+  #home-manager = {
+  #  extraSpecialArgs = { inherit inputs; };
+  #  users = {
+  #    jakku = import ../user;
+  #  };
+  #};
 }
