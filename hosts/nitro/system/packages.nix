@@ -21,5 +21,10 @@
     wofi
     alacritty
     swww
+    dbus
+    gvfs
+    udisks2
+    udiskie
+    usbutils
   ];
 }

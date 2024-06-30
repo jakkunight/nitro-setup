@@ -15,7 +15,22 @@
       brave
       discord
       steam
+      udiskie
+      remmina
       xfce.thunar
+      xfce.thunar-volman
+      gnome.gvfs
+      gnome.gdm
+    ];
+  };
+
+  # Thunar config:
+  programs.xfconf.enable = true;
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
     ];
   };
 

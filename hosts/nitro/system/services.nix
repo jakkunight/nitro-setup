@@ -4,6 +4,9 @@
   services.xserver.xkb.layout = "latam";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
+  # DBUS:
+  services.dbus.enable = true;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -16,4 +19,8 @@
   # USB external drives:
   services.gvfs.enable = true;
   services.udisks2.enable = true;
+
+  # Xfce services:
+  # services.xserver.desktopManager.xfce.enable = true;
+  # services.xserver.desktopManager.xfce.noDesktop = true;
 }
