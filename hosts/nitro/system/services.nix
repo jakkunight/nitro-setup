@@ -1,5 +1,7 @@
 # Here goes the services config:
 {}: {
+  # Enable EnvFS to fix shebangs
+	services.envfs.enable = true;
   # Configure keymap in X11
   services.xserver.xkb.layout = "latam";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";

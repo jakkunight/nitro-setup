@@ -17,6 +17,14 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    envfs = {
+      url = "github:Mic92/envfs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-ld = {
+      url = "github:Mic92/nix-ld";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = { self, nixpkgs, ... }@inputs: 
   let
@@ -32,7 +40,9 @@
         modules = [
           ./hosts/nitro/configuration.nix
           inputs.disko.nixosModules.disko
-          #inputs.home-manager.nixosModules.home-manager
+          inputs.home-manager.nixosModules.home-manager
+      	  inputs.envfs.nixosModules.envfs
+          inputs.nix-ld.nixosModules.nix-ld
           {
             nix = {
             	settings.experimental-features = [ "nix-command" "flakes" ];
@@ -45,7 +55,7 @@
       jakku = inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
-          ./home.nix
+          ./hosts/nitro/home.nix
         ];
       };
     };
