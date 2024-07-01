@@ -32,7 +32,6 @@
     # To manage compressed files:
     zip
     unzip
-    tar
     gzip
     xz-utils
     bzip
