@@ -13,6 +13,7 @@
     nix-ld # Linker for NixOS
     yazi # Main filemanager (for the terminal)
     zellij # Main terminal multiplexer
+    fzf # FuzzyFinder
     tmux # Secondary terminal multiplexer
     vim # Base text editor
     wget # Utility to download files from the web
