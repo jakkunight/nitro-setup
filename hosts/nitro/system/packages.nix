@@ -33,8 +33,9 @@
     zip
     unzip
     gzip
-    xz-utils
-    bzip
+    busybox
+    xz
+    lz4
     # To setup IPSec connections:
     strongswan
     networkmanager_strongswan
