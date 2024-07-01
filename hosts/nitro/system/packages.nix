@@ -29,6 +29,13 @@
     udisks2 # A tool to manage USB devices.
     udiskie # A tool for automounting USB drives.
     usbutils # Utilities for USB mangement.
+    # To manage compressed files:
+    zip
+    unzip
+    tar
+    gzip
+    xz-utils
+    bzip
     # To setup IPSec connections:
     strongswan
     networkmanager_strongswan
