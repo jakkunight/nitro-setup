@@ -23,4 +23,25 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  # NeoVim:
+  programs.neovim = 
+  let
+    toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n"; 
+  in
+  {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+    plugins = with pkgs.vimPlugins; [
+      {
+        plugin = LazyVim;
+        #config = toLuaFile ;
+      }
+    ];
+    # Use the Nix package search engine to find
+    # even more plugins : https://search.nixos.org/packages
+  };
 }
