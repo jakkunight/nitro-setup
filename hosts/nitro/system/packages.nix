@@ -32,7 +32,7 @@
     strongswan
     networkmanager_strongswan
     # Development tools:
-    python
+    python312
     nodejs
     rustup
     go
