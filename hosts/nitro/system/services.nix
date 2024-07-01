@@ -20,6 +20,11 @@
   services.gvfs.enable = true;
   services.udisks2.enable = true;
 
+  # IPSec:
+  imports = [
+    ./strongswan.nix
+  ];
+
   # Xfce services:
   # services.xserver.desktopManager.xfce.enable = true;
   # services.xserver.desktopManager.xfce.noDesktop = true;

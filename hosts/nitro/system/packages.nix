@@ -26,5 +26,7 @@
     udisks2
     udiskie
     usbutils
+    strongswan
+    networkmanager_strongswan
   ];
 }

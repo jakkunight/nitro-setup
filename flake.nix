@@ -18,17 +18,21 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, ... }@inputs: {
-    # NOTE: 'nixos' is the default hostname set by the installer
+  outputs = { self, nixpkgs, ... }@inputs: 
+  let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+  in
+  {
     nixosConfigurations = {
       nitro = nixpkgs.lib.nixosSystem {
         # NOTE: Change this to aarch64-linux if you are on ARM
-        system = "x86_64-linux";
+        inherit system;
         specialArgs = { inherit inputs; }; # this is the important part
         modules = [
           ./hosts/nitro/configuration.nix
           inputs.disko.nixosModules.disko
-          inputs.home-manager.nixosModules.home-manager
+          #inputs.home-manager.nixosModules.home-manager
           {
             nix = {
             	settings.experimental-features = [ "nix-command" "flakes" ];
@@ -36,20 +40,14 @@
           }
         ];
       };
-      # servers = nixpkgs.lib.nixosSystem {
-      #   system = "x86_64-linux";
-      #   extraSpecialArgs = { inherit inputs; };
-      #   modules = [
-      #     ./hosts/servers/configuration.nix
-      #     inputs.disko.nixosModules.disko
-      #     inputs.home-manager.nixosModules.home-manager
-      #     {
-      #       nix = {
-      #         settings.experimental-features = [ "nix-command" "flakes" ]
-      #       }
-      #     }
-      #   ];
-      # };
+    };
+    homeConfigurations = {
+      jakku = inputs.home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./home.nix
+        ];
+      };
     };
   };
 }
