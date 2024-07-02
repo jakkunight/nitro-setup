@@ -1,0 +1,28 @@
+2024/07/02-15:55:24.007 bb2 Reusing MANIFEST /home/jakku/.config/BraveSoftware/Brave-Browser/Default/Local Extension Settings/mnojpmjdmbbfmejpflffifhffcmidifd/MANIFEST-000001
+2024/07/02-15:55:24.008 bb2 Recovering log #152
+2024/07/02-15:55:24.012 bb2 Reusing old log /home/jakku/.config/BraveSoftware/Brave-Browser/Default/Local Extension Settings/mnojpmjdmbbfmejpflffifhffcmidifd/000152.log 
+2024/07/02-16:01:25.374 bb2 Level-0 table #157: started
+2024/07/02-16:01:25.384 bb2 Level-0 table #157: 280088 bytes OK
+2024/07/02-16:01:25.386 bb2 Delete type=0 #152
+2024/07/02-16:09:26.133 bb3 Level-0 table #159: started
+2024/07/02-16:09:26.140 bb3 Level-0 table #159: 272898 bytes OK
+2024/07/02-16:09:26.141 bb3 Delete type=0 #156
+2024/07/02-16:14:26.290 bb2 Level-0 table #161: started
+2024/07/02-16:14:26.297 bb2 Level-0 table #161: 272286 bytes OK
+2024/07/02-16:14:26.299 bb2 Delete type=0 #158
+2024/07/02-16:21:27.004 bb3 Compacting 2@0 + 1@1 files
+2024/07/02-16:21:27.016 bb3 Generated table #162@0: 34 keys, 58652 bytes
+2024/07/02-16:21:27.016 bb3 Compacted 2@0 + 1@1 files => 58652 bytes
+2024/07/02-16:21:27.018 bb3 compacted to: files[ 0 1 1 0 0 0 0 ]
+2024/07/02-16:21:27.018 bb3 Delete type=2 #157
+2024/07/02-16:21:27.018 bb3 Delete type=2 #161
+2024/07/02-16:21:27.018 bb3 Delete type=2 #159
+2024/07/02-16:50:27.904 bb3 Compacting 1@1 + 1@2 files
+2024/07/02-16:50:27.909 bb3 Generated table #163@1: 14 keys, 58341 bytes
+2024/07/02-16:50:27.909 bb3 Compacted 1@1 + 1@2 files => 58341 bytes
+2024/07/02-16:50:27.910 bb3 compacted to: files[ 0 0 1 0 0 0 0 ]
+2024/07/02-16:50:27.910 bb3 Delete type=2 #154
+2024/07/02-16:50:27.910 bb3 Delete type=2 #162
+2024/07/02-16:53:12.996 bb2 Level-0 table #165: started
+2024/07/02-16:53:13.005 bb2 Level-0 table #165: 280731 bytes OK
+2024/07/02-16:53:13.007 bb2 Delete type=0 #160

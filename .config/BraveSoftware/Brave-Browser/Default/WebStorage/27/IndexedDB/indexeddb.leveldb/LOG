@@ -1,0 +1,6 @@
+2024/07/01-09:30:06.023 714 Creating DB /home/jakku/.config/BraveSoftware/Brave-Browser/Default/WebStorage/27/IndexedDB/indexeddb.leveldb since it was missing.
+2024/07/01-09:30:06.028 714 Reusing MANIFEST /home/jakku/.config/BraveSoftware/Brave-Browser/Default/WebStorage/27/IndexedDB/indexeddb.leveldb/MANIFEST-000001
+2024/07/01-09:30:41.811 715 Level-0 table #5: started
+2024/07/01-09:30:41.813 715 Level-0 table #5: 7343 bytes OK
+2024/07/01-09:30:41.814 715 Delete type=0 #3
+2024/07/01-09:30:41.814 715 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
