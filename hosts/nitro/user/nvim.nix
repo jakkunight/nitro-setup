@@ -11,9 +11,12 @@
       # Telescope
       ripgrep
       fd
+      lazygit
+      luajitPackages.luarocks
     ];
     plugins = with pkgs.vimPlugins; [
-      lazy-nvim
+      #lazy-nvim
+      LazyVim
     ];
   };
 }
