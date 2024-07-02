@@ -11,6 +11,8 @@
     neovim # Main text editor
     micro # Main text editor (for simple edits)
     nix-ld # Linker for NixOS
+    glow # Utility for rendering Markdown files on the terminal
+    texliveFull # The LaTeX toolkit.
     yazi # Main filemanager (for the terminal)
     zellij # Main terminal multiplexer
     fzf # FuzzyFinder
@@ -38,6 +40,7 @@
     lz4
     # To setup IPSec connections:
     strongswan
+    strongswanNM
     networkmanager_strongswan
     # Development tools:
     python312
