@@ -35,7 +35,7 @@
         leftauth2 = "xauth";
         xauth_identity = "santiago_wu";
         auto = "add";
-        leftupdown = "/etc/ipsec/updown.sh";
+        #leftupdown = "/etc/ipsec/updown.sh";
       };
     };
   };
