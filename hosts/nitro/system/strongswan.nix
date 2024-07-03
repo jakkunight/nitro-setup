@@ -1,8 +1,12 @@
 # Here goes my StrongSwan IPSEC VPN connection:
 { config, lib, pkgs, ... }@inputs: {
 
+  # Disable resolvconf:
+  networking.resolvconf.enable = true;
+
   # NM Plugin:
   networking.networkmanager.enableStrongSwan = true;
+  #services.xl2tpd.enable = true;
 
   # Set env variables:
   # environment.sessionVariables = rec {
@@ -12,17 +16,21 @@
   # Start the service:
   services.strongswan = {
     enable = true;
-    secrets = [ "/etc/ipsec/.secrets" ];
+    secrets = [ "/etc/ipsec/andescada.secret" ];
     connections = {
       andescada = {
         keyexchange = "ikev1";
+        keyingtries = "1";
         ike = "aes128-sha256-modp1536!";
         esp = "aes128-sha256-modp1536!";
-        agressive = "yes";
+        aggressive = "yes";
         right = "190.52.176.139";
+        rightid = "%any";
+        rightsubnet = "10.0.0.0/8";
         rightauth = "psk";
-        left = "%any4";
-        leftsourceip = "%config4";
+        left = "%defaultroute";
+        leftsourceip = "%config";
+        leftsubnet = "10.0.0.0/8";
         leftauth = "psk";
         leftauth2 = "xauth";
         xauth_identity = "santiago_wu";

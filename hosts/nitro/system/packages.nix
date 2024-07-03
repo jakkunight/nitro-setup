@@ -31,6 +31,8 @@
     udisks2 # A tool to manage USB devices.
     udiskie # A tool for automounting USB drives.
     usbutils # Utilities for USB mangement.
+    networkmanagerapplet # To manage networking.
+    #gnome.networkmanager-l2tp
     # To manage compressed files:
     zip
     unzip
@@ -42,6 +44,8 @@
     strongswan
     strongswanNM
     networkmanager_strongswan
+    #networkmanager-l2tp
+    #xl2tpd
     # Development tools:
     python312
     nodejs

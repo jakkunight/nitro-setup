@@ -5,6 +5,7 @@
   
   # Swaylock:
   environment.systemPackages = with pkgs; [
+    dunst
     swaylock
   ];
   security.pam.services.swaylock = {};
