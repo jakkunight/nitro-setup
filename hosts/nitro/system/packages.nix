@@ -8,6 +8,10 @@
   
   environment.systemPackages = with pkgs; [
     git # Version Control system.
+    busybox # Coreutils for every GNU/Linux distro.
+    gawk # awk command
+    ripgrep # GREP, rewritten in Rust
+    gnugrep # The classic GREP utility
     neovim # Main text editor
     micro # Main text editor (for simple edits)
     nix-ld # Linker for NixOS
