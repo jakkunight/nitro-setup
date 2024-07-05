@@ -1,7 +1,10 @@
 # Here goes my StrongSwan IPSEC VPN connection:
 { config, lib, pkgs, ... }@inputs: {
 
-  # Disable resolvconf:
+  # Enable package forwarding:
+  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+
+  # Enable resolvconf:
   networking.resolvconf.enable = true;
 
   # NM Plugin:
