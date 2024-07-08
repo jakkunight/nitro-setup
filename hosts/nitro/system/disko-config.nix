@@ -6,6 +6,7 @@
         type = "disk";
         content = {
           type = "gpt";
+          format = "gpt";
           partitions = {
             ESP = {
               size = "1G";
