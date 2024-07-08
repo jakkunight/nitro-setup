@@ -4,17 +4,17 @@
   # Enable package forwarding:
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
 
+  # Open UDP Ports on the firewall:
+  networking.firewall.allowedUDPPorts = [
+    500
+    4500
+  ];
+
   # Enable resolvconf:
   networking.resolvconf.enable = true;
 
   # NM Plugin:
   networking.networkmanager.enableStrongSwan = true;
-  #services.xl2tpd.enable = true;
-
-  # Set env variables:
-  # environment.sessionVariables = rec {
-  #   STRONGSWAN_CONF = "/etc/ipsec.conf";
-  # };
 
   # Start the service:
   services.strongswan = {
