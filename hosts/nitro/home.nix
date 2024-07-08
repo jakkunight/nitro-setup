@@ -26,5 +26,6 @@
   # Import the configs:
   imports = [
     ./user/nvim.nix
+    ./user/git.nix
   ];
 }
