@@ -5,7 +5,7 @@
         device = "/dev/nvme0n1";
         type = "disk";
         content = {
-          type = "gpt";
+          type = "table";
           format = "gpt";
           partitions = {
             ESP = {
