@@ -3,6 +3,11 @@
   # Allow unfree software:
   nixpkgs.config.allowUnfree = true;
 
+  # Use ZSH as default shell:
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+  users.users.jakku.useDefaultShell = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jakku = {
     isNormalUser = true;
@@ -35,10 +40,10 @@
   };
 
   # Home-Manager stuff:
-  #home-manager = {
-  #  extraSpecialArgs = { inherit inputs; };
-  #  users = {
-  #    jakku = import ../user;
-  #  };
-  #};
+  home-manager = {
+   extraSpecialArgs = { inherit inputs; };
+   users = {
+     jakku = import ../home.nix;
+   };
+  };
 }

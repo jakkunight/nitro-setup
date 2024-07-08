@@ -5,17 +5,22 @@
 
   # Allow Unfree Software:
   nixpkgs.config.allowUnfree = true;
+
+  # Set ZSH as default shell:
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
   
   environment.systemPackages = with pkgs; [
     git # Version Control system.
     busybox # Coreutils for every GNU/Linux distro.
     gawk # awk command
+    home-manager # Home-Manager!
     ripgrep # GREP, rewritten in Rust
     gnugrep # The classic GREP utility
     neovim # Main text editor
     micro # Main text editor (for simple edits)
     nix-ld # Linker for NixOS
-    glow # Utility for rendering Markdown files on the terminal
+    frogmouth # Utility for rendering Markdown files on the terminal
     texliveFull # The LaTeX toolkit.
     yazi # Main filemanager (for the terminal)
     zellij # Main terminal multiplexer

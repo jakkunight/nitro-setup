@@ -40,7 +40,6 @@
         modules = [
           ./hosts/nitro/configuration.nix
           inputs.disko.nixosModules.disko
-          inputs.home-manager.nixosModules.home-manager
       	  inputs.envfs.nixosModules.envfs
           inputs.nix-ld.nixosModules.nix-ld
           {
