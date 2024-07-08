@@ -6,6 +6,7 @@
     enable = true;
     extraPackages = with pkgs; [
       # LazyVim
+      vimPlugins.LazyVim
       lua-language-server
       stylua
       # Telescope
@@ -15,7 +16,6 @@
       luajitPackages.luarocks
     ];
     plugins = with pkgs.vimPlugins; [
-      lazy-nvim
       LazyVim
     ];
   };

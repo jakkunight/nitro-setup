@@ -17,7 +17,7 @@
     home-manager # Home-Manager!
     ripgrep # GREP, rewritten in Rust
     gnugrep # The classic GREP utility
-    neovim # Main text editor
+    #neovim # Main text editor
     micro # Main text editor (for simple edits)
     nix-ld # Linker for NixOS
     frogmouth # Utility for rendering Markdown files on the terminal
