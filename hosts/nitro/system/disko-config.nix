@@ -7,8 +7,9 @@
         content = {
           type = "table";
           format = "gpt";
-          partitions = {
-            ESP = {
+          partitions = [
+            {
+              name = "ESP";
               size = "1G";
               type = "EF00";
               content = {
@@ -16,8 +17,9 @@
                 format = "vfat";
                 mountpoint = "/boot";
               };
-            };
-            swap = {
+            }
+            {
+              name = "swap";
               size = "16G";
               content = {
                 type = "swap";
@@ -25,8 +27,9 @@
                 priority = 100;
                 resumeDevice = true; # resume from hiberation from this device
               };
-            };
-            root = {
+            }
+            {
+              name = "root";
               size = "100%";
               content = {
                 type = "filesystem";
@@ -34,7 +37,7 @@
                 mountpoint = "/";
               };
             };
-          };
+          ];
         };
       };
     };
