@@ -5,11 +5,9 @@
         device = "/dev/nvme0n1";
         type = "disk";
         content = {
-          type = "table";
-          format = "gpt";
-          partitions = [
-            {
-              name = "ESP";
+          type = "gpt";
+          partitions = {
+            ESP = {
               size = "1G";
               type = "EF00";
               content = {
@@ -17,9 +15,8 @@
                 format = "vfat";
                 mountpoint = "/boot";
               };
-            }
-            {
-              name = "swap";
+            };
+            swap = {
               size = "16G";
               content = {
                 type = "swap";
@@ -27,17 +24,16 @@
                 priority = 100;
                 resumeDevice = true; # resume from hiberation from this device
               };
-            }
-            {
-              name = "root";
+            };
+            root = {
               size = "100%";
               content = {
                 type = "filesystem";
                 format = "ext4";
                 mountpoint = "/";
               };
-            }
-          ];
+            };
+          };
         };
       };
     };
