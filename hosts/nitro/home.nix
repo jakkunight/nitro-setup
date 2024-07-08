@@ -27,5 +27,6 @@
   imports = [
     ./user/nvim.nix
     ./user/git.nix
+    ./user/zsh.nix
   ];
 }

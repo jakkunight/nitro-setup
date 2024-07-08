@@ -7,7 +7,7 @@
     enable = true;
 
     # Setup the plugins:
-    enableAutosuggestions.enable = true;
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     plugins = [
       {
