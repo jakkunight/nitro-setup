@@ -1,5 +1,5 @@
 # User management:
-{ config, lib, pkgs, inputs, ... }: {
+{ config, lib, pkgs, ... }@inputs: {
   # Allow unfree software:
   nixpkgs.config.allowUnfree = true;
 
@@ -37,13 +37,5 @@
       thunar-archive-plugin
       thunar-volman
     ];
-  };
-
-  # Home-Manager stuff:
-  home-manager = {
-   extraSpecialArgs = { inherit inputs; };
-   users = {
-     jakku = import ../home.nix;
-   };
   };
 }
