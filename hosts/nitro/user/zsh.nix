@@ -12,7 +12,7 @@
     initExtraFirst = "source ~/.p10k.zsh";
     initExtra = ''
       neofetch
-      echo "(^.^) Welcome back, Jakku Night!"
+      echo "\n(^.^) Welcome back, Jakku Night!\n"
     '';
     plugins = [
       {
