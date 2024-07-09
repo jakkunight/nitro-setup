@@ -9,7 +9,7 @@
   # Set ZSH as default shell:
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
-  
+
   environment.systemPackages = with pkgs; [
     git # Version Control system.
     busybox # Coreutils for every GNU/Linux distro.
@@ -68,5 +68,8 @@
     meson
     premake
     lua
+    # Virtualization:
+    qemu
+    quickemu
   ];
 }
