@@ -10,6 +10,10 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     initExtraFirst = "source ~/.p10k.zsh";
+    initExtra = ''
+      neofetch
+      echo "(^.^) Welcome back, Jakku Night!"
+    '';
     plugins = [
       {
         name = "powerlevel10k";
