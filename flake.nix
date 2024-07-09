@@ -26,37 +26,38 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, ... }@inputs: 
-  let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-  in
-  {
-    nixosConfigurations = {
-      nitro = nixpkgs.lib.nixosSystem {
-        # NOTE: Change this to aarch64-linux if you are on ARM
-        inherit system;
-        specialArgs = { inherit inputs; }; # this is the important part
-        modules = [
-          ./hosts/nitro/configuration.nix
-          inputs.disko.nixosModules.disko
-      	  inputs.envfs.nixosModules.envfs
-          inputs.nix-ld.nixosModules.nix-ld
-          {
-            nix = {
-            	settings.experimental-features = [ "nix-command" "flakes" ];
-            };
-          }
-        ];
+  outputs = { self, nixpkgs, ... }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
+    {
+      nixosConfigurations = {
+        nitro = nixpkgs.lib.nixosSystem {
+          # NOTE: Change this to aarch64-linux if you are on ARM
+          inherit system;
+          specialArgs = { inherit inputs; }; # this is the important part
+          modules = [
+            ./hosts/nitro/configuration.nix
+            inputs.disko.nixosModules.disko
+            inputs.envfs.nixosModules.envfs
+            inputs.nix-ld.nixosModules.nix-ld
+            {
+              nix = {
+                settings.experimental-features = [ "nix-command" "flakes" ];
+              };
+            }
+          ];
+        };
       };
-    };
-    homeConfigurations = {
-      jakku = inputs.home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          ./hosts/nitro/home.nix
-        ];
+      homeConfigurations = {
+        jakku = inputs.home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./hosts/nitro/home.nix
+          ];
+        };
       };
+      devShells."${system}".default = (import ./shell.nix { inherit pkgs; });
     };
-  };
 }

@@ -9,11 +9,12 @@
     # Setup the plugins:
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    initExtraFirst = "source ~/.p10k.zsh";
     plugins = [
       {
         name = "powerlevel10k";
-        src = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/";
-        file = "powerlevel10k.zsh-theme";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
       }
     ];
   };
