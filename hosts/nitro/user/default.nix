@@ -7,5 +7,6 @@
     ./zsh.nix
     ./git.nix
     ./nvim.nix
+    ./gtk.nix
   ];
 }
