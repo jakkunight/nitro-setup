@@ -20,8 +20,9 @@
     #neovim # Main text editor
     micro # Main text editor (for simple edits)
     nix-ld # Linker for NixOS
-    frogmouth # Utility for rendering Markdown files on the terminal
+    mdr # Utility for rendering Markdown files on the terminal
     texliveFull # The LaTeX toolkit.
+    pandoc # A tool to compile Markdown to PDF
     yazi # Main filemanager (for the terminal)
     zellij # Main terminal multiplexer
     fzf # FuzzyFinder
@@ -71,5 +72,9 @@
     # Virtualization:
     qemu
     quickemu
+    # Gaming:
+    wineWowPackages.stable
+    winetricks
+    wineWowPackages.waylandFull
   ];
 }

@@ -3,8 +3,9 @@
 {
   imports = [
     ./alacritty.nix
-    ./hyprland.nix
+    #./hyprland.nix
     ./zsh.nix
+    ./git.nix
     ./nvim.nix
   ];
 }
