@@ -42,6 +42,8 @@
     udiskie # A tool for automounting USB drives.
     usbutils # Utilities for USB mangement.
     networkmanagerapplet # To manage networking.
+    glib
+    vlc
     #gnome.networkmanager-l2tp
     # To manage compressed files:
     zip
@@ -76,5 +78,7 @@
     wineWowPackages.stable
     winetricks
     wineWowPackages.waylandFull
+    # Themes:
+    tokyonight-gtk-theme
   ];
 }

@@ -5,7 +5,7 @@
     font = {
       name = "Cascadia Code";
       package = pkgs.cascadia-code;
-      size = "14";
+      #size = "14pt";
     };
     theme = {
       name = "Tokyonight";

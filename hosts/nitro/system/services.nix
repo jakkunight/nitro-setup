@@ -1,7 +1,9 @@
 # Here goes the services config:
-{}: {
+{ configs, pkgs, lib, ... }@inputs: {
+  # Enable X11:
+  services.xserver.enable = true;
   # Enable EnvFS to fix shebangs
-	services.envfs.enable = true;
+  services.envfs.enable = true;
   # Configure keymap in X11
   services.xserver.xkb.layout = "latam";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
@@ -21,8 +23,19 @@
   # USB external drives:
   services.gvfs.enable = true;
   services.udisks2.enable = true;
+  services.udiskie = {
+    enable = true;
+    notify = true;
+    try = true;
+  };
+  environment.systemPackages = with pkgs; [
+    usbutils
+    udisks2
+    udiskie
+    gvfs
+    xfce.thunar
+  ];
 
-  # Xfce services:
-  # services.xserver.desktopManager.xfce.enable = true;
-  # services.xserver.desktopManager.xfce.noDesktop = true;
+  # GNOME services:
+  services.desktopManager.gnome.enable = true;
 }
