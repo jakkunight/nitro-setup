@@ -9,6 +9,5 @@
     ./nvim.nix
     ./gtk.nix
     ./qt.nix
-    ./sdd.theme.nix
   ];
 }

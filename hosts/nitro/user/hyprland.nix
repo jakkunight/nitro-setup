@@ -219,6 +219,14 @@
         }];
     };
   };
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      wallpaper = [
+        ",$HOME/Pictures/kali-night-skyA-1920x1080.png"
+      ];
+    };
+  };
 }
 
 

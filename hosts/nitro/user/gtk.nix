@@ -8,16 +8,16 @@
       size = 12;
     };
     theme = {
-      name = "Tokyonight";
+      name = "Tokyonight-Dark-B";
       package = pkgs.tokyonight-gtk-theme;
     };
     iconTheme = {
-      package = pkgs.zafiro-icons;
-      name = "Zafiro-icons-Dark";
+      package = pkgs.tokyonight-gtk-theme;
+      name = "Tokyonight-Dark-B";
     };
     cursorTheme = {
-      package = pkgs.graphite-cursors;
-      name = "graphite-dark";
+      package = pkgs.tokyonight-gtk-theme;
+      name = "Tokyonight-Dark-B";
       size = 18;
     };
   };

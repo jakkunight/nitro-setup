@@ -1,4 +1,4 @@
-{ pkgs, configs, ... }@inputs: pkgs.stdenv.mkDerivation {
+{ pkgs, ... }@inputs: pkgs.stdenv.mkDerivation {
   name = "Tokyo Night";
   src = pkgs.fetchFromGitHub {
     owner = "siddrs";
@@ -8,6 +8,6 @@
   };
   installPhase = ''
     mkdir -p $out
-    cp -r ./* $out
+    cp -R ./* $out/
   '';
 }
