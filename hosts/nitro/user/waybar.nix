@@ -94,8 +94,11 @@
           };
         };
         backlight = {
-          device = "intel_backlight";
           format = "  {percent} ";
+          interval = 2;
+          device = "intel_backlight";
+          #on-scroll-up = "backlight_delta /sys/class/backlight/intel_backlight/brightness up 50";
+          #on-scroll-down = "backlight_delta /sys/class/backlight/intel_backlight/brightness down 50";
         };
         pulseaudio = {
           format = " 󰕾 {volume} ";
@@ -105,7 +108,7 @@
           format = " 󰋊 {used}/{total} ";
         };
         bluetooth = {
-          "format" = " 󰂯 {status} ";
+          format = " 󰂯 {status} ";
         };
       };
     };
@@ -194,7 +197,7 @@
       }
     '';
     systemd = {
-      enable = true;
+      enable = false;
       target = "hyprland-session.target";
     };
   };

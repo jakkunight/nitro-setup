@@ -18,6 +18,7 @@
         follow_mouse = 0;
       };
       exec = [
+        "waybar &"
         "hyprpaper &"
       ];
       # General:
@@ -42,6 +43,11 @@
         ", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioPrev, exec, playerctl previous"
         ", XF86AudioNext, exec, playerctl next"
+      ];
+      bindm = [
+        # Move/resize windows with mainMod + LMB/RMB and dragging
+        "$mod, mouse:272, movewindow"
+        "$mod, mouse:273, resizewindow"
       ];
       bindr = [ ];
       bind = [
