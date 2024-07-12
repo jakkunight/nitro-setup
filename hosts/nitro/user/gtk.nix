@@ -11,5 +11,13 @@
       name = "Tokyonight";
       package = pkgs.tokyonight-gtk-theme;
     };
+    cursorTheme = {
+      name = "Tokyonight";
+      package = pkgs.tokyonight-gtk-theme;
+    };
+    iconTheme = {
+      name = "Tokyonight";
+      package = pkgs.tokyonight-gtk-theme;
+    };
   };
 }

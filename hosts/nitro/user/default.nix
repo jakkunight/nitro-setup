@@ -8,5 +8,6 @@
     ./git.nix
     ./nvim.nix
     ./gtk.nix
+    ./qt.nix
   ];
 }
