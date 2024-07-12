@@ -12,12 +12,12 @@
       package = pkgs.tokyonight-gtk-theme;
     };
     iconTheme = {
-      package = pkgs.tokyonight-gtk-theme;
-      name = "Tokyonight-Dark-B";
+      package = pkgs.candy-icons;
+      name = "candy-icons";
     };
     cursorTheme = {
       package = pkgs.tokyonight-gtk-theme;
-      name = "Tokyonight-Dark-B";
+      name = "Wanderer";
       size = 18;
     };
   };

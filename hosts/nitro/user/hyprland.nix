@@ -4,6 +4,9 @@
   # Hyprland:
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd = {
+      enable = true;
+    };
     settings = {
       # Monitor:
       monitor = ",preferred,auto,1.0";
@@ -14,6 +17,10 @@
         kb_layout = "latam";
         follow_mouse = 0;
       };
+      exec = [
+        "waybar &"
+        "hyprpaper &"
+      ];
       # General:
       general = {
         gaps_in = 5;

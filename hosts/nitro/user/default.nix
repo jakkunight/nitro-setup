@@ -9,5 +9,6 @@
     ./nvim.nix
     ./gtk.nix
     ./qt.nix
+    ./waybar.nix
   ];
 }
