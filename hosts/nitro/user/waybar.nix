@@ -6,16 +6,15 @@
       mainBar = {
         layer = "top";
         position = "top";
-        height = 30;
+        height = 36;
         output = [
           "eDP-1"
           "HDMI-A-1"
         ];
         modules-left = [
           "user"
-          "backlight/slider"
-          "pulseaudio/slider"
-          "mpd"
+          "backlight"
+          "pulseaudio"
           "tray"
         ];
         modules-center = [
@@ -26,15 +25,174 @@
           "temperature"
           "memory"
           "disk"
-          "bluetooth"
-          "network"
           "battery"
-          "power-profiles-daemon"
           "clock"
         ];
+        user = {
+          icon = true;
+          avatar = "~/Pictures/jakku-profile.png";
+          height = 64;
+          width = 64;
+          format = " {user} ";
+        };
+        clock = {
+          format = " 󰃰 {:%d-%m-%y %H:%M} ";
+          tooltip = false;
+        };
+        battery = {
+          states = {
+            good = 95;
+            warning = 30;
+            critical = 15;
+          };
+          format = " {icon} {capacity}% ";
+          "format-charging" = " 󱊥 {capacity}% ";
+          "format-plugged" = " 󰚥 {capacity}% ";
+          "format-icons" = [
+            "󰂎 "
+            "󱊡 "
+            "󱊢 "
+            "󱊣 "
+          ];
+        };
+        network = {
+          "format-wifi" = " 󰀂 {essid} ";
+          "format-ethernet" = " 󰌘 {essid} ";
+          "format-disconnect" = " 󰌙 {ifname} ";
+          "format-linked" = " 󰌗 {ifname}: {ipaddr}/{cidr} ";
+        };
+        tray = {
+          "icon-size" = 18;
+          spacing = 6;
+        };
+        cpu = {
+          interval = 30;
+          format = "  {usage}% ";
+        };
+        memory = {
+          interval = 30;
+          format = "  {used}GiB/{total}GiB ";
+        };
+        temperature = {
+          interval = 30;
+          format = "  {temperatureC}°C ";
+        };
+        "hyprland/workspaces" = {
+          format = "{icon}";
+          "format-icons" = {
+            "1" = "   ";
+            "2" = " 󰈹  ";
+            "3" = " 󰨡  ";
+            "4" = " 󰕼  ";
+            "5" = " 󰓓  ";
+            "6" = "   ";
+            "7" = "   ";
+            "8" = "   ";
+            "9" = " 󱄅  ";
+            "0" = " 󰢻  ";
+            #"active" = " ";
+          };
+        };
+        backlight = {
+          device = "intel_backlight";
+          format = "  {percent} ";
+        };
+        pulseaudio = {
+          format = " 󰕾 {volume} ";
+        };
+        disk = {
+          interval = 30;
+          format = " 󰋊 {used}/{total} ";
+        };
+        bluetooth = {
+          "format" = " 󰂯 {status} ";
+        };
       };
     };
-    style = '''';
+    style = ''
+      * {
+        border: none;
+        border-radius: 0;
+        font-family: CascadiaCode;
+        font-size: 12pt;
+        min-height: 0;
+      }
+
+      window#waybar {
+        background: transparent;
+        color: white;
+      }
+
+      #workspaces {
+      	background-color: #24283b;
+      	margin: 5px;
+      	border-radius: 5px;
+      }
+      #workspaces button {
+        padding: 5px;
+        color: #c0caf5;
+      }
+
+      #workspaces button.focused {
+        color: #24283b;
+        background-color: #7aa2f7;
+        border-radius: 5px;
+      }
+
+      #workspaces button:hover {
+      	background-color: #7dcfff;
+      	color: #24283b;
+      	border-radius: 5px;
+      }
+
+      #custom-date, #clock, #battery, #pulseaudio, #backlight, #network, #cpu, #disk, #memory, #temperature, #bluetooth, #user {
+      	background-color: #24283b;
+        border-radius: 5px;
+        margin: 5px;
+      }
+
+      #custom-date {
+      	color: #7dcfff;
+      }
+
+      #clock {
+          color: #b48ead;
+      }
+
+      #battery {
+          color: #9ece6a;
+      }
+
+      #battery.charging {
+          color: #9ece6a;
+      }
+
+      #battery.warning:not(.charging) {
+          background-color: #f7768e;
+          color: #24283b;
+      }
+      #disk {
+          color: #9ece6a;
+      }
+
+      #network {
+      	color: #f7768e;
+      }
+
+      #pulseaudio {
+      	color: #e0af68;
+      }
+
+      #backlight {
+        color: #e0af68;
+      }
+      #cpu {
+        color: #e0af68;
+      }
+      #memory {
+      	color: #f7768e;
+      }
+    '';
     systemd = {
       enable = true;
       target = "hyprland-session.target";

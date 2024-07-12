@@ -18,7 +18,6 @@
         follow_mouse = 0;
       };
       exec = [
-        "waybar &"
         "hyprpaper &"
       ];
       # General:
