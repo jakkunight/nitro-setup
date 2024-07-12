@@ -5,19 +5,20 @@
     font = {
       name = "Cascadia Code";
       package = pkgs.cascadia-code;
-      #size = "14pt";
+      size = 12;
     };
     theme = {
       name = "Tokyonight";
       package = pkgs.tokyonight-gtk-theme;
     };
-    cursorTheme = {
-      name = "Tokyonight";
-      package = pkgs.tokyonight-gtk-theme;
-    };
     iconTheme = {
-      name = "Tokyonight";
-      package = pkgs.tokyonight-gtk-theme;
+      package = pkgs.zafiro-icons;
+      name = "Zafiro-icons-Dark";
+    };
+    cursorTheme = {
+      package = pkgs.graphite-cursors;
+      name = "graphite-dark";
+      size = 18;
     };
   };
 }
