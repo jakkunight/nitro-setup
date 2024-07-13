@@ -25,6 +25,14 @@
       url = "github:Mic92/nix-ld";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    #cachix = {
+    #  url = "github:cachix/cachix";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
+    #devenv = {
+    #  url = "";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
   };
   outputs = { self, nixpkgs, ... }@inputs:
     let
