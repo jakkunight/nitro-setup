@@ -22,6 +22,7 @@
     nix-ld # Linker for NixOS
     mdr # Utility for rendering Markdown files on the terminal
     texliveFull # The LaTeX toolkit.
+    rubber # Live LaTeX compiler.
     pandoc # A tool to compile Markdown to PDF
     yazi # Main filemanager (for the terminal)
     zellij # Main terminal multiplexer
@@ -31,6 +32,7 @@
     wget # Utility to download files from the web
     btop # A great tool for monitoring processes
     htop # The classic HTOP to monitor processes
+    fastfetch # A CLI system info display
     neofetch # A CLI system info display
     waybar # The bar for Wayland compositors (Hyprland in this case)
     wofi # The app launcher for Wayland compositors (Hyprland in this case)
@@ -42,7 +44,7 @@
     udiskie # A tool for automounting USB drives.
     usbutils # Utilities for USB mangement.
     networkmanagerapplet # To manage networking.
-    glib
+    glib # The GNU Standard C Library.
     vlc
     #gnome.networkmanager-l2tp
     # To manage compressed files:
