@@ -20,12 +20,17 @@
       brave
       discord
       steam
+      lutris
+      bottles
       udiskie
       remmina
       xfce.thunar
       xfce.thunar-volman
       gnome.gvfs
       gnome.gdm
+      audacity
+      kdePackages.kdenlive
+      obs-studio
     ];
   };
 
