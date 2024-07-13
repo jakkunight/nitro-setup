@@ -150,10 +150,14 @@
       	border-radius: 5px;
       }
 
-      #custom-date, #clock, #battery, #pulseaudio, #backlight, #network, #cpu, #disk, #memory, #temperature, #bluetooth, #user {
+      #tray, #clock, #battery, #pulseaudio, #backlight, #network, #cpu, #disk, #memory, #temperature, #bluetooth, #user {
       	background-color: #24283b;
         border-radius: 5px;
         margin: 5px;
+      }
+
+      #tray {
+        color: #7dcfff;
       }
 
       #custom-date {
