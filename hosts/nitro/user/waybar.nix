@@ -62,10 +62,12 @@
           ];
         };
         network = {
-          "format-wifi" = " 󰀂 {essid} ";
-          "format-ethernet" = " 󰌘 {essid} ";
-          "format-disconnect" = " 󰌙 {ifname} ";
-          "format-linked" = " 󰌗 {ifname}: {ipaddr}/{cidr} ";
+          interval = 60;
+          "format-wifi" = " 󰀂 {essid}  {bandwidthDownBytes}  {bandwidthUpBytes} ";
+          "format-ethernet" = " 󰌘 {essid}  {bandwidthDownBytes}  {bandwidthUpBytes} ";
+          "format-disconnect" = " 󰌙 {ifname}  {bandwidthDownBytes}  {bandwidthUpBytes} ";
+          "format-linked" = " 󰌗 {ifname}: {ipaddr}/{cidr}  {bandwidthDownBytes}  {bandwidthUpBytes} ";
+
         };
         tray = {
           "icon-size" = 18;
