@@ -11,7 +11,7 @@
     syntaxHighlighting.enable = true;
     initExtraFirst = "source ~/.p10k.zsh";
     initExtra = ''
-      neofetch
+      fastfetch
       echo "\n(^.^) Welcome back, Jakku Night!\n"
     '';
     plugins = [
