@@ -2,6 +2,10 @@
 {
   programs.waybar = {
     enable = true;
+    systemd = {
+      enable = true;
+      target = "hyprland-session.target";
+    };
     settings = {
       mainBar = {
         layer = "top";
@@ -202,9 +206,5 @@
       	color: #f7768e;
       }
     '';
-    systemd = {
-      enable = false;
-      target = "hyprland-session.target";
-    };
   };
 }
