@@ -17,8 +17,8 @@
     };
     cursorTheme = {
       package = pkgs.breeze-hacked-cursor-theme;
-      name = "Breeze_Hacked";
-      size = 48;
+      name = "Breeze_Hacked"; # See https://store.kde.org/p/1440328 to find the selector name.
+      size = 36;
     };
   };
 }
