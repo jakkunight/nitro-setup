@@ -53,6 +53,7 @@
     gzip
     busybox
     xz
+    rar
     lz4
     # To setup IPSec connections:
     strongswan
