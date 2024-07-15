@@ -31,24 +31,86 @@ difficult is the usage of flakes, modules and the hole system configuration.
 Now that I belive that I've a better knowlage about what's going on, it's
 time to make things easier for other people too.
 
-## Contents (comming soon)
-
 ## The Nix programming language
 
-## The Nix module system
+Let's begin with the Nix language. As you may guessed, there are datatypes,
+like in any other language. These are:
 
-## System installation with disko.nix
+* Strings, like `"hello"` or `'I am a string too!'`. You can also use
+multiline strings like this:
 
-## Using Flakes to split the config
+```nix
+''
+  I am
+  a very
+  long
+  string!
+''
+```
 
-## Home-Manager installation
+* Numbers, like `1`, `2.0` and `-1`. You can also perform some math with them, like:
 
-## Structuring your config project
+```nix
+1 + 2 # 3
+2 - 2 # 0
+2 / 2 # 1
+3 * 3 # 9
+```
 
-## Conclution
+* Booleans, with the well-known `true` and `false`.
+* Arrays, like `[ "Tokyo-3" "Athenas" "Hyrule" "Neverland" "Amestris" ]` or:
 
-## Apendix A: Development setup
+```nix
+[
+  1
+  2
+  3
+  4
+]
+```
 
-## Apendix B: Gaming setup
+* And sets, like:
 
-## Apendix C: Servers setup
+```nix
+  {
+    name: "Julius Caesar";
+    age: 47;
+    skils: [
+      "Swordsmanship",
+      "Appraisal",
+      "Fusion"
+    ];
+  }
+```
+
+You can also reference a field inside a set like this:
+
+```nix
+# This is a comment line
+# Let's say there's a set called plugin and has two fields:
+# url, which is a string; and name; which is also a string.
+plugin.name # Refers to the plugin name.
+plugin.url # Refers to the plugin URL.
+```
+
+* There are also functions, which are defined like this:
+
+```nix
+param: result
+```
+
+Notice that a function can only accept *one* parameter and
+return just *one* output. This might not sound very useful,
+but let's make a little trick:
+
+```nix
+{ field1, field2 }: field1 + field2
+```
+We used a set to hold all the parameters of our function 
+and returned their addition. The input and the output of 
+a function can be as complex as the Nix data types allows 
+you to define them.  
+
+
+Now that we've covered the most important stuffs from the 
+Nix language, let's dive into configuring our system.
