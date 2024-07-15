@@ -16,9 +16,9 @@
       name = "candy-icons";
     };
     cursorTheme = {
-      package = pkgs.tokyonight-gtk-theme;
-      name = "Wanderer";
-      size = 18;
+      package = pkgs.breeze-hacked-cursor-theme;
+      name = "Breeze_Hacked";
+      size = 48;
     };
   };
 }
