@@ -46,6 +46,7 @@
           tooltip = false;
         };
         battery = {
+          interval = 1;
           states = {
             good = 95;
             warning = 30;
@@ -62,7 +63,7 @@
           ];
         };
         network = {
-          interval = 60;
+          interval = 1;
           "format-wifi" = " 󰀂 {essid}  {bandwidthDownBytes}  {bandwidthUpBytes} ";
           "format-ethernet" = " 󰌘 {essid}  {bandwidthDownBytes}  {bandwidthUpBytes} ";
           "format-disconnect" = " 󰌙 {ifname}  {bandwidthDownBytes}  {bandwidthUpBytes} ";
@@ -74,15 +75,15 @@
           spacing = 6;
         };
         cpu = {
-          interval = 30;
+          interval = 1;
           format = "  {usage}% ";
         };
         memory = {
-          interval = 30;
+          interval = 1;
           format = "  {used}GiB/{total}GiB ";
         };
         temperature = {
-          interval = 30;
+          interval = 1;
           format = "  {temperatureC}°C ";
         };
         "hyprland/workspaces" = {
@@ -112,7 +113,7 @@
           format = " 󰕾 {volume} ";
         };
         disk = {
-          interval = 30;
+          interval = 1;
           format = " 󰋊 {used}/{total} ";
         };
         bluetooth = {
