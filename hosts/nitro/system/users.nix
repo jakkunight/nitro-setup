@@ -22,6 +22,7 @@
       steam
       lutris
       bottles
+      playonlinux
       udiskie
       remmina
       xfce.thunar
