@@ -1,0 +1,41 @@
+# Utilities to manage the system:
+{ pkgs }:
+{
+  environment.systemPackages = with pkgs; [
+    ripgrep
+    gnugrep
+    jq
+    fzf
+    mtr
+    dnsutils
+    nmap
+    aria2c
+    git
+    vim
+    wget
+    curl
+    socat
+    gnused
+    file
+    tree
+    gawk
+    which
+    gnupg
+    zstd
+    nix-output-monitor
+    iperf3
+    glow
+    btop
+    iotop
+    iftop
+    strace
+    lsof
+    ltrace
+    zellij
+    nnn
+    yazi
+    neofetch
+    fastfetch
+    gnupg
+  ];
+}
