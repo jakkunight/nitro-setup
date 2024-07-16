@@ -8,6 +8,12 @@
     name = "Breeze_Hacked"; # See https://store.kde.org/p/1440328 to find the selector name.
     size = 36;
   };
+
+  # GTK themes:
+  home.packages = with pkgs; [
+    tokyonight-gtk-theme
+  ];
+
   gtk = {
     enable = true;
     font = {
