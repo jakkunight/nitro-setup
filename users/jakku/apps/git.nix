@@ -1,5 +1,5 @@
 # Here goes my git credentials:
-{ config, pkgs, ... }@inputs:
+{}:
 {
   programs.git = {
     enable = true;
