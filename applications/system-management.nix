@@ -37,5 +37,6 @@
     neofetch
     fastfetch
     gnupg
+    micro
   ];
 }
