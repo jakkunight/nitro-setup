@@ -22,5 +22,5 @@
   };
   networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkdefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkdefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
