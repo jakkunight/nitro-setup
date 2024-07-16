@@ -9,5 +9,6 @@
     xz
     lz4
     gnutar
+    p7zip
   ];
 }
