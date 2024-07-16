@@ -1,5 +1,5 @@
 # USB Services:
-{}:
+{ ... }:
 {
   # Enable GVFS to mount USB drives:
   services.gvfs.enable = true;

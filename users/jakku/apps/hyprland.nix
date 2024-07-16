@@ -1,5 +1,5 @@
 # Hyprland user config:
-{}:
+{ ... }:
 {
   # Hyprland:
   wayland.windowManager.hyprland = {

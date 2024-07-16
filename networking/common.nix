@@ -1,5 +1,5 @@
 # Configure Hostname and timezone. Enable networking.
-{}:
+{ ... }:
 {
   # Set your time zone.
   time.timeZone = "America/Asuncion";

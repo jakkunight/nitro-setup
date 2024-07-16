@@ -1,5 +1,5 @@
 # SDDM Theme:
-{ pkgs }: pkgs.stdenv.mkDerivation {
+{ pkgs, ... }: pkgs.stdenv.mkDerivation {
   name = "Tokyo Night";
   src = pkgs.fetchFromGitHub {
     owner = "siddrs";

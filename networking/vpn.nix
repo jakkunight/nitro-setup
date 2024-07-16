@@ -1,7 +1,7 @@
 # [IMPORTANT] This file contents the VPN connection
 # to the ANDESCADA system. DO NOT EXPOSE ANY SENSITVE
 # DATA INTO THIS FILE!!!
-{}:
+{ ... }:
 {
   # Enable package forwarding:
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;

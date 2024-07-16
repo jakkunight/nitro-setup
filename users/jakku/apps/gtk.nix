@@ -1,5 +1,5 @@
 # GTK config:
-{ pkgs }:
+{ pkgs, ... }:
 {
   home.pointerCursor = {
     gtk.enable = true;

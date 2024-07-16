@@ -1,5 +1,5 @@
 # Hyprland systemwide config:
-{ pkgs }:
+{ pkgs, ... }:
 {
   # Enable Hyprland:
   programs.hyprland.enable = true;

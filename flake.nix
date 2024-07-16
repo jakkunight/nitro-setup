@@ -30,11 +30,13 @@
       nixosConfigurations = {
         nitro = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit input; };
+          specialArgs.inputs = input;
           modules = [
             input.disko.nixosModules.disko
-            input.home-manager.nixosModules.home-manager
+            ./disk/disk.nix
+            { _module.args.disks = [ "/dev/nvme0n1" ]; }
             ./basic/config.nix
+            input.home-manager.nixosModules.home-manager
           ];
         };
       };

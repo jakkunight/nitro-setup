@@ -1,5 +1,5 @@
 # SDDM config:
-{ pkgs }:
+{ pkgs, ... }:
 {
   services.displayManager.sddm = {
     enable = true;

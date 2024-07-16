@@ -1,5 +1,5 @@
 # Waybar config:
-{}:
+{ ... }:
 {
   programs.waybar = {
     enable = true;

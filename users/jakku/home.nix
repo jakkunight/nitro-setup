@@ -1,5 +1,5 @@
 # Home-Manager config:
-{}: {
+{ ... }: {
   # Initial info:
   home.username = "jakku";
   home.homeDirectory = "/home/jakku";

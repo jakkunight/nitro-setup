@@ -1,6 +1,6 @@
 # A file to mannage my GRUB2 configuration.
 # [Coming Soon] A GRUB theme.
-{}:
+{ ... }:
 {
   boot = {
     loader = {

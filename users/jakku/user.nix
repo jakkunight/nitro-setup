@@ -1,5 +1,5 @@
 # Users config:
-{ pkgs }:
+{ pkgs, ... }:
 {
   # Use ZSH as default shell:
   programs.zsh.enable = true;

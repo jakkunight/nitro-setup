@@ -1,5 +1,5 @@
 # ZSH config:
-{ pkgs }:
+{ pkgs, ... }:
 {
   programs.zsh = {
     # Enable ZSH:

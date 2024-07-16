@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs }:
+{ config, lib, pkgs, ... }@inputs:
 {
   # Allow unfree software:
   nixpkgs.config.allowUnfree = true;
@@ -21,6 +21,8 @@
     ./../networking/bluetooth.nix
     ./../sound/pipewire.nix
     ./../disk/disk.nix
+    ./../services/printing.nix
+    ./../services/usb.nix
     ./../users/jakku/user.nix
   ];
 

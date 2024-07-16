@@ -1,5 +1,5 @@
 # Here goes my git credentials:
-{}:
+{ ... }:
 {
   programs.git = {
     enable = true;

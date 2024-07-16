@@ -1,5 +1,5 @@
 # X11 config:
-{}:
+{ ... }:
 {
   # Enable X11:
   services.xserver = {
