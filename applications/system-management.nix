@@ -9,7 +9,7 @@
     mtr
     dnsutils
     nmap
-    aria2c
+    aria2
     git
     vim
     wget
