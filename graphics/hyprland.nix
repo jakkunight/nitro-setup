@@ -9,6 +9,8 @@
     hyprutils
     hyprland
     hyprlang
+    hyprcursor
+    hyprpaper
     waybar
     swww # To set the wallpaper (later).
   ];
