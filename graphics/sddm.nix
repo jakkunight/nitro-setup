@@ -1,5 +1,5 @@
 # SDDM config:
-{ pkgs, ... }:
+{ pkgs, config, lib, inputs, ... }:
 {
   environment.systemPackages = with pkgs; [
     # Qt5:

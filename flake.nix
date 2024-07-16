@@ -21,28 +21,29 @@
     # Nix-LD:
   };
 
-  outputs = { self, nixpkgs, ... }@input:
+  outputs = { self, nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
+
       nixosConfigurations = {
         nitro = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs.inputs = input;
+          specialArgs.inputs = inputs;
           modules = [
-            input.disko.nixosModules.disko
+            inputs.disko.nixosModules.disko
             ./disk/disk.nix
             { _module.args.disks = [ "/dev/nvme0n1" ]; }
             ./basic/config.nix
-            input.home-manager.nixosModules.home-manager
+            inputs.home-manager.nixosModules.home-manager
           ];
         };
       };
       # Home-Manager:
       homeConfigurations = {
-        jakku = input.home-manager.lib.homeManagerConfiguration {
+        jakku = inputs.home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
             ./users/jakku/home.nix

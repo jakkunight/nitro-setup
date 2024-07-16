@@ -1,5 +1,5 @@
 # Network interfaces setup:
-{ ... }:
+{ config, lib, pkgs, inputs, ... }:
 {
   # Setup the network interfaces, such Wireless, Ethernet, etc:
   networking.interfaces = {

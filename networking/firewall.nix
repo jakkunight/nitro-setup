@@ -1,5 +1,5 @@
 # Firewall configuration. Allow known ports only to be open:
-{ ... }:
+{ config, lib, pkgs, inputs, ... }:
 {
   networking.firewall = {
     enable = true;

@@ -1,5 +1,5 @@
 # Here goes my NerdFonts:
-{ pkgs, ... }: {
+{ pkgs, config, lib, inputs, ... }: {
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "CascadiaCode" "Hack" "FiraCode" "Ubuntu" "Iosevka" ]; })
   ];

@@ -1,9 +1,9 @@
 # Here goes the internationalization settings:
-{ ... }: {
+{ config, lib, pkgs, inputs, ... }: {
   # Set Keyboard layout>
-  services.xserver.keyMap = "latam";
+  services.xserver.xkb.layout = "latam";
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "es_PY.UTF-8";
   console = {
     font = "Lat2-Terminus16";
     #   keyMap = "us";

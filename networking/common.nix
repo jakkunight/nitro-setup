@@ -3,9 +3,9 @@
 {
   # Set your time zone.
   time.timeZone = "America/Asuncion";
-  stName = "nitro";
+  networking.hostName = "nitro";
   # Uses NetworkManager, as this is easier to use
-  networkmanager = {
+  networking.networkmanager = {
     enable = true;
   };
 }

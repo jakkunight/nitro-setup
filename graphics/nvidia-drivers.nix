@@ -1,5 +1,5 @@
 # NVIDIA Drivers config:
-{ config, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 {
   # Enable OpenGL:
   hardware.graphics = {

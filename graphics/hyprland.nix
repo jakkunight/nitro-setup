@@ -1,11 +1,18 @@
 # Hyprland systemwide config:
-{ pkgs, ... }:
+{ pkgs, lib, configs, inputs, ... }:
 {
-  # Enable Hyprland:
-  programs.hyprland.enable = true;
-
-  # Install dunst:
+  # Install extra packages:
   environment.systemPackages = with pkgs; [
+    # Use Dunst for notifications:
     dunst
+    # Required to build Hyprland:
+    hyprutils
   ];
+  # Enable Hyprland:
+  programs.hyprland = {
+    enable = true;
+  };
+
+  # For Electron apps:
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 }

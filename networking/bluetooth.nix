@@ -1,10 +1,10 @@
 # Bluetooth config (even if it does not work):
-{ ... }:
+{ config, lib, pkgs, inputs, ... }:
 {
   hardware.bluetooth = {
-    enable = true;
+    enable = false;
     powerOnBoot = false;
   };
   # Enable Blueman:
-  services.blueman.enable = true;
+  #services.blueman.enable = false;
 }

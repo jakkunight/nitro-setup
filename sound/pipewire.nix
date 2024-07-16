@@ -1,5 +1,5 @@
 # Audio config. Using PipeWire instead of PulseAudio.
-{ ... }:
+{ config, lib, pkgs, inputs, ... }:
 {
   # Disable PulseAudio explicitly:
   hardware.pulseaudio.enable = false;

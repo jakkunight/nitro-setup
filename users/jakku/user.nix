@@ -1,5 +1,5 @@
 # Users config:
-{ pkgs, ... }:
+{ pkgs, config, lib, inputs, ... }:
 {
   # Use ZSH as default shell:
   programs.zsh.enable = true;
@@ -22,6 +22,8 @@
       audacity
       kdePackages.kdenlive
       obs-studio
+      alacritty
+      xfce.thunar
     ];
   };
 
