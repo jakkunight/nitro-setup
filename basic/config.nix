@@ -1,5 +1,7 @@
 { config, lib, pkgs, inputs }:
 {
+  # Allow unfree software:
+  nixpkgs.config.allowUnfree = true;
   # Import all the config for the system:
   imports = [
     ./hardware.nix
