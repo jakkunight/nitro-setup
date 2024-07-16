@@ -6,7 +6,7 @@
     loader = {
       grub = {
         enable = true;
-        device = "nidev";
+        device = "nodev";
         efiSupport = true;
         efiInstallAsRemovable = true;
       };
