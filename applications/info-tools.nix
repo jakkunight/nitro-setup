@@ -6,6 +6,6 @@
     usbutils
     sysstat
     lm_sensors
-    ethtools
+    ethtool
   ];
 }
