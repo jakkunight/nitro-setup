@@ -1,6 +1,0 @@
-2024/07/02-15:55:23.754 4 Reusing MANIFEST /home/jakku/.config/BraveSoftware/Brave-Browser/Default/Local Storage/leveldb/MANIFEST-000001
-2024/07/02-15:55:23.758 4 Recovering log #258
-2024/07/02-15:55:23.758 4 Reusing old log /home/jakku/.config/BraveSoftware/Brave-Browser/Default/Local Storage/leveldb/000258.log 
-2024/07/02-16:32:12.644 6 Level-0 table #262: started
-2024/07/02-16:32:12.649 6 Level-0 table #262: 51847 bytes OK
-2024/07/02-16:32:12.653 6 Delete type=0 #258
