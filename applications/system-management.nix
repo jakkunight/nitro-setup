@@ -1,5 +1,5 @@
 # Utilities to manage the system:
-{ pkgs }:
+{ pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     ripgrep

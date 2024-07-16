@@ -1,5 +1,5 @@
 # Install virtualization utilities:
-{ pkgs }:
+{ pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     # QUEMU:

@@ -1,5 +1,5 @@
 # ¿Gaming packages? config.
-{ pkgs }:
+{ pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     steam

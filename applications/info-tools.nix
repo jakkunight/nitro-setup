@@ -1,5 +1,5 @@
 # Utilities to get system information:
-{ pkgs }:
+{ pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     pciutils

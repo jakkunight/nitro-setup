@@ -1,5 +1,5 @@
 # Utilities to manage compressed files:
-{ pkgs }:
+{ pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     rar

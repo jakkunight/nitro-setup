@@ -1,5 +1,5 @@
 # Developmant utilities:
-{ pkgs }:
+{ pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     nix-ld
