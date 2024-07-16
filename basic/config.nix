@@ -1,5 +1,7 @@
 { config, lib, pkgs, ... }@inputs:
 {
+  # Enable Flakes!
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Allow unfree software:
   nixpkgs.config.allowUnfree = true;
   # Import all the config for the system:
