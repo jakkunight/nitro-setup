@@ -1,7 +1,7 @@
 # Firewall configuration. Allow known ports only to be open:
 { ... }:
 {
-  firewall = {
+  networking.firewall = {
     enable = true;
     interfaces = {
       # Wireless interface:
