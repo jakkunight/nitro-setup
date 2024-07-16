@@ -9,6 +9,7 @@
     hyprutils
     hyprland
     hyprlang
+    waybar
     swww # To set the wallpaper (later).
   ];
   # Enable Hyprland:
