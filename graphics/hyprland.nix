@@ -7,6 +7,9 @@
     dunst
     # Required to build Hyprland:
     hyprutils
+    hyprland
+    hyprlang
+    swww # To set the wallpaper (later).
   ];
   # Enable Hyprland:
   programs.hyprland = {
