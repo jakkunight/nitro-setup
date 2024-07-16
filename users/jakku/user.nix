@@ -24,6 +24,7 @@
       obs-studio
       alacritty
       xfce.thunar
+      vlc
     ];
   };
 
