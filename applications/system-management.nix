@@ -38,5 +38,6 @@
     fastfetch
     gnupg
     micro
+    glib
   ];
 }
