@@ -107,8 +107,8 @@
           format = "  {percent} ";
           interval = 5;
           device = "intel_backlight";
-          #on-scroll-up = "backlight_delta /sys/class/backlight/intel_backlight/brightness up 50";
-          #on-scroll-down = "backlight_delta /sys/class/backlight/intel_backlight/brightness down 50";
+          "on-scroll-up" = "brightnessctl set 1%+";
+          "on-scroll-down" = "brightnessctl set 1%-";
         };
         pulseaudio = {
           format = " 󰕾 {volume} ";
