@@ -18,7 +18,8 @@
         follow_mouse = 0;
       };
       exec = [
-        "hyprpaper &"
+        "swww-daemon &"
+        "swww img ~/Pictures/wanderer-inazuma.jpg &"
       ];
       # General:
       general = {
@@ -28,7 +29,7 @@
         "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         border_size = 2;
         resize_on_border = true;
-        layout = "dwindle";
+        layout = "master";
       };
       # Keybindings
       bindel = [
@@ -136,6 +137,9 @@
       dwindle = {
         pseudotile = true;
         preserve_split = true;
+      };
+      master = {
+        new_status = "slave";
       };
       # Misc:
       misc = {
