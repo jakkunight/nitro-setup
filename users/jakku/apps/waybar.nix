@@ -90,16 +90,16 @@
         "hyprland/workspaces" = {
           format = "{icon}";
           "format-icons" = {
-            "1" = "   ";
-            "2" = " 󰈹  ";
-            "3" = " 󰨡  ";
-            "4" = " 󰕼  ";
-            "5" = " 󰓓  ";
-            "6" = "   ";
-            "7" = "   ";
-            "8" = "   ";
-            "9" = " 󱄅  ";
-            "0" = " 󰢻  ";
+            "1" = "  ";
+            "2" = " 󰈹 ";
+            "3" = " 󰨡 ";
+            "4" = " 󰕼 ";
+            "5" = " 󰓓 ";
+            "6" = "  ";
+            "7" = "  ";
+            "8" = "  ";
+            "9" = " 󱄅 ";
+            "0" = " 󰢻 ";
             #"active" = " ";
           };
         };
@@ -128,6 +128,7 @@
         border-radius: 0;
         font-family: CascadiaCode;
         font-size: 12pt;
+        padding: 2px;
         min-height: 0;
       }
 
@@ -142,7 +143,6 @@
       	border-radius: 5px;
       }
       #workspaces button {
-        padding: 5px;
         color: #c0caf5;
       }
 
@@ -166,6 +166,7 @@
 
       #tray {
         color: #7dcfff;
+        padding: 2px;
       }
 
       #custom-date {
