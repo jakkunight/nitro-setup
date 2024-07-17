@@ -6,7 +6,7 @@
     lutris
     wineWowPackages.stable
     winetricks
-    playonlinux
     tokyonight-gtk-theme
+    bottles
   ];
 }
