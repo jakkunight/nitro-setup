@@ -25,6 +25,7 @@
       alacritty
       xfce.thunar
       vlc
+      wofi
     ];
   };
 
