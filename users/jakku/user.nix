@@ -26,6 +26,7 @@
       xfce.thunar
       vlc
       wofi
+      tokyonight-gtk-theme
     ];
   };
 

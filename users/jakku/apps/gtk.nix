@@ -9,11 +9,6 @@
     size = 36;
   };
 
-  # GTK themes:
-  home.packages = with pkgs; [
-    tokyonight-gtk-theme
-  ];
-
   gtk = {
     enable = true;
     font = {
