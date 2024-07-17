@@ -39,5 +39,8 @@
     gnupg
     micro
     glib
+    brightnessctl
+    xorg.xbacklight
+    acpilight
   ];
 }

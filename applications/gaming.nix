@@ -7,5 +7,6 @@
     wineWowPackages.stable
     winetricks
     playonlinux
+    tokyonight-gtk-theme
   ];
 }
