@@ -27,6 +27,9 @@
       vlc
       wofi
       tokyonight-gtk-theme
+      gimp
+      inkscape
+      krita
     ];
   };
 
