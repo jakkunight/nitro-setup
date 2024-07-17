@@ -1,15 +1,9 @@
 # Hyprland user config:
-{ ... }:
+{ config, pkgs, lib, ... }:
 {
   # Hyprland:
   wayland.windowManager.hyprland = {
     enable = true;
-    env = [
-      "LIBVA_DRIVER_NAME,nvidia"
-      "XDG_SESSION_TYPE,wayland"
-      "GBM_BACKEND,nvidia-drm"
-      "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-    ];
     systemd = {
       enable = true;
     };
