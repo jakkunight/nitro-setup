@@ -24,6 +24,8 @@
     ./../applications/compressed-files.nix
     ./../applications/system-management.nix
     ./../applications/virtualization.nix
+    ./../applications/gaming.nix
+    ./../applications/cybersecurity.nix
     # Graphics:
     ./../graphics/x11.nix
     ./../graphics/nvidia-drivers.nix
