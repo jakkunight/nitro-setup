@@ -6,5 +6,6 @@
     envfs
     cachix
     devenv
+    devbox
   ];
 }
