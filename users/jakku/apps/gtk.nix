@@ -6,7 +6,7 @@
     x11.enable = true;
     package = pkgs.breeze-hacked-cursor-theme;
     name = "Breeze_Hacked"; # See https://store.kde.org/p/1440328 to find the selector name.
-    size = 36;
+    size = 48;
   };
 
   gtk = {
@@ -17,7 +17,7 @@
       size = 12;
     };
     theme = {
-      name = "Tokyonight-Dark-B";
+      name = "Tokyonight-Dark";
       package = pkgs.tokyonight-gtk-theme;
     };
     iconTheme = {
@@ -27,7 +27,7 @@
     cursorTheme = {
       package = pkgs.breeze-hacked-cursor-theme;
       name = "Breeze_Hacked"; # See https://store.kde.org/p/1440328 to find the selector name.
-      size = 36;
+      size = 48;
     };
   };
 }
