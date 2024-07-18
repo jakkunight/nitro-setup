@@ -101,7 +101,7 @@
       decoration = {
         rounding = 5;
         # Transparency:
-        active_opacity = 0.95;
+        active_opacity = 0.85;
         inactive_opacity = 0.5;
         drop_shadow = true;
         shadow_range = 4;
@@ -233,6 +233,10 @@
           valign = "bottom";
         }];
     };
+  };
+  # Extra Session Variables:
+  home.sessionVariables = {
+    WLR_NO_HARDWARE_CURSORS = 1;
   };
   services.hyprpaper = {
     enable = true;
