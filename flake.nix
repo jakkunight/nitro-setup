@@ -17,6 +17,7 @@
     # Cachix:
     # Devenv:
     # Hyprland:
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     # EnvFS:
     # Nix-LD:
   };

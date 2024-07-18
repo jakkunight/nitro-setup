@@ -8,6 +8,14 @@
       enable = true;
     };
     settings = {
+      # ENV Variables:
+      env = [
+        "XCURSOR_SIZE,32"
+      ];
+      # XWayland:
+      xwayland = {
+        force_zero_scaling = true;
+      };
       # Monitor:
       monitor = ",preferred,auto,1.0";
       # Main $mod key:

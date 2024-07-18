@@ -5,12 +5,6 @@
   environment.systemPackages = with pkgs; [
     # Use Dunst for notifications:
     dunst
-    # Required to build Hyprland:
-    hyprutils
-    hyprland
-    hyprlang
-    hyprcursor
-    hyprpaper
     waybar
     swww # To set the wallpaper (later).
   ];
@@ -18,6 +12,7 @@
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
   };
 
   # For Electron apps:
