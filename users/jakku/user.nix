@@ -30,6 +30,7 @@
       gimp
       inkscape
       krita
+      zathura
     ];
   };
 
