@@ -42,5 +42,8 @@
     brightnessctl
     xorg.xbacklight
     acpilight
+    gparted
+    parted
+    unixtools.fdisk
   ];
 }
