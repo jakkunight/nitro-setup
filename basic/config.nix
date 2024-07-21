@@ -17,7 +17,8 @@
     ./../networking/interfaces.nix
     ./../networking/hosts.nix
     ./../networking/firewall.nix
-    ./../networking/vpn.nix
+    ./../networking/vpn-connections/andescada.nix
+    ./../networking/vpn-connections/cloudflare-warp.nix
     ./../networking/bluetooth.nix
     # System applications and packages:
     ./../applications/info-tools.nix
