@@ -7,5 +7,9 @@
     wlp62s0 = {
       useDHCP = true;
     };
+    # Ethernet interface:
+    eenp63s0 = {
+      useDHCP = true;
+    };
   };
 }

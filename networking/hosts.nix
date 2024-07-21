@@ -1,5 +1,5 @@
 # Hosts:
-{ ... }:
+{ config, pkgs, lib, ... }:
 {
   networking.hosts = {
     "142.251.133.4" = [
