@@ -1,6 +1,16 @@
 {
   description = "My Setup Settings v2.1.0";
 
+  # Enable Cachix:
+  nixConfig = {
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
+
   inputs = {
     # Nixpkgs:
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -14,7 +24,6 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Cachix:
     # Devenv:
     # Hyprland:
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
