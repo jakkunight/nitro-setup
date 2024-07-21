@@ -34,4 +34,11 @@
     ];
   };
 
+  # Add them to the Nix store trusted users:
+  nix.settings.trusted-users = [
+    "jakku"
+    "root"
+    "@wheel"
+  ];
+
 }
