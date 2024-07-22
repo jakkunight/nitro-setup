@@ -8,7 +8,7 @@
       useDHCP = true;
     };
     # Ethernet interface:
-    eenp63s0 = {
+    enp63s0 = {
       useDHCP = true;
     };
   };
