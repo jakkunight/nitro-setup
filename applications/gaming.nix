@@ -8,5 +8,12 @@
     winetricks
     tokyonight-gtk-theme
     bottles
+    mpg123
+    libmpg123
+  ];
+
+  # Open GameRanger ports:
+  networking.firewall.allowedUDPPorts = [
+    16000
   ];
 }
