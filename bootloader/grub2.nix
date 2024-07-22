@@ -9,6 +9,7 @@
         device = "nodev";
         efiSupport = true;
         efiInstallAsRemovable = true;
+        theme = inputs.nixos-grub-themes.packages.${pkgs.system}.hyperfluent;
       };
     };
   };

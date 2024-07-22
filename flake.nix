@@ -31,6 +31,8 @@
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     # EnvFS:
     # Nix-LD:
+    # NixOS-GRUB2-Themes:
+    nixos-grub-themes.url = "github:jeslie0/nixos-grub-themes";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
