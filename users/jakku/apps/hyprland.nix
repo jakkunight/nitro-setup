@@ -156,7 +156,23 @@
       };
     };
   };
-
+  # Hypridle:
+  services.hypridle = {
+    enable = true;
+    settings = {
+      general = {
+        lock_cmd = "pidof hyprlock || hyprlock";
+        before_sleep_cmd = "loginctl lock-session";
+        after_sleep_command = "hyprctl dispatch dpms on";
+      };
+      listener = [
+        {
+          timeout = 600;
+          on-timeout = "pidof hyprlock || hyprlock";
+        }
+      ];
+    };
+  };
   # Hyprlock:
   programs.hyprlock = {
     enable = true;
@@ -164,82 +180,33 @@
       general = {
         hide_cursor = true;
       };
-      backgrounds = [
+      background = [
         {
           monitor = "";
-          path = "~/Pictures/lock-screen.jpg";
+          path = "/home/jakku/Pictures/wanderer-inazuma.jpg";
           color = "rgba(0, 0, 0, 0.5)";
-          blur_passes = 4;
-          blur_size = 2;
-          noise = 0.1;
-          contrast = 0.8;
-          brightness = 0.5;
+          blur_passes = 1;
+          blur_size = 4;
+          noise = 0.0117;
+          contrast = 0.8916;
+          brightness = 0.8172;
           vibrancy = 0.1696;
           vibrancy_darkness = 0.0;
         }
       ];
-      input-fields = [
+      input-field = [
         {
-          monitor = "";
-          size = {
-            width = 600;
-            height = 50;
-          };
-          outline_thickness = 0.3;
-          fade_on_empty = true;
-          placeholder_text = ''<i>Password</i>'';
-          outer_color = "";
-          inner_color = "";
-          font_color = "";
-          dots_size = 0.2;
-          dots_spacing = 0.1;
+          size = "200, 50";
+          monitors = "";
           dots_center = true;
-          position = {
-            x = 0;
-            y = 50;
-          };
-          halign = "center";
-          valign = "center";
+          font_family = "Cascadia Code";
+          font_size = 12;
+          font_color = "rgb(192, 202, 245)";
+          placeholder_text = "<i>Input Password...</i>";
+          inner_color = "rgb(157, 124, 216)";
+          outer_color = "rgb(36, 40, 59)";
         }
       ];
-
-      labels = [{
-        monitor = "";
-        text = "$TIME";
-        font_family = "Cascadia Code";
-        font_size = 64;
-        color = "rgba(200, 200, 200, 1.0)";
-        position = {
-          x = 0;
-          y = 90;
-        };
-        valign = "center";
-        halign = "center";
-      }
-        {
-          monitor = "";
-          text = "Hey $USER";
-          color = "rgba(200, 200, 200, 1.0)";
-          font_size = 20;
-          position = {
-            x = 0;
-            y = 0;
-          };
-          halign = "center";
-          valign = "center";
-        }
-        {
-          monitor = "";
-          text = "Type to unlock!";
-          color = "rgba(200, 200, 200, 1.0)";
-          font_size = 16;
-          position = {
-            x = 0;
-            y = 30;
-          };
-          halign = "center";
-          valign = "bottom";
-        }];
     };
   };
   # Extra Session Variables:
