@@ -45,5 +45,6 @@
     gparted
     parted
     unixtools.fdisk
+    ventoy-full
   ];
 }
