@@ -109,7 +109,7 @@
       decoration = {
         rounding = 5;
         # Transparency:
-        active_opacity = 0.85;
+        active_opacity = 0.95;
         inactive_opacity = 0.5;
         drop_shadow = true;
         shadow_range = 4;
