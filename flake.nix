@@ -33,6 +33,11 @@
     # Nix-LD:
     # NixOS-GRUB2-Themes:
     nixos-grub-themes.url = "github:jeslie0/nixos-grub-themes";
+    # NixVim:
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
@@ -61,6 +66,7 @@
           inherit pkgs;
           modules = [
             ./users/jakku/home.nix
+	    inputs.nixvim.homeManagerModules.nixvim
           ];
         };
       };
