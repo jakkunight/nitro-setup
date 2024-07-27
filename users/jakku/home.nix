@@ -26,5 +26,6 @@
     ./apps/qt.nix
     ./apps/gtk.nix
     ./apps/nvim.nix
+    ./apps/academic.nix
   ];
 }
