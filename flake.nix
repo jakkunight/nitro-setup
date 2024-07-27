@@ -64,9 +64,10 @@
       homeConfigurations = {
         jakku = inputs.home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
+          extraSpecialArgs.inputs = inputs;
           modules = [
             ./users/jakku/home.nix
-	    inputs.nixvim.homeManagerModules.nixvim
+            inputs.nixvim.homeManagerModules.nixvim
           ];
         };
       };
