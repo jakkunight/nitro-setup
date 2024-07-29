@@ -38,6 +38,7 @@
     # Services:
     ./../services/printing.nix
     ./../services/usb.nix
+    ./../services/tlp.nix
     # Users:
     ./../users/jakku/user.nix
   ];
