@@ -25,7 +25,7 @@
     ./apps/zsh.nix
     ./apps/qt.nix
     ./apps/gtk.nix
-    ./apps/nvim.nix
+    ./apps/nvim/default.nix
     ./apps/academic.nix
   ];
 }
