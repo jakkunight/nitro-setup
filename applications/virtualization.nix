@@ -5,6 +5,7 @@
     # QUEMU:
     qemu
     quickemu
+    qemu_kvm
     # Docker:
     docker
     # Kubernetes:
