@@ -46,5 +46,6 @@
     parted
     unixtools.fdisk
     ventoy-full
+    partclone
   ];
 }
