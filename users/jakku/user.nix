@@ -31,6 +31,12 @@
       inkscape
       krita
       zathura
+      loupe
+      moodle
+      moodle-dl
+      kodiPackages.youtube
+      flatpak
+      flatpak-builder
     ];
   };
 
