@@ -37,6 +37,7 @@
       kodiPackages.youtube
       flatpak
       flatpak-builder
+      teams
     ];
   };
 
