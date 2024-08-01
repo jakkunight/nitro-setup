@@ -27,5 +27,6 @@
     ./apps/gtk.nix
     ./apps/nvim/default.nix
     ./apps/academic.nix
+    ./apps/flatpak.nix
   ];
 }
