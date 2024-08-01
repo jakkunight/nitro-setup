@@ -39,6 +39,7 @@
     ./../services/printing.nix
     ./../services/usb.nix
     ./../services/tlp.nix
+    ./../services/flatpak.nix
     # Users:
     ./../users/jakku/user.nix
   ];
