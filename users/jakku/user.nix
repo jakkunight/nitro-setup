@@ -34,10 +34,16 @@
       loupe
       moodle
       moodle-dl
-      kodiPackages.youtube
+      freetube
       flatpak
       flatpak-builder
-      teams
+      teams-for-linux
+      thunderbird
+      rnote
+      waydroid
+      weylus
+      pandoc
+      texliveFull
     ];
   };
 
