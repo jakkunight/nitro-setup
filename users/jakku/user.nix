@@ -44,6 +44,7 @@
       weylus
       pandoc
       texliveFull
+      komorebi
     ];
   };
 
@@ -54,4 +55,9 @@
     "@wheel"
   ];
 
+  # Weylus ports:
+  networking.firewall.allowedTCPPorts = [
+    1701
+    9001
+  ];
 }
