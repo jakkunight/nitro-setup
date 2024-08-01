@@ -7,6 +7,10 @@
     dunst
     waybar
     swww # To set the wallpaper (later).
+    wl-clipboard
+    wl-clipboard-rs
+    wl-mirror
+    wl-clipboard-x11
   ];
   # Enable Hyprland:
   programs.hyprland = {
