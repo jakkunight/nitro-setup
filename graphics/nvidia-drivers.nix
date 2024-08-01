@@ -1,6 +1,11 @@
 # NVIDIA Drivers config:
 { config, pkgs, lib, inputs, ... }:
 {
+  # Fix kernel params:
+  boot.kernelParams = [
+    "nvidia-drm.modset=1"
+    "nvidia-drm.fbdev=1"
+  ];
   # Enable OpenGL:
   hardware.graphics = {
     # Use this from NixOS 24.11+
@@ -14,7 +19,8 @@
   ];
 
   hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    open = false;
     modesetting = {
       enable = true;
     };
@@ -42,7 +48,7 @@
   # Define a special mode for using the offload mode:
   specialisation = {
     on-the-go.configuration = {
-      system.nixos.tags = [ "on-the-go" ];
+      system.nixos.tags = [ "ON-THE-FLY" ];
       hardware.nvidia = {
         prime.offload.enable = lib.mkForce true;
         prime.offload.enableOffloadCmd = lib.mkForce true;
