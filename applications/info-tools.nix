@@ -7,5 +7,6 @@
     sysstat
     lm_sensors
     ethtool
+    glxinfo
   ];
 }
