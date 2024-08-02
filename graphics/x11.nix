@@ -6,4 +6,9 @@
     enable = true;
     desktopManager.xfce.enable = true;
   };
+
+  # Xclip:
+  environment.systemPackages = with pkgs; [
+    xclip
+  ];
 }
