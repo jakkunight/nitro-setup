@@ -36,6 +36,7 @@
       moodle-dl
       freetube
       flatpak
+      ffmpeg
       flatpak-builder
       teams-for-linux
       thunderbird

@@ -27,7 +27,7 @@
       };
       exec = [
         "swww-daemon &"
-        "swww img ~/Pictures/wanderer-inazuma.jpg &"
+        "swww img ~/Pictures/Wanderer.gif &"
       ];
       # General:
       general = {
@@ -206,18 +206,6 @@
           inner_color = "rgb(157, 124, 216)";
           outer_color = "rgb(36, 40, 59)";
         }
-      ];
-    };
-  };
-  # Extra Session Variables:
-  home.sessionVariables = {
-    WLR_NO_HARDWARE_CURSORS = 1;
-  };
-  services.hyprpaper = {
-    enable = true;
-    settings = {
-      wallpaper = [
-        ",$HOME/Pictures/kali-night-skyA-1920x1080.png"
       ];
     };
   };
