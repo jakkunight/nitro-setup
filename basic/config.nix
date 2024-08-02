@@ -40,6 +40,7 @@
     ./../services/usb.nix
     ./../services/tlp.nix
     ./../services/flatpak.nix
+    ./../services/virtualization.nix
     # Users:
     ./../users/jakku/user.nix
   ];
