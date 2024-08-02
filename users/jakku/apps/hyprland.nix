@@ -11,6 +11,10 @@
       # ENV Variables:
       env = [
         "XCURSOR_SIZE,32"
+	"LIBVA_DRIVER_NAME,nvidia"
+	"XDG_SESSION_TYPE,wayland"
+	"GBM_BACKEND,nvidia-drm"
+	"__GLX_VENDOR_LIBRARY_NAME,nvidia"
       ];
       # XWayland:
       xwayland = {
@@ -26,8 +30,7 @@
         follow_mouse = 0;
       };
       exec = [
-        "swww-daemon &"
-        "swww img ~/Pictures/Wanderer.gif &"
+        "mpvpaper -o 'no-audio --loop-playlist shuffle' '*' ~/Pictures/Wanderer.mp4 &"
       ];
       # General:
       general = {
@@ -38,6 +41,10 @@
         border_size = 2;
         resize_on_border = true;
         layout = "master";
+      };
+      # Cursor:
+      cursor = {
+	no_hardware_cursors = true;
       };
       # Keybindings
       bindel = [
