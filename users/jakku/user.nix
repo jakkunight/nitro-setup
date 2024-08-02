@@ -20,7 +20,7 @@
       discord
       remmina
       audacity
-      kdePackages.kdenlive
+      libsForQt5.kdenlive
       obs-studio
       alacritty
       xfce.thunar
