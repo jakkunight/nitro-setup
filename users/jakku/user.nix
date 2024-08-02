@@ -10,7 +10,7 @@
   users.users.jakku = {
     isNormalUser = true;
     initialPassword = "1234";
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "libvirtd" ]; # Enable ‘sudo’ for the user.
 
     # User packages:
     packages = with pkgs; [
@@ -45,7 +45,7 @@
       weylus
       pandoc
       texliveFull
-      komorebi
+      mpvpaper
     ];
   };
 
