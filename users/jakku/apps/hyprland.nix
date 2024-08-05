@@ -30,7 +30,9 @@
         follow_mouse = 0;
       };
       exec = [
-        "mpvpaper -o 'no-audio --loop-playlist shuffle' '*' ~/Pictures/Wanderer.mp4 &"
+	"swww-daemon &"
+	"swww img ~/Pictures/wanderer-inazuma.jpg"
+        #"mpvpaper -o 'no-audio --loop-playlist shuffle' '*' ~/Pictures/Wanderer.mp4 &"
       ];
       # General:
       general = {
