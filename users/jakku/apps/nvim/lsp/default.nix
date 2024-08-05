@@ -1,6 +1,10 @@
 {
   programs.nixvim = {
     plugins = {
+      rust-tools = {
+	enable = true;
+      };
+      trouble.enable = true;
       lsp = {
 	enable = true;
 	servers = {
