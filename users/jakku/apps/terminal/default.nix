@@ -5,5 +5,6 @@
     ./alacritty.nix
     ./git.nix
     ./zsh.nix
+    ./zellij.nix
   ];
 }
