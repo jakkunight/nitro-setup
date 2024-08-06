@@ -11,6 +11,7 @@
     wl-clipboard-rs
     wl-mirror
     wl-clipboard-x11
+    hyprshot
   ];
   # Enable Hyprland:
   programs.hyprland = {
