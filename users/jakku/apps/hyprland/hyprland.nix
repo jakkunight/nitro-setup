@@ -113,6 +113,8 @@
         "$mod, right, movefocus, r"
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
+	# Take a screenshot:
+	" , PRINT, exec, hyprshot -m output"
       ];
       # Decorations:
       decoration = {
@@ -163,59 +165,6 @@
         force_default_wallpaper = 1;
         disable_hyprland_logo = true;
       };
-    };
-  };
-  # Hypridle:
-  services.hypridle = {
-    enable = true;
-    settings = {
-      general = {
-        lock_cmd = "pidof hyprlock || hyprlock";
-        before_sleep_cmd = "loginctl lock-session";
-        after_sleep_command = "hyprctl dispatch dpms on";
-      };
-      listener = [
-        {
-          timeout = 600;
-          on-timeout = "pidof hyprlock || hyprlock";
-        }
-      ];
-    };
-  };
-  # Hyprlock:
-  programs.hyprlock = {
-    enable = true;
-    settings = {
-      general = {
-        hide_cursor = true;
-      };
-      background = [
-        {
-          monitor = "";
-          path = "/home/jakku/Pictures/wanderer-inazuma.jpg";
-          color = "rgba(0, 0, 0, 0.5)";
-          blur_passes = 1;
-          blur_size = 4;
-          noise = 0.0117;
-          contrast = 0.8916;
-          brightness = 0.8172;
-          vibrancy = 0.1696;
-          vibrancy_darkness = 0.0;
-        }
-      ];
-      input-field = [
-        {
-          size = "200, 50";
-          monitors = "";
-          dots_center = true;
-          font_family = "Cascadia Code";
-          font_size = 12;
-          font_color = "rgb(192, 202, 245)";
-          placeholder_text = "<i>Input Password...</i>";
-          inner_color = "rgb(157, 124, 216)";
-          outer_color = "rgb(36, 40, 59)";
-        }
-      ];
     };
   };
 }
