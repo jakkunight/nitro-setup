@@ -17,7 +17,7 @@
 	  magenta = "#bb9af7";
 	  cyan = "#7dcfff";
 	  white = "#a9b1d6";
-	  orange = "#db4b4b";
+	  #orange = "#db4b4b";
 	};
 	bright = {
 	  black = "#414868";
@@ -28,7 +28,7 @@
 	  magenta = "#bb9af7";
 	  cyan = "#7dcfff";
 	  white = "#c0caf5";
-	  orange = "#ff9e64";
+	  #orange = "#ff9e64";
 	};
 	#indexed_colors = [
 	#  {
