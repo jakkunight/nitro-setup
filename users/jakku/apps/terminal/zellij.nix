@@ -4,6 +4,7 @@
   programs.zellij = {
     enable = true;
     settings = {
+      theme = "tokyonight_night";
       themes = {
 	tokyonight_night = {
 	  fg = "#c0caf5";
