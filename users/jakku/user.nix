@@ -56,6 +56,11 @@
     "@wheel"
   ];
 
+  # Fix Firefox bug:
+  environment.sessionVariables = {
+    MOZ_ENABLE_WAYLAND = 0;
+  };
+
   # Weylus ports:
   networking.firewall.allowedTCPPorts = [
     1701
