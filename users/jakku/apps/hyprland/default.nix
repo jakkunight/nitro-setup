@@ -5,5 +5,7 @@
     ./hyprland.nix
     ./hypridle.nix
     ./hyprlock.nix
+    ./wofi.nix
+    ./waybar.nix
   ];
 }
