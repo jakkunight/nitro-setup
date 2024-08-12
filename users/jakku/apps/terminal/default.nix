@@ -4,6 +4,7 @@
   imports = [
     ./alacritty.nix
     ./git.nix
+    ./yazi.nix
     ./zsh.nix
     ./zellij.nix
   ];
