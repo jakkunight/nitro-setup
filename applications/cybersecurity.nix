@@ -13,7 +13,7 @@
     macchanger
     aircrack-ng
     john
-    crackmapexec
+    netexec
     responder
   ];
 
