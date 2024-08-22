@@ -3,9 +3,9 @@
 {
   environment.systemPackages = with pkgs; [
     # QUEMU:
-    qemu
-    quickemu
+    qemu_full
     qemu_kvm
+    #nemu
     # Docker:
     docker
     # Kubernetes:
