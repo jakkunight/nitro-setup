@@ -7,5 +7,16 @@
     cachix
     devenv
     devbox
+    direnv
+    rustup
+    cargo
+    cargo-binstall
+    cargo-binutils
+    python312Full
+    gcc
+    gnustep.stdenv
+    gnumake
+    cmake
+    clang
   ];
 }
