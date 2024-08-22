@@ -2,5 +2,5 @@
 { config, pkgs, lib, inputs }:
 {
   # Use the latest stable kernel release:
-  boot.kernelPackages = pkgs.linuxPackages_6_10;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_10;
 }
