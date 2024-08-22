@@ -20,5 +20,11 @@
     audacity
     # Video edition:
     libsForQt5.kdenlive
+    # Youtube:
+    youtube-tui
+    # Manga Reader:
+    mangal
+    manga-cli
+    mangareader
   ];
 }
