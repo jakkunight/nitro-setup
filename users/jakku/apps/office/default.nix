@@ -13,4 +13,7 @@
     # Office:
     libreoffice
   ];
+  imports = [
+    ./remmina.nix
+  ];
 }
