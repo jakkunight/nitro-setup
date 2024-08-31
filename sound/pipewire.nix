@@ -10,4 +10,10 @@
     # Redirects PulseAudio calls to PipeWire:
     pulse.enable = true;
   };
+
+  # Use Helvum and QPWGraph to config PipeWire:
+  environment.systemPackages = with pkgs; [
+    qpwgraph
+    helvum
+  ];
 }
