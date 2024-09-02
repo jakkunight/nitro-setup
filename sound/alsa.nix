@@ -1,7 +1,6 @@
 # ALSA audio settings:
 { config, lib, pkgs, ... }@inputs: {
   # Save ALSAmixer settings:
-  sound.enable = true;
   security.rtkit.enable = true;
 
   # ALSA firmware:
