@@ -8,5 +8,8 @@
     lm_sensors
     ethtool
     glxinfo
+    lshw
+    lshw-gui
+    hwinfo
   ];
 }
