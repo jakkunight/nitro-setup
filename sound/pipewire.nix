@@ -9,11 +9,26 @@
 
     # Redirects PulseAudio calls to PipeWire:
     pulse.enable = true;
+
+    # Enable ALSA devices:
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
+
+    # If you want to use JACK applications, uncomment this
+    jack.enable = true;
   };
 
-  # Use Helvum and QPWGraph to config PipeWire:
+  
   environment.systemPackages = with pkgs; [
+    # Use Helvum and QPWGraph to config PipeWire:
     qpwgraph
     helvum
+
+    # Use ALSA utils:
+    alsa-utils
+    alsa-plugins
+    alsa-lib
   ];
 }

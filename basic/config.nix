@@ -34,7 +34,7 @@
     ./../graphics/sddm.nix
     ./../graphics/hyprland.nix
     # Sound:
-    ./../sound/pipewire.nix
+    ./../sound
     # Services:
     ./../services/printing.nix
     ./../services/usb.nix
