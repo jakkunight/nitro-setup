@@ -1,6 +1,10 @@
 # Configure the kernel version to use:
-{ config, pkgs, lib, inputs }:
+{ config, pkgs, lib, ... }@inputs:
 {
+  boot.kernel = {
+    enable = true;
+  };
+
   # Use the latest stable kernel release:
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_10;
+  boot.kernelPackages = pkgs.linuxPackages_6_10;
 }
