@@ -5,6 +5,7 @@
     # Commons:
     mpd
     ffmpeg
+    playerctl
     # Music players:
     moc
     # Video players:
@@ -26,5 +27,9 @@
     mangal
     manga-cli
     mangareader
+  ];
+
+  imports = [
+    ./playerctl.nix
   ];
 }
