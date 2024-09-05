@@ -11,7 +11,6 @@
   # Make your audio card the default ALSA card:
   boot.extraModprobeConfig = ''
     options snd slots=sof-audio-pci-intel-tgl
-    options snd slots=snd-hda-intel
   '';
 
   # ALSA packages:
