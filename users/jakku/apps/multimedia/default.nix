@@ -12,8 +12,6 @@
     vlc
     # Image viewers:
     loupe
-    # Straming and screen recording:
-    obs-studio
     # Drawing:
     krita
     # Music production:
@@ -31,5 +29,6 @@
 
   imports = [
     ./playerctl.nix
+    ./obs.nix
   ];
 }
