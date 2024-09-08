@@ -12,7 +12,7 @@
     };
     keymaps = [
       {
-	action = "<cmd>ToggleTerm direction=horizontal<CR>";
+	action = "<cmd>ToggleTerm direction=horizontal size=25<CR>";
 	key = "<leader>th";
 	mode = "n";
 	options = {
@@ -28,7 +28,7 @@
 	};
       }
       {
-	action = "<cmd>ToggleTerm direction=vertical<CR>";
+	action = "<cmd>ToggleTerm direction=vertical size=40<CR>"
 	key = "<leader>tv";
 	mode = "n";
 	options = {
