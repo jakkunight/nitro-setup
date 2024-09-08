@@ -2,12 +2,7 @@
 { config, lib, pkgs, ... }@inputs:
 {
   imports = [
-    ./ui/filefinder.nix
-    ./ui/statusline.nix
-    ./ui/buffertab.nix
-    ./ui/filemanager.nix
-    ./ui/whichkey.nix
-    ./ui/dashboard.nix
+    ./ui
     ./syntax-highlighting
     ./autocompletions
     ./lsp
