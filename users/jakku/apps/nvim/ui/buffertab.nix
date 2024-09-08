@@ -11,18 +11,27 @@
     keymaps = [
       {
       	action = "<cmd>bd<CR>";
-	key = "<leader>bd";
+	key = "<leader>x";
 	mode = "n";
+	options = {
+	  desc = "Delete current buffer";
+	};
       }
       {
       	action = "<cmd>bn<CR>";
-	key = "<leader>bn";
+	key = "<leader>.";
 	mode = "n";
+	options = {
+	  desc = "Focus next buffer";
+	};
       }
       {
       	action = "<cmd>bp<CR>";
-	key = "<leader>bp";
+	key = "<leader>,";
 	mode = "n";
+	options = {
+	  desc = "Focus previous buffer";
+	};
       }
       {
       	action = "<cmd>w<CR>";
