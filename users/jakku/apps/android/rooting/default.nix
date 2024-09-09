@@ -2,5 +2,6 @@
 {
   imports = [
     ./heimdall.nix
+    ./adb.nix
   ];
 }

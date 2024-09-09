@@ -34,5 +34,6 @@
     ./apps/terminal
     ./apps/multimedia
     ./apps/web-browsers
+    ./apps/android
   ];
 }
