@@ -28,7 +28,7 @@
 	};
       }
       {
-	action = "<cmd>ToggleTerm direction=vertical size=40<CR>"
+	action = "<cmd>ToggleTerm direction=vertical size=40<CR>";
 	key = "<leader>tv";
 	mode = "n";
 	options = {
