@@ -22,13 +22,7 @@
     ./../networking/vpn-connections/cloudflare-warp.nix
     ./../networking/bluetooth.nix
     # System applications and packages:
-    ./../applications/info-tools.nix
-    ./../applications/compressed-files.nix
-    ./../applications/system-management.nix
-    ./../applications/virtualization.nix
-    ./../applications/gaming.nix
-    ./../applications/cybersecurity.nix
-    ./../applications/development.nix
+    ./../applications
     # Graphics:
     ./../graphics/x11.nix
     ./../graphics/nvidia-drivers.nix
@@ -41,7 +35,7 @@
     ./../services/usb.nix
     ./../services/tlp.nix
     ./../services/flatpak.nix
-    #./../services/virtualization.nix
+    ./../services/virtualization.nix
     # Users:
     ./../users/jakku/user.nix
   ];
