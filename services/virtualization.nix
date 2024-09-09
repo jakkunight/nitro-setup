@@ -5,8 +5,6 @@
   programs.dconf.enable = true;
   # Install necessary packages
   environment.systemPackages = with pkgs; [
-    gcc
-    python311
     virt-manager
     virt-viewer
     spice spice-gtk
@@ -16,7 +14,6 @@
     adwaita-icon-theme
     qemu_kvm
     qemu_full
-    qemu-python-utils
     qemu-user
     qemu-utils
   ];
