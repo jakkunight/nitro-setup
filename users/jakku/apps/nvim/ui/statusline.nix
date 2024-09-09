@@ -1,7 +1,9 @@
 {
   programs.nixvim.plugins.lualine = {
     enable = true;
-    globalstatus = true;
-    iconsEnabled = true;
+    settings = {
+      globalstatus = true;
+      iconsEnabled = true;
+    };
   };
 }
