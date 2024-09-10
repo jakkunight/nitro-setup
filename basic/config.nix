@@ -24,10 +24,7 @@
     # System applications and packages:
     ./../applications
     # Graphics:
-    ./../graphics/x11.nix
-    ./../graphics/nvidia-drivers.nix
-    ./../graphics/sddm.nix
-    ./../graphics/hyprland.nix
+    ./../graphics
     # Sound:
     ./../sound
     # Services:
