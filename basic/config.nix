@@ -28,11 +28,7 @@
     # Sound:
     ./../sound
     # Services:
-    ./../services/printing.nix
-    ./../services/usb.nix
-    ./../services/tlp.nix
-    ./../services/flatpak.nix
-    ./../services/virtualization.nix
+    ./../services
     # Users:
     ./../users/jakku/user.nix
   ];
