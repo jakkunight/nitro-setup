@@ -14,13 +14,7 @@
     # Disk:
     ./../disk/disk.nix
     # Networking:
-    ./../networking/common.nix
-    ./../networking/interfaces.nix
-    ./../networking/hosts.nix
-    ./../networking/firewall.nix
-    ./../networking/vpn-connections/andescada.nix
-    ./../networking/vpn-connections/cloudflare-warp.nix
-    ./../networking/bluetooth.nix
+    ./../networking
     # System applications and packages:
     ./../applications
     # Graphics:
