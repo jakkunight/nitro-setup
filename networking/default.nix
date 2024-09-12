@@ -8,5 +8,6 @@
     ./bluetooth.nix
     ./vpn-connections/andescada.nix
     ./vpn-connections/cloudflare-warp.nix
+    ./cloudflare.nix
   ];
 }
