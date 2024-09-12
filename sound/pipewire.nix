@@ -4,6 +4,9 @@
   # Disable PulseAudio explicitly:
   hardware.pulseaudio.enable = false;
 
+  # Enable rtkit:
+  security.rtkit.enable = true;
+
   services.pipewire = {
     enable = true;
 
@@ -30,5 +33,7 @@
     alsa-utils
     alsa-plugins
     alsa-lib
+    alsa-firmware
+    alsa-tools
   ];
 }
