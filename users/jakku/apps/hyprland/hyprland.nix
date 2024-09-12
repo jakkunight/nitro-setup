@@ -42,7 +42,7 @@
         "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         border_size = 2;
         resize_on_border = true;
-        layout = "master";
+        layout = "dwindle";
       };
       # Cursor:
       cursor = {
@@ -71,19 +71,21 @@
         # Open a terminal:
         "$mod, Return, exec, alacritty"
         # Open the file manager:
-        "$mod, S, exec, thunar"
+        "$mod, E, exec, thunar"
         # Open app launcher:
         "$mod, D, exec, wofi"
         # Open Web browser:
         "$mod, A, exec, firefox"
         # Open music player:
-        "$mod, V, exec, vlc"
+        "$mod, S, exec, vlc"
         # Toggle fullscreen:
         "$mod, F, fullscreen"
         # Toggle floating:
         "$mod, W, togglefloating"
         # Close window:
         "$mod, Q, killactive"
+        # Lock screen:
+        "$mod, L, exec, hyprlock"
         # Close Hyprland:
         "$mod SHIFT, Q, exit"
         # Switch workspace to:
@@ -120,8 +122,8 @@
       decoration = {
         rounding = 5;
         # Transparency:
-        active_opacity = 0.95;
-        inactive_opacity = 0.5;
+        active_opacity = 0.85;
+        inactive_opacity = 0.80;
         drop_shadow = true;
         shadow_range = 4;
         shadow_offset = "0 5";
@@ -156,6 +158,9 @@
       dwindle = {
         pseudotile = true;
         preserve_split = true;
+	force_split = 2;
+	smart_split = false;
+	smart_resizing = true;
       };
       master = {
         new_status = "slave";
