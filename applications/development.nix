@@ -1,22 +1,11 @@
 # Developmant utilities:
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... } @ inputs:
 {
-  environment.systemPackages = with pkgs; [
-    nix-ld
-    envfs
-    cachix
-    devenv
-    devbox
-    direnv
-    rustup
-    cargo
-    cargo-binstall
-    cargo-binutils
-    python312Full
-    gcc
-    gnustep.stdenv
-    gnumake
-    cmake
-    clang
+  environment.systemPackages = [
+    pkgs.nix-ld
+    pkgs.cachix
+    pkgs.devenv
+    pkgs.direnv
+    pkgs.cargo-binutils
   ];
 }

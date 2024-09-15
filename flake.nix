@@ -29,6 +29,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Devenv:
+    devenv-repo = {
+      url = "github:cachix/devenv";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Hyprland:
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     # EnvFS:
