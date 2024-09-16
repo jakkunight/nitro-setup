@@ -1,10 +1,10 @@
 # Developmant utilities:
-{ config, lib, pkgs, ... } @ inputs:
+{ config, lib, pkgs, inputs, ... }:
 {
   environment.systemPackages = [
     pkgs.nix-ld
     pkgs.cachix
-    pkgs.devenv
+    inputs.devenv-repo.packages."x86_64-linux".devenv
     pkgs.direnv
     pkgs.cargo-binutils
   ];
