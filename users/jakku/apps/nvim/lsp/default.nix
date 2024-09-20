@@ -1,7 +1,17 @@
 {
   programs.nixvim = {
+    extraConfigLua = ''
+      local lspconfig = require("lspconfig")
+      lspconfig.init_options = {
+	userLanguages = {
+	  eelixir = "html-eex",
+	  eruby = "erb",
+	  rust = "html"
+	}
+      }
+    '';
     plugins = {
-      rust-tools = {
+      rustaceanvim = {
 	enable = true;
       };
       trouble.enable = true;
@@ -11,11 +21,11 @@
 	  bashls = {
 	    enable = true;
 	  };
-	  rust-analyzer = {
-	    enable = true;
-	    installCargo = true;
-	    installRustc = true;
-	  };
+	  # rust-analyzer = {
+	  #   enable = true;
+	  #   installCargo = true;
+	  #   installRustc = true;
+	  # };
 	  pylyzer = {
 	    enable = true;
 	  };
@@ -59,9 +69,12 @@
       };
       comment = {
 	enable = true;
-	# To comment a selected text:
+	# INFO: To comment a selected text:
 	#   + Use gb, for comment blocks.
 	#   + Use gc, for commnet lsp-lines.
+      };
+      crates-nvim = {
+	enable = true;
       };
     };
   };
