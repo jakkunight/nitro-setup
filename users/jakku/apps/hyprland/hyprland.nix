@@ -122,13 +122,13 @@
       decoration = {
         rounding = 5;
         # Transparency:
-        active_opacity = 0.85;
-        inactive_opacity = 0.80;
+        active_opacity = 0.95;
+        inactive_opacity = 0.90;
         drop_shadow = true;
         shadow_range = 4;
         shadow_offset = "0 5";
         shadow_render_power = 7;
-        "col.shadow" = "rgba(000000EE)";
+        "col.shadow" = "rgba(000000FE)";
         # Blur:
         blur = {
           enabled = true;
