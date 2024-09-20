@@ -35,5 +35,6 @@
     ./apps/multimedia
     ./apps/web-browsers
     ./apps/android
+    ./apps/zed
   ];
 }
