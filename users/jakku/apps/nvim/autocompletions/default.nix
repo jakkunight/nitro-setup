@@ -1,6 +1,9 @@
 {
   programs.nixvim = {
     plugins = {
+
+      nix.enable = true;
+      emmet.enable = true;
       luasnip.enable = true;
       cmp-buffer = { enable = true; };
       cmp-emoji = { enable = true; };
@@ -153,6 +156,9 @@
 	};
       };
       nvim-autopairs = {
+	enable = true;
+      };
+      cmp-tabnine = {
 	enable = true;
       };
     };
