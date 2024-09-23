@@ -15,7 +15,7 @@
         "$git_status"
         "[󰅂](bold fg:#769ff0)"
         "$line_break"
-        "[󰅂 ](bold fg:#769ff0)"
+        "[ 󰅂 ](bold fg:#769ff0)"
       ];
       directory = {
         style = "bold fg:#769ff0";
