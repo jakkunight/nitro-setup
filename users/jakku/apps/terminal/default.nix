@@ -5,8 +5,9 @@
     ./alacritty.nix
     ./direnv.nix
     ./git.nix
+    ./nushell.nix
     ./yazi.nix
-    ./warp.nix
+    #./warp.nix
     ./zsh.nix
     ./zellij.nix
   ];
