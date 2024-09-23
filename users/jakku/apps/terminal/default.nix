@@ -8,6 +8,7 @@
     ./git.nix
     ./nushell.nix
     ./starship.nix
+    ./wezterm.nix
     ./yazi.nix
     #./warp.nix
     ./zsh.nix
