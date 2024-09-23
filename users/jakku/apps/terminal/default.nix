@@ -6,6 +6,7 @@
     ./direnv.nix
     ./git.nix
     ./yazi.nix
+    ./warp.nix
     ./zsh.nix
     ./zellij.nix
   ];
