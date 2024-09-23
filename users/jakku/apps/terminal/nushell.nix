@@ -3,7 +3,5 @@
 {
   home.packages = with pkgs; [
     nushell
-    nushellFull
-    nushellPlugins
   ];
 }
