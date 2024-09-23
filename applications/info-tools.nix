@@ -11,5 +11,6 @@
     lshw
     lshw-gui
     hwinfo
+    speedtest-rs
   ];
 }
