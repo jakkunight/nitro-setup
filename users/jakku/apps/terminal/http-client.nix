@@ -2,6 +2,6 @@
 
 {
   home.packages = [
-    pkgs.slumber
+    pkgs.atac
   ];
 }

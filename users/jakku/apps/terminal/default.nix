@@ -6,7 +6,7 @@
     ./direnv.nix
     ./fastfetch.nix
     ./git.nix
-    ./slumber.nix
+    ./http-client.nix
     ./nushell.nix
     ./starship.nix
     ./wezterm.nix
