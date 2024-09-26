@@ -3,6 +3,15 @@
 {
   programs.wezterm = {
     enable = true;
+    package = inputs.wezterm-repo.packages.${pkgs.system}.default;
+    extraConfig = ''
+      local wezterm = require "wezterm"
+      local act = wezterm.action
+
+      return {
+        enable_wayland = true;
+      }
+    '';
     colorSchemes = {
       colors = {
         foreground = "#c0caf5";
@@ -40,11 +49,6 @@
             fg_color = "#7aa2f7";
             bg_color = "#1a1b26";
           };
-        };
-        metadata = {
-          aliases = [];
-          author = "folke";
-          name = "tokyonight_night";
         };
         ansi = [
           "#15161e"

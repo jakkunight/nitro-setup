@@ -170,6 +170,8 @@
         force_default_wallpaper = 1;
         disable_hyprland_logo = true;
       };
+      # Window rules:
+      #windowrulev2 = ["pseudo, class:^.*(wezterm).*$"];
     };
   };
 }
