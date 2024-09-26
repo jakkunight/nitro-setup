@@ -44,6 +44,10 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Wezterm:
+    wezterm-repo = {
+      url = "github:wez/wezterm?dir=nix";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
