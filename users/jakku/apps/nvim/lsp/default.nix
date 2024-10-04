@@ -1,18 +1,13 @@
 {
   programs.nixvim = {
     extraConfigLua = ''
-      local lspconfig = require("lspconfig")
-      lspconfig.init_options = {
-	userLanguages = {
-	  eelixir = "html-eex",
-	  eruby = "erb",
-	  rust = "html"
-	}
-      }
     '';
     plugins = {
       rustaceanvim = {
 	enable = true;
+      };
+      typescript-tools = {
+        enable = true;
       };
       trouble.enable = true;
       lsp = {
@@ -20,12 +15,14 @@
 	servers = {
 	  bashls = {
 	    enable = true;
-	  };
-	  # rust-analyzer = {
-	  #   enable = true;
-	  #   installCargo = true;
-	  #   installRustc = true;
-	  # };
+          };
+          emmet-ls = {
+            enable = true;
+            autostart = true;
+            fileTypes = [
+              "rust"
+            ];
+          };
 	  pylyzer = {
 	    enable = true;
 	  };
@@ -36,9 +33,6 @@
 	    enable = true;
 	  };
 	  yamlls = {
-	    enable = true;
-	  };
-	  tsserver = {
 	    enable = true;
 	  };
 	  marksman = {
@@ -78,4 +72,8 @@
       };
     };
   };
+  imports = [
+    ./lspsaga.nix
+    ./ts-autotag.nix
+  ];
 }
