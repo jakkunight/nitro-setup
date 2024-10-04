@@ -7,6 +7,7 @@
     ./fastfetch.nix
     ./git.nix
     ./http-client.nix
+    ./kitty.nix
     ./nushell.nix
     ./starship.nix
     ./wezterm.nix
