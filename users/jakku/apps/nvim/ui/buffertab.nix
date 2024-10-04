@@ -10,6 +10,14 @@
     };
     keymaps = [
       {
+        action = "<cmd>enew<CR>";
+        key = "<leader>b";
+        mode = "n";
+        options = {
+          desc = "Create a new buffer";
+        };
+      }
+      {
       	action = "<cmd>bd<CR>";
 	key = "<leader>x";
 	mode = "n";
