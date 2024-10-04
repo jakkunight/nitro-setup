@@ -47,5 +47,6 @@
     unixtools.fdisk
     ventoy-full
     partclone
+    ncdu
   ];
 }
