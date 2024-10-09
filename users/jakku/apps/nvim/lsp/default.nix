@@ -19,7 +19,7 @@
           emmet-ls = {
             enable = true;
             autostart = true;
-            fileTypes = [
+            filetypes = [
               "rust"
             ];
           };
@@ -47,6 +47,9 @@
 	  ccls = {
 	    enable = true;
 	  };
+          ts-ls = {
+            enable = true;
+          };
 	};
       };
       lsp-format = {

@@ -1,4 +1,5 @@
 {
+  programs.nixvim.plugins.web-devicons.enable = true;
   imports = [
     ./git.nix
     ./terminal.nix
