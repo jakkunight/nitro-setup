@@ -12,7 +12,7 @@
     ./../bootloader/grub2.nix
     ./../bootloader/kernel_version.nix
     # Disk:
-    ./../disk/disk.nix
+    #./../disk/disk.nix
     # Networking:
     ./../networking
     # System applications and packages:
