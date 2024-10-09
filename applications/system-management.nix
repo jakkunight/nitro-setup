@@ -48,5 +48,11 @@
     ventoy-full
     partclone
     ncdu
+    du-dust
+    eza
+    zoxide
+    mprocs
+    wiki-tui
+
   ];
 }
