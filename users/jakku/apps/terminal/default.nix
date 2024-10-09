@@ -12,7 +12,7 @@
     ./starship.nix
     ./wezterm.nix
     ./yazi.nix
-    #./warp.nix
+    ./warp.nix
     ./zsh.nix
     ./zellij.nix
   ];

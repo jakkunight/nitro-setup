@@ -1,6 +1,10 @@
 # ZSH config:
 { pkgs, ... }:
 {
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
   programs.zsh = {
     # Enable ZSH:
     enable = true;
