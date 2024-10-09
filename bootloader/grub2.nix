@@ -2,6 +2,7 @@
 # [Coming Soon] A GRUB theme.
 { config, lib, pkgs, inputs, ... }:
 {
+  time.hardwareClockInLocalTime = true;
   boot = {
     loader = {
       grub = {
@@ -10,6 +11,7 @@
         efiSupport = true;
         efiInstallAsRemovable = true;
         theme = inputs.nixos-grub-themes.packages.${pkgs.system}.hyperfluent;
+        useOSProber = true;
       };
     };
   };
