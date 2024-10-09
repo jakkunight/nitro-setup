@@ -4,7 +4,8 @@
   environment.systemPackages = [
     pkgs.nix-ld
     pkgs.cachix
-    inputs.devenv-repo.packages."x86_64-linux".devenv
+    # inputs.devenv-repo.packages."x86_64-linux".devenv
+    pkgs.devenv
     pkgs.direnv
     pkgs.cargo-binutils
   ];
