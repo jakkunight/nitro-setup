@@ -12,6 +12,9 @@
     thunderbird
     # Office:
     libreoffice
+    # LaTeX:
+    pandoc
+    texliveFull
   ];
   imports = [
     ./remmina.nix
