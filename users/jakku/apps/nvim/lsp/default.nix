@@ -23,6 +23,12 @@
               "rust"
             ];
           };
+          java_language_server = {
+            enable = true;
+          };
+          kotlin_language_server = {
+            enable = true;
+          };
 	  pylyzer = {
 	    enable = true;
 	  };
@@ -39,9 +45,6 @@
 	    enable = true;
 	  };
 	  lua-ls = {
-	    enable = true;
-	  };
-	  sqls = {
 	    enable = true;
 	  };
 	  ccls = {
