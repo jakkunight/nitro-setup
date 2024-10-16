@@ -30,11 +30,11 @@
     enable = true;
     secrets = [ "/etc/ipsec/andecorp.secret" ];
     connections = {
-      andescada = {
+      andecorp = {
         keyexchange = "ikev1";
         keyingtries = "1";
-        ike = "aes128-sha256-modp1536!";
-        esp = "aes128-sha256-modp1536!";
+        ike = "3des-sha-modp1024!";
+        esp = "3des-sha-modp1024!";
         aggressive = "yes";
         right = "ip.address"; # Replace this with your VPN gateway IP address.
         rightid = "%any";
