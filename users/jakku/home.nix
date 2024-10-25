@@ -33,6 +33,7 @@
     ./apps/hyprland
     ./apps/terminal
     ./apps/multimedia
+    ./apps/vscode
     ./apps/web-browsers
     ./apps/android
     ./apps/zed
