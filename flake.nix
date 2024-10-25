@@ -37,6 +37,10 @@
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     # EnvFS:
     # Nix-LD:
+    nix-ld = {
+      url = "github:Mic92/nix-ld";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # NixOS-GRUB2-Themes:
     nixos-grub-themes.url = "github:jeslie0/nixos-grub-themes";
     # NixVim:
@@ -62,6 +66,8 @@
           inherit system;
           specialArgs.inputs = inputs;
           modules = [
+            inputs.nix-ld.nixosModules.nix-ld
+            { programs.nix-ld.dev.enable = true; }
             inputs.disko.nixosModules.disko
             ./disk/disk.nix
             { _module.args.disks = [ "/dev/nvme0n1" ]; }
