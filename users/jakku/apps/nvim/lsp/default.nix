@@ -12,7 +12,7 @@
       trouble.enable = true;
       lsp = {
 	enable = true;
-	servers = {
+        servers = {
 	  bashls = {
 	    enable = true;
           };
@@ -23,7 +23,7 @@
               "rust"
             ];
           };
-          java_language_server = {
+          jdtls = {
             enable = true;
           };
           kotlin_language_server = {
@@ -33,7 +33,9 @@
 	    enable = true;
 	  };
 	  nixd = {
-	    enable = true;
+            enable = true;
+            autostart = true;
+
 	  };
 	  jsonls = {
 	    enable = true;
