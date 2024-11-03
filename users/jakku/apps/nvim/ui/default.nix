@@ -1,5 +1,10 @@
 {
-  programs.nixvim.plugins.web-devicons.enable = true;
+  programs.nixvim.plugins = {
+    web-devicons.enable = true;
+    nvim-surround = {
+      enable = true;
+    };
+  };
   imports = [
     ./git.nix
     ./terminal.nix
