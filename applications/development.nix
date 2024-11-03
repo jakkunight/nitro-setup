@@ -12,5 +12,8 @@
     pkgs.httpie
     pkgs.httpie-desktop
     pkgs.bruno
+    pkgs.dbeaver-bin
+    pkgs.present
+    pkgs.presenterm
   ];
 }
