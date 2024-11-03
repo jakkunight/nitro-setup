@@ -10,5 +10,7 @@
     docker
     # Kubernetes:
     kubernetes
+    # VMWare:
+    vmware-workstation
   ];
 }
