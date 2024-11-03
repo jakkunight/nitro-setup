@@ -15,6 +15,8 @@
     # LaTeX:
     pandoc
     texliveFull
+    # Zathura:
+    zathura
   ];
   imports = [
     ./remmina.nix
