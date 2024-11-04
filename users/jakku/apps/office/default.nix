@@ -15,10 +15,9 @@
     # LaTeX:
     pandoc
     texliveFull
-    # Zathura:
-    zathura
   ];
   imports = [
     ./remmina.nix
+    ./zathura.nix
   ];
 }
