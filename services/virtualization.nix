@@ -16,9 +16,15 @@
     qemu_full
     qemu-user
     qemu-utils
+    open-vm-tools
   ];
   # Manage the virtualisation services
   virtualisation = {
+    vmware = {
+      host = {
+        enable = true;
+      };
+    };
     libvirtd = {
       enable = true;
       qemu = {
