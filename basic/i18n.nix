@@ -5,7 +5,7 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "es_PY.UTF-8";
   console = {
-    font = "Lat2-Terminus16";
+    font = "Overpass";
     #   keyMap = "us";
     useXkbConfig = true; # use xkb.options in tty.
   };

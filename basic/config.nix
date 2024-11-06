@@ -9,8 +9,7 @@
     # Basic:
     ./hardware.nix
     ./i18n.nix
-    ./../bootloader/grub2.nix
-    ./../bootloader/kernel_version.nix
+    ./bootloader
     # Disk:
     #./../disk/disk.nix
     # Networking:
