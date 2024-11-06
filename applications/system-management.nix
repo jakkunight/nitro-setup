@@ -1,5 +1,5 @@
 # Utilities to manage the system:
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   environment.systemPackages = with pkgs; [
     ripgrep
@@ -33,7 +33,10 @@
     ltrace
     zellij
     nnn
-    yazi
+    # pkgs.yazi.override {
+    #   _7zz = (pkgs._7zz.override { useUasm = true; });
+    # }
+    inputs.old-yazi.legacyPackages."x86_64-linux".yazi
     neofetch
     fastfetch
     gnupg
