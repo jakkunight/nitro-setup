@@ -126,7 +126,7 @@
       * {
         border: none;
         border-radius: 0;
-        font-family: CascadiaCode;
+        font-family: Overpass;
         font-size: 12pt;
         padding: 2px;
         min-height: 0;

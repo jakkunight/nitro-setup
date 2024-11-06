@@ -8,7 +8,7 @@
       * {
         background-color: #1f2335;
         color: #7aa2f7;
-        font-family: Cascadia Code;
+        font-family: Overpass;
         font-size: 14pt;
       }
     '';

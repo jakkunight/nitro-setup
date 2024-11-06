@@ -26,7 +26,7 @@
           size = "200, 50";
           monitors = "";
           dots_center = true;
-          font_family = "Cascadia Code";
+          font_family = "Overpass";
           font_size = 12;
           font_color = "rgb(192, 202, 245)";
           placeholder_text = "<i>Input Password...</i>";

@@ -12,7 +12,7 @@
   gtk = {
     enable = true;
     font = {
-      name = "Cascadia Code";
+      name = "Overpass";
       package = pkgs.cascadia-code;
       size = 12;
     };
