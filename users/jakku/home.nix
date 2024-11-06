@@ -11,7 +11,7 @@
   home.sessionVariables = {
     # EDITOR = "emacs";
     EDITOR = "nvim";
-    VISUAL = "micro";
+    VISUAL = "nvim";
   };
 
   # Allow unfree software:
