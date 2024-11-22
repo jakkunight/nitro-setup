@@ -1,3 +1,4 @@
+{ pkgs, inputs, ... }:
 {
   programs.nixvim = {
     extraConfigLua = ''
@@ -13,14 +14,25 @@
       lsp = {
 	enable = true;
         servers = {
+          # ltex = {
+          #   enable = true;
+          #   settings = {
+          #     language = "es-AR";
+          #   };
+          # };
 	  bashls = {
 	    enable = true;
           };
-          emmet-ls = {
+          emmet_ls = {
             enable = true;
             autostart = true;
             filetypes = [
               "rust"
+              "html"
+              "tsx"
+              "jsx"
+              "js"
+              "ts"
             ];
           };
           jdtls = {
@@ -46,16 +58,26 @@
 	  marksman = {
 	    enable = true;
 	  };
-	  lua-ls = {
+	  lua_ls = {
 	    enable = true;
 	  };
 	  ccls = {
 	    enable = true;
 	  };
-          ts-ls = {
+          ts_ls = {
             enable = true;
           };
+          cssls = {
+            enable = true;
+          };
+          grammarly = {
+            enable = true;
+            package = pkgs.emacsPackages.lsp-grammarly;
+          };
 	};
+      };
+      ts-autotag = {
+        enable = true;
       };
       lsp-format = {
 	enable = true;
