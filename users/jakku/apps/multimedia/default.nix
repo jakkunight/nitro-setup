@@ -6,6 +6,7 @@
     mpd
     ffmpeg
     playerctl
+    mpvpaper
     # Music players:
     moc
     # Video players:
