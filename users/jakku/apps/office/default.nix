@@ -15,6 +15,7 @@
     # LaTeX:
     pandoc
     texliveFull
+    rubber
   ];
   imports = [
     ./remmina.nix
