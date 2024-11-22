@@ -30,9 +30,10 @@
         follow_mouse = 0;
       };
       exec = [
-        #"swww-daemon &"
-        #"swww img ~/Pictures/wanderer-inazuma.jpg"
-        "mpvpaper -o 'no-audio --loop-playlist shuffle' '*' ~/Pictures/Wanderer.mp4 &"
+        "swww-daemon &"
+        "swww img ~/Pictures/wanderer-inazuma.jpg"
+        #"swww img ~/Pictures/wanderer.gif"
+        #"mpvpaper -o 'no-audio --loop-playlist shuffle' '*' ~/Pictures/Wanderer.mp4 &"
       ];
       exec-once = [
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &"
@@ -127,11 +128,11 @@
         # Transparency:
         active_opacity = 0.95;
         inactive_opacity = 0.90;
-        drop_shadow = true;
-        shadow_range = 4;
-        shadow_offset = "0 5";
-        shadow_render_power = 7;
-        "col.shadow" = "rgba(000000FE)";
+        # drop_shadow = true;
+        # shadow_range = 4;
+        # shadow_offset = "0 5";
+        # shadow_render_power = 7;
+        # "col.shadow" = "rgba(000000FE)";
         # Blur:
         blur = {
           enabled = true;
