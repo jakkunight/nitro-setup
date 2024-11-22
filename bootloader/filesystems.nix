@@ -1,11 +1,9 @@
 { pkgs, config, lib, inputs, ... }:
 
 {
-  boot.supportedFilesystems = {
-    btrfs = true;
-    zfs = lib.mkForce true;
-    ntfs = lib.mkForce true;
-  };
+  boot.supportedFilesystems = [
+    "ntfs"
+  ];
   # fileSystems."/path/to/mount/to" =
   # { device = "/path/to/the/device";
   #   fsType = "ntfs-3g"; 
