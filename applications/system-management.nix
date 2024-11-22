@@ -56,6 +56,7 @@
     zoxide
     mprocs
     wiki-tui
-
+    testdisk
+    chkrootkit
   ];
 }
