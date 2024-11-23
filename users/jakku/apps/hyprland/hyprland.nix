@@ -30,12 +30,13 @@
         follow_mouse = 0;
       };
       exec = [
-        "swww-daemon &"
-        "swww img ~/Pictures/wanderer-inazuma.jpg"
+        #"swww-daemon &"
+        #"swww img ~/Pictures/wanderer-inazuma.jpg"
         #"swww img ~/Pictures/wanderer.gif"
         #"mpvpaper -o 'no-audio --loop-playlist shuffle' '*' ~/Pictures/Wanderer.mp4 &"
       ];
       exec-once = [
+        "hyprpaper"
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &"
       ];
       # General:
