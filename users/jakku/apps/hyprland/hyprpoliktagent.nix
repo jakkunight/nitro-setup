@@ -1,6 +1,6 @@
 { config, pkgs, inputs, ... }:
 {
-  environment.systemPackages = [
+  home.packages = [
     pkgs.hyprpolkitagent
   ];
 }
