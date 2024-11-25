@@ -10,11 +10,11 @@
       background = [
         {
           monitor = "";
-          path = "/home/jakku/Pictures/wanderer-inazuma.jpg";
+          path = "/home/jakku/Pictures/furina-genshin-impact.jpg";
           color = "rgba(0, 0, 0, 0.5)";
           blur_passes = 1;
           blur_size = 4;
-          noise = 0.0117;
+          noise = 0.01;
           contrast = 0.8916;
           brightness = 0.8172;
           vibrancy = 0.1696;
@@ -26,7 +26,7 @@
           size = "200, 50";
           monitors = "";
           dots_center = true;
-          font_family = "Overpass";
+          font_family = "Hack";
           font_size = 12;
           font_color = "rgb(192, 202, 245)";
           placeholder_text = "<i>Input Password...</i>";

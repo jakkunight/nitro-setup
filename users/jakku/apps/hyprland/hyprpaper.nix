@@ -1,6 +1,8 @@
 { config, pkgs, inputs, ... }:
-let bg_file = "";
-let monitor1 = "";
+let
+  bg_file = "~/Pictures/furina-genshin-impact.jpg";
+  monitor1 = "";
+in
 {
   services.hyprpaper = {
     enable = true;
@@ -9,7 +11,7 @@ let monitor1 = "";
       splash = true;
       splash_offset = 1.0;
       preload = [
-        $bg_file
+        "${bg_file}"
       ];
       wallpaper = [
         "${monitor1},${bg_file}"
