@@ -38,6 +38,7 @@
       exec-once = [
         "hyprpaper"
         "systemctl --user start hyprpolkitagent"
+        "agsv1"
         #"${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &"
       ];
       # General:
