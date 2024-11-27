@@ -27,6 +27,8 @@
     old-yazi = {
       url = "github:nixos/nixpkgs/45508c1098a3fb7140ae3d86414cee8f5ee7511c";
     };
+    # Hyprpanel:
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     # Disko:
     disko = {
       url = "github:nix-community/disko";

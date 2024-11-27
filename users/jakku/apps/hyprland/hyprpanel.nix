@@ -1,6 +1,6 @@
 { pkgs, inputs, ... }:
 {
   home.packages = [
-    pkgs.hyprpanel
+    inputs.hyprpanel.packages."x86_64-linux".hyprpanel
   ];
 }
