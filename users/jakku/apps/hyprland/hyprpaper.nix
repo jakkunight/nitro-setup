@@ -1,6 +1,6 @@
 { config, pkgs, inputs, ... }:
 let
-  bg_file = "~/Pictures/furina-genshin-impact.jpg";
+  bg_file = "~/Pictures/furina-bubles-background.jpg";
   monitor1 = "";
 in
 {

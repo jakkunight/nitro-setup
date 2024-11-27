@@ -10,7 +10,7 @@
       background = [
         {
           monitor = "";
-          path = "/home/jakku/Pictures/furina-genshin-impact.jpg";
+          path = "~/Pictures/furina-bubles-background.jpg";
           color = "rgba(0, 0, 0, 0.5)";
           blur_passes = 1;
           blur_size = 4;
