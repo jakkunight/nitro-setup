@@ -1,5 +1,5 @@
 # Hyprland user config:
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 {
   # Hyprland:
   wayland.windowManager.hyprland = {
@@ -7,6 +7,7 @@
     systemd = {
       enable = true;
     };
+    #plugins = [ inputs.hy3.packages.x86_64-linux.hy3 ];
     settings = {
       # ENV Variables:
       env = [
@@ -36,9 +37,9 @@
         #"mpvpaper -o 'no-audio --loop-playlist shuffle' '*' ~/Pictures/Wanderer.mp4 &"
       ];
       exec-once = [
-        "hyprpaper"
+        #"hyprpaper"
         "systemctl --user start hyprpolkitagent"
-        "agsv1"
+        "hyprpanel"
         #"${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &"
       ];
       # General:
@@ -80,9 +81,9 @@
         # Open the file manager:
         "$mod, E, exec, thunar"
         # Open app launcher:
-        "$mod, D, exec, wofi"
+        "$mod, D, exec, hyprlauncher"
         # Open Web browser:
-        "$mod, A, exec, firefox"
+        "$mod, A, exec, flatpak run io.github.zen_browser.zen"
         # Open music player:
         "$mod, S, exec, vlc"
         # Toggle fullscreen:
@@ -95,6 +96,12 @@
         "$mod, L, exec, hyprlock"
         # Close Hyprland:
         "$mod SHIFT, Q, exit"
+        # Reboot:
+        "$mod SHIFT, R, exec, systemctl reboot"
+        # Poweroff:
+        "$mod SHIFT, P, exec, systemctl poweroff"
+        # Hot-reloading:
+        #"$mod R, exec, hyprctl reload"
         # Switch workspace to:
         "$mod, 1, workspace, 1"
         "$mod, 2, workspace, 2"

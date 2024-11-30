@@ -1,5 +1,5 @@
 # Full config:
-{config, lib, pkgs, ...}@inputs:
+{ config, lib, pkgs, inputs, ... }:
 {
   imports = [
     ./hyprland.nix
@@ -9,6 +9,6 @@
     ./hyprpoliktagent.nix
     ./hyprpaper.nix
     ./wofi.nix
-    ./waybar.nix
+    #./waybar.nix
   ];
 }

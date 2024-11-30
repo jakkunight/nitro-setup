@@ -29,6 +29,13 @@
     };
     # Hyprpanel:
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+    # Hy3:
+    hy3 = {
+      url = "github:outfoxxed/hy3"; # where {version} is the hyprland release version
+      # or "github:outfoxxed/hy3" to follow the development branch.
+      # (you may encounter issues if you dont do the same for hyprland)
+      inputs.hyprland.follows = "hyprland";
+    };
     # Disko:
     disko = {
       url = "github:nix-community/disko";
@@ -93,8 +100,15 @@
       # Home-Manager:
       homeConfigurations = {
         jakku = inputs.home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs.inputs = inputs;
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [
+              inputs.hyprpanel.overlay
+            ];
+          };
+          extraSpecialArgs = {
+            inherit inputs;
+          };
           modules = [
             ./users/jakku/home.nix
             inputs.nixvim.homeManagerModules.nixvim
