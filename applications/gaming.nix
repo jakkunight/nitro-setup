@@ -2,7 +2,6 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    steam
     lutris
     wineWowPackages.stable
     winetricks
@@ -16,4 +15,20 @@
   networking.firewall.allowedUDPPorts = [
     16000
   ];
+
+  programs = {
+    gamescope = {
+      enable = true;
+    };
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      localNetworkGameTransfers.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      extraPackages = with pkgs; [
+        gamescope
+      ];
+      #gamescopeSession = true;
+    };
+  };
 }
