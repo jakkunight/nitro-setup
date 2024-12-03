@@ -8,6 +8,7 @@
       enable = true;
     };
     #plugins = [ inputs.hy3.packages.x86_64-linux.hy3 ];
+    plugins = [ pkgs.hyprlandPlugins.hy3 ];
     settings = {
       # ENV Variables:
       env = [
@@ -37,9 +38,9 @@
         #"mpvpaper -o 'no-audio --loop-playlist shuffle' '*' ~/Pictures/Wanderer.mp4 &"
       ];
       exec-once = [
-        #"hyprpaper"
+        "hyprpaper"
         "systemctl --user start hyprpolkitagent"
-        "hyprpanel"
+        #"hyprpanel"
         #"${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &"
       ];
       # General:
@@ -50,7 +51,7 @@
         "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         border_size = 2;
         resize_on_border = true;
-        layout = "dwindle";
+        layout = "hy3";
       };
       # Cursor:
       cursor = {
@@ -100,6 +101,7 @@
         "$mod SHIFT, R, exec, systemctl reboot"
         # Poweroff:
         "$mod SHIFT, P, exec, systemctl poweroff"
+
         # Hot-reloading:
         #"$mod R, exec, hyprctl reload"
         # Switch workspace to:
@@ -125,10 +127,23 @@
         "$mod SHIFT, 9, movetoworkspace, 9"
         "$mod SHIFT, 0, movetoworkspace, 10"
         # Move focus with $mod + arrow keys
-        "$mod, left, movefocus, l"
-        "$mod, right, movefocus, r"
-        "$mod, up, movefocus, u"
-        "$mod, down, movefocus, d"
+        "$mod, left, hy3:movefocus, l"
+        "$mod, right, hy3:movefocus, r"
+        "$mod, up, hy3:movefocus, u"
+        "$mod, down, hy3:movefocus, d"
+        # Move windows with $mod + SHIFT + arrow keys
+        "$mod SHIFT, left, hy3:movewindow, l"
+        "$mod SHIFT, right, hy3:movewindow, r"
+        "$mod SHIFT, up, hy3:movewindow, u"
+        "$mod SHIFT, down, hy3:movewindow, d"
+        # Make a new group:
+        "$mod, TAB, hy3:makegroup, tab"
+        "$mod, SPACE, hy3:makegroup, opposite"
+        "$mod, C, hy3:makegroup, h"
+        "$mod, V, hy3:makegroup, v"
+        # Change group layout:
+        "$mod, X, hy3:changegroup, opposite"
+        "$mod, Z, hy3:changegroup, toggletab"
 	# Take a screenshot:
 	" , PRINT, exec, hyprshot -m output"
       ];
@@ -136,8 +151,8 @@
       decoration = {
         rounding = 5;
         # Transparency:
-        active_opacity = 0.95;
-        inactive_opacity = 0.90;
+        active_opacity = 0.90;
+        inactive_opacity = 0.75;
         # drop_shadow = true;
         # shadow_range = 4;
         # shadow_offset = "0 5";
@@ -146,9 +161,9 @@
         # Blur:
         blur = {
           enabled = true;
-          size = 3;
+          size = 4;
           passes = 1;
-          vibrancy = 0.1696;
+          vibrancy = 0.01;
         };
       };
       # Animations:
@@ -178,6 +193,9 @@
       };
       master = {
         new_status = "slave";
+      };
+      hy3 = {
+        #no_gaps_when_only = 0;
       };
       # Misc:
       misc = {
