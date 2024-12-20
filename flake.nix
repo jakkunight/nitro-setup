@@ -1,5 +1,7 @@
 {
-  description = "My Setup Settings v2.1.0";
+  description = ''
+    My Setup Settings (v3.0.0)
+  '';
 
   # Enable Cachix:
   nixConfig = {
