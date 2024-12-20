@@ -1,9 +1,13 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, modulesPath,  ... }:
 {
   # Enable Flakes!
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Allow unfree software:
   nixpkgs.config.allowUnfree = true;
+  # Use NixOS-Generators:
+  environment.systemPackages = [
+    pkgs.nixos-generators
+  ];
   # Import all the config for the system:
   imports = [
     # Basic:

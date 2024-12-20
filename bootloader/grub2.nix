@@ -6,7 +6,7 @@
   boot = {
     loader = {
       grub = {
-        enable = true;
+        enable = lib.mkForce true;
         device = "nodev";
         efiSupport = true;
         efiInstallAsRemovable = true;
