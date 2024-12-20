@@ -19,6 +19,7 @@
   programs = {
     gamescope = {
       enable = true;
+
     };
     steam = {
       enable = true;
@@ -28,7 +29,10 @@
       extraPackages = with pkgs; [
         gamescope
       ];
-      #gamescopeSession = true;
+      gamescopeSession = {
+        enable = true;
+      };
+
     };
   };
 }
