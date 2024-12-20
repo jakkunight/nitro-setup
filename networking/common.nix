@@ -8,4 +8,8 @@
   networking.networkmanager = {
     enable = true;
   };
+  # Disable Wireless:
+  networking.wireless = {
+    enable = false;
+  };
 }
