@@ -36,7 +36,7 @@
         ike = "3des-sha-modp1024!";
         esp = "3des-sha-modp1024!";
         aggressive = "yes";
-        right = "ip.address"; # Replace this with your VPN gateway IP address.
+        right = "127.0.0.1"; # Replace this with your VPN gateway IP address.
         rightid = "%any";
         rightsubnet = "10.0.0.0/8";
         rightauth = "psk";
