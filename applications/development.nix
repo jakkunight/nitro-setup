@@ -15,5 +15,7 @@
     pkgs.dbeaver-bin
     pkgs.present
     pkgs.presenterm
+    pkgs.neovim
+    pkgs.firefox
   ];
 }
