@@ -11,7 +11,7 @@
   ];
 
   # Enable package forwarding:
-  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+  boot.kernel.sysctl."net.ipv4.ip_forward" = lib.mkForce 1;
 
   # Open UDP Ports on the firewall:
   networking.firewall.allowedUDPPorts = [
