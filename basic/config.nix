@@ -7,6 +7,9 @@
   # Use NixOS-Generators:
   environment.systemPackages = [
     pkgs.nixos-generators
+    pkgs.calamares-nixos
+    pkgs.calamares
+    pkgs.calamares-nixos-extensions
   ];
   # Import all the config for the system:
   imports = [
