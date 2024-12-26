@@ -12,6 +12,8 @@
     aria2
     git
     vim
+    helix
+    helix-gpt
     wget
     curl
     socat
@@ -46,6 +48,7 @@
     xorg.xbacklight
     acpilight
     gparted
+    exfatprogs
     parted
     unixtools.fdisk
     ventoy-full
