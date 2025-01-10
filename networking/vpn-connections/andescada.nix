@@ -36,7 +36,7 @@
         ike = "aes128-sha256-modp1536!";
         esp = "aes128-sha256-modp1536!";
         aggressive = "yes";
-        right = "<gateway_address>"; # Replace this with your VPN gateway IP address.
+        right = "190.52.176.139"; # Replace this with your VPN gateway IP address.
         rightid = "%any";
         rightsubnet = "10.0.0.0/8";
         rightauth = "psk";
@@ -45,7 +45,7 @@
         leftsubnet = "10.0.0.0/8";
         leftauth = "psk";
         leftauth2 = "xauth";
-        xauth_identity = "<your_username>"; # Replace this with your username.
+        xauth_identity = "santiago_wu"; # Replace this with your username.
         auto = "add";
         leftupdown = "/etc/ipsec/updown.sh"; # Make sure that your custom script works.
       };
