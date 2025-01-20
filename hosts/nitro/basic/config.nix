@@ -30,9 +30,9 @@
     # Services:
     ./../services
     # Users:
-    ./../users/jakku/user.nix
+    ./../../../users/jakku/user.nix
   ];
 
   # Do not modify this!
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
 }
