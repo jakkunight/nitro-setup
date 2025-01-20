@@ -92,9 +92,9 @@
             inputs.nix-ld.nixosModules.nix-ld
             { programs.nix-ld.dev.enable = true; }
             inputs.disko.nixosModules.disko
-            ./disk/disk.nix
+            ./hosts/nitro/disk/disk.nix
             { _module.args.disks = [ "/dev/nvme0n1" ]; }
-            ./basic/config.nix
+            ./hosts/nitro/basic/config.nix
             inputs.home-manager.nixosModules.home-manager
           ];
         };
