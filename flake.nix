@@ -87,14 +87,17 @@
         # };
         nitro = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs.inputs = inputs;
+          specialArgs = {
+            inherit inputs;
+          };
           modules = [
-            inputs.nix-ld.nixosModules.nix-ld
-            { programs.nix-ld.dev.enable = true; }
-            inputs.disko.nixosModules.disko
-            ./hosts/nitro/disk/disk.nix
-            { _module.args.disks = [ "/dev/nvme0n1" ]; }
-            ./hosts/nitro/basic/config.nix
+            # inputs.nix-ld.nixosModules.nix-ld
+            # { programs.nix-ld.dev.enable = true; }
+            # inputs.disko.nixosModules.disko
+            # ./hosts/nitro/disk/disk.nix
+            # { _module.args.disks = [ "/dev/nvme0n1" ]; }
+            # ./hosts/nitro/basic/config.nix
+            ./hosts/nitro/configuration.nix
             inputs.home-manager.nixosModules.home-manager
           ];
         };
