@@ -5,7 +5,7 @@
       device = {
         label = lib.mkOption {
           description = "Set the device's label where GRUB will be installed. Defaults to `nodev`";
-          type = lib.types.string;
+          type = lib.types.str;
           default = "nodev";
         };
       };
