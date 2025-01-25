@@ -3,7 +3,7 @@
 # even in TTy mode.
 { lib, config, pkgs, ... }: {
   imports = [
-    ./utils
+    #./utils
     ./filemanager
     ./multiplexer
     ./editor
@@ -18,13 +18,21 @@
   config = lib.mkIf config.terminal.enable {
     terminal = {
       #utils = {};
-      #filemanager = {};
+      filemanager = {};
       multiplexer = {
         enable = lib.mkDefault true;
         zellij.enable = true;
       };
-      #editor = {};
-      #shells = {};
+      editor = {
+        enable = lib.mkDefault true;
+      };
+      shells = {
+        enable = lib.mkDefault true;
+        zsh = {
+          enable = lib.mkDefault true;
+          default = lib.mkDefault true;
+        };
+      };
       prompts = {
         enable = true;
         starship.enable = true;

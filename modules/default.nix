@@ -11,14 +11,6 @@
       systemd.enable = lib.mkDefault false;
     };
     audio.enable = lib.mkDefault true;
-    terminal = {
-      enable = lib.mkDefault true;
-      multiplexer = {
-        enable = lib.mkDefault true;
-      };
-      prompts = {
-        enable = lib.mkDefault true;
-      };
-    };
+    terminal.enable = lib.mkDefault true;
   };
 }
