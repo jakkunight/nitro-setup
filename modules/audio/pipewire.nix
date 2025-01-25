@@ -1,5 +1,5 @@
 # PipeWire configuration:
-{ lib, config, pkgs, ... }: {
+{ lib, config, ... }: {
   options = {
     audio = {
       pipewire = {
@@ -12,7 +12,7 @@
     security.rtkit.enable = true;
 
     # Disable PulseAudio explicitly:
-    hardware.pulseaudio.enable = lib.mkForce false;
+    hardware.pulseaudio.enable = false;
 
     # Config PipeWire:
     services.pipewire = {
