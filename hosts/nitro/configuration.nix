@@ -1,7 +1,8 @@
-{ lib, config, ... }: {
+{ lib, config, pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
     ../../modules
+    ../../users
   ];
   config = {
     # Enable Flakes!
@@ -25,10 +26,14 @@
     # Select internationalisation properties.
     i18n.defaultLocale = "es_PY.UTF-8";
 
-    # Set console font:
+    # Set console settings:
     console = {
+      # Setup console:
+      enable = true;
+      earlySetup = true;
+
       # TTY font for my HiRes monitor:
-      font = "Terminus 32 bold";
+      #font = "Terminus 32 bold";
 
       # Keymap:
       #keyMap = "latam";
@@ -49,35 +54,75 @@
 
         "545c7e" # Black/Dark gray
         "ff757f" # Red/Light red
-        "ffc777" # Green/Light green
-        "ff9e64" # Yellow/Orange
+        "4fd6be" # Green/Light green
+        "ffc777" # Yellow/Orange
         "7aa2f7" # Blue/Light blue
         "bb9af7" # Magenta/Light magenta
         "b4f9f8" # Cyan/Light cyan
         "a9b1d6" # Gray/White
       ];
     };
-  };
 
-  #### Module settings ####
-  
-  # Filesystems:
-  config.disk = {
-    filesystems = {
-      boot.label = "ESP";
-      root.label = "root";
+    # Shell:
+    users.defaultUserShell = pkgs.zsh;
+    
+    #### Module settings ####
+    
+    # Filesystems:
+    disk = {
+      filesystems = {
+        boot.label = "BOOT";
+        root.label = "root";
+        swap.label = "linux-swap";
+      };
     };
-  };
 
-  # Bootloader:
-  config.bootloader = {
-    # Disable Systemd-Boot:
-    systemd.enable = false;
+    # Bootloader:
+    bootloader = {
+      # Disable Systemd-Boot:
+      systemd.enable = false;
 
-    # Enable and config GRUB:
-    grub = {
+      # Enable and config GRUB:
+      grub = {
+        enable = true;
+        device.label = "BOOT";
+      };
+    };
+    audio = {
       enable = true;
-      device.label = "ESP";
+      pipewire.enable = true;
+    };
+    terminal = {
+      enable = true;
+      filemanager = {
+        enable = true;
+        yazi.enable = true;
+      };
+      prompts = {
+        enable = true;
+        starship.enable = true;
+      };
+      multiplexer = {
+        enable = true;
+        tmux.enable = true;
+        zellij.enable = true;
+      };
+      editor = {
+        enable = true;
+        nvim = {
+          enable = true;
+          default = true;
+          flavor = "nvf";
+        };
+        micro.enable = true;
+      };
+      shells = {
+        enable = true;
+        zsh = {
+          enable = true;
+          default = true;
+        };
+      };
     };
   };
 }
