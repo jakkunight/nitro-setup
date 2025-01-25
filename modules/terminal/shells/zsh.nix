@@ -7,7 +7,7 @@
     };
   };
   config = lib.mkIf config.terminal.shells.zsh.enable {
-    users.defaultUserShell = (if (config.terminal.shells.zsh.default) then pkgs.zsh else null);
+    users.defaultUserShell = lib.mkIf config.terminal.shells.zsh.default pkgs.zsh;
     programs.zsh = {
       enable = true;
       enableLsColors = true;

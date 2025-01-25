@@ -19,12 +19,8 @@
           enable = lib.mkForce true;
           device = "/dev/disk/by-label/${config.bootloader.grub.device.label}";
           efiSupport = true;
-          efiInstallAsRemovable = false;
-          theme = let
-            layout = "classic";
-            resolution = "1920x1080";
-            colorscheme = "night";
-          in inputs.grubshin-bootpact.${colorscheme}.${layout}.${resolution};
+          efiInstallAsRemovable = true;
+          theme = inputs.grubshin-bootpact.night.teleport.1920X1080;
           useOSProber = true;
         };
         efi = {
