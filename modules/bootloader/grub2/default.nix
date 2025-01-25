@@ -17,7 +17,11 @@
       loader = {
         grub = {
           enable = lib.mkForce true;
-          device = "/dev/disk/by-label/${config.bootloader.grub.device.label}";
+          device = (
+            if config.bootloader.grub.device.label != "nodev"
+            then "${/dev/disk/by-label/${config.bootloader.grub.device.label}"
+            else "${config.bootloader.grub.device.label}"
+          );
           efiSupport = true;
           efiInstallAsRemovable = true;
           theme = inputs.grubshin-bootpact.night.teleport."1920x1080";
