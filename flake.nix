@@ -25,9 +25,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Old Yazi (v3.2)
-    old-yazi = {
-      url = "github:nixos/nixpkgs/45508c1098a3fb7140ae3d86414cee8f5ee7511c";
+    # Yazi (v4.2)
+    yazi = {
+      url = "github:sxyazi/yazi";
+    };
+    # TokyoNight Yazi flavor:
+    yazi-tokyonight = {
+      url = "github:BennyOe/tokyo-night.yazi";
+      flake = false;
     };
     # Hyprpanel:
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
@@ -58,9 +63,18 @@
     };
     # NixOS-GRUB2-Themes:
     nixos-grub-themes.url = "github:jeslie0/nixos-grub-themes";
+    # GRUBshin BOOTpact:
+    grubshin-bootpact = {
+      url = "github:max-ishere/grubshin-bootpact";
+    };
     # NixVim:
     nixvim = {
       url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # NVF:
+    nvf = {
+      url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Wezterm:
@@ -69,7 +83,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { nixpkgs, ... } @ inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -98,27 +112,27 @@
             # { _module.args.disks = [ "/dev/nvme0n1" ]; }
             # ./hosts/nitro/basic/config.nix
             ./hosts/nitro/configuration.nix
-            inputs.home-manager.nixosModules.home-manager
+            #inputs.home-manager.nixosModules.home-manager
           ];
         };
       };
       # Home-Manager:
-      homeConfigurations = {
-        jakku = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs {
-            inherit system;
-            overlays = [
-              inputs.hyprpanel.overlay
-            ];
-          };
-          extraSpecialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            ./users/jakku/home.nix
-            inputs.nixvim.homeManagerModules.nixvim
-          ];
-        };
-      };
+      # homeConfigurations = {
+      #   jakku = inputs.home-manager.lib.homeManagerConfiguration {
+      #     pkgs = import nixpkgs {
+      #       inherit system;
+      #       overlays = [
+      #         inputs.hyprpanel.overlay
+      #       ];
+      #     };
+      #     extraSpecialArgs = {
+      #       inherit inputs;
+      #     };
+      #     modules = [
+      #       ./users/jakku/home.nix
+      #       inputs.nixvim.homeManagerModules.nixvim
+      #     ];
+      #   };
+      # };
     };
 }

@@ -33,7 +33,7 @@
       earlySetup = true;
 
       # TTY font for my HiRes monitor:
-      #font = "Terminus 32 bold";
+      font = "Terminus 32 bold";
 
       # Keymap:
       #keyMap = "latam";
