@@ -12,7 +12,7 @@
     services.pipewire.enable = false;
     
     # Config PulseAudio:
-    hardware.pulseaudio = {
+    services.pulseaudio = {
       enable = true;
       support32Bit = true;
     };

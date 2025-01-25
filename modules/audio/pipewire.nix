@@ -12,7 +12,7 @@
     security.rtkit.enable = true;
 
     # Disable PulseAudio explicitly:
-    hardware.pulseaudio.enable = false;
+    services.pulseaudio.enable = false;
 
     # Config PipeWire:
     services.pipewire = {
