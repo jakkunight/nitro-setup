@@ -20,7 +20,7 @@
           device = "/dev/disk/by-label/${config.bootloader.grub.device.label}";
           efiSupport = true;
           efiInstallAsRemovable = true;
-          theme = inputs.grubshin-bootpact.night.teleport.1920X1080;
+          theme = inputs.grubshin-bootpact.night.teleport."1920x1080";
           useOSProber = true;
         };
         efi = {
