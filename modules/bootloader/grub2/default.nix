@@ -1,4 +1,4 @@
-{ lib, config, ... }: {
+{ lib, config, inputs, ... }: {
   options = {
     bootloader.grub = {
       enable = lib.mkEnableOption "Enable GRUB as your bootloader";
@@ -19,9 +19,16 @@
           enable = lib.mkForce true;
           device = "/dev/disk/by-label/${config.bootloader.grub.device.label}";
           efiSupport = true;
-          efiInstallAsRemovable = true;
-          #theme = inputs.nixos-grub-themes.packages.${pkgs.system}.hyperfluent;
+          efiInstallAsRemovable = false;
+          theme = let
+            layout = "classic";
+            resolution = "1920x1080";
+            colorscheme = "night";
+          in inputs.grubshin-bootpact.${colorscheme}.${layout}.${resolution};
           useOSProber = true;
+        };
+        efi = {
+          efiSysMountPoint = "/boot";
         };
       };
     };

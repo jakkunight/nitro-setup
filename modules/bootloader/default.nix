@@ -2,6 +2,7 @@
   imports = [
     ./grub2
     ./systemd.nix
+    ./kernel.nix
   ];
   options = {};
   config = {
