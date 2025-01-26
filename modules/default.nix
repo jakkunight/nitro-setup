@@ -1,4 +1,4 @@
-{ lib, config, ... }: {
+{ lib, config, pkgs, ... }: {
   imports = [
     ./bootloader
     ./disk
@@ -6,6 +6,14 @@
     ./terminal
   ];
   config = {
+    #### Install basic programs ####
+
+    environment.systemPackages = [
+      pkgs.git
+      pkgs.nixos-generators
+    ];
+
+    #### ====================== ####
     bootloader = {
       grub.enable = lib.mkDefault true;
       systemd.enable = lib.mkDefault false;
