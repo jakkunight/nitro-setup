@@ -126,6 +126,10 @@
           default = true;
         };
       };
+      utils = {
+        termusic.enable = true;
+        tui-journal.enable = true;
+      };
     };
   };
 }
