@@ -1,4 +1,4 @@
-{ lib, config, inputs, ... }: {
+{ lib, config, pkgs, inputs, ... }: {
   options = {
     bootloader.grub = {
       enable = lib.mkEnableOption "Enable GRUB as your bootloader";
@@ -23,13 +23,17 @@
             else "nodev"
           );
           efiSupport = true;
-          efiInstallAsRemovable = false;
-          #theme = inputs.grubshin-bootpact."night"."teleport"."1920x1080";
+          efiInstallAsRemovable = true;
+          theme = let 
+            colorscheme = "night";
+            layout = "teleport";
+            resolution = "1920x1080";
+          in inputs.grubshin-bootpact.packages.${pkgs.system}.${colorscheme}.${layout}.${resolution};
           useOSProber = true;
         };
         efi = {
           efiSysMountPoint = "/boot";
-          canTouchEfiVariables = true;
+          canTouchEfiVariables = false;
         };
       };
     };

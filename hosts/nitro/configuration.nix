@@ -83,12 +83,12 @@
     # Bootloader:
     bootloader = {
       # Enable Systemd-Boot:
-      systemd.enable = true;
+      systemd.enable = false;
 
       # Enable and config GRUB:
       grub = {
-        enable = false;
-        #device.label = "nodev";
+        enable = true;
+        device.label = "nodev";
       };
     };
     audio = {
