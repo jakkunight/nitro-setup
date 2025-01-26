@@ -3,7 +3,7 @@
 # even in TTy mode.
 { lib, config, pkgs, ... }: {
   imports = [
-    #./utils
+    ./utils
     ./filemanager
     ./multiplexer
     ./editor
@@ -36,6 +36,9 @@
       prompts = {
         enable = true;
         starship.enable = true;
+      };
+      utils = {
+        enable = lib.mkDefault true;
       };
     };
   };
