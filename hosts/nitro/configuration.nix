@@ -30,10 +30,13 @@
     console = {
       # Setup console:
       enable = true;
-      earlySetup = true;
+      #earlySetup = true;
 
       # TTY font for my HiRes monitor:
-      font = "LatTerminus-16";
+      # packages = [
+      #   pkgs.terminus_font
+      # ];
+      # font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
 
       # Keymap:
       #keyMap = "latam";
@@ -79,13 +82,13 @@
 
     # Bootloader:
     bootloader = {
-      # Disable Systemd-Boot:
-      systemd.enable = false;
+      # Enable Systemd-Boot:
+      systemd.enable = true;
 
       # Enable and config GRUB:
       grub = {
-        enable = true;
-        device.label = "BOOT";
+        enable = false;
+        #device.label = "nodev";
       };
     };
     audio = {

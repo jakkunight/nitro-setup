@@ -2,8 +2,8 @@
 { pkgs, config, lib, inputs, ... }: {
   config = {
     # Use ZSH as default shell:
-    #programs.zsh.enable = true;
-    #users.defaultUserShell = pkgs.zsh;
+    programs.zsh.enable = true;
+    users.defaultUserShell = pkgs.zsh;
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.jakku = {

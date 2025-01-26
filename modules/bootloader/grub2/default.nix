@@ -19,16 +19,17 @@
           enable = lib.mkForce true;
           device = (
             if config.bootloader.grub.device.label != "nodev"
-            then "${/dev/disk/by-label/${config.bootloader.grub.device.label}"
-            else "${config.bootloader.grub.device.label}"
+            then "/dev/disk/by-label/${config.bootloader.grub.device.label}"
+            else "nodev"
           );
           efiSupport = true;
-          efiInstallAsRemovable = true;
-          theme = inputs.grubshin-bootpact.night.teleport."1920x1080";
+          efiInstallAsRemovable = false;
+          #theme = inputs.grubshin-bootpact."night"."teleport"."1920x1080";
           useOSProber = true;
         };
         efi = {
           efiSysMountPoint = "/boot";
+          canTouchEfiVariables = true;
         };
       };
     };
