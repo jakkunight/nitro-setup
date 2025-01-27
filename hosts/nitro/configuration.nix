@@ -130,6 +130,9 @@
         termusic.enable = true;
         tui-journal.enable = true;
       };
+      net = {
+        enable = true;
+      };
     };
   };
 }
