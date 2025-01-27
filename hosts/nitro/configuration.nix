@@ -133,9 +133,26 @@
     };
     net = {
       enable = true;
+      strongswan.enable = true;
       tools = {
         enable = true;
       };
+    };
+    serv = {
+      enable = true;
+      gvfs.enable = true;
+      udisks2.enable = true;
+      vpns = {
+        enable = true;
+        strongswan = {
+          enable = true;
+          connections = {
+            enable = true;
+            andescada.enable = true;
+          };
+        };
+      };
+
     };
   };
 }

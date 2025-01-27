@@ -5,6 +5,7 @@
     ./audio
     ./terminal
     ./net
+    ./services
   ];
   config = {
     #### Install basic programs ####
@@ -22,5 +23,6 @@
     audio.enable = lib.mkDefault true;
     terminal.enable = lib.mkDefault true;
     net.enable = lib.mkDefault true;
+    serv.enable = lib.mkDefault true;
   };
 }
