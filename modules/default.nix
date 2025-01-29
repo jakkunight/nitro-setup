@@ -6,6 +6,7 @@
     ./terminal
     ./net
     ./services
+    ./graphics
   ];
   config = {
     #### Install basic programs ####
@@ -24,5 +25,6 @@
     terminal.enable = lib.mkDefault true;
     net.enable = lib.mkDefault true;
     serv.enable = lib.mkDefault true;
+    graphics.enable = lib.mkDefault false;
   };
 }

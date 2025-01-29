@@ -152,7 +152,24 @@
           };
         };
       };
-
+    };
+    graphics = {
+      enable = true;
+      nvidia.enable = true;
+      fonts.enable = true;
+      display-manager = {
+        enable = true;
+        sddm = {
+          enable = true;
+        };
+      };
+      wm = {
+        enable = true;
+        hyprland = {
+          enable = true;
+          nvidia.enable = true;
+        };
+      };
     };
   };
 }
