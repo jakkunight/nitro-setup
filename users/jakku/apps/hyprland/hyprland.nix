@@ -78,13 +78,14 @@
       bindr = [ ];
       bind = [
         # Open a terminal:
-        "$mod, Return, exec, alacritty"
+        "$mod, Return, exec, kitty"
         # Open the file manager:
-        "$mod, E, exec, thunar"
+        "$mod, E, exec, nemo"
         # Open app launcher:
-        "$mod, D, exec, hyprlauncher"
+        "$mod, D, exec, wofi"
         # Open Web browser:
-        "$mod, A, exec, flatpak run io.github.zen_browser.zen"
+        #"$mod, A, exec, flatpak run io.github.zen_browser.zen"
+        "$mod, A, exec, firefox"
         # Open music player:
         "$mod, S, exec, vlc"
         # Toggle fullscreen:

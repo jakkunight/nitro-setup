@@ -117,22 +117,22 @@
         };
       };
       # Home-Manager:
-      # homeConfigurations = {
-      #   jakku = inputs.home-manager.lib.homeManagerConfiguration {
-      #     pkgs = import nixpkgs {
-      #       inherit system;
-      #       overlays = [
-      #         inputs.hyprpanel.overlay
-      #       ];
-      #     };
-      #     extraSpecialArgs = {
-      #       inherit inputs;
-      #     };
-      #     modules = [
-      #       ./users/jakku/home.nix
-      #       inputs.nixvim.homeManagerModules.nixvim
-      #     ];
-      #   };
-      # };
+      homeConfigurations = {
+        jakku = inputs.home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [
+              inputs.hyprpanel.overlay
+            ];
+          };
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            ./users/jakku/home.nix
+            inputs.nixvim.homeManagerModules.nixvim
+          ];
+        };
+      };
     };
 }
