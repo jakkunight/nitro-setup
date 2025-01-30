@@ -11,6 +11,10 @@
   config = lib.mkIf config.terminal.editor.nvim.nvf.enable {
 programs.nvf = {
       enable = true;
+      options = {
+        tabstop = 2;
+
+      };
       settings = {
         vim = {
           viAlias = true;
