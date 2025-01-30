@@ -7,6 +7,7 @@
     ./net
     ./services
     ./graphics
+    ./gaming
   ];
   config = {
     #### Install basic programs ####
@@ -26,5 +27,6 @@
     net.enable = lib.mkDefault true;
     serv.enable = lib.mkDefault true;
     graphics.enable = lib.mkDefault false;
+    gaming.enable = lib.mkDefault false;
   };
 }

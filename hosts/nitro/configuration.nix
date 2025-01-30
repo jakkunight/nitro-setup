@@ -171,5 +171,8 @@
         };
       };
     };
+    gaming = {
+      steam.enable = true;
+    };
   };
 }
