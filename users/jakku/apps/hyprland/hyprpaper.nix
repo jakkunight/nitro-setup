@@ -8,13 +8,11 @@ in
     enable = true;
     settings = {
       ipc = "on";
-      splash = true;
-      splash_offset = 1.0;
       preload = [
         "${bg_file}"
       ];
       wallpaper = [
-        "${monitor1},${bg_file}"
+        "${monitor1}, contain:${bg_file}"
       ];
     };
   };

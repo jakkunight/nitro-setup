@@ -27,7 +27,7 @@
 
   # Import the configs:
   imports = [
-    ./apps/nvim
+    #./apps/nvim
     ./apps/office
     ./apps/theming
     ./apps/hyprland

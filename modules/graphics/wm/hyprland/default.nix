@@ -18,6 +18,12 @@
         enable = true;
       };
     };
+    
+    programs.uwsm.enable = true;
+
+    programs.hyprlock.enable = true;
+
+    services.hypridle.enable = true;
 
     environment.systemPackages = [
       # Default terminal emulator:

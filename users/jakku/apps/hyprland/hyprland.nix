@@ -4,19 +4,14 @@
   # Hyprland:
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd = {
-      enable = true;
-    };
-    #plugins = [ inputs.hy3.packages.x86_64-linux.hy3 ];
-    plugins = [ pkgs.hyprlandPlugins.hy3 ];
+    systemd.enable = false;
+    #plugins = [ inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.system}.hyprlandPlugins.hy3 ];
+    #plugins = [ pkgs.hyprlandPlugins.hy3 ];
     settings = {
       # ENV Variables:
       env = [
         "XCURSOR_SIZE,32"
-	"LIBVA_DRIVER_NAME,nvidia"
 	"XDG_SESSION_TYPE,wayland"
-	"GBM_BACKEND,nvidia-drm"
-	"__GLX_VENDOR_LIBRARY_NAME,nvidia"
       ];
       # XWayland:
       xwayland = {
@@ -38,7 +33,7 @@
         #"mpvpaper -o 'no-audio --loop-playlist shuffle' '*' ~/Pictures/Wanderer.mp4 &"
       ];
       exec-once = [
-        "hyprpaper"
+        "systemctl --user enable --now hyprpaper.service"
         "systemctl --user start hyprpolkitagent"
         #"hyprpanel"
         #"${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &"
@@ -51,7 +46,7 @@
         "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         border_size = 2;
         resize_on_border = true;
-        layout = "hy3";
+        layout = "dwindle";
       };
       # Cursor:
       cursor = {
@@ -78,16 +73,16 @@
       bindr = [ ];
       bind = [
         # Open a terminal:
-        "$mod, Return, exec, kitty"
+        "$mod, Return, exec, uwsm app -- kitty"
         # Open the file manager:
-        "$mod, E, exec, nemo"
+        "$mod, E, exec, uwsm app -- nemo"
         # Open app launcher:
-        "$mod, D, exec, wofi"
+        "$mod, D, exec, uwsm app -- wofi"
         # Open Web browser:
         #"$mod, A, exec, flatpak run io.github.zen_browser.zen"
-        "$mod, A, exec, firefox"
+        "$mod, A, exec, uwsm app -- firefox"
         # Open music player:
-        "$mod, S, exec, vlc"
+        "$mod, S, exec, uwsm app -- vlc"
         # Toggle fullscreen:
         "$mod, F, fullscreen"
         # Toggle floating:
@@ -95,7 +90,7 @@
         # Close window:
         "$mod, Q, killactive"
         # Lock screen:
-        "$mod, L, exec, hyprlock"
+        "$mod, L, exec, uwsm app -- hyprlock"
         # Close Hyprland:
         "$mod SHIFT, Q, exit"
         # Reboot:
@@ -128,23 +123,15 @@
         "$mod SHIFT, 9, movetoworkspace, 9"
         "$mod SHIFT, 0, movetoworkspace, 10"
         # Move focus with $mod + arrow keys
-        "$mod, left, hy3:movefocus, l"
-        "$mod, right, hy3:movefocus, r"
-        "$mod, up, hy3:movefocus, u"
-        "$mod, down, hy3:movefocus, d"
+        "$mod, left, movefocus, l"
+        "$mod, right, movefocus, r"
+        "$mod, up, movefocus, u"
+        "$mod, down, movefocus, d"
         # Move windows with $mod + SHIFT + arrow keys
-        "$mod SHIFT, left, hy3:movewindow, l"
-        "$mod SHIFT, right, hy3:movewindow, r"
-        "$mod SHIFT, up, hy3:movewindow, u"
-        "$mod SHIFT, down, hy3:movewindow, d"
-        # Make a new group:
-        "$mod, TAB, hy3:makegroup, tab"
-        "$mod, SPACE, hy3:makegroup, opposite"
-        "$mod, C, hy3:makegroup, h"
-        "$mod, V, hy3:makegroup, v"
-        # Change group layout:
-        "$mod, X, hy3:changegroup, opposite"
-        "$mod, Z, hy3:changegroup, toggletab"
+        "$mod SHIFT, left, movewindow, l"
+        "$mod SHIFT, right, movewindow, r"
+        "$mod SHIFT, up, movewindow, u"
+        "$mod SHIFT, down, movewindow, d"
 	# Take a screenshot:
 	" , PRINT, exec, hyprshot -m output"
       ];
@@ -162,9 +149,9 @@
         # Blur:
         blur = {
           enabled = true;
-          size = 4;
+          size = 10;
           passes = 1;
-          vibrancy = 0.01;
+          vibrancy = 1;
         };
       };
       # Animations:
