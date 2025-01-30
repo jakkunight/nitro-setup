@@ -6,7 +6,7 @@
       enable = lib.mkEnableOption "Enable Steam!";
     };
   };
-  config = {
+  config = lib.mkIf config.gaming.steam.enable {
     programs = {
       gamescope = {
         enable = true;
