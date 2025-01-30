@@ -172,6 +172,7 @@
       };
     };
     gaming = {
+      enable = true;
       steam.enable = true;
     };
   };
