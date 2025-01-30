@@ -11,15 +11,14 @@
   config = lib.mkIf config.terminal.editor.nvim.nvf.enable {
 programs.nvf = {
       enable = true;
-      options = {
-        tabstop = 2;
-
-      };
       settings = {
         vim = {
           viAlias = true;
           vimAlias = true;
           package = pkgs.neovim-unwrapped;
+          options = {
+            tabstop = 2;
+          };
           theme = {
             enable = true;
             name = "tokyonight";
