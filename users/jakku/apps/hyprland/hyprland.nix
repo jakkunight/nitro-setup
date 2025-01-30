@@ -35,6 +35,7 @@
       exec-once = [
         "systemctl --user enable --now hyprpaper.service"
         "systemctl --user start hyprpolkitagent"
+        "uwsm app -- waybar &"
         #"hyprpanel"
         #"${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &"
       ];
