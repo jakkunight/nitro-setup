@@ -9,7 +9,10 @@
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
     # Allow unfree software:
-    nixpkgs.config.allowUnfree = true;
+    nixpkgs.config = {
+      allowUnfree = true;
+      allowUnfreePredicate = (_: true);
+    };
 
     # State Version:
     system.stateVersion = "25.05";
@@ -43,7 +46,7 @@
 
       # Use XKB options on TTY:
       useXkbConfig = true; # use xkb.options in tty.
-      
+
       # TokyoNight palette for TTY:
       colors = [
         "1f2335" # Black/Dark gray
@@ -68,9 +71,9 @@
 
     # Shell:
     users.defaultUserShell = pkgs.zsh;
-    
+
     #### Module settings ####
-    
+
     # Filesystems:
     disk = {
       filesystems = {

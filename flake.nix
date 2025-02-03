@@ -19,7 +19,9 @@
 
   inputs = {
     # Nixpkgs:
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs = {
+      url = "github:nixos/nixpkgs/nixos-unstable";
+    };
     # Home Manager:
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -86,7 +88,10 @@
   outputs = { nixpkgs, ... } @ inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+      };
     in
     {
 
@@ -105,14 +110,11 @@
             inherit inputs;
           };
           modules = [
-            # inputs.nix-ld.nixosModules.nix-ld
-            # { programs.nix-ld.dev.enable = true; }
-            # inputs.disko.nixosModules.disko
-            # ./hosts/nitro/disk/disk.nix
-            # { _module.args.disks = [ "/dev/nvme0n1" ]; }
-            # ./hosts/nitro/basic/config.nix
+            # NVF:
+            inputs.nvf.nixosModules.default
+
+            # Host configuration:
             ./hosts/nitro/configuration.nix
-            #inputs.home-manager.nixosModules.home-manager
           ];
         };
       };
