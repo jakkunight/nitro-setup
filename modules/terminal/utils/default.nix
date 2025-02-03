@@ -14,6 +14,7 @@
     ./mprocs.nix
     ./termusic.nix
     ./speedtest-rs.nix
+    ./brightnessctl.nix
   ];
   options = {
     terminal.utils = {
@@ -41,6 +42,7 @@
       termusic.enable = lib.mkDefault false;
       wikitui.enable = lib.mkDefault false;
       tldr.enable = lib.mkDefault false;
+      speedtest-rs.enable = lib.mkDefault true;
     };
   };
 }
