@@ -1,7 +1,11 @@
 # NVF config:
-{ lib, config, pkgs, inputs, ... }: {
+{ lib, config, pkgs, ... }: {
   imports = [
-    inputs.nvf.nixosModules.default
+    ./ui
+    ./lsp
+    ./langs
+    ./keymaps
+    ./autocompletion
   ];
   options = {
     terminal.editor.nvim.nvf = {
@@ -9,7 +13,7 @@
     };
   };
   config = lib.mkIf config.terminal.editor.nvim.nvf.enable {
-programs.nvf = {
+    programs.nvf = {
       enable = true;
       settings = {
         vim = {
@@ -18,73 +22,10 @@ programs.nvf = {
           package = pkgs.neovim-unwrapped;
           options = {
             tabstop = 2;
+            shiftwidth = 2;
+            autoindent = true;
           };
-          theme = {
-            enable = true;
-            name = "tokyonight";
-            style = "night";
-          };
-          statusline = {
-            lualine = {
-              enable = true;
-              theme = "tokyonight";
-            };
-          };
-          telescope = {
-            enable = true;
-          };
-          autocomplete = {
-            nvim-cmp = {
-              enable = true;
-            };
-          };
-          languages = {
-            enableLSP = true;
-            enableTreesitter = true;
-            rust = {
-              enable = true;
-              crates = {
-                enable = true;
-                codeActions = true;
-              };
-            };
-            nix = {
-              enable = true;
-              extraDiagnostics = {
-                enable = true;
-                types = [
-                  "statix"
-                  "deadnix"
-                ];
-              };
-            };
-            sql = {
-              enable = true;
-            };
-            clang = {
-              enable = true;
-            };
-            ts = {
-              enable = true;
-            };
-            python = {
-              enable = true;
-            };
-            markdown = {
-              enable = true;
-            };
-            html = {
-              enable = true;
-            };
-          };
-          lsp = {
-            enable = true;
-          };
-          filetree = {
-            neo-tree = {
-              enable = true;
-            };
-          };
+          lineNumberMode = "number";
         };
       };
     };
