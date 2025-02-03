@@ -8,6 +8,7 @@
     ./services
     ./graphics
     ./gaming
+    ./development
   ];
   config = {
     #### Install basic programs ####
@@ -28,5 +29,6 @@
     serv.enable = lib.mkDefault true;
     graphics.enable = lib.mkDefault false;
     gaming.enable = lib.mkDefault false;
+    development.enable = lib.mkDefault true;
   };
 }
