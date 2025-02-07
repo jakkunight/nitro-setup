@@ -24,11 +24,12 @@
           );
           efiSupport = true;
           efiInstallAsRemovable = true;
-          theme = let 
-            colorscheme = "night";
-            layout = "teleport";
-            resolution = "1920x1080";
-          in inputs.grubshin-bootpact.packages.${pkgs.system}.${colorscheme}.${layout}.${resolution};
+          # theme = let
+          #   colorscheme = "night";
+          #   layout = "teleport";
+          #   resolution = "1920x1080";
+          # in inputs.grubshin-bootpact.packages.${pkgs.system}.${colorscheme}.${layout}.${resolution};
+          theme = inputs.wanderer-themes.packages.${pkgs.system}.grub-theme;
           useOSProber = true;
         };
         efi = {

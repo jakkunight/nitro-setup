@@ -83,6 +83,12 @@
     wezterm-repo = {
       url = "github:wez/wezterm?dir=nix";
     };
+
+    # My Wanderer themes:
+    wanderer-themes = {
+      url = "github:jakkunight/Wanderer-Themes";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, ... } @ inputs:
