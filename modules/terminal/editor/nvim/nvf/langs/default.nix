@@ -12,6 +12,9 @@
             enable = true;
             codeActions = true;
           };
+          lsp = {
+            enable = true;
+          };
         };
         nix = {
           enable = true;
@@ -32,18 +35,30 @@
         };
         sql = {
           enable = true;
+          lsp = {
+            enable = true;
+          };
         };
         clang = {
           enable = true;
         };
         ts = {
           enable = true;
+          lsp = {
+            enable = true;
+          };
         };
         python = {
           enable = true;
+          lsp = {
+            enable = true;
+          };
         };
         markdown = {
           enable = true;
+          lsp = {
+            enable = true;
+          };
         };
         html = {
           enable = true;

@@ -3,9 +3,6 @@
   config = {
     programs.nvf.settings.vim = {
       mini = {
-        completion = {
-          enable = true;
-        };
         bracketed = {
           enable = true;
         };
@@ -32,7 +29,6 @@
             "cmp-buffer"
             "cmp-path"
             "lspsaga"
-            "mini-completion"
           ];
         };
       };
