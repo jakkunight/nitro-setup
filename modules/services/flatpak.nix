@@ -6,6 +6,6 @@
     };
   };
   config = lib.mkIf config.serv.flatpak.enable {
-    service.flatpak.enable = true;
+    services.flatpak.enable = true;
   };
 }
