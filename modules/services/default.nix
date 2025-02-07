@@ -3,6 +3,7 @@
     ./udisks2.nix
     ./gvfs.nix
     ./vpns
+    ./flatpak.nix
   ];
   options = {
     serv = {
@@ -14,6 +15,7 @@
       udisks2.enable = lib.mkDefault true;
       gvfs.enable = lib.mkDefault true;
       vpns.enable = lib.mkDefault true;
+      flatpak.enable = lib.mkDefault true;
     };
   };
 }
