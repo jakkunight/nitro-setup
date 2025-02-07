@@ -10,20 +10,36 @@
     };
   };
   config = lib.mkIf config.graphics.wm.hyprland.enable {
-    programs.hyprland = {
-      enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      withUWSM = true;
-      xwayland = {
+
+    programs = {
+      uwsm = {
+        enable = true;
+        waylandCompositors = {
+          hyprland = {
+            prettyName = "Hyprland";
+            comment = "Hyprland compositor managed by UWSM";
+            binPath = "/run/current-system/sw/bin/Hyprland";
+          };
+        };
+      };
+
+      hyprland = {
+        enable = true;
+        package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+        withUWSM = true;
+        xwayland = {
+          enable = true;
+        };
+      };
+
+      hyprlock = {
         enable = true;
       };
     };
-    
-    programs.uwsm.enable = true;
 
-    programs.hyprlock.enable = true;
-
-    services.hypridle.enable = true;
+    services.hypridle = {
+      enable = true;
+    };
 
     environment.systemPackages = [
       # Default terminal emulator:
@@ -43,6 +59,7 @@
       pkgs.loupe
       pkgs.firefox
       pkgs.brave
+      pkgs.librewolf
 
       # Notifications:
       pkgs.swaynotificationcenter
