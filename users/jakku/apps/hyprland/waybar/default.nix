@@ -122,6 +122,6 @@
         };
       };
     };
-    style = "${builtins.readFile ./style.css}";
+    style = toString (builtins.readFile ./style.css);
   };
 }
