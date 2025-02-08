@@ -3,7 +3,6 @@
 { lib, config, ... }: {
   imports = [
     ./nvf
-    ./nixvim
     ./vanilla
   ];
   options = {
@@ -15,7 +14,6 @@
         type = lib.types.enum [
           "nvf"
           "vanilla"
-          "nixvim"
         ];
         default = "nvf";
       };
@@ -24,11 +22,10 @@
   config = lib.mkIf config.terminal.editor.nvim.enable {
     terminal.editor.nvim = {
       nvf.enable = config.terminal.editor.nvim.flavor == "nvf";
-      nixvim.enable = config.terminal.editor.nvim.flavor == "nixvim";
       vanilla.enable = config.terminal.editor.nvim.flavor == "vanilla";
     };
     environment.sessionVariables = (
-      if config.terminal.editor.nvim.default 
+      if config.terminal.editor.nvim.default
       then {
         EDITOR = "nvim";
       }

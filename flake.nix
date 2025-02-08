@@ -43,10 +43,6 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Wezterm:
-    wezterm-repo = {
-      url = "github:wez/wezterm?dir=nix";
-    };
     # My Wanderer themes:
     wanderer-themes = {
       url = "github:jakkunight/Wanderer-Themes";
