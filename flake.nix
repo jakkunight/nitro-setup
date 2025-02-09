@@ -29,7 +29,7 @@
     };
     # Yazi (v4.2)
     yazi = {
-      url = "github:sxyazi/yazi";
+      url = "github:sxyazi/yazi?tag=v0.4.0";
     };
     # Devenv:
     devenv-repo = {

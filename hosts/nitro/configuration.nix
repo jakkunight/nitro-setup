@@ -129,7 +129,6 @@
         };
       };
       utils = {
-        termusic.enable = true;
         tui-journal.enable = true;
         wikitui.enable = true;
       };
