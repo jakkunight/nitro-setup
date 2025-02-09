@@ -12,9 +12,6 @@
     programs.yazi = {
       enable = true;
       package = inputs.yazi.packages.${pkgs.system}.default;
-      flavors = {
-        tokyonight = inputs.yazi-tokyonight;
-      };
     };
   };
 }

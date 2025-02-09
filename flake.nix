@@ -29,26 +29,7 @@
     };
     # Yazi (v4.2)
     yazi = {
-      url = "github:sxyazi/yazi";
-    };
-    # TokyoNight Yazi flavor:
-    yazi-tokyonight = {
-      url = "github:BennyOe/tokyo-night.yazi";
-      flake = false;
-    };
-    # Hyprpanel:
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
-    # Hy3:
-    hy3 = {
-      url = "github:outfoxxed/hy3"; # where {version} is the hyprland release version
-      # or "github:outfoxxed/hy3" to follow the development branch.
-      # (you may encounter issues if you dont do the same for hyprland)
-      inputs.hyprland.follows = "hyprland";
-    };
-    # Disko:
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:sxyazi/yazi?tag=v0.4.0";
     };
     # Devenv:
     devenv-repo = {
@@ -57,31 +38,15 @@
     };
     # Hyprland:
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    # EnvFS:
-    # Nix-LD:
-    nix-ld = {
-      url = "github:Mic92/nix-ld";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # NixOS-GRUB2-Themes:
-    nixos-grub-themes.url = "github:jeslie0/nixos-grub-themes";
-    # GRUBshin BOOTpact:
-    grubshin-bootpact = {
-      url = "github:max-ishere/grubshin-bootpact";
-    };
-    # NixVim:
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # NVF:
     nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Wezterm:
-    wezterm-repo = {
-      url = "github:wez/wezterm?dir=nix";
+    # My Wanderer themes:
+    wanderer-themes = {
+      url = "github:jakkunight/Wanderer-Themes";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -121,18 +86,11 @@
       # Home-Manager:
       homeConfigurations = {
         jakku = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs {
-            inherit system;
-            overlays = [
-              inputs.hyprpanel.overlay
-            ];
-          };
           extraSpecialArgs = {
             inherit inputs;
           };
           modules = [
             ./users/jakku/home.nix
-            inputs.nixvim.homeManagerModules.nixvim
           ];
         };
       };

@@ -20,7 +20,7 @@
         mode-indicator
         net-speed
         online-status
-        resurrect
+        # resurrect
         tokyo-night-tmux
       ];
     };

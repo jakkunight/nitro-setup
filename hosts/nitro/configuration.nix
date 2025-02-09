@@ -110,7 +110,6 @@
       };
       multiplexer = {
         enable = true;
-        tmux.enable = true;
         zellij.enable = true;
       };
       editor = {
@@ -130,8 +129,8 @@
         };
       };
       utils = {
-        termusic.enable = true;
         tui-journal.enable = true;
+        wikitui.enable = true;
       };
     };
     net = {
