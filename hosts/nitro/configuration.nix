@@ -110,7 +110,6 @@
       };
       multiplexer = {
         enable = true;
-        tmux.enable = true;
         zellij.enable = true;
       };
       editor = {
