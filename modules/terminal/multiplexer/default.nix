@@ -1,7 +1,7 @@
 # Terminal Multiplexers:
 { lib, config, ... }: {
   imports = [
-    ./tmux.nix
+    # ./tmux.nix
     ./zellij.nix
   ];
   options = {
@@ -11,7 +11,7 @@
   };
   config = lib.mkIf config.terminal.multiplexer.enable {
     terminal.multiplexer = {
-      tmux.enable = lib.mkDefault false;
+      # tmux.enable = lib.mkDefault false;
       zellij.enable = lib.mkDefault true;
     };
   };
