@@ -20,7 +20,7 @@
   inputs = {
     # Nixpkgs:
     nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-unstable";
+      url = "github:nixos/nixpkgs?rev=edc98b9a39175a480fe9cbfd81a695b053142fc1";
     };
     # Home Manager:
     home-manager = {
@@ -29,7 +29,7 @@
     };
     # Yazi (v4.2)
     yazi = {
-      url = "github:sxyazi/yazi?tag=v0.4.0";
+      url = "github:sxyazi/yazi";
     };
     # Devenv:
     devenv-repo = {
