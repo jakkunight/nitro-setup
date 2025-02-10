@@ -2,10 +2,8 @@
 {
   config = {
     programs.nvf.settings.vim = {
-      mini = {
-        statusline = {
-          enable = true;
-        };
+      statusline.lualine = {
+        enable = true;
       };
     };
   };

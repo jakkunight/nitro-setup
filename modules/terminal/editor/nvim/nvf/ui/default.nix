@@ -28,9 +28,6 @@
         hipatterns = {
           enable = true;
         };
-        animate = {
-          enable = true;
-        };
       };
     };
   };
