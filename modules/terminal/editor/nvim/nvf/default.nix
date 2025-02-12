@@ -26,6 +26,7 @@
             autoindent = true;
           };
           lineNumberMode = "number";
+          useSystemClipboard = true;
         };
       };
     };

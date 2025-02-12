@@ -16,6 +16,10 @@
     };
   };
   config = lib.mkIf config.terminal.enable {
+    environment.systemPackages = with pkgs; [
+      wl-clipboard
+      xclip
+    ];
     terminal = {
       #utils = {};
       filemanager = {};
