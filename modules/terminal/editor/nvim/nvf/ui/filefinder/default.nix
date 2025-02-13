@@ -1,8 +1,9 @@
-{ lib, config, inputs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 {
+  options = {};
   config = {
     programs.nvf.settings.vim = {
-      statusline.lualine = {
+      telescope = {
         enable = true;
       };
     };

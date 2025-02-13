@@ -2,9 +2,10 @@
 {
   config = {
     programs.nvf.settings.vim = {
-      mini = {
-        tabline = {
-          enable = true;
+      tabline.nvimBufferline = {
+        enable = true;
+        mappings = {
+          closeCurrent = "<leader>bx";
         };
       };
     };

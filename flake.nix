@@ -20,29 +20,37 @@
   inputs = {
     # Nixpkgs:
     nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-unstable";
+      url = "github:nixos/nixpkgs";
     };
+
     # Home Manager:
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Yazi (v4.2)
+
+    # Yazi
     yazi = {
-      url = "github:sxyazi/yazi?tag=v0.4.0";
+      url = "github:sxyazi/yazi";
     };
+
     # Devenv:
     devenv-repo = {
       url = "github:cachix/devenv";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     # Hyprland:
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+
     # NVF:
     nvf = {
       url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
     };
+
     # My Wanderer themes:
     wanderer-themes = {
       url = "github:jakkunight/Wanderer-Themes";
