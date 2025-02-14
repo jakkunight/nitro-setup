@@ -1,5 +1,5 @@
 # NerdFonts:
-{ pkgs, config, lib, ... }: 
+{ pkgs, config, lib, inputs, ... }: 
 {
   options = {
     graphics.fonts = {
@@ -21,6 +21,7 @@
       nerd-fonts.ubuntu-sans
       nerd-fonts.ubuntu-mono
       nerd-fonts.ubuntu
+      inputs.genshin-font.packages.${pkgs.system}.default
     ];
   };
 }

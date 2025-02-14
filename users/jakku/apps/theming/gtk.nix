@@ -12,9 +12,9 @@
   gtk = {
     enable = true;
     font = {
-      name = "Overpass";
-      package = pkgs.cascadia-code;
-      size = 12;
+      name = "Genshin Impact";
+      package = inputs.genshin-font.packages.${pkgs.system}.default;
+      size = 14;
     };
     theme = {
       name = "Tokyonight-Dark";
