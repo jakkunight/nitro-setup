@@ -82,6 +82,9 @@
       # Idle daemon:
       pkgs.hypridle
 
+      # Screenshots:
+      pkgs.hyprshot
+
     ] ++ (
       if config.graphics.wm.hyprland.nvidia.enable
       then [
