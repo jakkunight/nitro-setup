@@ -2,13 +2,13 @@
   border: none;
   border-radius: 0;
   font-family: "Genshin Impact";
-  font-size: 14pt;
+  font-size: 1rem;
   padding: 1px;
   min-height: 0;
 }
 
-window#waybar {
-  background: transparent;
+#waybar {
+  background: #24283b;
   color: white;
 }
 
