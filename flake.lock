@@ -948,11 +948,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738678016,
-        "narHash": "sha256-hh5N/Jve5Ohq9Fb4LxBLl/heddRc14XIbQkVLQDefsM=",
+        "lastModified": 1739497791,
+        "narHash": "sha256-o/jwjF5C+Lmtz3rCHx9guwoguA0CVQwPeSwq0oLaeec=",
         "owner": "jakkunight",
         "repo": "Wanderer-Themes",
-        "rev": "ce35cdab00e0f9c43a0b1bc6cb8a337a19ecc7d8",
+        "rev": "f98425e29cbc2c30c451292673ff4a3a6c5fa338",
         "type": "github"
       },
       "original": {
