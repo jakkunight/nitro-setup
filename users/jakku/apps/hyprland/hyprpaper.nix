@@ -1,6 +1,6 @@
 { config, pkgs, inputs, ... }:
 let
-  bg_file = "~/Pictures/furina-bubles-background.jpg";
+  bg_file = "~/Pictures/wanderer-wallpaper-fhd.jpg";
   monitor1 = "";
 in
 {

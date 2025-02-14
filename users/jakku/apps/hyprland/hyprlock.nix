@@ -10,7 +10,7 @@
       background = [
         {
           monitor = "";
-          path = "~/Pictures/furina-bubles-background.jpg";
+          path = "~/Pictures/wanderer-wallpaper-fhd.jpg";
           color = "rgba(0, 0, 0, 0.5)";
           blur_passes = 1;
           blur_size = 4;
