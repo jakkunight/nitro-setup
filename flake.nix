@@ -91,6 +91,7 @@
       # Home-Manager:
       homeConfigurations = {
         jakku = inputs.home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
           extraSpecialArgs = {
             inherit inputs;
           };
