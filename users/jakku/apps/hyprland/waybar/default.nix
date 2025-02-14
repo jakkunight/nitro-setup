@@ -3,10 +3,6 @@
 {
   programs.waybar = {
     enable = true;
-    systemd = {
-      enable = true;
-      target = "hyprland-session.target";
-    };
     settings = {
       mainBar = {
         layer = "top";
@@ -18,29 +14,55 @@
         ];
         modules-left = [
           "user"
-          "backlight"
-          "pulseaudio"
-          "network"
-          "bluetooth"
           "tray"
-        ];
-        modules-center = [
           "hyprland/workspaces"
         ];
+        modules-center = [
+        ];
         modules-right = [
+          "network"
+          "bluetooth"
           "cpu"
           "temperature"
           "memory"
           "disk"
+          "pulseaudio"
+          "backlight"
           "battery"
           "clock"
         ];
+        network = {
+          interval = 1;
+          "format-wifi" = " 󰀂 {essid}  {bandwidthDownBytes}  {bandwidthUpBytes} ";
+          "format-ethernet" = " 󰌘 {essid}  {bandwidthDownBytes}  {bandwidthUpBytes} ";
+          "format-disconnect" = " 󰌙 {ifname}  {bandwidthDownBytes}  {bandwidthUpBytes} ";
+          "format-linked" = " 󰌗 {ifname}: {ipaddr}/{cidr}  {bandwidthDownBytes}  {bandwidthUpBytes} ";
+        };
+        cpu = {
+          interval = 1;
+          format = "  {usage}% ";
+        };
+        memory = {
+          interval = 1;
+          format = "  {used}GiB ";
+        };
+        temperature = {
+          interval = 1;
+          format = "  {temperatureC}°C ";
+        };
+        disk = {
+          interval = 1;
+          format = " 󰋊 {used}";
+        };
+        bluetooth = {
+          format = " 󰂯 {status}";
+        };
         user = {
           icon = true;
-          avatar = "~/Pictures/jakku-profile.png";
-          height = 64;
-          width = 64;
-          format = " {user} ";
+          avatar = "$HOME/.face";
+          height = 36;
+          width = 36;
+          format = "{user}";
         };
         clock = {
           format = " 󰃰 {:%d-%m-%y %H:%M} ";
@@ -63,32 +85,15 @@
             "󱊣 "
           ];
         };
-        network = {
-          interval = 1;
-          "format-wifi" = " 󰀂 {essid}  {bandwidthDownBytes}  {bandwidthUpBytes} ";
-          "format-ethernet" = " 󰌘 {essid}  {bandwidthDownBytes}  {bandwidthUpBytes} ";
-          "format-disconnect" = " 󰌙 {ifname}  {bandwidthDownBytes}  {bandwidthUpBytes} ";
-          "format-linked" = " 󰌗 {ifname}: {ipaddr}/{cidr}  {bandwidthDownBytes}  {bandwidthUpBytes} ";
-
-        };
         tray = {
           "icon-size" = 18;
           spacing = 6;
         };
-        cpu = {
-          interval = 1;
-          format = "  {usage}% ";
-        };
-        memory = {
-          interval = 1;
-          format = "  {used}GiB/{total}GiB ";
-        };
-        temperature = {
-          interval = 1;
-          format = "  {temperatureC}°C ";
-        };
         "hyprland/workspaces" = {
           format = "{icon}";
+          persistent-workspaces = {
+            "*" = 5;
+          };
           "format-icons" = {
             "1" = "  ";
             "2" = " 󰈹 ";
@@ -104,21 +109,14 @@
           };
         };
         backlight = {
-          format = "  {percent} ";
+          format = "  {percent}";
           interval = 5;
           device = "intel_backlight";
           "on-scroll-up" = "brightnessctl set 1%+";
           "on-scroll-down" = "brightnessctl set 1%-";
         };
         pulseaudio = {
-          format = " 󰕾 {volume} ";
-        };
-        disk = {
-          interval = 1;
-          format = " 󰋊 {used}/{total} ";
-        };
-        bluetooth = {
-          format = " 󰂯 {status} ";
+          format = " 󰕾 {volume}";
         };
       };
     };
