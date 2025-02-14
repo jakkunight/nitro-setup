@@ -11,7 +11,7 @@
       # ENV Variables:
       env = [
         "XCURSOR_SIZE,32"
-	"XDG_SESSION_TYPE,wayland"
+	      "XDG_SESSION_TYPE,wayland"
       ];
       # XWayland:
       xwayland = {
@@ -33,19 +33,19 @@
         #"mpvpaper -o 'no-audio --loop-playlist shuffle' '*' ~/Pictures/Wanderer.mp4 &"
       ];
       exec-once = [
-        "systemctl --user enable --now hyprpaper.service"
-        "systemctl --user start hyprpolkitagent"
-        "uwsm app -- waybar &"
+        "uwsm app -- systemctl --user enable --now hyprpaper.service"
+        "uwsm app -- systemctl --user start hyprpolkitagent"
+        "uwsm app -- systemctl --user--user  enable --now waybar"
         #"hyprpanel"
         #"${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &"
       ];
       # General:
       general = {
-        gaps_in = 5;
-        gaps_out = 10;
+        gaps_in = 2;
+        gaps_out = 0;
         "col.inactive_border" = "rgba(33ccff33) rgba(00ff9933) 45deg";
         "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        border_size = 2;
+        border_size = 4;
         resize_on_border = true;
         layout = "dwindle";
       };
@@ -133,8 +133,9 @@
         "$mod SHIFT, right, movewindow, r"
         "$mod SHIFT, up, movewindow, u"
         "$mod SHIFT, down, movewindow, d"
-	# Take a screenshot:
-	" , PRINT, exec, hyprshot -m output"
+        # Take a screenshot:
+        " , PRINT, exec, uwsm app -- hyprshot -m output"
+        "SHIFT, PRINT, exec, uwsm app -- hyprshot -m region"
       ];
       # Decorations:
       decoration = {
@@ -176,9 +177,9 @@
       dwindle = {
         pseudotile = true;
         preserve_split = true;
-	force_split = 2;
-	smart_split = false;
-	smart_resizing = true;
+        force_split = 2;
+        smart_split = false;
+        smart_resizing = true;
       };
       master = {
         new_status = "slave";
