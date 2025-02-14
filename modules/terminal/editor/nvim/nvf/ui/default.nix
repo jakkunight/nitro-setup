@@ -6,6 +6,7 @@
     ./dashboard
     ./bufferline
     ./filetree
+    ./filefinder
   ];
   config = {
     programs.nvf.settings.vim = {

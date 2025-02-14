@@ -56,6 +56,12 @@
       url = "github:jakkunight/Wanderer-Themes";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Genshin Impact font (with NF glyphs):
+    genshin-font = {
+      url = "github:jakkunight/GenshinImpact-font";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, ... } @ inputs:
@@ -67,16 +73,7 @@
       };
     in
     {
-
       nixosConfigurations = {
-        # iso = lib.nixosSystem {
-        #   modules = [
-        #     "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix"
-        #     "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-        #     ./
-        #   ];
-        #   specialArgs = { inherit inputs outputs; };
-        # };
         nitro = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
@@ -94,6 +91,7 @@
       # Home-Manager:
       homeConfigurations = {
         jakku = inputs.home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
           extraSpecialArgs = {
             inherit inputs;
           };

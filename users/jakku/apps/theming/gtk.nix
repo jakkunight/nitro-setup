@@ -1,5 +1,5 @@
 # GTK config:
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   home.pointerCursor = {
     gtk.enable = true;
@@ -12,8 +12,8 @@
   gtk = {
     enable = true;
     font = {
-      name = "Overpass";
-      package = pkgs.cascadia-code;
+      name = "Genshin Impact";
+      package = inputs.genshin-font.packages.${pkgs.system}.default;
       size = 12;
     };
     theme = {

@@ -28,7 +28,7 @@
           sourcePlugins = [
             "cmp-buffer"
             "cmp-path"
-            "lspsaga"
+            "cmp-nvim-lsp"
           ];
         };
       };

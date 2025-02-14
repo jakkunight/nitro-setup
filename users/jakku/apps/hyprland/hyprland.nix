@@ -10,8 +10,8 @@
     settings = {
       # ENV Variables:
       env = [
-        "XCURSOR_SIZE,32"
-	"XDG_SESSION_TYPE,wayland"
+        "XCURSOR_SIZE,48"
+	      "XDG_SESSION_TYPE,wayland"
       ];
       # XWayland:
       xwayland = {
@@ -35,17 +35,17 @@
       exec-once = [
         "systemctl --user enable --now hyprpaper.service"
         "systemctl --user start hyprpolkitagent"
-        "uwsm app -- waybar &"
-        #"hyprpanel"
+          "uwsm app -- systemctl --user enable --now waybar"
+          #"hyprpanel"
         #"${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &"
       ];
       # General:
       general = {
-        gaps_in = 5;
-        gaps_out = 10;
+        gaps_in = 2;
+        gaps_out = 0;
         "col.inactive_border" = "rgba(33ccff33) rgba(00ff9933) 45deg";
         "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        border_size = 2;
+        border_size = 4;
         resize_on_border = true;
         layout = "dwindle";
       };
@@ -133,15 +133,16 @@
         "$mod SHIFT, right, movewindow, r"
         "$mod SHIFT, up, movewindow, u"
         "$mod SHIFT, down, movewindow, d"
-	# Take a screenshot:
-	" , PRINT, exec, hyprshot -m output"
+        # Take a screenshot:
+        " , PRINT, exec, uwsm app -- hyprshot -m output"
+        "SHIFT, PRINT, exec, uwsm app -- hyprshot -m region"
       ];
       # Decorations:
       decoration = {
         rounding = 5;
         # Transparency:
-        active_opacity = 0.90;
-        inactive_opacity = 0.75;
+        active_opacity = 0.80;
+        inactive_opacity = 0.70;
         # drop_shadow = true;
         # shadow_range = 4;
         # shadow_offset = "0 5";
@@ -150,7 +151,7 @@
         # Blur:
         blur = {
           enabled = true;
-          size = 10;
+          size = 4;
           passes = 1;
           vibrancy = 1;
         };
@@ -176,9 +177,9 @@
       dwindle = {
         pseudotile = true;
         preserve_split = true;
-	force_split = 2;
-	smart_split = false;
-	smart_resizing = true;
+        force_split = 2;
+        smart_split = false;
+        smart_resizing = true;
       };
       master = {
         new_status = "slave";

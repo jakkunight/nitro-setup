@@ -10,7 +10,7 @@
       background = [
         {
           monitor = "";
-          path = "~/Pictures/furina-bubles-background.jpg";
+          path = "~/Pictures/wanderer-wallpaper-fhd.jpg";
           color = "rgba(0, 0, 0, 0.5)";
           blur_passes = 1;
           blur_size = 4;
@@ -26,7 +26,7 @@
           size = "200, 50";
           monitors = "";
           dots_center = true;
-          font_family = "Hack";
+          font_family = "Genshin Impact";
           font_size = 12;
           font_color = "rgb(192, 202, 245)";
           placeholder_text = "<i>Input Password...</i>";
