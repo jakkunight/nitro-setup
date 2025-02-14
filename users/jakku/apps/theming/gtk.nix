@@ -14,7 +14,7 @@
     font = {
       name = "Genshin Impact";
       package = inputs.genshin-font.packages.${pkgs.system}.default;
-      size = 14;
+      size = 12;
     };
     theme = {
       name = "Tokyonight-Dark";
