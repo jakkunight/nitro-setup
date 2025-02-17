@@ -1,4 +1,4 @@
-{config, lib, pkgs, ...}@inputs:
+{ config, lib, pkgs, inputs, ... }:
 {
 # Hypridle:
   services.hypridle = {
@@ -11,7 +11,7 @@
       };
       listener = [
         {
-          timeout = 600;
+          timeout = 1200;
           on-timeout = "pidof hyprlock || hyprlock";
         }
       ];

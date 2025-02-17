@@ -51,6 +51,12 @@
       };
     };
 
+    # Zen Browser!
+    zen-browser = {
+      url = "github:MarceColl/zen-browser-flake";
+    };
+
+
     # My Wanderer themes:
     wanderer-themes = {
       url = "github:jakkunight/Wanderer-Themes";
