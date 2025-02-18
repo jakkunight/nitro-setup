@@ -7,6 +7,6 @@
     };
 
     # Use the latest stable kernel release:
-    boot.kernelPackages = pkgs.linuxPackages_6_13;
+    boot.kernelPackages = pkgs.linuxPackages_6_12;
   };
 }
