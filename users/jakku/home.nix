@@ -30,7 +30,7 @@
     #./apps/nvim
     ./apps/office
     ./apps/theming
-    ./apps/hyprland
+    ./apps/desktop
     ./apps/terminal
     ./apps/multimedia
     ./apps/web-browsers
