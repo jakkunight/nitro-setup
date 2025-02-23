@@ -1,6 +1,15 @@
 { config, lib, pkgs, inputs, ... }:
 {
-  imports = [];
+  imports = [
+    ./wm
+    ./launcher
+    ./statusbar
+    ./lockscreen
+    ./idle-daemon
+    ./polkitagent
+    ./notifications
+    ./wallpaper-engine
+  ];
   options = {};
   config = {};
 }

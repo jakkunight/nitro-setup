@@ -1,5 +1,5 @@
 # Home-Manager config:
-{ config, lib, pkgs, ... }@inputs: {
+{ config, lib, pkgs, inputs, ... }: {
   # Initial info:
   home.username = "jakku";
   home.homeDirectory = "/home/jakku";

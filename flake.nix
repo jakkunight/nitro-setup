@@ -29,6 +29,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Nixos-Generators:
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Yazi
     yazi = {
       url = "github:sxyazi/yazi";
@@ -70,41 +76,91 @@
     };
   };
 
-  outputs = { nixpkgs, ... } @ inputs:
-    let
+  outputs = { self, nixpkgs, ... } @ inputs:
+  let
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        system = "x86_64-linux";
-        config.allowUnfree = true;
-      };
-    in
-    {
-      nixosConfigurations = {
-        nitro = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            # NVF:
-            inputs.nvf.nixosModules.default
+      config.allowUnfree = true;
+    };
+  in
+  {
+    nixosConfigurations = {
+      nitro = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs self;
+        };
+        modules = [
+          # Custom config:
+          ({ config, lib, pkgs, ... }: {
+            environment.etc."nixos-config".source = ./.;
+          })
+          # NVF:
+          inputs.nvf.nixosModules.default
 
-            # Host configuration:
-            ./hosts/nitro/configuration.nix
-          ];
-        };
-      };
-      # Home-Manager:
-      homeConfigurations = {
-        jakku = inputs.home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            ./users/jakku/home.nix
-          ];
-        };
+          # Host configuration:
+          ./hosts/nitro/configuration.nix
+
+          # Home:
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {
+                inherit inputs;
+              };
+              users = {
+                jakku = import ./users/jakku/home.nix;
+              };
+            };
+          }
+        ];
       };
     };
+
+    # Home-Manager:
+    homeConfigurations = {
+      jakku = inputs.home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          ./users/jakku/home.nix
+        ];
+      };
+    };
+
+    # Installers:
+    images = {
+      nitro-installer = inputs.nixos-generators.nixosGenerate {
+        inherit system;
+        format = "install-iso";
+        specialArgs = {
+          inherit inputs;
+          hostname = "nitro";
+        };
+        modules = [
+          inputs.nvf.outputs.nixosModules.default
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {
+                inherit inputs;
+              };
+              users = {
+                jakku = import ./users/jakku/home.nix;
+              };
+            };
+          }
+          ./hosts/nitro/configuration.nix
+          ./installer.nix
+        ];
+      };
+    };
+  };
 }

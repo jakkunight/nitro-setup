@@ -10,7 +10,7 @@
     settings = {
       # ENV Variables:
       env = [
-        "XCURSOR_SIZE,48"
+        "XCURSOR_SIZE,36"
 	      "XDG_SESSION_TYPE,wayland"
       ];
       # XWayland:
@@ -33,9 +33,9 @@
         #"mpvpaper -o 'no-audio --loop-playlist shuffle' '*' ~/Pictures/Wanderer.mp4 &"
       ];
       exec-once = [
-        "systemctl --user enable --now hyprpaper.service"
-        "systemctl --user start hyprpolkitagent"
-          "uwsm app -- systemctl --user enable --now waybar"
+        "uwsm app -- systemctl --user enable --now hyprpaper.service"
+        "uwsm app -- systemctl --user start hyprpolkitagent"
+          "uwsm app -- systemctl --user start waybar"
           #"hyprpanel"
         #"${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &"
       ];

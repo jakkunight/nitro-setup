@@ -1,7 +1,7 @@
 { config, lib, ... }:
 {
   imports = [
-    ./hyprlock
+    ./hypridle.nix
   ];
   options = {};
   config = {};

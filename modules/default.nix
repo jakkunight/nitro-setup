@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }: {
+{ lib, config, pkgs, inputs, ... }: {
   imports = [
     ./bootloader
     ./disk
@@ -16,6 +16,7 @@
     environment.systemPackages = [
       pkgs.git
       pkgs.nixos-generators
+      pkgs.nh
     ];
 
     #### ====================== ####
