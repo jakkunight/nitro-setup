@@ -153,7 +153,7 @@
                 inherit inputs;
               };
               users = {
-                jakku = import ./users/jakku/home.nix;
+                nixos = import ./users/nixos/home.nix;
               };
             };
           }
