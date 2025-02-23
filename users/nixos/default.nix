@@ -6,7 +6,7 @@
     users.defaultUserShell = pkgs.zsh;
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.users.jakku = {
+    users.users.nixos = {
       isNormalUser = true;
       initialPassword = "1234";
       extraGroups = [ "wheel" "networkmanager" "libvirtd" ]; # Enable ‘sudo’ for the user.
@@ -15,7 +15,7 @@
 
     # Add them to the Nix store trusted users:
     nix.settings.trusted-users = [
-      "jakku"
+      "nixos"
       "root"
       "@wheel"
     ];

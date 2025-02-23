@@ -1,8 +1,8 @@
 # Home-Manager config:
 { config, lib, pkgs, inputs, ... }: {
   # Initial info:
-  home.username = "jakku";
-  home.homeDirectory = "/home/jakku";
+  home.username = "nixos";
+  home.homeDirectory = "/home/nixos";
 
   # DO NOT EDIT THIS!!!
   home.stateVersion = "24.05";
