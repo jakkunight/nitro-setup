@@ -35,8 +35,8 @@
       exec-once = [
         "uwsm app -- systemctl --user enable --now hyprpaper.service"
         "uwsm app -- systemctl --user start hyprpolkitagent"
-          "uwsm app -- systemctl --user start waybar"
-          #"hyprpanel"
+        "uwsm app -- systemctl --user start waybar.service"
+        #"hyprpanel"
         #"${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &"
       ];
       # General:
@@ -78,7 +78,7 @@
         # Open the file manager:
         "$mod, E, exec, uwsm app -- nemo"
         # Open app launcher:
-        "$mod, D, exec, uwsm app -- wofi"
+        "$mod, D, exec, uwsm app -- wofi --show drun"
         # Open Web browser:
         #"$mod, A, exec, flatpak run io.github.zen_browser.zen"
         "$mod, A, exec, uwsm app -- firefox"
