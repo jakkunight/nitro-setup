@@ -1,4 +1,4 @@
-{ lib, config, ... }: {
+{ lib, config, pkgs, ... }: {
   imports = [
     ./btop.nix
     ./gitui.nix
@@ -44,5 +44,9 @@
       tldr.enable = lib.mkDefault false;
       speedtest-rs.enable = lib.mkDefault true;
     };
+    environment.systemPackages = [
+      pkgs.nss
+      pkgs.opensc
+    ];
   };
 }
