@@ -24,7 +24,7 @@
       # Set input settings:
       input = {
         kb_layout = "latam";
-        follow_mouse = 0;
+        follow_mouse = 1;
       };
       exec = [
         #"swww-daemon &"
@@ -41,8 +41,8 @@
       ];
       # General:
       general = {
-        gaps_in = 2;
-        gaps_out = 0;
+        gaps_in = 4;
+        gaps_out = 4;
         "col.inactive_border" = "rgba(33ccff33) rgba(00ff9933) 45deg";
         "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         border_size = 4;
@@ -51,7 +51,7 @@
       };
       # Cursor:
       cursor = {
-	no_hardware_cursors = true;
+	      no_hardware_cursors = true;
       };
       # Keybindings
       bindel = [
@@ -91,7 +91,7 @@
         # Close window:
         "$mod, Q, killactive"
         # Lock screen:
-        "$mod, L, exec, uwsm app -- hyprlock"
+        "$mod SHIFT, S, exec, uwsm app -- hyprlock"
         # Close Hyprland:
         "$mod SHIFT, Q, exit"
         # Reboot:
@@ -139,10 +139,10 @@
       ];
       # Decorations:
       decoration = {
-        rounding = 5;
+        rounding = 4;
         # Transparency:
-        active_opacity = 0.80;
-        inactive_opacity = 0.70;
+        active_opacity = 0.85;
+        inactive_opacity = 0.75;
         # drop_shadow = true;
         # shadow_range = 4;
         # shadow_offset = "0 5";
@@ -151,9 +151,13 @@
         # Blur:
         blur = {
           enabled = true;
-          size = 4;
-          passes = 1;
-          vibrancy = 1;
+          size = 8;
+          passes = 2;
+          vibrancy = 0.1;
+          new_optimizations = true;
+          ignore_opacity = false;
+          noise = 0;
+          brightness = 1;
         };
       };
       # Animations:
@@ -178,7 +182,7 @@
         pseudotile = true;
         preserve_split = true;
         force_split = 2;
-        smart_split = false;
+        smart_split = true;
         smart_resizing = true;
       };
       master = {

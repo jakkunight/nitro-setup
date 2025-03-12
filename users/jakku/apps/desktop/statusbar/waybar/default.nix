@@ -92,7 +92,7 @@
         "hyprland/workspaces" = {
           format = "{icon}";
           persistent-workspaces = {
-            "*" = 5;
+            "*" = 6;
           };
           "format-icons" = {
             "1" = "  ";
@@ -105,7 +105,6 @@
             "8" = "  ";
             "9" = " 󱄅 ";
             "0" = " 󰢻 ";
-            #"active" = " ";
           };
         };
         backlight = {
