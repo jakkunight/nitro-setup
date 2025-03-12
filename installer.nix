@@ -7,7 +7,6 @@
   environment.systemPackages = [
     (pkgs.writeShellScriptBin "nixos-offline-install" ''
       nixos-install --system ${inputs.self.outputs.nixosConfigurations."${hostname}".config.system.build.toplevel}
-
     '')
   ];
 }
