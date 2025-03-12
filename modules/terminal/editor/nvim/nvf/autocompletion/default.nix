@@ -29,6 +29,16 @@
             "cmp-buffer"
             "cmp-path"
             "cmp-nvim-lsp"
+            "cmp-treesitter"
+            "lspsaga-nvim"
+            "lspkind-nvim"
+            "cmp-luasnip"
+            "none-ls-nvim"
+            "nvim-surround"
+            "rustaceanvim"
+            "todo-comments-nvim"
+            "sqls-nvim"
+            pkgs.markdown-oxide
           ];
         };
       };
