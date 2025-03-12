@@ -17,9 +17,20 @@
       pkgs.git
       pkgs.nixos-generators
       pkgs.nh
+      pkgs.sops
     ];
 
     #### ====================== ####
+
+    #### Install ALL hhardware and firmware ####
+
+    hardware = {
+      enableAllHardware = true;
+      enableAllFirmware = true;
+      enableRedistributableFirmware = true;
+    };
+
+    #### ================================== ####
     bootloader = {
       grub.enable = lib.mkDefault true;
       systemd.enable = lib.mkDefault false;
