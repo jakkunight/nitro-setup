@@ -41,11 +41,11 @@
       ];
       # General:
       general = {
-        gaps_in = 4;
-        gaps_out = 4;
+        gaps_in = 5;
+        gaps_out = 10;
         "col.inactive_border" = "rgba(33ccff33) rgba(00ff9933) 45deg";
         "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        border_size = 4;
+        border_size = 0;
         resize_on_border = true;
         layout = "dwindle";
       };
@@ -139,25 +139,27 @@
       ];
       # Decorations:
       decoration = {
-        rounding = 4;
+        rounding = 10;
         # Transparency:
         active_opacity = 0.85;
         inactive_opacity = 0.75;
-        # drop_shadow = true;
-        # shadow_range = 4;
-        # shadow_offset = "0 5";
-        # shadow_render_power = 7;
-        # "col.shadow" = "rgba(000000FE)";
+        # Shadow:
+        shadow = {
+          enabled = true;
+          range = 20;
+          render_power = 3;
+          color = "rgba(7dcfffaa)";
+          color_inactive = "rgba(24283baa)";
+        };
         # Blur:
         blur = {
           enabled = true;
-          size = 8;
+          size = 10;
           passes = 2;
-          vibrancy = 0.1;
           new_optimizations = true;
           ignore_opacity = false;
-          noise = 0;
-          brightness = 1;
+          xray = true;
+          blurls = "waybar";
         };
       };
       # Animations:

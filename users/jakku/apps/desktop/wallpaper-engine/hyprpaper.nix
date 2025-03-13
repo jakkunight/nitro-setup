@@ -1,6 +1,6 @@
 { config, pkgs, inputs, ... }:
 let
-  bg_file = "~/Pictures/wanderer-wallpaper-fhd.jpg";
+  bg_file = "~/Pictures/wanderer-genshin-impact-splash-trailer.jpg";
   monitor1 = "";
 in
 {

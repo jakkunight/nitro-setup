@@ -8,6 +8,10 @@
         layer = "top";
         position = "top";
         height = 36;
+        margin-left = 10;
+        margin-right = 10;
+        margin-top = 10;
+        padding = 5;
         output = [
           "eDP-1"
           "HDMI-A-1"
