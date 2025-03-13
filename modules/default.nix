@@ -18,6 +18,7 @@
       pkgs.nixos-generators
       pkgs.nh
       pkgs.sops
+      pkgs.zed-editor
     ];
 
     #### ====================== ####
