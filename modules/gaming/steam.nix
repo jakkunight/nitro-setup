@@ -1,5 +1,5 @@
 # Steam!
-{ lib, config, pkgs, ... }: 
+{ lib, config, pkgs, ... }:
 {
   options = {
     gaming.steam = {
