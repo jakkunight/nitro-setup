@@ -7,6 +7,7 @@
     ./bufferline
     ./filetree
     ./filefinder
+    ./terminal
   ];
   config = {
     programs.nvf.settings.vim = {
