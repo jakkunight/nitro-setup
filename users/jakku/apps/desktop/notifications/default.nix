@@ -1,7 +1,8 @@
 { config, lib, ... }:
 {
   imports = [
-    ./swaync
+    #./swaync
+    ./dunst
   ];
   options = {};
   config = {};
