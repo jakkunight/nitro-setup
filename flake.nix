@@ -59,7 +59,7 @@
 
     # Zen Browser!
     zen-browser = {
-      url = "github:MarceColl/zen-browser-flake";
+      url = "github:0xc000022070/zen-browser-flake";
     };
 
 
@@ -72,6 +72,12 @@
     # Genshin Impact font (with NF glyphs):
     genshin-font = {
       url = "github:jakkunight/GenshinImpact-font";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Genshin Impact login screen theme:
+    genshin-login = {
+      url = "github:jakkunight/GenshinImpactSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
