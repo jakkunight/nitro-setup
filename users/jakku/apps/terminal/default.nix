@@ -8,6 +8,7 @@
     ./git.nix
     ./http-client.nix
     ./kitty.nix
+    ./mpd.nix
     ./nushell.nix
     ./starship.nix
     ./yazi.nix
