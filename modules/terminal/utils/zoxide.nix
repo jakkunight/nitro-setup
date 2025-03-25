@@ -7,7 +7,7 @@
         alias = lib.mkOption {
           description = "Set the command alias.";
           type = lib.types.nonEmptyStr;
-          default = "z";
+          default = "cd";
         };
       };
     };
