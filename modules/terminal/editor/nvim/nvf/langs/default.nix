@@ -23,7 +23,11 @@
           };
           lsp = {
             enable = true;
-            server = "nil";
+            server = "nixd";
+          };
+          format = {
+            enable = true;
+            type = "alejandra";
           };
           extraDiagnostics = {
             enable = true;

@@ -5,6 +5,9 @@
       terminal = {
         toggleterm = {
           enable = true;
+          mappings = {
+            open = "<leader>to";
+          };
         };
       };
     };
