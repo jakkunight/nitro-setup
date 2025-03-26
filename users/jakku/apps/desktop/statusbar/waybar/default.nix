@@ -33,7 +33,7 @@
           "pulseaudio"
           "backlight"
           "battery"
-          "clock"
+          "custom/clock"
         ];
         network = {
           interval = 1;
@@ -68,10 +68,34 @@
           width = 36;
           format = "{user}";
         };
-        clock = {
-          format = " 󰃰 {:%d-%m-%y %H:%M} ";
+        "custom/clock" = {
+          format = "󰃰 {}";
+          exec = "date +'%B, %d-%m-%Y %H:%M' ";
           tooltip = false;
+          interval = 1;
         };
+        # clock = {
+        #   format = " 󰃰 {:L%A %d-%m-%y %R} ";
+        #   locale = "es_PY.utf8";
+        #   timezone = "America/Asuncion";
+        #   interval = 1;
+        #   tooltip = true;
+        #   tooltip-format = "<tt><big>{calendar}</big></tt>";
+        #   calendar = {
+        #     mode = "month";
+        #     format = {
+        #       months = "<span color='#ffead3'><b>{}</b></span>";
+        #       days = "<span color='#ecc6d9'><b>{}</b></span>";
+        #       weeks = "<span color='#99ffdd'><b>W{}</b></span>";
+        #       weekdays = "<span color='#ffcc66'><b>{}</b></span>";
+        #       today = "<span color='#ff6699'><b><u>{}</u></b></span>";
+        #     };
+        #   };
+        #   actions = {
+        #     on-scroll-up = "tz_up";
+        #     on-scroll-down = "tz_down";
+        #   };
+        # };
         battery = {
           interval = 1;
           states = {

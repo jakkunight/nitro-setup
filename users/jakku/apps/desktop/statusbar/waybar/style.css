@@ -35,7 +35,7 @@
 	border-radius: 5px;
 }
 
-#tray, #clock, #battery, #pulseaudio, #backlight, #network, #cpu, #disk, #memory, #temperature, #bluetooth, #user {
+#custom-clock, #tray, #clock, #battery, #pulseaudio, #backlight, #network, #cpu, #disk, #memory, #temperature, #bluetooth, #user {
 	background-color: #24283b;
   border-radius: 5px;
   margin: 5px;
@@ -50,7 +50,7 @@
 	color: #7dcfff;
 }
 
-#clock {
+#clock, #custom-clock {
     color: #b48ead;
 }
 
