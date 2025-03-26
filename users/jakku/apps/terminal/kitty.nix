@@ -7,8 +7,8 @@
     programs.kitty = {
       enable = true;
       font = {
-        name = "HackNerdFont";
-        size = 14;
+        name = "CaskadyaCoveNerdFont";
+        size = 16;
         package = pkgs.nerd-fonts.hack;
       };
       settings = {
