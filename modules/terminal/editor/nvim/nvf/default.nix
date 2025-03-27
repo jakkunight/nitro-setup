@@ -6,6 +6,7 @@
     ./langs
     ./keymaps
     ./autocompletion
+    ./obsidian
   ];
   options = {
     terminal.editor.nvim.nvf = {
