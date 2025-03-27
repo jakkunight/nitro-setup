@@ -70,7 +70,7 @@
         };
         "custom/clock" = {
           format = "󰃰 {}";
-          exec = "date +'%B, %d-%m-%Y %H:%M' ";
+          exec = "date +'%A, %d-%m-%Y %H:%M' ";
           tooltip = false;
           interval = 1;
         };
