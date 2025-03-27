@@ -21,6 +21,8 @@
       nerd-fonts.ubuntu-sans
       nerd-fonts.ubuntu-mono
       nerd-fonts.ubuntu
+      nerd-fonts.departure-mono
+      nerd-fonts.bigblue-terminal
       inputs.genshin-font.packages.${pkgs.system}.default
     ];
   };
