@@ -62,7 +62,6 @@
       url = "github:0xc000022070/zen-browser-flake";
     };
 
-
     # My Wanderer themes:
     wanderer-themes = {
       url = "github:jakkunight/Wanderer-Themes";
@@ -82,15 +81,17 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... } @ inputs:
-  let
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       system = "x86_64-linux";
       config.allowUnfree = true;
     };
-  in
-  {
+  in {
     nixosConfigurations = {
       nitro = nixpkgs.lib.nixosSystem {
         inherit system;
@@ -99,7 +100,12 @@
         };
         modules = [
           # Custom config:
-          ({ config, lib, pkgs, ... }: {
+          ({
+            config,
+            lib,
+            pkgs,
+            ...
+          }: {
             environment.etc."nixos-config".source = ./.;
           })
           # NVF:
