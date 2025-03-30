@@ -4,12 +4,14 @@
   font-family: "Genshin Impact";
   font-size: 1rem;
   padding: 1px;
-  min-height: 0;
+  min-height: 1rem;
 }
 
 #waybar {
   background: #24283b;
   color: white;
+  border-radius: 10px;
+  margin: 10px;
 }
 
 #workspaces {
@@ -33,7 +35,7 @@
 	border-radius: 5px;
 }
 
-#tray, #clock, #battery, #pulseaudio, #backlight, #network, #cpu, #disk, #memory, #temperature, #bluetooth, #user {
+#custom-clock, #tray, #clock, #battery, #pulseaudio, #backlight, #network, #cpu, #disk, #memory, #temperature, #bluetooth, #user {
 	background-color: #24283b;
   border-radius: 5px;
   margin: 5px;
@@ -48,7 +50,7 @@
 	color: #7dcfff;
 }
 
-#clock {
+#clock, #custom-clock {
     color: #b48ead;
 }
 

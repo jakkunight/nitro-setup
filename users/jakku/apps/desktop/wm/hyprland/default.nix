@@ -10,7 +10,7 @@
     settings = {
       # ENV Variables:
       env = [
-        "XCURSOR_SIZE,48"
+        "XCURSOR_SIZE,36"
 	      "XDG_SESSION_TYPE,wayland"
       ];
       # XWayland:
@@ -24,7 +24,7 @@
       # Set input settings:
       input = {
         kb_layout = "latam";
-        follow_mouse = 0;
+        follow_mouse = 1;
       };
       exec = [
         #"swww-daemon &"
@@ -33,25 +33,25 @@
         #"mpvpaper -o 'no-audio --loop-playlist shuffle' '*' ~/Pictures/Wanderer.mp4 &"
       ];
       exec-once = [
-        "systemctl --user enable --now hyprpaper.service"
-        "systemctl --user start hyprpolkitagent"
-          "uwsm app -- systemctl --user enable --now waybar"
-          #"hyprpanel"
+        "uwsm app -- systemctl --user enable --now hyprpaper.service"
+        "uwsm app -- systemctl --user start hyprpolkitagent"
+        "uwsm app -- systemctl --user start waybar.service"
+        #"hyprpanel"
         #"${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &"
       ];
       # General:
       general = {
-        gaps_in = 2;
-        gaps_out = 0;
+        gaps_in = 5;
+        gaps_out = 10;
         "col.inactive_border" = "rgba(33ccff33) rgba(00ff9933) 45deg";
         "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        border_size = 4;
+        border_size = 0;
         resize_on_border = true;
         layout = "dwindle";
       };
       # Cursor:
       cursor = {
-	no_hardware_cursors = true;
+	      no_hardware_cursors = true;
       };
       # Keybindings
       bindel = [
@@ -78,7 +78,7 @@
         # Open the file manager:
         "$mod, E, exec, uwsm app -- nemo"
         # Open app launcher:
-        "$mod, D, exec, uwsm app -- wofi"
+        "$mod, D, exec, uwsm app -- wofi --show drun"
         # Open Web browser:
         #"$mod, A, exec, flatpak run io.github.zen_browser.zen"
         "$mod, A, exec, uwsm app -- firefox"
@@ -91,7 +91,7 @@
         # Close window:
         "$mod, Q, killactive"
         # Lock screen:
-        "$mod, L, exec, uwsm app -- hyprlock"
+        "$mod SHIFT, S, exec, uwsm app -- hyprlock"
         # Close Hyprland:
         "$mod SHIFT, Q, exit"
         # Reboot:
@@ -139,21 +139,27 @@
       ];
       # Decorations:
       decoration = {
-        rounding = 5;
+        rounding = 10;
         # Transparency:
-        active_opacity = 0.80;
-        inactive_opacity = 0.70;
-        # drop_shadow = true;
-        # shadow_range = 4;
-        # shadow_offset = "0 5";
-        # shadow_render_power = 7;
-        # "col.shadow" = "rgba(000000FE)";
+        active_opacity = 0.85;
+        inactive_opacity = 0.75;
+        # Shadow:
+        shadow = {
+          enabled = true;
+          range = 20;
+          render_power = 3;
+          color = "rgba(7dcfffaa)";
+          color_inactive = "rgba(24283baa)";
+        };
         # Blur:
         blur = {
           enabled = true;
-          size = 4;
-          passes = 1;
-          vibrancy = 1;
+          size = 10;
+          passes = 2;
+          new_optimizations = true;
+          ignore_opacity = false;
+          xray = true;
+          blurls = "waybar";
         };
       };
       # Animations:
@@ -178,7 +184,7 @@
         pseudotile = true;
         preserve_split = true;
         force_split = 2;
-        smart_split = false;
+        smart_split = true;
         smart_resizing = true;
       };
       master = {

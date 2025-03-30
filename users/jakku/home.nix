@@ -1,5 +1,5 @@
 # Home-Manager config:
-{ config, lib, pkgs, ... }@inputs: {
+{ config, lib, pkgs, inputs, ... }: {
   # Initial info:
   home.username = "jakku";
   home.homeDirectory = "/home/jakku";
@@ -30,7 +30,7 @@
     #./apps/nvim
     ./apps/office
     ./apps/theming
-    ./apps/hyprland
+    ./apps/desktop
     ./apps/terminal
     ./apps/multimedia
     ./apps/web-browsers

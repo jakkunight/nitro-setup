@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }: {
+{ lib, config, pkgs, inputs, ... }: {
   imports = [
     ./hardware-configuration.nix
     ../../modules
@@ -11,7 +11,7 @@
     # Allow unfree software:
     nixpkgs.config = {
       allowUnfree = true;
-      allowUnfreePredicate = (_: true);
+      allowUnfreePredicate = _: true;
     };
 
     # State Version:
