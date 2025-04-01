@@ -13,6 +13,7 @@
       thunderbird
       # Office:
       libreoffice
+      onlyoffice-desktopeditors
       # LaTeX:
       pandoc
       texliveFull
