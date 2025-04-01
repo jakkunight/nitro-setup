@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./btop.nix
     ./gitui.nix
@@ -28,7 +33,7 @@
       gitui.enable = lib.mkDefault true;
       zoxide = {
         enable = lib.mkDefault true;
-        zshIntegration = {
+        shellIntegration = {
           enable = lib.mkDefault true;
           alias = lib.mkDefault "cd";
         };
