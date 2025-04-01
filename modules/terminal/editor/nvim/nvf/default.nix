@@ -1,5 +1,10 @@
 # NVF config:
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./ui
     ./lsp
