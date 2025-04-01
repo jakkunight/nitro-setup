@@ -1,5 +1,10 @@
-{ lib, config, inputs, pkgs, ... }:
 {
+  lib,
+  config,
+  inputs,
+  pkgs,
+  ...
+}: {
   config = {
     programs.nvf.settings.vim = {
       mini = {
@@ -23,23 +28,32 @@
         };
       };
       autocomplete = {
-        nvim-cmp = {
+        # nvim-cmp = {
+        #   enable = true;
+        #   sourcePlugins = [
+        #     "cmp-buffer"
+        #     "cmp-path"
+        #     "cmp-nvim-lsp"
+        #     "cmp-treesitter"
+        #     "lspsaga-nvim"
+        #     "lspkind-nvim"
+        #     "cmp-luasnip"
+        #     "none-ls-nvim"
+        #     "rustaceanvim"
+        #     "todo-comments-nvim"
+        #     "sqls-nvim"
+        #     "none-ls-nvim"
+        #     pkgs.markdown-oxide
+        #   ];
+        # };
+        blink-cmp = {
           enable = true;
-          sourcePlugins = [
-            "cmp-buffer"
-            "cmp-path"
-            "cmp-nvim-lsp"
-            "cmp-treesitter"
-            "lspsaga-nvim"
-            "lspkind-nvim"
-            "cmp-luasnip"
-            "none-ls-nvim"
-            "nvim-surround"
-            "rustaceanvim"
-            "todo-comments-nvim"
-            "sqls-nvim"
-            pkgs.markdown-oxide
-          ];
+          friendly-snippets.enable = true;
+          # sourcePlugins = {
+          #   spell = {
+          #     package = "";
+          #   };
+          # };
         };
       };
     };
