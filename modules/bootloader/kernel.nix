@@ -1,5 +1,10 @@
 # Set the kernel:
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   config = {
     # Use the selected kernel:
     boot.kernel = {
@@ -7,6 +12,6 @@
     };
 
     # Use the latest stable kernel release:
-    boot.kernelPackages = pkgs.linuxPackages_6_12;
+    boot.kernelPackages = pkgs.linuxPackages_6_14;
   };
 }

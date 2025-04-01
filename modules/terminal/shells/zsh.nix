@@ -1,5 +1,10 @@
 # ZSH config:
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   options = {
     terminal.shells.zsh = {
       enable = lib.mkEnableOption "Enable the ZSH config module";
@@ -7,7 +12,7 @@
     };
   };
   config = lib.mkIf config.terminal.shells.zsh.enable {
-    users.defaultUserShell = lib.mkIf config.terminal.shells.zsh.default pkgs.zsh;
+    users.defaultUserShell = lib.mkIf config.terminal.shells.zsh.default (lib.mkDefault pkgs.zsh);
     programs.zsh = {
       enable = true;
       enableLsColors = true;

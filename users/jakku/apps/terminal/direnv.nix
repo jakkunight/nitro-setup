@@ -1,9 +1,14 @@
-{ pkgs, lib, config, ... }@inputs:
 {
+  pkgs,
+  lib,
+  config,
+  ...
+} @ inputs: {
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
     enableZshIntegration = true;
+    enableNushellIntegration = true;
     silent = true;
   };
 }

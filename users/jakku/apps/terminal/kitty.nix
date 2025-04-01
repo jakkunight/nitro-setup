@@ -1,5 +1,10 @@
-{ pkgs, lib, config, inputs, ... }:
 {
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}: {
   config = {
     home.packages = [
       pkgs.kitty-img
@@ -8,7 +13,7 @@
       enable = true;
       font = {
         name = "CaskadyaCoveNerdFont";
-        size = 16;
+        size = 14;
         package = pkgs.nerd-fonts.hack;
       };
       settings = {

@@ -1,12 +1,17 @@
-{ pkgs, lib, config, inputs, ... }:
-
 {
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}: {
   programs.nushell = {
     enable = true;
     configFile = {
       text = ''
         $env.config = {
-          show_banner: false,
+          show_banner: true,
+          buffer_editor: nvim,
         }
       '';
     };

@@ -1,5 +1,10 @@
 # Networking configuration:
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./bluetooth.nix
     ./strongswan.nix
@@ -14,14 +19,9 @@
     # Default networking config?
     networking.networkmanager.enable = lib.mkForce true;
 
-<<<<<<< HEAD
     # Disable WPA_Supplicant explicitly:
     networking.wireless.enable = lib.mkForce false;
     # Install IPRoute2:
-=======
-    # Disable Wireless:
-    networking.wireless.enable = lib.mkForce false;
->>>>>>> rebuild
 
     environment.systemPackages = [
       pkgs.iproute2

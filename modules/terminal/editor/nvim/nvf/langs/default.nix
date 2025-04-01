@@ -1,8 +1,16 @@
-{ lib, config, inputs, pkgs, ... }:
 {
+  lib,
+  config,
+  inputs,
+  pkgs,
+  ...
+}: {
   options = {};
   config = {
     programs.nvf.settings.vim = {
+      treesitter = {
+        autotagHtml = true;
+      };
       languages = {
         enableLSP = true;
         enableTreesitter = true;
@@ -51,6 +59,12 @@
           lsp = {
             enable = true;
           };
+          treesitter = {
+            enable = true;
+          };
+          format = {
+            enable = true;
+          };
         };
         python = {
           enable = true;
@@ -72,6 +86,31 @@
         };
         html = {
           enable = true;
+          treesitter = {
+            enable = true;
+            autotagHtml = true;
+          };
+        };
+        css = {
+          enable = true;
+          lsp = {
+            enable = true;
+          };
+          treesitter = {
+            enable = true;
+          };
+          format = {
+            enable = true;
+          };
+        };
+        nu = {
+          enable = true;
+          lsp = {
+            enable = true;
+          };
+          treesitter = {
+            enable = true;
+          };
         };
       };
     };

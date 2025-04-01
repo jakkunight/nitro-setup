@@ -1,4 +1,10 @@
-{ lib, config, pkgs, inputs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ../../modules
@@ -6,7 +12,7 @@
   ];
   config = {
     # Enable Flakes!
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    nix.settings.experimental-features = ["nix-command" "flakes"];
 
     # Allow unfree software:
     nixpkgs.config = {
@@ -70,7 +76,7 @@
     };
 
     # Shell:
-    users.defaultUserShell = pkgs.zsh;
+    users.defaultUserShell = pkgs.nushell;
 
     #### Module settings ####
 
