@@ -14,21 +14,17 @@
       languages = {
         enableLSP = true;
         enableTreesitter = true;
+        enableFormat = true;
+        enableExtraDiagnostics = true;
         rust = {
           enable = true;
           crates = {
             enable = true;
             codeActions = true;
           };
-          lsp = {
-            enable = true;
-          };
         };
         nix = {
           enable = true;
-          treesitter = {
-            enable = true;
-          };
           lsp = {
             enable = true;
             server = "nixd";
@@ -47,42 +43,18 @@
         };
         sql = {
           enable = true;
-          lsp = {
-            enable = true;
-          };
         };
         clang = {
           enable = true;
         };
         ts = {
           enable = true;
-          lsp = {
-            enable = true;
-          };
-          treesitter = {
-            enable = true;
-          };
-          format = {
-            enable = true;
-          };
         };
         python = {
           enable = true;
-          lsp = {
-            enable = true;
-          };
         };
         markdown = {
           enable = true;
-          format = {
-            enable = true;
-          };
-          lsp = {
-            enable = true;
-          };
-          treesitter = {
-            enable = true;
-          };
         };
         html = {
           enable = true;
@@ -93,24 +65,9 @@
         };
         css = {
           enable = true;
-          lsp = {
-            enable = true;
-          };
-          treesitter = {
-            enable = true;
-          };
-          format = {
-            enable = true;
-          };
         };
         nu = {
           enable = true;
-          lsp = {
-            enable = true;
-          };
-          treesitter = {
-            enable = true;
-          };
         };
       };
     };
