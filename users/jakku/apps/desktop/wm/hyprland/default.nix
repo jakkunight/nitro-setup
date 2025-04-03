@@ -1,6 +1,11 @@
 # Hyprland user config:
-{ config, pkgs, lib, inputs, ... }:
 {
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: {
   # Hyprland:
   wayland.windowManager.hyprland = {
     enable = true;
@@ -11,7 +16,7 @@
       # ENV Variables:
       env = [
         "XCURSOR_SIZE,36"
-	      "XDG_SESSION_TYPE,wayland"
+        "XDG_SESSION_TYPE,wayland"
       ];
       # XWayland:
       xwayland = {
@@ -41,17 +46,17 @@
       ];
       # General:
       general = {
-        gaps_in = 5;
-        gaps_out = 10;
-        "col.inactive_border" = "rgba(33ccff33) rgba(00ff9933) 45deg";
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        border_size = 0;
+        gaps_in = 1;
+        gaps_out = 2;
+        "col.inactive_border" = "rgba(3d59a1ff) rgba(41a6b5ff) 45deg";
+        "col.active_border" = "rgba(7dcfffff) rgba(c3e88dff) 45deg";
+        border_size = 2;
         resize_on_border = true;
         layout = "dwindle";
       };
       # Cursor:
       cursor = {
-	      no_hardware_cursors = true;
+        no_hardware_cursors = true;
       };
       # Keybindings
       bindel = [
@@ -71,7 +76,7 @@
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
       ];
-      bindr = [ ];
+      bindr = [];
       bind = [
         # Open a terminal:
         "$mod, Return, exec, uwsm app -- kitty"
@@ -128,11 +133,21 @@
         "$mod, right, movefocus, r"
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
+        # Move focus with $mod + vim keys
+        "$mod, h, movefocus, l"
+        "$mod, l, movefocus, r"
+        "$mod, k, movefocus, u"
+        "$mod, j, movefocus, d"
         # Move windows with $mod + SHIFT + arrow keys
         "$mod SHIFT, left, movewindow, l"
         "$mod SHIFT, right, movewindow, r"
         "$mod SHIFT, up, movewindow, u"
         "$mod SHIFT, down, movewindow, d"
+        # Move windows with $mod + SHIFT + vim keys
+        "$mod SHIFT, h, movewindow, l"
+        "$mod SHIFT, l, movewindow, r"
+        "$mod SHIFT, k, movewindow, u"
+        "$mod SHIFT, j, movewindow, d"
         # Take a screenshot:
         " , PRINT, exec, uwsm app -- hyprshot -m output"
         "SHIFT, PRINT, exec, uwsm app -- hyprshot -m region"
@@ -141,15 +156,16 @@
       decoration = {
         rounding = 10;
         # Transparency:
-        active_opacity = 0.85;
-        inactive_opacity = 0.75;
+        active_opacity = 0.90;
+        inactive_opacity = 0.85;
         # Shadow:
         shadow = {
           enabled = true;
-          range = 20;
-          render_power = 3;
-          color = "rgba(7dcfffaa)";
-          color_inactive = "rgba(24283baa)";
+          range = 4;
+          render_power = 1;
+          color = "rgba(1f2335ff)";
+          color_inactive = "rgba(292e42ff)";
+          ignore_window = true;
         };
         # Blur:
         blur = {
@@ -157,7 +173,7 @@
           size = 10;
           passes = 2;
           new_optimizations = true;
-          ignore_opacity = false;
+          ignore_opacity = true;
           xray = true;
           blurls = "waybar";
         };

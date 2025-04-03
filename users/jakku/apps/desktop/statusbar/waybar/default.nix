@@ -1,6 +1,10 @@
 # Waybar config:
-{ config, pkgs, lib, ... }:
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   programs.waybar = {
     enable = true;
     settings = {
@@ -8,9 +12,9 @@
         layer = "top";
         position = "top";
         height = 36;
-        margin-left = 10;
-        margin-right = 10;
-        margin-top = 10;
+        margin-left = 0;
+        margin-right = 0;
+        margin-top = 0;
         padding = 5;
         output = [
           "eDP-1"

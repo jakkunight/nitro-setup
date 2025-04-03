@@ -10,14 +10,14 @@
 #waybar {
   background: #24283b;
   color: white;
-  border-radius: 10px;
-  margin: 10px;
+  border-radius: 0px;
+  margin: 0px;
 }
 
 #workspaces {
-	background-color: #24283b;
-	margin: 5px;
-	border-radius: 5px;
+  background-color: #24283b;
+  margin: 5px;
+  border-radius: 5px;
 }
 #workspaces button {
   color: #c0caf5;
@@ -30,13 +30,25 @@
 }
 
 #workspaces button:hover {
-	background-color: #7dcfff;
-	color: #24283b;
-	border-radius: 5px;
+  background-color: #7dcfff;
+  color: #24283b;
+  border-radius: 5px;
 }
 
-#custom-clock, #tray, #clock, #battery, #pulseaudio, #backlight, #network, #cpu, #disk, #memory, #temperature, #bluetooth, #user {
-	background-color: #24283b;
+#custom-clock,
+#tray,
+#clock,
+#battery,
+#pulseaudio,
+#backlight,
+#network,
+#cpu,
+#disk,
+#memory,
+#temperature,
+#bluetooth,
+#user {
+  background-color: #24283b;
   border-radius: 5px;
   margin: 5px;
 }
@@ -47,35 +59,36 @@
 }
 
 #custom-date {
-	color: #7dcfff;
+  color: #7dcfff;
 }
 
-#clock, #custom-clock {
-    color: #b48ead;
+#clock,
+#custom-clock {
+  color: #b48ead;
 }
 
 #battery {
-    color: #9ece6a;
+  color: #9ece6a;
 }
 
 #battery.charging {
-    color: #9ece6a;
+  color: #9ece6a;
 }
 
 #battery.warning:not(.charging) {
-    background-color: #f7768e;
-    color: #24283b;
+  background-color: #f7768e;
+  color: #24283b;
 }
 #disk {
-    color: #9ece6a;
+  color: #9ece6a;
 }
 
 #network {
-	color: #f7768e;
+  color: #f7768e;
 }
 
 #pulseaudio {
-	color: #e0af68;
+  color: #e0af68;
 }
 
 #backlight {
@@ -85,5 +98,5 @@
   color: #e0af68;
 }
 #memory {
-	color: #f7768e;
+  color: #f7768e;
 }
