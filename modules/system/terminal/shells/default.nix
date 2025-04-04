@@ -22,7 +22,6 @@
         };
         nushell = {
           enable = lib.mkDefault true;
-          default = lib.mkForce true;
         };
       };
     };

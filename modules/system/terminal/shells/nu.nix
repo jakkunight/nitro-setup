@@ -11,7 +11,7 @@
     };
   };
   config = lib.mkIf config.terminal.shells.nushell.enable {
-    users.defaultUserShell = lib.mkIf config.terminal.shells.nushell.default (lib.mkDefault pkgs.nushell);
+    users.defaultUserShell = lib.mkIf config.terminal.shells.nushell.default pkgs.nushell;
     # Install some useful plugins:
     environment.systemPackages = [
       pkgs.nushellPlugins.highlight
