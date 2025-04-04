@@ -1,7 +1,12 @@
 # Terminal configuration.
 # Theese programs will run for every terminal,
 # even in TTy mode.
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./utils
     ./filemanager

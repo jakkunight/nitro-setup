@@ -6,7 +6,8 @@
   };
   config = lib.mkIf config.net.tools.wireshark.enable {
     environment.systemPackages = [
-      pkgs.nmap
+      pkgs.wireshark
+      pkgs.termshark
     ];
   };
 }

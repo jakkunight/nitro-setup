@@ -1,11 +1,17 @@
 # NVF config:
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./ui
     ./lsp
     ./langs
     ./keymaps
     ./autocompletion
+    ./obsidian
   ];
   options = {
     terminal.editor.nvim.nvf = {

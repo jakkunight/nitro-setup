@@ -49,8 +49,8 @@
         options = [ "fmask=0022" "dmask=0022" ];
       };
       "/" = {
-        device = "/dev/disk/by-label/${config.disk.filesystems.root.label}";
-        fsType = "ext4";
+      device = "/dev/disk/by-label/${config.disk.filesystems.root.label}";
+      fsType = "ext4";
       };
     };
     swapDevices = [

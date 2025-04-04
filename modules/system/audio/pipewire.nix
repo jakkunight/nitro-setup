@@ -1,5 +1,5 @@
 # PipeWire configuration:
-{ lib, config, ... }: {
+{ lib, config, pkgs, ... }: {
   options = {
     audio = {
       pipewire = {
@@ -7,7 +7,12 @@
       };
     };
   };
-  config = lib.mkIf (config.audio.pipewire.enable) {
+  config = lib.mkIf config.audio.pipewire.enable {
+    # Utils:
+    environment.systemPackages = [
+      pkgs.pavucontrol
+      pkgs.helvum
+    ];
     # rtkit is optional but recommended
     security.rtkit.enable = true;
 

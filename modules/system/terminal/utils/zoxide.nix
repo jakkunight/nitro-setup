@@ -1,13 +1,18 @@
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   options = {
     terminal.utils.zoxide = {
       enable = lib.mkEnableOption "Enable zoxide.";
-      zshIntegration = {
-        enable = lib.mkEnableOption "Enable ZSH integration.";
+      shellIntegration = {
+        enable = lib.mkEnableOption "Enable shell integration integration.";
         alias = lib.mkOption {
           description = "Set the command alias.";
           type = lib.types.nonEmptyStr;
-          default = "z";
+          default = "cd";
         };
       };
     };
@@ -15,8 +20,8 @@
       environment.systemPackages = [
         pkgs.zoxide
       ];
-      environment.shallAliases = lib.mkIf config.terminal.utils.zoxide.zshIntegration.enable {
-        "${config.terminal.utils.zoxide.alias}" = "zoxide";
+      environment.shallAliases = lib.mkIf config.terminal.utils.zoxide.shellIntegration.enable {
+        "${config.terminal.utils.zoxide.shellIntegration.alias}" = "zoxide";
       };
     };
   };

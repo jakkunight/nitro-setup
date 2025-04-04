@@ -1,29 +1,37 @@
-{ lib, config, inputs, pkgs, ... }:
 {
+  lib,
+  config,
+  inputs,
+  pkgs,
+  ...
+}: {
   options = {};
   config = {
     programs.nvf.settings.vim = {
+      treesitter = {
+        autotagHtml = true;
+      };
       languages = {
         enableLSP = true;
         enableTreesitter = true;
+        enableFormat = true;
+        enableExtraDiagnostics = true;
         rust = {
           enable = true;
           crates = {
             enable = true;
             codeActions = true;
           };
-          lsp = {
-            enable = true;
-          };
         };
         nix = {
           enable = true;
-          treesitter = {
-            enable = true;
-          };
           lsp = {
             enable = true;
-            server = "nil";
+            server = "nixd";
+          };
+          format = {
+            enable = true;
+            type = "alejandra";
           };
           extraDiagnostics = {
             enable = true;
@@ -35,32 +43,30 @@
         };
         sql = {
           enable = true;
-          lsp = {
-            enable = true;
-          };
         };
         clang = {
           enable = true;
         };
         ts = {
           enable = true;
-          lsp = {
-            enable = true;
-          };
         };
         python = {
           enable = true;
-          lsp = {
-            enable = true;
-          };
         };
         markdown = {
           enable = true;
-          lsp = {
-            enable = true;
-          };
         };
         html = {
+          enable = true;
+          treesitter = {
+            enable = true;
+            autotagHtml = true;
+          };
+        };
+        css = {
+          enable = true;
+        };
+        nu = {
           enable = true;
         };
       };

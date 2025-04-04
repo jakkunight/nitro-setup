@@ -1,37 +1,27 @@
-{ lib, config, ... }: {
-  options = {
-    audio.mpd = {
-      enable = lib.mkEnableOption "Enable the music player daemon service";
-      user = lib.mkOption {
-        type = lib.types.nonEmptyStr;
-        default = "user";
-      };
-      pipewire = lib.mkEnableOption "Enable PipeWire backend.";
-      pulseaudio = lib.mkEnableOption "Enable PulseAudio backend.";
-    };
-  config = lib.mkIf config.audio.mpd.enable {
-  
-    services.mpd.enable = true;
-  } // (
-        if config.audio.mpd.pipewire
-        then {
-          services.mpd.extraConfig = ''
-      audio_output {
-        type "pipewire"
-        name "My PipeWire Output"
-      }
-    '';
-    service.mpd.user = "${config.audio.mpd.user}";
+{ config, lib, pkgs, ... }:
+{
+  config =
+  let
+    username = "jakku";
+    userDir = "/home/jakku";
+  in
+  {
+    services.mpd = {
+      enable = true;
+      musicDirectory = "${userDir}/Music";
+      user = "${username}";
+      extraConfig = ''
+        # must specify one or more outputs in order to play audio!
+        # (e.g. ALSA, PulseAudio, PipeWire), see next sections
+        # PipeWire:
+        audio_output {
+          type "pipewire"
+          name "My PipeWire Output"
+        }
+      '';
     };
     systemd.services.mpd.environment = {
-      XDG_RUNTIME_DIR = "/run/user/${toString config.users.users."${config.audio.mpd.user}".uid}";
+      XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.${username}.uid}"; # User-id must match above user. MPD will look inside this directory for the PipeWire socket.
     };
-        }
-                        else (
-        if 
-        then {
-
-        }
-        else {}
-        ));
+  };
 }
