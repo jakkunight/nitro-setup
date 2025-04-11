@@ -1,4 +1,9 @@
-{ lib, config, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./btop.nix
     ./gitui.nix
@@ -9,6 +14,7 @@
     ./serie.nix
     ./wikitui.nix
     ./bat.nix
+    ./rmpc.nix
     ./ripgrep.nix
     ./tldr.nix
     ./mprocs.nix
@@ -27,7 +33,7 @@
       gitui.enable = lib.mkDefault true;
       zoxide = {
         enable = lib.mkDefault true;
-        zshIntegration = {
+        shellIntegration = {
           enable = lib.mkDefault true;
           alias = lib.mkDefault "cd";
         };
@@ -37,6 +43,7 @@
       bat.enable = lib.mkDefault true;
       netscanner.enable = lib.mkDefault true;
       ripgrep.enable = lib.mkDefault true;
+      rmpc.enable = lib.mkDefault true;
       serie.enable = lib.mkDefault true;
       tui-journal.enable = lib.mkDefault false;
       termusic.enable = lib.mkDefault false;
@@ -44,5 +51,9 @@
       tldr.enable = lib.mkDefault false;
       speedtest-rs.enable = lib.mkDefault true;
     };
+    environment.systemPackages = [
+      pkgs.nss
+      pkgs.opensc
+    ];
   };
 }

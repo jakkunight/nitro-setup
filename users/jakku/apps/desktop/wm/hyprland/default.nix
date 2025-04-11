@@ -50,7 +50,7 @@
         gaps_out = 2;
         "col.inactive_border" = "rgba(3d59a1ff) rgba(41a6b5ff) 45deg";
         "col.active_border" = "rgba(7dcfffff) rgba(c3e88dff) 45deg";
-        border_size = 2;
+        border_size = 0;
         resize_on_border = true;
         layout = "dwindle";
       };
@@ -76,7 +76,6 @@
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
       ];
-      bindr = [];
       bind = [
         # Open a terminal:
         "$mod, Return, exec, uwsm app -- kitty"
@@ -161,11 +160,10 @@
         # Shadow:
         shadow = {
           enabled = true;
-          range = 4;
-          render_power = 1;
-          color = "rgba(1f2335ff)";
-          color_inactive = "rgba(292e42ff)";
-          ignore_window = true;
+          range = 10;
+          render_power = 2;
+          color = "rgba(7dcfffaa)";
+          color_inactive = "rgba(4fd6beaa)";
         };
         # Blur:
         blur = {

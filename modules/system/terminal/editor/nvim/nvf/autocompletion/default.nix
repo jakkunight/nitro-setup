@@ -1,5 +1,10 @@
-{ lib, config, inputs, pkgs, ... }:
 {
+  lib,
+  config,
+  inputs,
+  pkgs,
+  ...
+}: {
   config = {
     programs.nvf.settings.vim = {
       mini = {
@@ -18,18 +23,11 @@
         pairs = {
           enable = true;
         };
-        snippets = {
-          enable = true;
-        };
       };
       autocomplete = {
-        nvim-cmp = {
+        blink-cmp = {
           enable = true;
-          sourcePlugins = [
-            "cmp-buffer"
-            "cmp-path"
-            "cmp-nvim-lsp"
-          ];
+          friendly-snippets.enable = true;
         };
       };
     };

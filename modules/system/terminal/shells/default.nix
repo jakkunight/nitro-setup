@@ -1,7 +1,12 @@
 # Shell configuration:
-{ lib, config, ... }: {
+{
+  lib,
+  config,
+  ...
+}: {
   imports = [
     ./zsh.nix
+    ./nu.nix
   ];
   options = {
     terminal.shells = {
@@ -13,7 +18,10 @@
       shells = {
         zsh = {
           enable = lib.mkDefault true;
-          default = lib.mkDefault true;
+          default = lib.mkDefault false;
+        };
+        nushell = {
+          enable = lib.mkDefault true;
         };
       };
     };

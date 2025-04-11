@@ -1,9 +1,14 @@
-{ lib, config, ... }: {
+{
+  lib,
+  config,
+  ...
+}: {
   imports = [
     ./udisks2.nix
     ./gvfs.nix
     ./vpns
     ./flatpak.nix
+    ./cups.nix
   ];
   options = {
     serv = {
@@ -16,6 +21,7 @@
       gvfs.enable = lib.mkDefault true;
       vpns.enable = lib.mkDefault true;
       flatpak.enable = lib.mkDefault true;
+      cups.enable = lib.mkDefault true;
     };
   };
 }

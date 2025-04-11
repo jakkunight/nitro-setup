@@ -1,5 +1,10 @@
 # ZSH config:
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   options = {
     terminal.shells.zsh = {
       enable = lib.mkEnableOption "Enable the ZSH config module";

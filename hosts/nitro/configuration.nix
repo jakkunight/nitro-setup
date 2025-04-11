@@ -7,7 +7,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ../../modules
+    ../../modules/system
     ../../users
   ];
   config = {
@@ -74,9 +74,6 @@
         "a9b1d6" # Gray/White
       ];
     };
-
-    # Shell:
-    users.defaultUserShell = pkgs.nushell;
 
     #### Module settings ####
 

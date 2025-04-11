@@ -1,4 +1,10 @@
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./bootloader
     ./disk
@@ -16,10 +22,22 @@
     environment.systemPackages = [
       pkgs.git
       pkgs.nixos-generators
-      (import ../packages/sysinstall { inherit pkgs inputs; })
+      pkgs.nh
+      pkgs.sops
+      pkgs.zed-editor
     ];
 
     #### ====================== ####
+
+    #### Install ALL hhardware and firmware ####
+
+    hardware = {
+      enableAllHardware = true;
+      enableAllFirmware = true;
+      enableRedistributableFirmware = true;
+    };
+
+    #### ================================== ####
     bootloader = {
       grub.enable = lib.mkDefault true;
       systemd.enable = lib.mkDefault false;

@@ -1,4 +1,8 @@
-{ lib, config, ... }: {
+{
+  lib,
+  config,
+  ...
+}: {
   imports = [
     ./grub2
     ./systemd.nix
@@ -8,5 +12,8 @@
   config = {
     bootloader.grub.enable = lib.mkDefault true;
     bootloader.systemd.enable = lib.mkDefault false;
+    systemd.extraConfig = ''
+      DefaultTimeoutStopSec=10s
+    '';
   };
 }
