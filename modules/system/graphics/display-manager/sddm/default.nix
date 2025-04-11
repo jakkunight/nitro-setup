@@ -1,5 +1,11 @@
 # SDDM config:
-{ lib, config, pkgs, inputs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   options = {
     graphics.display-manager.sddm = {
       enable = lib.mkEnableOption "Enable SDDM";
@@ -21,6 +27,7 @@
         enable = true;
       };
       # theme = "${inputs.genshin-login.packages.${pkgs.system}.default}";
+      theme = "${pkgs.sddm-chili-theme}/share/sddm/themes/chili";
     };
   };
 }
