@@ -76,7 +76,6 @@
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
       ];
-      bindr = [];
       bind = [
         # Open a terminal:
         "$mod, Return, exec, uwsm app -- kitty"
