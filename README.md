@@ -66,7 +66,7 @@ Windows.
 The second drawback is that your NixOS configuration is always tied to the disk
 layout. This is true, either using Disko, or just the NixOS config. I've found
 this annoying, but now that I know what NixOS expects, I can simply let Disko to
-handle this part.
+handle this part and just change the target disk within the configuration.
 
 ### Hardware and firmware
 
