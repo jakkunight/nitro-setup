@@ -1,4 +1,0 @@
-{ config, lib, inputs, ... }:
-{
-  config = {};
-}
