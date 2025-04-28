@@ -1,75 +1,171 @@
-# NixOS Configuration
+# NixOS Setup: A NixOS framework to manage Everything, Everywhere, Everytime
 
-This is my NixOS configuration. It is aimed to be as flexible as possible
-without sacrificing performance and style.
+This is the general guide to build reliable, multi-user and multi-host configs
+with NixOS.
 
-## Content
+## Goals
 
-<!--toc:start-->
+- Making portable setups that can be installed and configured without any
+  internet connection.
+- Managing multiple users, hosts, modules, home configurations, and secrets from
+  the same project.
+- To have fun learning more about the Nix ecosystem.
 
-- [NixOS Configuration](#nixos-configuration)
-  - [Content](#content)
-  - [What do I want?](#what-do-i-want)
-    - [Hosts](#hosts)
-    - [Users](#users)
-    - [System Modules](#system-modules)
-      - [Core system modules](#core-system-modules)
-      - [Extra system modules](#extra-system-modules)
-    - [System Services](#system-services)
-    - [Home Modules](#home-modules)
-      - [Core home modules](#core-home-modules)
-      - [Extra home modules](#extra-home-modules)
-    - [User Services](#user-services)
-    - [Home configurations](#home-configurations)
-    - [Secrets](#secrets)
+## Principles
 
-<!--toc:end-->
+- Programs, services and modules are different from their configurations. For
+  instance, the program `yazi` can be installed at `host-a`, but being used "as
+  it". It only means that a user, via Home-Manager, has to activate a
+  configuration for that program, or another host has to make select a
+  configuration for it.
+- Programs, services, modules and configurations are not tied to any hosts or
+  users. This means that every program will be enabled or disabled from the main
+  `configuration.nix` and `home.nix` files of each host and user.
+- System (host) and Home (user) configurations, programs, services, and modules
+  are treated separately.
+- Secrets are managed by SOPS-NIX.
+- Styling is manged by Stylix.
+- Disk layout is managed by Disko.
+- Programs, services and modules are treated separately.
+- Offline ISO installers will be created by NixOS-Generators. They have to
+  include all the available firmware support.
+- User programs, modules, services and configurations will be handled by
+  Home-Manager.
+- There will be a Home-Manager config as "standalone" program (to use
+  `home-manager switch`) and a config as NixOS module (to use
+  `sudo nixos-rebuild switch`).
+- Modules, programs and services are grouped together by purpose for
+  convenience.
+- Every program, module and service must be toggleable on and off, in order to
+  make easy to build new system configurations.
+- There's only one module configuration at a time for each user-host pair.
+- There's only one program configuration at a time for each user-host pair.
+- There's only one service configuration at a time for each user-host pair.
 
-## What do I want?
+## Adding new stuffs
 
-I want to have a _perfect_ setup. A setup that makes me feel productive and
-comfortable. I want to know every piece of my setup. I want to make it **mine**.
-For that reason I started using NixOS, because it promised somthing like that.
-The power to have everything, everywhere, all at once.
+- To add new modules, use `module/default.nix` instead of `module.nix`.
+- To add new programs, use `program/default.nix` instead of `program.nix`.
+- To add new services, use `service/default.nix` instead of `service.nix`.
+- To add a new configuration for a module, use `module/config.nix`.
+- To add a new configuration for a program, use `program/config.nix`.
+- To add a new configuration for a service, use `service/config.nix`.
+- To add a new
 
-## System components
+## Basic project structure
 
-### Disk layout and filesystems
-
-As the [NixOS Wiki](https://wiki.nixos.org) states:
-
-> [!INFO] The only thing that NixOS needs to boot, is a root partition (/), a
-> boot partition (/boot) and the Nix Store (/nix).
-
-For this reason, during the installation phase, we have to format and partition
-the disk manually. Then NixOS will scan the partitions and will be able to mount
-all the needed partitions. I want something more declarative. I want to manage
-multiple setups without having to part my disk. Another issue that I faced was
-the problem of dual booting with Windows. The process was painful and
-complicated. But with this knowlage, I think I can do things easier.
-
-#### Disko
-
-To make things more declarative, I want to use
-[Disko](https://github.com/nix-community/disko) which is a project tha aims to
-setup your disk layout in a declarative maner. This will allow you to setup your
-system everywhere, but there are some drawbacks.
-
-The first issue with this aproach is that Disko will **FORMAT AND ERASE ALL THE
-DATA IN YOUR DISK**. This is a challenge for some users who bought laptops or
-pre-assembled computers with Windows preinstalled and don't want to uninstall it
-for whatever reason they have. This can be addressed by making a backup image of
-the Windows system and then restoring it on an empty partition left in the Disko
-scheme. It is funny, since the one that used to erase your Linux system was
-Windows.
-
-The second drawback is that your NixOS configuration is always tied to the disk
-layout. This is true, either using Disko, or just the NixOS config. I've found
-this annoying, but now that I know what NixOS expects, I can simply let Disko to
-handle this part and just change the target disk within the configuration.
-
-### Hardware and firmware
-
-The drivers comes with the kernel itself, but some drivers must be loaded at
-boot. For the firmware, I prefer to enable all the firmware, since I'm looking
-for a wide hardware support.
+```plaintext
+flake.nix
+flake.lock
+.sops.yaml
+users/
+    user1/
+        default.nix
+        home.nix
+    ...
+hosts/
+    host1/
+        default.nix
+    ...
+configurations/
+    home/
+        services/
+            ssh/
+                conf1.nix
+                conf2.nix
+                ...
+            ...
+        programs/
+            conf1.nix
+            conf2.nix
+            ...
+        terminal/
+            default.nix
+            shell/
+                conf1.nix
+                conf2.nix
+                ...
+            prompt/
+                conf1.nix
+                conf2.nix
+                ...
+    system/
+        services/
+            ssh/
+                conf1.nix
+                conf2.nix
+                ...
+            ...
+        programs/
+            btop/
+                default.nix
+            conf2.nix
+            ...
+        terminal/
+            default.nix
+            shell/
+                conf1.nix
+                conf2.nix
+                ...
+            prompt/
+                conf1.nix
+                conf2.nix
+                ...
+modules/
+    home/
+        services/
+            default.nix
+            ...
+        programs/
+            default.nix
+            ...
+        terminal/
+            default.nix
+            shell/
+                default.nix
+                ...
+            prompt/
+                default.nix
+            ...
+    system/
+        default.nix
+        services/
+            default.nix
+            ...
+        programs/
+            default.nix
+            ...
+        hardware/
+            default.nix
+            audio/
+                default.nix
+                ...
+            cpu/
+                default.nix
+                ...
+            gpu/
+                default.nix
+                nvidia/
+                    default.nix
+                ...
+            networking/
+                default.nix
+                ...
+            disk/
+                default.nix
+                disko/
+                    default.nix
+    terminal/
+        default.nix
+        shell/
+            default.nix
+            ...
+        prompt/
+            default.nix
+        ...
+    nix/
+        default.nix
+    networking/
+        default.nix
+        ...
+```
