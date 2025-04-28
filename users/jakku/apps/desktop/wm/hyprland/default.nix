@@ -147,6 +147,16 @@
         "$mod SHIFT, l, movewindow, r"
         "$mod SHIFT, k, movewindow, u"
         "$mod SHIFT, j, movewindow, d"
+        # Resize windows with $mod + CTRL + arrow keys
+        "$mod CTRL, left, resizeactive, -1% 0%"
+        "$mod CTRL, right, resizeactive, 1% 0%"
+        "$mod CTRL, up, resizeactive, 0% 1%"
+        "$mod CTRL, down, resizeactive, 0% -1%"
+        # Resize windows with $mod + CTRL + vim keys
+        "$mod CTRL, h, resizeactive, -1% 0%"
+        "$mod CTRL, l, resizeactive, 1% 0%"
+        "$mod CTRL, k, resizeactive, 0% 1%"
+        "$mod CTRL, j, resizeactive, 0%% -1%"
         # Take a screenshot:
         " , PRINT, exec, uwsm app -- hyprshot -m output"
         "SHIFT, PRINT, exec, uwsm app -- hyprshot -m region"
