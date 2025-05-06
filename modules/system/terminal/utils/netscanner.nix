@@ -1,5 +1,10 @@
 # Netscanner:
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   options = {
     terminal.utils.netscanner = {
       enable = lib.mkEnableOption "Enable Netscanner.";
