@@ -1,14 +1,11 @@
 # Web Browsers:
-{config, lib, pkgs, inputs, ...}:
-{
+{inputs, ...}: {
   imports = [
     ./firefox.nix
     ./brave.nix
+    inputs.zen-browser.homeModules.beta
   ];
-  
-  config = {
-    home.packages = [
-      inputs.zen-browser.packages.${pkgs.system}.default
-    ];
+  programs.zen-browser = {
+    enable = true;
   };
 }

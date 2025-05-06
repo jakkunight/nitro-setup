@@ -82,10 +82,10 @@
         # Open the file manager:
         "$mod, E, exec, uwsm app -- nemo"
         # Open app launcher:
-        "$mod, D, exec, uwsm app -- wofi --show dmenu"
+        "$mod, D, exec, uwsm app -- wofi --show drun"
         # Open Web browser:
         #"$mod, A, exec, flatpak run io.github.zen_browser.zen"
-        "$mod, A, exec, uwsm app -- zen"
+        "$mod, A, exec, uwsm app -- zen-beta"
         # Open music player:
         "$mod, S, exec, uwsm app -- vlc"
         # Toggle fullscreen:
@@ -97,7 +97,7 @@
         # Lock screen:
         "$mod SHIFT, S, exec, uwsm app -- hyprlock"
         # Close Hyprland:
-        "$mod SHIFT, Q, uwsm stop -r"
+        "$mod SHIFT, Q, exec, uwsm stop -r"
         # Reboot:
         "$mod SHIFT, R, exec, systemctl reboot -i"
         # Poweroff:
