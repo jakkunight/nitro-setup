@@ -13,159 +13,76 @@ with NixOS.
 
 ## Principles
 
-- Programs, services and modules are different from their configurations. For
-  instance, the program `yazi` can be installed at `host-a`, but being used "as
-  it". It only means that a user, via Home-Manager, has to activate a
-  configuration for that program, or another host has to make select a
-  configuration for it.
-- Programs, services, modules and configurations are not tied to any hosts or
-  users. This means that every program will be enabled or disabled from the main
-  `configuration.nix` and `home.nix` files of each host and user.
-- System (host) and Home (user) configurations, programs, services, and modules
-  are treated separately.
+- Modules are different from their configurations. For instance, the program
+  `yazi` can be installed at `host-a`, but being used "as it". It only means
+  that a user, via Home-Manager, has to activate a configuration for that
+  program, or another host has to select a system-wide configuration for it.
+- Modules and configurations are not tied to any hosts or users. This means that
+  every program will be enabled or disabled from the main `host/default.nix`,
+  `user/default.nix` and `home.nix` files of each host and user.
+- System (host) and Home (user) configurations and modules are treated
+  separately.
 - Secrets are managed by SOPS-NIX.
 - Styling is manged by Stylix.
 - Disk layout is managed by Disko.
-- Programs, services and modules are treated separately.
+- Modules are classified into programs and services.
 - Offline ISO installers will be created by NixOS-Generators. They have to
   include all the available firmware support.
-- User programs, modules, services and configurations will be handled by
-  Home-Manager.
-- There will be a Home-Manager config as "standalone" program (to use
-  `home-manager switch`) and a config as NixOS module (to use
-  `sudo nixos-rebuild switch`).
-- Modules, programs and services are grouped together by purpose for
-  convenience.
-- Every program, module and service must be toggleable on and off, in order to
-  make easy to build new system configurations.
-- There's only one module configuration at a time for each user-host pair.
-- There's only one program configuration at a time for each user-host pair.
-- There's only one service configuration at a time for each user-host pair.
+- User modules and configurations will be handled by Home-Manager.
+- Home-Manager will be used as a NixOS module, but there will be a
+  `homeConfigurations` output in the `flake.nix` to port the users' config to
+  non-NixOS distros as well.
+- Modules are grouped together by purpose for convenience.
+- Every program, module and service must have an option to be enabled or
+  disabled, in order to make easy to build new system configurations.
+- There's only one active module configuration at a time for each host, though
+  user configuration con override the system configuration.
 
-## Adding new stuffs
+## Adding new things
 
-- To add new modules, use `module/default.nix` instead of `module.nix`.
-- To add new programs, use `program/default.nix` instead of `program.nix`.
-- To add new services, use `service/default.nix` instead of `service.nix`.
-- To add a new configuration for a module, use `module/config.nix`.
-- To add a new configuration for a program, use `program/config.nix`.
-- To add a new configuration for a service, use `service/config.nix`.
-- To add a new
+> [!IMPORTANT] All the paths are relative to the project's root folder.
 
-## Basic project structure
+### Hosts
 
-```plaintext
-flake.nix
-flake.lock
-.sops.yaml
-users/
-    user1/
-        default.nix
-        home.nix
-    ...
-hosts/
-    host1/
-        default.nix
-    ...
-configurations/
-    home/
-        services/
-            ssh/
-                conf1.nix
-                conf2.nix
-                ...
-            ...
-        programs/
-            conf1.nix
-            conf2.nix
-            ...
-        terminal/
-            default.nix
-            shell/
-                conf1.nix
-                conf2.nix
-                ...
-            prompt/
-                conf1.nix
-                conf2.nix
-                ...
-    system/
-        services/
-            ssh/
-                conf1.nix
-                conf2.nix
-                ...
-            ...
-        programs/
-            btop/
-                default.nix
-            conf2.nix
-            ...
-        terminal/
-            default.nix
-            shell/
-                conf1.nix
-                conf2.nix
-                ...
-            prompt/
-                conf1.nix
-                conf2.nix
-                ...
-modules/
-    home/
-        services/
-            default.nix
-            ...
-        programs/
-            default.nix
-            ...
-        terminal/
-            default.nix
-            shell/
-                default.nix
-                ...
-            prompt/
-                default.nix
-            ...
-    system/
-        default.nix
-        services/
-            default.nix
-            ...
-        programs/
-            default.nix
-            ...
-        hardware/
-            default.nix
-            audio/
-                default.nix
-                ...
-            cpu/
-                default.nix
-                ...
-            gpu/
-                default.nix
-                nvidia/
-                    default.nix
-                ...
-            networking/
-                default.nix
-                ...
-            disk/
-                default.nix
-                disko/
-                    default.nix
-    terminal/
-        default.nix
-        shell/
-            default.nix
-            ...
-        prompt/
-            default.nix
-        ...
-    nix/
-        default.nix
-    networking/
-        default.nix
-        ...
-```
+1. Create a `host/default.nix` at the `hosts/` directory.
+2. Fill up the file with the desired configurations. Remember that NixOS needs
+   at very least the hostname, a bootloader, disk layout, the correct CPU kernel
+   modules, the storage kernel modules, the timezone and language settings, and
+   a terminal text editor to be able to boot and edit the configuration.
+3. Create a new host configuration at the `flake.nix` file and import the host
+   configuration as a module.
+
+### Users
+
+1. Create a `user/default.nix` at the `users/` directory and fill it up with the
+   settings of the new user, such as default shell, name, and groups.
+2. Import it into the `host/default.nix` that will be used by the user.
+3. Create a new `home.nix` at the `users/` folder and fill it with the basic
+   Home-Manager configurations. It will also import and enable all the desired
+   home modules and configurations.
+4. Create a new user configuration at the `homeConfigurations` output on the
+   `flake.nix` file.
+5. Import the `user/home.nix` file where is needed.
+
+### Grouped Modules
+
+1. Create a new `grouped-module/default.nix` at the `modules` folder.
+2. Create the new modules.
+3. Import the created modules into this one.
+4. Add an option to enable or disable the `grouped-module`.
+
+### Modules
+
+1. Create a `module/default.nix` at the `modules/grouped/module/path/` folder.
+2. Add the enable options to the module.
+3. Add the programs or NixOS settings to configure.
+4. Import the module into the immediate superior grouped module.
+
+### Configurations
+
+1. Create a `module/configuration.nix` at the
+   `configurations/grouped/module/path/` folder.
+2. Add it to the `module/default.nix` options to select the active
+   configuration.
+3. Import the `module/default.nix` file into the host or user configuration file
+   and select the active module configuration via the options.

@@ -1,0 +1,7 @@
+keys:
+  - &andescada age1nwagv5jfpu8v24rww0fql9kwtcvfvh9s9g38trr4szqdty8hqd6sddlz6x
+creation_rules:
+  - path_regex: secrets/andescada.yaml$
+    key_groups:
+      - age:
+        - *andescada
