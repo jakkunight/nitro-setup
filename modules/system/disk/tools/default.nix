@@ -1,5 +1,10 @@
-{ lib, config, inputs, pkgs, ... }:
 {
+  lib,
+  config,
+  inputs,
+  pkgs,
+  ...
+}: {
   options = {
     disk.tools = {
       enable = lib.mkEnableOption "Enable disk management tools.";
@@ -12,6 +17,8 @@
       pkgs.dust
       pkgs.ncdu
       pkgs.dua
+      pkgs.exfatprogs
+      pkgs.exfat
     ];
   };
 }
