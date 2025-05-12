@@ -28,7 +28,6 @@
     # NVF:
     nvf = {
       url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Nix-SOPS:
@@ -107,6 +106,19 @@
             sops-nix.nixosModules.sops
           ];
         };
+    };
+    packages = {
+      "x86_64-linux" = let
+        system = "x86_64-linux";
+        pkgs = nixpkgs.legacyPackages.${system};
+        inherit (pkgs) lib;
+      in {
+        nitro-installer = nixos-generators.nixosGenerate {
+          modules = [];
+          format = "install-iso";
+          inherit system pkgs lib;
+        };
+      };
     };
   };
 }
