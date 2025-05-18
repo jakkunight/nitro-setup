@@ -31,7 +31,7 @@
             shiftwidth = 2;
             autoindent = true;
           };
-          lineNumberMode = "number";
+          lineNumberMode = "relNumber";
           useSystemClipboard = true;
         };
       };
