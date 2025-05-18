@@ -1,13 +1,8 @@
-{ lib, config, inputs, ... }:
-{
-  config = {
-    programs.nvf.settings.vim = {
-      mini = {
-        notify = {
-          enable = true;
-        };
-      };
+_: {
+  programs.nvf.settings.vim = {
+    mini.notify.enable = true;
+    visuals.fidget-nvim = {
+      enable = true;
     };
   };
 }
-
