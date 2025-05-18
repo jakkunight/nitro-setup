@@ -60,6 +60,8 @@
       css.enable = true;
 
       nu.enable = true;
+      tailwind.enable = true;
+      svelte.enable = true;
     };
   };
 }
