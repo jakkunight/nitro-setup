@@ -1,5 +1,4 @@
-{ lib, config, inputs, pkgs, ... }:
-{
+_: {
   imports = [
     ./notifications
     ./statusline
@@ -9,28 +8,37 @@
     ./filefinder
     ./terminal
   ];
-  config = {
-    programs.nvf.settings.vim = {
-      theme = {
-        enable = true;
-        name = "tokyonight";
-        style = "night";
-      };
+  programs.nvf.settings.vim = {
+    theme = {
+      enable = true;
+      name = "tokyonight";
+      style = "night";
+    };
 
-      mini = {
-        icons = {
-          enable = true;
-        };
-        indentscope = {
-          enable = true;
-        };
-        trailspace = {
-          enable = true;
-        };
-        hipatterns = {
-          enable = true;
+    mini = {
+      icons = {
+        enable = true;
+      };
+      indentscope = {
+        enable = true;
+        setupOpts = {
+          symbol = "│";
         };
       };
+      trailspace = {
+        enable = true;
+      };
+      hipatterns = {
+        enable = true;
+      };
+      cursorword = {
+        enable = true;
+      };
+      ai.enable = true;
+      operators.enable = true;
+      splitjoin.enable = true;
+      basics.enable = true;
+      align.enable = true;
     };
   };
 }
