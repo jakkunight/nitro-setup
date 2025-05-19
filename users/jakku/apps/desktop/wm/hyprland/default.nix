@@ -40,12 +40,13 @@ _: {
       ];
       # General:
       general = {
-        gaps_in = 1;
-        gaps_out = 2;
+        gaps_in = 5;
+        gaps_out = 20;
         "col.inactive_border" = "rgba(3d59a1ff) rgba(41a6b5ff) 45deg";
         "col.active_border" = "rgba(7dcfffff) rgba(c3e88dff) 45deg";
         border_size = 0;
         resize_on_border = true;
+        no_border_on_floating = true;
         layout = "dwindle";
       };
       # Cursor:
@@ -57,13 +58,22 @@ _: {
         # Multimedia:
         ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-      ];
-      bindl = [
-        # Multimedia:
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioPrev, exec, playerctl previous"
         ", XF86AudioNext, exec, playerctl next"
+      ];
+      binde = [
+        # Resize windows with $mod + CTRL + arrow keys
+        "$mod CTRL, left, resizeactive, -1% 0%"
+        "$mod CTRL, right, resizeactive, 1% 0%"
+        "$mod CTRL, up, resizeactive, 0% 1%"
+        "$mod CTRL, down, resizeactive, 0% -1%"
+        # Resize windows with $mod + CTRL + vim keys
+        "$mod CTRL, h, resizeactive, -1% 0%"
+        "$mod CTRL, l, resizeactive, 1% 0%"
+        "$mod CTRL, k, resizeactive, 0% 1%"
+        "$mod CTRL, j, resizeactive, 0%% -1%"
       ];
       bindm = [
         # Move/resize windows with mainMod + LMB/RMB and dragging
@@ -141,16 +151,6 @@ _: {
         "$mod SHIFT, l, movewindow, r"
         "$mod SHIFT, k, movewindow, u"
         "$mod SHIFT, j, movewindow, d"
-        # Resize windows with $mod + CTRL + arrow keys
-        "$mod CTRL, left, resizeactive, -1% 0%"
-        "$mod CTRL, right, resizeactive, 1% 0%"
-        "$mod CTRL, up, resizeactive, 0% 1%"
-        "$mod CTRL, down, resizeactive, 0% -1%"
-        # Resize windows with $mod + CTRL + vim keys
-        "$mod CTRL, h, resizeactive, -1% 0%"
-        "$mod CTRL, l, resizeactive, 1% 0%"
-        "$mod CTRL, k, resizeactive, 0% 1%"
-        "$mod CTRL, j, resizeactive, 0%% -1%"
         # Take a screenshot:
         " , PRINT, exec, uwsm app -- hyprshot -m output"
         "SHIFT, PRINT, exec, uwsm app -- hyprshot -m region"
@@ -159,26 +159,28 @@ _: {
       decoration = {
         rounding = 10;
         # Transparency:
-        active_opacity = 0.90;
+        active_opacity = 0.80;
         inactive_opacity = 0.80;
         # Shadow:
         shadow = {
           enabled = true;
-          range = 10;
-          render_power = 2;
-          color = "rgba(7dcfffaa)";
-          color_inactive = "rgba(4fd6beaa)";
+          range = 30;
+          render_power = 3;
+          color = "rgba(000000AA)";
+          #color_inactive = "rgba(00000000)";
+          # color = "rgba(7dcfffaa)";
+          # color_inactive = "rgba(4fd6beaa)";
         };
         # Blur:
         blur = {
           enabled = true;
-          size = 8;
-          passes = 1;
+          size = 10;
+          passes = 2;
           new_optimizations = true;
           ignore_opacity = true;
           xray = true;
           noise = 0;
-          vibrancy = 0.1;
+          vibrancy = 0;
           brightness = 1;
           contrast = 1;
           blurls = [
