@@ -3,7 +3,6 @@ _: {
     ./arduino.nix
   ];
   programs.nvf.settings.vim.languages = {
-    enableLSP = true;
     enableFormat = true;
     enableTreesitter = true;
     enableExtraDiagnostics = true;
@@ -38,6 +37,7 @@ _: {
         enable = true;
         codeActions = true;
       };
+      nu.enable = true;
     };
 
     # Python:
