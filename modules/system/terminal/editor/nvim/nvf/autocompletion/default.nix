@@ -19,29 +19,49 @@ _: {
       surround = {
         enable = true;
       };
-      completion = {
-        enable = true;
+    };
+    autocomplete.blink-cmp = {
+      enable = true;
+      friendly-snippets.enable = true;
+      setupOpts = {
+        completion = {
+          accept.auto_brackets.enable = true;
+          ghost_text.enable = true;
+        };
+        sources = {
+          default = [
+            "lsp"
+            "path"
+            "snippets"
+            "buffer"
+            "ripgrep"
+            "spell"
+          ];
+          providers = {
+            ripgrep = {
+              module = "blink-ripgrep";
+            };
+            spell = {
+              module = "blink-cmp-spell";
+            };
+          };
+        };
+        snippets = {
+          presets = "mini_snippets";
+        };
+      };
+      sourcePlugins = {
+        ripgrep = {
+          enable = true;
+          module = "blink-ripgrep";
+          package = "blink-ripgrep-nvim";
+        };
+        spell = {
+          enable = true;
+          module = "blink-cmp-spell";
+          package = "blink-cmp-spell";
+        };
       };
     };
-    keymaps = [
-      {
-        key = "<Tab>";
-        mode = ["i"];
-        action = "pumvisible() ? \"\\<C-n>\" : \"\\<Tab>\"";
-        expr = true;
-      }
-      {
-        key = "<S-Tab>";
-        mode = ["i"];
-        action = "pumvisible() ? \"\\<C-p>\" : \"\"";
-        expr = true;
-      }
-      {
-        key = "<CR>";
-        mode = ["i"];
-        action = "pumvisible() ? \"\\<C-y>\" : \"\\<CR>\"";
-        expr = true;
-      }
-    ];
   };
 }
