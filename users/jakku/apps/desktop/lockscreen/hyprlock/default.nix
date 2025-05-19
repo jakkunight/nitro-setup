@@ -1,6 +1,5 @@
-{ config, lib, pkgs, ... }@inputs:
-{
-# Hyprlock:
+_: {
+  # Hyprlock:
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -10,7 +9,7 @@
       background = [
         {
           monitor = "";
-          path = "~/Pictures/wanderer-wallpaper-fhd.jpg";
+          path = "~/Pictures/wanderer-aranaras.jpg";
           color = "rgba(0, 0, 0, 0.5)";
           blur_passes = 1;
           blur_size = 4;
