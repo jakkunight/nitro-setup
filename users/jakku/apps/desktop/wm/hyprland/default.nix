@@ -1,11 +1,5 @@
 # Hyprland user config:
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
-}: {
+_: {
   # Hyprland:
   wayland.windowManager.hyprland = {
     enable = true;
@@ -166,7 +160,7 @@
         rounding = 10;
         # Transparency:
         active_opacity = 0.90;
-        inactive_opacity = 0.85;
+        inactive_opacity = 0.80;
         # Shadow:
         shadow = {
           enabled = true;
@@ -178,12 +172,19 @@
         # Blur:
         blur = {
           enabled = true;
-          size = 10;
-          passes = 2;
+          size = 8;
+          passes = 1;
           new_optimizations = true;
           ignore_opacity = true;
           xray = true;
-          blurls = "waybar";
+          noise = 0;
+          vibrancy = 0.1;
+          brightness = 1;
+          contrast = 1;
+          blurls = [
+            "waybar"
+            "wofi"
+          ];
         };
       };
       # Animations:
@@ -222,6 +223,11 @@
         force_default_wallpaper = 1;
         disable_hyprland_logo = true;
       };
+      layerrule = [
+        "blur,wofi"
+        "blur,waybar"
+      ];
+
       # Window rules:
       #windowrulev2 = ["pseudo, class:^.*(wezterm).*$"];
     };
