@@ -1,54 +1,93 @@
 _: {
-  programs.nvf.settings.vim.autocomplete = {
-    enableSharedCmpSources = true;
-    blink-cmp = {
+  programs.nvf.settings.vim = {
+    mini = {
+      bracketed = {
+        enable = true;
+      };
+      comment = {
+        enable = true;
+      };
+      operators = {
+        enable = true;
+      };
+      pairs = {
+        enable = true;
+      };
+      snippets = {
+        enable = true;
+      };
+      surround = {
+        enable = true;
+      };
+      # completion = {
+      #   enable = true;
+      # };
+    };
+    # keymaps = [
+    #   {
+    #     key = "<Tab>";
+    #     mode = ["i"];
+    #     action = "pumvisible() ? \"\\<C-n>\" : \"\\<Tab>\"";
+    #     expr = true;
+    #   }
+    #   {
+    #     key = "<S-Tab>";
+    #     mode = ["i"];
+    #     action = "pumvisible() ? \"\\<C-p>\" : \"\"";
+    #     expr = true;
+    #   }
+    #   {
+    #     key = "<CR>";
+    #     mode = ["i"];
+    #     action = "pumvisible() ? \"\\<C-y>\" : \"\\<CR>\"";
+    #     expr = true;
+    #   }
+    # ];
+    autocomplete.blink-cmp = {
       enable = true;
       friendly-snippets.enable = true;
       setupOpts = {
-        auto_show = true;
+        completion = {
+          accept.auto_brackets = true;
+          ghost_text.enable = true;
+        };
         sources = {
           default = [
             "lsp"
             "path"
             "snippets"
             "buffer"
-            "omni"
-            "spell"
             "ripgrep"
+            "spell"
+            "latex"
+            "ctags"
           ];
+          providers = {
+            ripgrep = {
+              module = "blink-ripgrep";
+            };
+            spell = {
+              module = "blink-cmp-spell";
+            };
+            latex = {
+              module = "blink-cmp-latex";
+            };
+            ctags = {
+              module = "blink-cmp-ctags";
+              fallback_for = [
+                "lsp"
+              ];
+            };
+          };
         };
-        providers = {
-          lsp = {
-            enable = true;
-            module = "";
-            score_offset = 100;
-          };
-          path = {
-            enable = true;
-            score_offset = 200;
-          };
-          snippets = {
-            enable = true;
-            score_offset = 300;
-          };
-          buffer = {
-            enable = true;
-            score_offset = 400;
-          };
-          omni = {
-            enable = true;
-            score_offset = 600;
-          };
+        snippets = {
+          presets = "mini_snippets";
         };
       };
       sourcePlugins = {
-        ripgrep = {
+        path = {
           enable = true;
-          package = "blink-ripgrep-nvim";
-        };
-        spell = {
-          enable = true;
-          package = "blink-cmp-spell";
+          package = "cmp-path";
         };
       };
     };
