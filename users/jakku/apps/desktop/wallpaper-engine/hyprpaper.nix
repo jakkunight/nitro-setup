@@ -12,7 +12,7 @@ in {
       ipc = "on";
       preload = map ({
         bg,
-        mon
+        mon,
       }: "${bg}")
       db;
       wallpaper = map ({
