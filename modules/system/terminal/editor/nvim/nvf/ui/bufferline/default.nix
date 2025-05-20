@@ -1,8 +1,6 @@
 _: {
   programs.nvf.settings.vim = {
-    mini.tabline = {
-      enable = true;
-    };
+    tabline.nvimBufferline.enable = true;
     keymaps = [
       {
         key = "<leader>-";
