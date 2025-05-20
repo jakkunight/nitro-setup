@@ -56,12 +56,12 @@ _: {
       # Keybindings
       bindel = [
         # Multimedia:
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ", XF86AudioPlay, exec, playerctl play-pause"
+        #", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioPrev, exec, playerctl previous"
         ", XF86AudioNext, exec, playerctl next"
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
       ];
       binde = [
         # Resize windows with $mod + CTRL + arrow keys
@@ -160,14 +160,14 @@ _: {
         rounding = 10;
         # Transparency:
         active_opacity = 0.80;
-        inactive_opacity = 0.80;
+        inactive_opacity = 0.70;
         # Shadow:
         shadow = {
           enabled = true;
           range = 30;
           render_power = 3;
           color = "rgba(000000AA)";
-          #color_inactive = "rgba(00000000)";
+          # color_inactive = "rgba(00000000)";
           # color = "rgba(7dcfffaa)";
           # color_inactive = "rgba(4fd6beaa)";
         };
