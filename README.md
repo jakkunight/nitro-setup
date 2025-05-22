@@ -44,7 +44,13 @@ with NixOS.
 
 ## Adding new things
 
-> [!IMPORTANT] All the paths are relative to the project's root folder.
+> [!IMPORTANT]
+> All the paths are relative to the project's root folder.
+
+> [!IMPORTANT]
+> For new things, it is better to add them as `something/default.nix`, instead
+> of `something.nix`. The reason for this is that it provides better scaling on
+> larger projects.
 
 ### Hosts
 
@@ -62,9 +68,8 @@ Here's a code snippet for the new host file:
 # hosts/hostname/default.nix
 { modulesPath, config, lib, pkgs, inputs, ... }: {
     imports = [
-        # Import all modules and configs:
+        # Import all modules:
         ../../modules
-        ../../configurations
 
         # Don't forget to replace with the correct user config file:
         ../../users/user
@@ -160,7 +165,7 @@ And here is a snippet to add it into the `flake.nix` file:
             nixpkgs.lib.nixosSystem
             {
                 inherit system;
-                specialArgs = {
+              Eres un administrador de sistemas experto en Nix y NixOS. Toma en cuenta la especificación en el siguiente archivo. Luego voy a ir pidiéndote que generes los hosts, usuarios, módulos y configuraciones para crear setups reproducibles. Toma muy en cuenta los snippets y patrones de código que aparecen en el documento.  specialArgs = {
                     inherit inputs;
                 };
                 modules = [
@@ -193,6 +198,24 @@ And here is a snippet to add it into the `flake.nix` file:
 }
 ```
 
+> [!IMPORTANT]
+> NixOS needs to boot:
+>
+> - A `boot` partition.
+> - A `root` partition.
+> - A `nix` partition.
+> - A configured bootloader.
+>
+> The rest of modules and parameters are optional, but obviously make the OS
+> usable.
+
+> [!IMPORTANT]
+> You **will** need a text editor to edit your configuration. NixOS comes with
+> [GNU nano](https://www.nano-editor.org/) as the default text editor, but I
+> prefer to use [NVF](https://notashelf.github.io/nvf) or
+> [NixVim](https://nix-community.github.io/nixvim) since they're specialized in
+> writing Nix code.
+
 ### Users
 
 1. Create a `user/default.nix` at the `users/` directory and fill it up with the
@@ -204,15 +227,14 @@ And here is a snippet to add it into the `flake.nix` file:
 4. Create a new user configuration at the `homeConfigurations` output on the
    `flake.nix` file. Make sure is pointing to the correct user's `home.nix`
    file.
-5. Import the `user/home.nix` file where is needed.
+5. Import the `user/home.nix` file where is needed (generally only into the
+   `homeConfigurations` or the `home-manager` module at the `flake.nix`).
+
+Here's code snippet to create a new user:
 
 ```nix
 # Creates user:
-{
-  config,
-  lib,
-  ...
-}: {
+_: {
 
     users.users.myname = {
         isNormalUser = true;
@@ -239,6 +261,23 @@ And here is a snippet to add it into the `flake.nix` file:
             "@wheel"
         ];
     };
+}
+```
+
+And here is its `home.nix` file:
+
+```nix
+# users/username/home.nix
+{ config, lib, ... }: {
+    home = {
+        username = "username";
+        homeDirectory = "/home/username";
+        stateVersion = "25.05";
+    };
+
+    imports = [
+      ../../modules
+    ];
 }
 ```
 
@@ -299,6 +338,12 @@ in
 }
 ```
 
+For an intermediate selection module (ie. a module that selects another module
+and passes a valid configuration to it), could be used the following pattern:
+
+```nix
+```
+
 > [!NOTE]
 > Notice that not all modules need a `configuration` option.
 
@@ -311,21 +356,22 @@ in
 3. Import the `module/default.nix` file into the host or user configuration file
    and select the active module configuration via the options.
 
+> [!IMPORTANT]
+> Notice that every module must be able to "scan" the `configurations/` folder
+> to access their required configs. Somthing remarkable is that the top-level
+> configurations (ie. `host/default.nix`, `home.nix`, etc) **NEVER** imports the
+> `configurations/` folder.
+
 Example:
 
 ```nix
-# hosts/hostname/default.nix
+# configurations/module/my-config/default.nix
 { config, ... }: {
     imports = [
-        ../../modules
+        # If the configuration is too complex, it could be broken down
+        # into smaller files and imported into this file.
         # ...
     ];
-    # ...
-    config.module.system.utils.my-util = {
-        enable = true;
-        configuration = "my-config";
-        # ...
-    };
     # ...
 }
 ```
