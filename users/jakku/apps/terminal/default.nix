@@ -1,6 +1,5 @@
 # Full terminal config:
-{config, lib, pkgs, inputs, ... }:
-{
+_: {
   imports = [
     ./alacritty.nix
     ./direnv.nix
@@ -13,5 +12,7 @@
     ./yazi.nix
     ./zsh.nix
     ./zellij.nix
+    ./helix.nix
+    ./presentterm.nix
   ];
 }
