@@ -41,7 +41,7 @@ _: {
       # General:
       general = {
         gaps_in = 5;
-        gaps_out = 20;
+        gaps_out = 10;
         "col.inactive_border" = "rgba(3d59a1ff) rgba(41a6b5ff) 45deg";
         "col.active_border" = "rgba(7dcfffff) rgba(c3e88dff) 45deg";
         border_size = 0;
@@ -56,7 +56,7 @@ _: {
       # Keybindings
       bindel = [
         # Multimedia:
-        #", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioPrev, exec, playerctl previous"
         ", XF86AudioNext, exec, playerctl next"
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
