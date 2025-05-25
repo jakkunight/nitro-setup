@@ -1,10 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   config = {
     home.packages = [
       pkgs.kitty-img
@@ -12,9 +6,12 @@
     programs.kitty = {
       enable = true;
       font = {
-        name = "CaskadyaCoveNerdFont";
-        size = 14;
-        package = pkgs.nerd-fonts.hack;
+        # name = "ProFontIIxNerdfont";
+        # name = "HackNerdFont";
+        name = "DepartureMonoNerdFont";
+        # name = "BigBlueTermPlusNerdFont";
+        size = 18;
+        # package = pkgs.nerd-fonts.hack;
       };
       settings = {
         enable_audio_bell = false;

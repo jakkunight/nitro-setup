@@ -1,6 +1,11 @@
 # NerdFonts:
-{ pkgs, config, lib, inputs, ... }: 
 {
+  pkgs,
+  config,
+  lib,
+  inputs,
+  ...
+}: {
   options = {
     graphics.fonts = {
       enable = lib.mkEnableOption "Enable custom fonts.";
@@ -23,6 +28,8 @@
       nerd-fonts.ubuntu
       nerd-fonts.departure-mono
       nerd-fonts.bigblue-terminal
+      nerd-fonts.hasklug
+      nerd-fonts.profont
       inputs.genshin-font.packages.${pkgs.system}.default
     ];
   };
