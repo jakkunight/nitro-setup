@@ -10,8 +10,9 @@
         # name = "HackNerdFont";
         name = "DepartureMonoNerdFont";
         # name = "BigBlueTermPlusNerdFont";
+        # name = "CozetteCrossedSevenVectorBold";
         size = 18;
-        # package = pkgs.nerd-fonts.hack;
+        # package = pkgs.cozette;
       };
       settings = {
         enable_audio_bell = false;

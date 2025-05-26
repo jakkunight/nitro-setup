@@ -31,6 +31,7 @@
       nerd-fonts.hasklug
       nerd-fonts.profont
       inputs.genshin-font.packages.${pkgs.system}.default
+      cozette
     ];
   };
 }
