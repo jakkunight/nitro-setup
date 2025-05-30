@@ -32,7 +32,14 @@
             autoindent = true;
           };
           lineNumberMode = "relNumber";
-          useSystemClipboard = true;
+          clipboard = {
+            enable = true;
+            providers = {
+              wl-copy.enable = true;
+              xclip.enable = true;
+            };
+            registers = "unnamedplus";
+          };
         };
       };
     };
