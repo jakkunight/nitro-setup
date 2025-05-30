@@ -4,6 +4,14 @@ _: let
       bg = "~/Pictures/wanderer-aranaras.jpg";
       mon = "";
     }
+    {
+      bg = "~/Pictures/wanderer-wallpaper-fhd.jpg";
+      mon = "";
+    }
+    {
+      bg = "~/Pictures/wanderer-human-durin-wallpaper-4k.jpg";
+      mon = "";
+    }
   ];
 in {
   services.hyprpaper = {
