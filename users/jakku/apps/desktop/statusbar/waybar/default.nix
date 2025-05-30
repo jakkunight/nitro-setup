@@ -1,10 +1,5 @@
 # Waybar config:
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
+_: {
   programs.waybar = {
     enable = true;
     settings = {
@@ -16,10 +11,10 @@
         margin-right = 0;
         margin-top = 0;
         padding = 5;
-        output = [
-          "eDP-1"
-          "HDMI-A-1"
-        ];
+        # output = [
+        #   "eDP-1"
+        #   "HDMI-A-1"
+        # ];
         modules-left = [
           "user"
           "tray"
@@ -49,6 +44,13 @@
         cpu = {
           interval = 1;
           format = "  {usage}% ";
+          "format-icons" = [
+            "󰡳 "
+            "󰡵 "
+            "󰊚 "
+            "󰡴 "
+            " "
+          ];
         };
         memory = {
           interval = 1;
@@ -56,7 +58,14 @@
         };
         temperature = {
           interval = 1;
-          format = "  {temperatureC}°C ";
+          format = " {icon} {temperatureC}°C ";
+          "format-icons" = [
+            " "
+            " "
+            " "
+            " "
+            " "
+          ];
         };
         disk = {
           interval = 1;
@@ -67,7 +76,7 @@
         };
         user = {
           icon = true;
-          avatar = "$HOME/.face";
+          avatar = "$HOME/.face.icon";
           height = 36;
           width = 36;
           format = "{user}";
@@ -140,7 +149,19 @@
           };
         };
         backlight = {
-          format = "  {percent}";
+          format = " {icon} {percent}";
+          format-icons = [
+            "󱩎 "
+            "󱩏 "
+            "󱩐 "
+            "󱩑 "
+            "󱩒 "
+            "󱩓 "
+            "󱩔 "
+            "󱩕 "
+            "󱩖 "
+            "󰛨 "
+          ];
           interval = 5;
           device = "intel_backlight";
           "on-scroll-up" = "brightnessctl set 1%+";
