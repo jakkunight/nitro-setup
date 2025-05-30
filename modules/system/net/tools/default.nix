@@ -1,8 +1,13 @@
 # Networking config and modules:
-{ lib, config, ... }: {
+{
+  lib,
+  config,
+  ...
+}: {
   imports = [
     ./wireshark.nix
     ./nmap.nix
+    ./hblock.nix
   ];
   options = {
     net.tools = {
@@ -13,6 +18,7 @@
     net.tools = {
       nmap.enable = lib.mkDefault true;
       wireshark.enable = lib.mkDefault true;
+      hblock.enable = lib.mkDefault true;
     };
   };
 }
