@@ -11,7 +11,7 @@
         name = "DepartureMonoNerdFont";
         # name = "BigBlueTermPlusNerdFont";
         # name = "CozetteCrossedSevenVectorBold";
-        size = 18;
+        size = 14;
         # package = pkgs.cozette;
       };
       settings = {
