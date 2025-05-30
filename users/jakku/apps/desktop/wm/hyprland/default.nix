@@ -206,7 +206,7 @@ _: {
       gestures = {
         workspace_swipe = true;
       };
-      # Layoouts:
+      # Layouts:
       dwindle = {
         pseudotile = true;
         preserve_split = true;
