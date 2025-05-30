@@ -1,5 +1,11 @@
 # Hyprland!
-{ lib, config, inputs, pkgs, ... }: {
+{
+  lib,
+  config,
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [];
   options = {
     graphics.wm.hyprland = {
@@ -10,7 +16,6 @@
     };
   };
   config = lib.mkIf config.graphics.wm.hyprland.enable {
-
     programs = {
       uwsm = {
         enable = true;
@@ -41,65 +46,65 @@
       enable = true;
     };
 
-    environment.systemPackages = [
-      # Default terminal emulator:
-      pkgs.kitty
+    environment.systemPackages =
+      [
+        # Default terminal emulator:
+        pkgs.kitty
 
-      # Status bar:
-      pkgs.waybar
+        # Status bar:
+        pkgs.waybar
 
-      # Application launcher:
-      pkgs.wofi
+        # Application launcher:
+        pkgs.wofi
 
-      # Filemanager (GUI):
-      pkgs.nemo
+        # Filemanager (GUI):
+        pkgs.nemo
 
-      # Multimedia:
-      pkgs.vlc
-      pkgs.loupe
-      pkgs.firefox
-      pkgs.brave
-      pkgs.librewolf
+        # Multimedia:
+        pkgs.vlc
+        pkgs.loupe
+        pkgs.firefox
+        pkgs.brave
 
-      # Notifications:
-      pkgs.swaynotificationcenter
+        # Notifications:
+        pkgs.swaynotificationcenter
 
-      # Authentication agent:
-      pkgs.hyprpolkitagent
+        # Authentication agent:
+        pkgs.hyprpolkitagent
 
-      # Network applet:
-      pkgs.networkmanagerapplet
+        # Network applet:
+        pkgs.networkmanagerapplet
 
-      # Bluetooth applet:
-      pkgs.blueberry
+        # Bluetooth applet:
+        pkgs.blueberry
 
-      # Wallpapers:
-      pkgs.hyprpaper
+        # Wallpapers:
+        pkgs.hyprpaper
 
-      # Lockscreen:
-      pkgs.hyprlock
+        # Lockscreen:
+        pkgs.hyprlock
 
-      # Idle daemon:
-      pkgs.hypridle
+        # Idle daemon:
+        pkgs.hypridle
 
-      # Screenshots:
-      pkgs.hyprshot
-
-    ] ++ (
-      if config.graphics.wm.hyprland.nvidia.enable
-      then [
-        pkgs.egl-wayland
-        pkgs.nvidia-vaapi-driver
+        # Screenshots:
+        pkgs.hyprshot
       ]
-      else []
-    );
+      ++ (
+        if config.graphics.wm.hyprland.nvidia.enable
+        then [
+          pkgs.egl-wayland
+          pkgs.nvidia-vaapi-driver
+        ]
+        else []
+      );
 
     # Nvidia support:
     environment.sessionVariables = lib.mkIf config.graphics.wm.hyprland.nvidia.enable {
       "LIBVA_DRIVER_NAME" = "nvidia";
 
       # Comment the following line if experimenting issues:
-      "__GLX_VENDOR_LIBRARY_NAME" = "nvidia"; 
+      "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
       "NVD_BACKEND" = "direct";
 
       # For Electron apps:
