@@ -14,5 +14,6 @@ _: {
     ./zellij.nix
     ./helix.nix
     ./presentterm.nix
+    ./warp.nix
   ];
 }
