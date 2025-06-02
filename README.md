@@ -338,10 +338,41 @@ in
 }
 ```
 
-For an intermediate selection module (ie. a module that selects another module
+For an intermediate selection module (i.e. a module that selects another module
 and passes a valid configuration to it), could be used the following pattern:
 
 ```nix
+{
+    config,
+    lib,
+    ...
+}:
+let
+    inherit (lib) mkOption mkEnableOption mkIf types hasAttr attrNames elem;
+    inherit (builtins) readDir;
+    submodsPath = ./.;
+    # Use as many '..' as you need to reach the `configurations` folder.
+    configsPath = ../configurations/path/to/my/module;
+
+    submods = attrNames (readDir submodsPath);
+    configs = attrNames (readDir configsPath);
+in
+{
+    options.modules.path.to.my.module = {
+        enable = mkEnableOption "Wether to enable this module.";
+        submod = mkOption {
+            description = "The active submodule.";
+            type = types.nullOr types.enum [];
+            default = null;
+        };
+        configuration = mkOption {
+            description = "The active submodule configuration.";
+            type = types.nullOr types.enum [];
+            default = null;
+        };
+    };
+    imports = [];
+}
 ```
 
 > [!NOTE]
@@ -372,6 +403,7 @@ Example:
         # into smaller files and imported into this file.
         # ...
     ];
+    # Module configuration.
     # ...
 }
 ```
