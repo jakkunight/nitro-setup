@@ -75,7 +75,10 @@
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       system = "x86_64-linux";
-      config.allowUnfree = true;
+      config = {
+        allowUnfree = true;
+        allowUnfreePredicate = _: true;
+      };
     };
   in {
     nixosConfigurations = {

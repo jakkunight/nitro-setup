@@ -19,6 +19,7 @@
       allowUnfree = true;
       allowUnfreePredicate = _: true;
     };
+    environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = 1;
 
     # State Version:
     system.stateVersion = "25.05";
