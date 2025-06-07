@@ -17,7 +17,10 @@ _: {
         force_zero_scaling = true;
       };
       # Monitor:
-      monitor = ",preferred,auto,1.0";
+      monitor = [
+        "eDP-1,preferred,auto,1.0"
+        ",preferred,auto,auto,mirror,eDP-1"
+      ];
       # Main $mod key:
       "$mod" = "SUPER";
       # Set input settings:
@@ -103,9 +106,9 @@ _: {
         # Close Hyprland:
         "$mod SHIFT, Q, exec, uwsm stop -r"
         # Reboot:
-        "$mod SHIFT, R, exec, systemctl reboot -i"
+        # "$mod SHIFT, R, exec, systemctl reboot -i"
         # Poweroff:
-        "$mod SHIFT, P, exec, systemctl poweroff -i"
+        # "$mod SHIFT, P, exec, systemctl poweroff -i"
 
         # Hot-reloading:
         #"$mod R, exec, hyprctl reload"

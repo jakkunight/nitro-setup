@@ -6,9 +6,9 @@
     programs.kitty = {
       enable = true;
       font = {
-        # name = "ProFontIIxNerdfont";
+        name = "ProFontIIxNerdfont";
         # name = "HackNerdFont";
-        name = "DepartureMonoNerdFont";
+        # name = "DepartureMonoNerdFont";
         # name = "BigBlueTermPlusNerdFont";
         # name = "CozetteCrossedSevenVectorBold";
         size = 14;

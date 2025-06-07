@@ -1,6 +1,9 @@
 # GTK config:
-{ pkgs, inputs, ... }:
 {
+  pkgs,
+  inputs,
+  ...
+}: {
   home.pointerCursor = {
     gtk.enable = true;
     x11.enable = true;
