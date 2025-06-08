@@ -51,6 +51,8 @@
 
       python.enable = true;
 
+      java.enable = true;
+
       markdown.enable = true;
 
       html = {
