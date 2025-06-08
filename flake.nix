@@ -25,6 +25,12 @@
       url = "github:danth/stylix";
     };
 
+    # Xremap:
+    xremap = {
+      url = "github.com:xremap/nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # NVF:
     nvf = {
       url = "github:notashelf/nvf";
@@ -56,8 +62,7 @@
     #### Other apps ####
     # Zen Browser:
     zen-browser = {
-      url = "github:MarceColl/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:0xc000022070/zen-browser-flake";
     };
 
     #### My own packages (?) ####

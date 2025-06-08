@@ -3,10 +3,12 @@
   config,
   lib,
   ...
-}: {
-  users.users.jakku = {
+}: let
+  user = "jakku";
+in {
+  users.users.${user} = {
     isNormalUser = true;
-    initialPassword = "1234";
+    initialPassword = "${user}";
     extraGroups = [
       # Enable ‘sudo’ for the user
       "wheel"
@@ -20,7 +22,7 @@
 
     # Add the user to the Nix store trusted users:
     nix.settings.trusted-users = [
-      "jakku"
+      "${user}"
       "root"
       "@wheel"
     ];
