@@ -109,6 +109,8 @@
             stylix.nixosModules.stylix
             nvf.nixosModules.nvf
             sops-nix.nixosModules.sops
+            ./hosts/nitro
+            disko.nixosModules.disko
           ];
         };
     };

@@ -4,12 +4,11 @@
   inputs,
   ...
 }: let
+  cfg = config.modules.system.disk;
   # Define a name for each custom disko configuration
-  layouts = {
-    simple = ./configs/simple-layout.nix;
-  };
-  selectedLayout = layouts.${config.modules.system.hardware.disk.disko.layout} {
-    device-target = config.modules.system.hardware.disk.disko.device;
+  layouts = builtins.readDir ../../../configurations/system/disk/default.nix;
+  selectedLayout = import ../../../configurations/system/disk/${cfg.layout} {
+    device-target = cfg.device;
   };
 in {
   options = {
@@ -26,7 +25,7 @@ in {
       };
     };
   };
-  imports = lib.optionals (layouts ? ${config.modules.system.hardware.disk.disko.layout}) [
+  imports = [
     inputs.disko.nixosModules.disko
     selectedLayout
   ];

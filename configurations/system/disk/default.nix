@@ -1,8 +1,8 @@
-{target-device ? "/dev/nvme0n1"}: {
+{target-disk ? "sda", ...}: {
   disko.devices = {
     disk = {
       main = {
-        device = "${target-device}";
+        device = "/dev/${target-disk}";
         type = "disk";
         content = {
           type = "gpt";

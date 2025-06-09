@@ -1,14 +1,10 @@
-{
-  config,
-  lib,
-  ...
-}: {
+_: {
   imports = [
-    ./gaming
-    ./hardware
-    ./net
+    ./disk
+    ./boot
+    ./gpu
     ./nix
-    ./security
+    ./networking
     ./terminal
   ];
 }

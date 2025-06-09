@@ -6,10 +6,8 @@
   ...
 }: {
   imports = [
-    inputs.disko.nixosModules.disko
+    ../../modules/system
   ];
-
-  disko.device = import ../../configurations/system/disko/default.nix {dev = "nvme0n1";};
 
   nixpkgs.hostPlatform = "x86_64-linux";
   networking.hostName = "nitro";
@@ -34,4 +32,9 @@
   ];
 
   system.stateVersion = "25.05";
+
+  modules.system.disk = {
+    layout = "default";
+    device = "nvme0n1";
+  };
 }
