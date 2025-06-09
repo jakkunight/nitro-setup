@@ -8,6 +8,8 @@
   imports = [
   ];
 
+  disko.device = import ../../configurations/system/disko/default.nix;
+
   nixpkgs.hostPlatform = "x86_64-linux";
   networking.hostName = "nitro";
 
@@ -26,6 +28,8 @@
   environment.systemPackages = with pkgs; [
     micro # A simple text editor.
     git # Needed to use Flakes and clone repos.
+    neovim
+    helix
   ];
 
   system.stateVersion = "25.05";
