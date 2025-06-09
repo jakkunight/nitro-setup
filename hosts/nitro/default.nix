@@ -8,7 +8,7 @@
   imports = [
   ];
 
-  disko.device = import ../../configurations/system/disko/default.nix;
+  disko.device = import ../../configurations/system/disko/default.nix {dev = "nvme0n1";};
 
   nixpkgs.hostPlatform = "x86_64-linux";
   networking.hostName = "nitro";
