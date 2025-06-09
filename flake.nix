@@ -27,7 +27,7 @@
 
     # Xremap:
     xremap = {
-      url = "github.com:xremap/nix-flake";
+      url = "github:xremap/nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
