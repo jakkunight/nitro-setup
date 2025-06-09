@@ -96,7 +96,6 @@
             inherit inputs;
           };
           modules = [
-            disko.nixosModules.disko
             home-manager.nixosModules.home-manager
             {
               home-manager = {

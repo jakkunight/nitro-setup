@@ -6,6 +6,7 @@
   ...
 }: {
   imports = [
+    inputs.disko.nixosModules.disko
   ];
 
   disko.device = import ../../configurations/system/disko/default.nix {dev = "nvme0n1";};
