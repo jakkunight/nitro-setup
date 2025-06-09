@@ -3,25 +3,18 @@
   lib,
   ...
 }: let
-  cfg = config.modules.system.boot;
-
   # Available configurations in the selected bootloader
-  configurations =
-    builtins.attrNames (builtins.readDir ../../../configurations/system/boot);
-  selectedConfig = ../../../configurations/system/boot/${cfg.configuration};
+  configurations = builtins.readDir ../../../configurations/system/boot;
 in {
   options.modules.system.boot = {
     enable = lib.mkEnableOption "Enable bootloader module";
     configuration = lib.mkOption {
-      type = lib.types.enum configurations;
+      type = lib.types.enum (builtins.attrNames configurations);
       default = "systemd";
       description = "Which configuration to load for the selected bootloader.";
     };
-  };
-
-  config = {
     imports = [
-      selectedConfig
+      ../../../configurations/system/boot/${config.modules.system.boot.configuration}
     ];
   };
 }

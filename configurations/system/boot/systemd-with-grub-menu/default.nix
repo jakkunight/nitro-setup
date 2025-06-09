@@ -15,7 +15,6 @@
     grub = {
       enable = true;
       efiSupport = true;
-      device = "nodev"; # <- don't install GRUB to a real device
       useOSProber = true;
       # Optional theme
       theme = null;
