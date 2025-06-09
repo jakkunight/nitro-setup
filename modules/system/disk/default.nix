@@ -4,15 +4,11 @@
   inputs,
   ...
 }: let
-  cfg = config.modules.system.disk;
   # Define a name for each custom disko configuration
   layouts = builtins.readDir ../../../configurations/system/disk/default.nix;
-  selectedLayout = import ../../../configurations/system/disk/${cfg.layout} {
-    device-target = cfg.device;
-  };
 in {
   options = {
-    modules.system.hardware.disk.disko = {
+    modules.system.disk.disko = {
       layout = lib.mkOptionType {
         type = lib.types.enum (builtins.attrNames layouts);
         default = "simple";
@@ -25,17 +21,21 @@ in {
       };
     };
   };
-  imports = [
-    inputs.disko.nixosModules.disko
-    selectedLayout
-  ];
-  # Loads ALL the drivers for mass storage devices
-  boot.initrd.availableKernelModules = [
-    "xhci_pci"
-    "thunderbolt"
-    "vmd"
-    "nvme"
-    "usb_storage"
-    "sd_mod"
-  ];
+  config = {
+    imports = [
+      inputs.disko.nixosModules.disko
+      (import ../../../configurations/system/disk/${config.modules.system.disk.layout} {
+        device-target = config.modules.system.disk.device;
+      })
+    ];
+    # Loads ALL the drivers for mass storage devices
+    boot.initrd.availableKernelModules = [
+      "xhci_pci"
+      "thunderbolt"
+      "vmd"
+      "nvme"
+      "usb_storage"
+      "sd_mod"
+    ];
+  };
 }

@@ -37,4 +37,9 @@
     layout = "default";
     device = "nvme0n1";
   };
+
+  modules.system.boot = {
+    enable = true;
+    configuration = "systemd-with-grub-menu";
+  };
 }
