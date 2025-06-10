@@ -6,11 +6,12 @@
     programs.kitty = {
       enable = true;
       font = {
-        name = "ProFontIIxNerdfont";
+        # name = "ProFontIIxNerdfont";
         # name = "HackNerdFont";
         # name = "DepartureMonoNerdFont";
         # name = "BigBlueTermPlusNerdFont";
         # name = "CozetteCrossedSevenVectorBold";
+        name = "CaskadyaCove";
         size = 14;
         # package = pkgs.cozette;
       };
