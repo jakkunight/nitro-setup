@@ -1,10 +1,13 @@
 {
   config,
   lib,
+  devices,
   ...
 }: let
   inherit (lib) types mkOption;
-  layouts = lib.attrsets.filterAttrs (_: type: type == "directory") (builtins.readDir ../../../configs/system/disko);
+  configPath = ../../../configs/system/disko;
+  layouts = builtins.readDir configPath;
+  selectedConfig = configPath + "/${config.modules.system.disko.layout}";
 in {
   options.modules.system.disko = {
     layout = mkOption {
@@ -14,12 +17,10 @@ in {
     };
   };
   config = {
-    imports = [
-      layouts.${config.modules.system.disko.layout}
-    ];
     # To avoid the bug for Disko not setting the boot device:
     boot.loader.grub.devices = [
       "nodev"
     ];
+    disko.devices = import selectedConfig {inherit config lib devices;};
   };
 }
