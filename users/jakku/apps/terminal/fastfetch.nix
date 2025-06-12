@@ -9,10 +9,13 @@
     enable = true;
     settings = {
       logo = {
-        type = "chafa";
-        width = 48;
-        height = 20;
-        source = "~/Pictures/jakku-profile.png";
+        type = "auto";
+        color = {
+          "1" = "#7dcfff";
+        };
+        width = 32;
+        height = 32;
+        source = "~/Pictures/jakku-profile.txt";
       };
       modules = [
         "title"
