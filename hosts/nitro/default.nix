@@ -22,4 +22,10 @@ _: {
     # Use XKB options on TTY:
     useXkbConfig = true;
   };
+
+  # Disk Layout:
+  modules.system.disko = {
+    layout = "simple-efi";
+    devices = ["nvme0n1"];
+  };
 }

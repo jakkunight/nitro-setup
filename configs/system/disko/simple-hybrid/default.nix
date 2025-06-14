@@ -1,0 +1,5 @@
+{
+  config,
+  devices ? ["sda"],
+  ...
+}: {}

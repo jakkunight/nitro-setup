@@ -19,10 +19,7 @@
     nvidiaSettings = true;
     inherit nvidiaBusId intelBusId amdBusId;
     prime = {
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
+      sync.enable = true;
     };
   };
 }

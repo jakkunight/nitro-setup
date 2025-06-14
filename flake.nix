@@ -7,12 +7,22 @@
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
     disko,
+    nixvim,
+    stylix,
     ...
   } @ inputs: {
     nixosConfigurations = {
@@ -24,7 +34,6 @@
           inherit system pkgs;
           specialArgs = {
             inherit inputs;
-            devices = ["nvme0n1"];
           };
           modules = [
             disko.nixosModules.disko
