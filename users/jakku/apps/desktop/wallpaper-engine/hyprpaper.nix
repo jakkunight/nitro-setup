@@ -1,10 +1,6 @@
 _: let
   db = [
     {
-      bg = "~/Pictures/wanderer-aranaras.jpg";
-      mon = "";
-    }
-    {
       bg = "~/Pictures/wanderer-wallpaper-fhd.jpg";
       mon = "";
     }
@@ -14,6 +10,10 @@ _: let
     }
     {
       bg = "~/Pictures/wanderer-human-durin-wallpaper-4k.jpg";
+      mon = "";
+    }
+    {
+      bg = "~/Pictures/wanderer-aranaras.jpg";
       mon = "";
     }
   ];
