@@ -24,8 +24,16 @@ _: {
   };
 
   # Disk Layout:
-  modules.system.disko = {
-    layout = "simple-efi";
-    devices = ["nvme0n1"];
+  modules.system = {
+    disko = {
+      layout = "simple-efi";
+      devices = ["nvme0n1"];
+    };
+    nvidia = {
+      enable = true;
+      nvidiaDrivers = "beta";
+      nvidiaBusId = "";
+      intelBusId = "";
+    };
   };
 }

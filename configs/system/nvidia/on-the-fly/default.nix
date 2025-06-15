@@ -3,10 +3,10 @@
   nvidiaDrivers ? "stable",
   nvidiaBusId ? "",
   intelBusId ? "",
-  amdBusId ? "",
+  amdgpuBusId ? "",
   ...
 }: {
-  hardware.nvidia = {
+  nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.${nvidiaDrivers};
     modesetting = {
       enable = true;
@@ -17,8 +17,8 @@
     };
     open = true;
     nvidiaSettings = true;
-    inherit nvidiaBusId intelBusId amdBusId;
     prime = {
+      inherit nvidiaBusId intelBusId amdgpuBusId;
       offload = {
         enable = true;
         enableOffloadCmd = true;

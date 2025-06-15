@@ -4,24 +4,38 @@
   ...
 }: let
   inherit (lib) mkIf mkOption types mkEnableOption;
-  cfg = config.options.modules.system.nvidia;
+  cfg = config.modules.system.nvidia;
   configsPath = ../../../configs/system/nvidia;
+  profiles = builtins.readDir configsPath;
+  selectedConfig = configsPath + "/${cfg.profile}";
 in {
-  imports = [];
   options.modules.system.nvidia = {
     enable = mkEnableOption "Weather to enable the Nvidia GPU module.";
-    driverPackage = mkOption {
+    profile = mkOption {
+      description = "The selected profile for the Nvidia GPU.";
+      type = types.enum (builtins.attrNames profiles);
+      default = "on-the-fly";
+    };
+    nvidiaDrivers = mkOption {
       description = "The package to use for the Nvidia drivers.";
-      type = types.enum lib.attrNames config.boot.kernelPackages.nvidiaPackages;
+      type = types.enum (lib.attrNames config.boot.kernelPackages.nvidiaPackages);
       default = "stable";
     };
     nvidiaBusId = mkOption {
       description = "Provides the Nvidia PCI bus ID.";
-      type = types.nonEmptyString;
+      type = types.nonEmptyStr;
       default = "";
     };
-    intelBusId = mkOption {};
-    amdBusId = mkOption {};
+    intelBusId = mkOption {
+      description = "Provides the Intel PCI bus ID.";
+      type = types.string;
+      default = "";
+    };
+    amdgpuBusId = mkOption {
+      description = "Provides the AMD PCI bus ID.";
+      type = types.string;
+      default = "";
+    };
   };
   config = mkIf cfg.enable {
     # Enable OpenGL:
@@ -36,6 +50,10 @@ in {
       "nvidia"
     ];
 
-    hardware.nvidia = import configsPath + "";
+    hardware.nvidia =
+      (import selectedConfig {
+        inherit config lib;
+        inherit (cfg) nvidiaBusId nvidiaDrivers intelBusId amdgpuBusId;
+      }).nvidia;
   };
 }
