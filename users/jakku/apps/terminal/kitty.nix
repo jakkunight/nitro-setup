@@ -6,14 +6,12 @@
     programs.kitty = {
       enable = true;
       font = {
-        name = "ProFontIIxNerdFontMono";
-        # name = "HackNerdFont";
-        # name = "DepartureMonoNerdFont";
-        # name = "BigBlueTermPlusNerdFont";
-        # name = "CozetteCrossedSevenVectorBold";
+        # name = "ProFontIIxNerdFontMono";
+        name = "HackNerdFontMono";
+        # name = "DepartureMonoNerdFontMono";
+        # name = "BigBlueTermPlusNerdFontMono";
         # name = "CaskaydiaMonoNerdFontMono";
         size = 14;
-        # package = pkgs.cozette;
       };
       settings = {
         enable_audio_bell = false;
