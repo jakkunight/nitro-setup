@@ -7,8 +7,8 @@
     treesitter = {
       autotagHtml = true;
     };
+    lsp.enable = true;
     languages = {
-      enableLSP = true;
       enableTreesitter = true;
       enableFormat = true;
       enableExtraDiagnostics = true;

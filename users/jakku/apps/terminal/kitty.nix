@@ -11,7 +11,7 @@
         # name = "DepartureMonoNerdFont";
         # name = "BigBlueTermPlusNerdFont";
         # name = "CozetteCrossedSevenVectorBold";
-        name = "CaskadyaCove";
+        name = "CaskaydiaMonoNerdFontMono";
         size = 14;
         # package = pkgs.cozette;
       };

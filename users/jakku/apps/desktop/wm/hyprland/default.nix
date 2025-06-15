@@ -41,17 +41,6 @@ _: {
         #"hyprpanel"
         #"${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &"
       ];
-      # General:
-      general = {
-        gaps_in = 5;
-        gaps_out = 10;
-        "col.inactive_border" = "rgba(3d59a1ff) rgba(41a6b5ff) 45deg";
-        "col.active_border" = "rgba(7dcfffff) rgba(c3e88dff) 45deg";
-        border_size = 0;
-        resize_on_border = true;
-        no_border_on_floating = true;
-        layout = "dwindle";
-      };
       # Cursor:
       cursor = {
         no_hardware_cursors = true;
@@ -158,6 +147,17 @@ _: {
         " , PRINT, exec, uwsm app -- hyprshot -m output"
         "SHIFT, PRINT, exec, uwsm app -- hyprshot -m region"
       ];
+      # General:
+      general = {
+        gaps_in = 5;
+        gaps_out = 10;
+        "col.inactive_border" = "rgba(3d59a1ff) rgba(41a6b5ff) 45deg";
+        "col.active_border" = "rgba(7dcfffff) rgba(c3e88dff) 45deg";
+        border_size = 2;
+        resize_on_border = true;
+        no_border_on_floating = false;
+        layout = "dwindle";
+      };
       # Decorations:
       decoration = {
         rounding = 10;
@@ -177,7 +177,7 @@ _: {
         # Blur:
         blur = {
           enabled = true;
-          size = 10;
+          size = 8;
           passes = 2;
           new_optimizations = true;
           ignore_opacity = true;
@@ -186,10 +186,6 @@ _: {
           vibrancy = 0;
           brightness = 1;
           contrast = 1;
-          blurls = [
-            "waybar"
-            "wofi"
-          ];
         };
       };
       # Animations:
