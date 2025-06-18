@@ -21,6 +21,13 @@
         rust-analyzer = {
           command = "${pkgs.rust-analyzer-unwrapped}/bin/rust-analyzer";
         };
+        qmlls = {
+          command = "${pkgs.kdePackages.qtdeclarative}/bin/qmlls";
+          formatting = {
+            command = ["${pkgs.kdePackages.qtdeclarative}/bin/qmlformat"];
+            args = ["-i"];
+          };
+        };
       };
       language = [
         {
@@ -38,6 +45,13 @@
           name = "markdown";
           auto-format = true;
           language-servers = ["ltex-ls" "marksman"];
+        }
+        {
+          name = "qml";
+          auto-format = true;
+          formatter.command = "${pkgs.libsForQt5.qt5.qtdeclarative}/bin/qmlformat";
+          formatter.args = ["-i"];
+          language-servers = ["qmlls"];
         }
       ];
     };
