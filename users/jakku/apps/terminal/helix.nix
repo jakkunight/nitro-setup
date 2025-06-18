@@ -21,6 +21,13 @@
         rust-analyzer = {
           command = "${pkgs.rust-analyzer-unwrapped}/bin/rust-analyzer";
         };
+        markdown-oxide = {
+          command = "${pkgs.markdown-oxide}/bin/markdown-oxide";
+          formatting = {
+            command = ["${pkgs.prettier}/bin/prettier"];
+            args = ["--parser" "markdown"];
+          };
+        };
         qmlls = {
           command = "${pkgs.kdePackages.qtdeclarative}/bin/qmlls";
           formatting = {
@@ -44,7 +51,11 @@
         {
           name = "markdown";
           auto-format = true;
-          language-servers = ["ltex-ls" "marksman"];
+          formatter = {
+            command = "${pkgs.prettier}/bin/prettier";
+            args = ["--parser" "markdown"];
+          };
+          language-servers = ["markdown-oxide"];
         }
         {
           name = "qml";
