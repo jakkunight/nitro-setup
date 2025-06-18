@@ -15,6 +15,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Stylix:
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Nixos-Generators:
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
@@ -24,6 +30,11 @@
     # Yazi
     yazi = {
       url = "github:sxyazi/yazi";
+    };
+
+    # Zjstatus:
+    zjstatus = {
+      url = "github:dj95/zjstatus";
     };
 
     # Devenv:
