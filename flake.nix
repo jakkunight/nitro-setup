@@ -6,7 +6,7 @@
   inputs = {
     # Nixpkgs:
     nixpkgs = {
-      url = "github:nixos/nixpkgs";
+      url = "github:nixos/nixpkgs/nixos-unstable";
     };
 
     # Home Manager:
@@ -21,6 +21,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # TextFox:
+    textfox = {
+      url = "github:adriankarlen/textfox";
+    };
     # Nixos-Generators:
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
@@ -99,6 +103,9 @@
           inherit inputs self;
         };
         modules = [
+          # Stylix:
+          inputs.stylix.nixosModules.stylix
+
           # Custom config:
           ({
             config,
@@ -109,7 +116,7 @@
             environment.etc."nixos-config".source = ./.;
           })
           # Nix settings:
-          ({config, ...}: {
+          (_: {
             # Configure Nix:
             nix.settings = {
               # Optimise Nix-Store:
@@ -165,6 +172,7 @@
           inherit inputs;
         };
         modules = [
+          inputs.stylix.homeManagerModules.stylix
           ./users/jakku/home.nix
         ];
       };

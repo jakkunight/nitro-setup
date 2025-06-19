@@ -4,104 +4,104 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: "Genshin Impact";
+  /* font-family: "Genshin Impact"; */
   font-size: 1rem;
   padding: 1px;
   min-height: 1rem;
 }
 
-#waybar {
-  background: #24283b;
-  color: white;
-  border-radius: 0px;
-  margin: 0px;
-}
+/* #waybar { */
+  /* background: #24283b; */
+  /* color: white; */
+  /* border-radius: 0px; */
+  /* margin: 0px; */
+/* } */
 
-#workspaces {
-  background-color: #24283b;
-  margin: 5px;
-  border-radius: 5px;
-  border-width: 2px;
-  border-color: white;
-}
-#workspaces button {
-  color: #c0caf5;
-}
+/* #workspaces { */
+  /* background-color: #24283b; */
+  /* margin: 5px; */
+  /* border-radius: 5px; */
+  /* border-width: 2px; */
+  /* border-color: white; */
+/* } */
+/* #workspaces button { */
+  /* color: #c0caf5; */
+/* } */
 
-#workspaces button.focused {
-  color: #24283b;
-  background-color: #7aa2f7;
-  border-radius: 5px;
-}
+/* #workspaces button.focused { */
+  /* color: #24283b; */
+  /* background-color: #7aa2f7; */
+  /* border-radius: 5px; */
+/* } */
 
-#workspaces button:hover {
-  background-color: #7dcfff;
-  color: #24283b;
-  border-radius: 5px;
-}
+/* #workspaces button:hover { */
+  /* background-color: #7dcfff; */
+  /* color: #24283b; */
+  /* border-radius: 5px; */
+/* } */
 
-#custom-clock,
-#tray,
-#clock,
-#battery,
-#pulseaudio,
-#backlight,
-#network,
-#cpu,
-#disk,
-#memory,
-#temperature,
-#bluetooth,
-#user {
-  background-color: #24283b;
-  border-radius: 5px;
-  margin: 5px;
-}
+/* #custom-clock, */
+/* #tray, */
+/* #clock, */
+/* #battery, */
+/* #pulseaudio, */
+/* #backlight, */
+/* #network, */
+/* #cpu, */
+/* #disk, */
+/* #memory, */
+/* #temperature, */
+/* #bluetooth, */
+/* #user { */
+  /* background-color: #24283b; */
+  /* border-radius: 5px; */
+  /* margin: 5px; */
+/* } */
 
-#tray {
-  color: #7dcfff;
-  padding: 2px;
-}
+/* #tray { */
+  /* color: #7dcfff; */
+  /* padding: 2px; */
+/* } */
 
-#custom-date {
-  color: #7dcfff;
-}
+/* #custom-date { */
+  /* color: #7dcfff; */
+/* } */
 
-#clock,
-#custom-clock {
-  color: #b48ead;
-}
+/* #clock, */
+/* #custom-clock { */
+  /* color: #b48ead; */
+/* } */
 
-#battery {
-  color: #9ece6a;
-}
+/* #battery { */
+  /* color: #9ece6a; */
+/* } */
 
-#battery.charging {
-  color: #9ece6a;
-}
+/* #battery.charging { */
+  /* color: #9ece6a; */
+/* } */
 
-#battery.warning:not(.charging) {
-  background-color: #f7768e;
-  color: #24283b;
-}
-#disk {
-  color: #9ece6a;
-}
+/* #battery.warning:not(.charging) { */
+  /* background-color: #f7768e; */
+  /* color: #24283b; */
+/* } */
+/* #disk { */
+  /* color: #9ece6a; */
+/* } */
 
-#network {
-  color: #f7768e;
-}
+/* #network { */
+  /* color: #f7768e; */
+/* } */
 
-#pulseaudio {
-  color: #e0af68;
-}
+/* #pulseaudio { */
+  /* color: #e0af68; */
+/* } */
 
-#backlight {
-  color: #e0af68;
-}
-#cpu {
-  color: #e0af68;
-}
-#memory {
-  color: #f7768e;
-}
+/* #backlight { */
+  /* color: #e0af68; */
+/* } */
+/* #cpu { */
+  /* color: #e0af68; */
+/* } */
+/* #memory { */
+  /* color: #f7768e; */
+/* } */

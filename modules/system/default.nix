@@ -15,6 +15,7 @@
     ./graphics
     ./gaming
     ./development
+    ./stylix
   ];
   config = {
     #### Install basic programs ####

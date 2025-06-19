@@ -5,15 +5,15 @@ _: let
       mon = "";
     }
     {
-      bg = "~/Pictures/scaramouche-sealed-wallpaper.jpg";
-      mon = "";
-    }
-    {
       bg = "~/Pictures/wanderer-human-durin-wallpaper-4k.jpg";
       mon = "";
     }
     {
       bg = "~/Pictures/wanderer-aranaras.jpg";
+      mon = "";
+    }
+    {
+      bg = "~/Pictures/scaramouche-sealed-wallpaper.jpg";
       mon = "";
     }
   ];

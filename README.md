@@ -52,6 +52,10 @@ with NixOS.
 - To add a new configuration for a service, use `service/config.nix`.
 - To add a new
 
+## NOTES
+
+Ahoy!
+
 ## Basic project structure
 
 ```plaintext

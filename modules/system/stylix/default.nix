@@ -1,11 +1,13 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }: {
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyonight-night";
+    autoEnable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-terminal-dark.yaml";
     image = ./scaramouche-sealed-wallpaper.jpg;
     polarity = "dark";
     fonts = {
