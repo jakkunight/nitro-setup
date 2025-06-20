@@ -1,7 +1,6 @@
 # Bundle module:
 { config, lib, ... }: {
   imports = [
-    ./filesystems.nix
     ./tools
   ];
   config = {

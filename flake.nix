@@ -6,7 +6,7 @@
   inputs = {
     # Nixpkgs:
     nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-unstable";
+      url = "github:nixos/nixpkgs";
     };
 
     # Home Manager:
@@ -15,11 +15,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Stylix:
-    stylix = {
-      url = "github:danth/stylix";
+    # Disko:
+    disko = {
+      url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Stylix:
+    # stylix = {
+    #   url = "github:danth/stylix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # TextFox:
     textfox = {
@@ -34,6 +40,7 @@
     # Yazi
     yazi = {
       url = "github:sxyazi/yazi";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Zjstatus:
@@ -104,7 +111,10 @@
         };
         modules = [
           # Stylix:
-          inputs.stylix.nixosModules.stylix
+          # inputs.stylix.nixosModules.stylix
+
+          # Disko:
+          inputs.disko.nixosModules.disko
 
           # Custom config:
           ({
@@ -172,7 +182,7 @@
           inherit inputs;
         };
         modules = [
-          inputs.stylix.homeManagerModules.stylix
+          # inputs.stylix.homeManagerModules.stylix
           ./users/jakku/home.nix
         ];
       };

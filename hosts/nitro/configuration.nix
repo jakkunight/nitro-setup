@@ -9,6 +9,7 @@
     ./hardware-configuration.nix
     ../../modules/system
     ../../users
+    ./disk-config.nix
   ];
   config = {
     # Enable Flakes!
@@ -78,14 +79,7 @@
 
     #### Module settings ####
 
-    # Filesystems:
-    disk = {
-      filesystems = {
-        boot.label = "BOOT";
-        root.label = "root";
-        swap.label = "linux-swap";
-      };
-    };
+    # Filesystems are (handleled by Disko).
 
     # Bootloader:
     bootloader = {
