@@ -24,7 +24,7 @@
         markdown-oxide = {
           command = "${pkgs.markdown-oxide}/bin/markdown-oxide";
           formatting = {
-            command = ["${pkgs.prettier}/bin/prettier"];
+            command = ["${pkgs.nodePackages.prettier}/bin/prettier"];
             args = ["--parser" "markdown"];
           };
         };
@@ -52,7 +52,7 @@
           name = "markdown";
           auto-format = true;
           formatter = {
-            command = "${pkgs.prettier}/bin/prettier";
+            command = "${pkgs.nodePackages.prettier}/bin/prettier";
             args = ["--parser" "markdown"];
           };
           language-servers = ["markdown-oxide"];

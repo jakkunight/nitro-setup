@@ -6,7 +6,7 @@
   inputs = {
     # Nixpkgs:
     nixpkgs = {
-      url = "github:nixos/nixpkgs";
+      url = "github:nixos/nixpkgs/nixos-unstable";
     };
 
     # Home Manager:
@@ -50,9 +50,7 @@
     # NVF:
     nvf = {
       url = "github:notashelf/nvf";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Zen Browser!
