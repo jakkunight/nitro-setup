@@ -1,7 +1,8 @@
 # Full theming config:
-_: {
+{config, lib, pkgs, ...}@inputs:
+{
   imports = [
-    # ./qt.nix
+    ./qt.nix
     ./gtk.nix
   ];
 }

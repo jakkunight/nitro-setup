@@ -1,10 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  inputs,
-  ...
-}: {
+{ lib, config, pkgs, inputs, ... }: {
   options = {
     bootloader.grub = {
       enable = lib.mkEnableOption "Enable GRUB as your bootloader";
@@ -35,7 +29,7 @@
           #   layout = "teleport";
           #   resolution = "1920x1080";
           # in inputs.grubshin-bootpact.packages.${pkgs.system}.${colorscheme}.${layout}.${resolution};
-          # theme = inputs.wanderer-themes.packages.${pkgs.system}.grub-theme;
+          theme = inputs.wanderer-themes.packages.${pkgs.system}.grub-theme;
           useOSProber = true;
         };
         efi = {

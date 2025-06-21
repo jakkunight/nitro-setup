@@ -21,16 +21,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Stylix:
-    # stylix = {
-    #   url = "github:danth/stylix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # TextFox:
-    textfox = {
-      url = "github:adriankarlen/textfox";
-    };
     # Nixos-Generators:
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
@@ -110,12 +100,8 @@
           inherit inputs self;
         };
         modules = [
-          # Stylix:
-          # inputs.stylix.nixosModules.stylix
-
           # Disko:
           inputs.disko.nixosModules.disko
-
           # Custom config:
           ({
             config,
@@ -126,7 +112,7 @@
             environment.etc."nixos-config".source = ./.;
           })
           # Nix settings:
-          (_: {
+          ({config, ...}: {
             # Configure Nix:
             nix.settings = {
               # Optimise Nix-Store:
@@ -182,7 +168,6 @@
           inherit inputs;
         };
         modules = [
-          # inputs.stylix.homeManagerModules.stylix
           ./users/jakku/home.nix
         ];
       };

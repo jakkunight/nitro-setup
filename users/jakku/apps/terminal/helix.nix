@@ -3,7 +3,7 @@
     enable = true;
     package = pkgs.helix;
     settings = {
-      # theme = "tokyonight";
+      theme = "tokyonight";
       editor = {
         line-number = "relative";
       };
@@ -21,12 +21,12 @@
         rust-analyzer = {
           command = "${pkgs.rust-analyzer-unwrapped}/bin/rust-analyzer";
         };
-        marksman = {
-          command = "${pkgs.marksman}/bin/marksman";
-          args = ["server"];
-        };
         markdown-oxide = {
           command = "${pkgs.markdown-oxide}/bin/markdown-oxide";
+          formatting = {
+            command = ["${pkgs.prettier}/bin/prettier"];
+            args = ["--parser" "markdown"];
+          };
         };
         qmlls = {
           command = "${pkgs.kdePackages.qtdeclarative}/bin/qmlls";
@@ -52,10 +52,10 @@
           name = "markdown";
           auto-format = true;
           formatter = {
-            command = "${pkgs.mdformat}/bin/mdformat";
-            args = ["-"];
+            command = "${pkgs.prettier}/bin/prettier";
+            args = ["--parser" "markdown"];
           };
-          language-servers = ["markdown-oxide" "marksman"];
+          language-servers = ["markdown-oxide"];
         }
         {
           name = "qml";

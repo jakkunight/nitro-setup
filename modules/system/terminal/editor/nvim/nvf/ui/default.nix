@@ -9,11 +9,11 @@ _: {
     ./terminal
   ];
   programs.nvf.settings.vim = {
-    # theme = {
-    #   enable = true;
-    #   name = "tokyonight";
-    #   style = "night";
-    # };
+    theme = {
+      enable = true;
+      name = "tokyonight";
+      style = "night";
+    };
 
     mini = {
       icons = {

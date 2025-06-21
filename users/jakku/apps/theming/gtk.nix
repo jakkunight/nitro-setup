@@ -14,6 +14,15 @@
 
   gtk = {
     enable = true;
+    font = {
+      name = "Genshin Impact";
+      package = inputs.genshin-font.packages.${pkgs.system}.default;
+      size = 12;
+    };
+    theme = {
+      name = "Tokyonight-Dark";
+      package = pkgs.tokyonight-gtk-theme;
+    };
     iconTheme = {
       package = pkgs.candy-icons;
       name = "candy-icons";

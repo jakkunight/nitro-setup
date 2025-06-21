@@ -63,6 +63,8 @@
         # Multimedia:
         pkgs.vlc
         pkgs.loupe
+        pkgs.firefox
+        pkgs.brave
 
         # Notifications:
         pkgs.swaynotificationcenter
