@@ -8,10 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./modules/nixos/boot
-      ./modules/nixos/stylix
-      ./modules/nixos/disko
-      ./modules/nixos/audio
+      ./modules/nixos
     ];
 
   # networking.hostName = "nixos"; # Define your hostname.
@@ -64,12 +61,6 @@
       tree
     ];
   };
-
-  # Enable Flakes!
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
 
   # programs.firefox.enable = true;
 
