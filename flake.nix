@@ -11,13 +11,18 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-
   outputs = {
     nixpkgs,
     home-manager,
     disko,
-    ... } @ inputs:
+    stylix,
+    ...
+  } @ inputs:
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
@@ -30,6 +35,7 @@
           inherit inputs;
         };
         modules = [
+          stylix.nixosModules.stylix
           disko.nixosModules.disko
           ./configuration.nix
         ];
@@ -42,6 +48,7 @@
           inherit inputs;
         };
         modules = [ ./home.nix ];
+      };
     };
   };
 }

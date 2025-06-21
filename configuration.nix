@@ -8,15 +8,11 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-     ./disk-config.nix
+      ./modules/nixos/boot
+      ./modules/nixos/stylix
+      ./modules/nixos/disko
+      ./modules/nixos/audio
     ];
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -33,13 +29,12 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "es_PY.UTF-8";
   console = {
-    font = "Lat2-Terminus16";
+    font = "${pkgs.terminus_font}/share/consolefonts/ter-v24b.psf.gz";
     useXkbConfig = true; # use xkb.options in tty.
   };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
   services.xserver.xkb.layout = "latam";
 
   # Enable CUPS to print documents.
@@ -48,10 +43,6 @@
   # Enable sound.
   # services.pulseaudio.enable = true;
   # OR
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
@@ -96,6 +87,7 @@
     gitui
     btop
   ];
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
