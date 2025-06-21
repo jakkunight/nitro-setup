@@ -7,13 +7,14 @@
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
   };
 
@@ -21,26 +22,46 @@
     self,
     nixpkgs,
     disko,
-    nixvim,
+    home-manager,
     stylix,
     ...
-  } @ inputs: {
-    nixosConfigurations = {
-      nitro = let
-        system = "x86_64-linux";
-        pkgs = nixpkgs.legacyPackages.${system};
-      in
-        nixpkgs.lib.nixosSystem {
-          inherit system pkgs;
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            disko.nixosModules.disko
-            ./modules/system
-            ./hosts/nitro/default.nix
-          ];
+  } @ inputs:
+  let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+    createUsers = allowedUsers: (map (user: {
+      users.users.${user} = {
+        useDefaultShell = true;
+        initialPassword = "${user}";
+        extraGroups = [
+          "wheel"
+          "networkmanager"
+        ];
+        nix.settings.trusted-users = [
+          "@wheel"
+          "${user}"
+        ];
+      };
+    }) allowedUsers);
+    createHosts = hosts: allowedUsers: (builtins.listToAttrs (map ({ hostname, system }: {
+      name = "${hostname}";
+      value = (nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs;
         };
-    };
+        modules = [
+          disko.nixosModules.disko
+          stylix.nixosModules.stylix
+          home-manager.nixosModules.home-manager
+          (./hosts + "/${hostname}")
+        ] ++ createUsers allowedUsers;
+      })})) hosts);
+    createHomeConfiguration = allowedUsers: (builtins.listToAttrs (map (user: {
+      name = 
+    }) allowedUsers));
+  in
+  {
+    nixosConfigurations = createHosts [ "nitro" ] [ "jakku" ];
   };
 }
