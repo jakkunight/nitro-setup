@@ -18,6 +18,10 @@
     hyprland = {
       url = "github:hyprwm/Hyprland";
     };
+    genshin-font = {
+      url = "github:jakkunight/GenshinImpact-font";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = {
     nixpkgs,
@@ -25,12 +29,10 @@
     disko,
     stylix,
     ...
-  } @ inputs:
-  let
+  } @ inputs: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
-  in
-  {
+  in {
     nixosConfigurations = {
       nitro = nixpkgs.lib.nixosSystem {
         inherit system;
@@ -44,7 +46,7 @@
         ];
       };
     };
-    homeConfigurations ={
+    homeConfigurations = {
       "jakku" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {

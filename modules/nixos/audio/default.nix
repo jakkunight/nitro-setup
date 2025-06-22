@@ -1,5 +1,5 @@
 # Configure NixOS audio:
-_:{
+_: {
   services.pipewire = {
     enable = true;
     pulse.enable = true;

@@ -1,4 +1,4 @@
-{pkgs, ...}:{
+{pkgs, ...}: {
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
@@ -14,6 +14,4 @@
       efiInstallAsRemovable = false;
     };
   };
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 }

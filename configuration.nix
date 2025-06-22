@@ -1,20 +1,23 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ config, lib, pkgs, inputs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./modules/nixos
-    ];
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./modules/nixos
+  ];
 
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "America/Asuncion";
@@ -55,7 +58,7 @@
   users.users.jakku = {
     initialPassword = "1234";
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       tree
     ];
@@ -66,19 +69,6 @@
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    git
-    helix
-    micro
-    zellij
-    tmux
-    yazi
-    gitui
-    btop
-    eza
-    brightnessctl
-    zoxide
   ];
 
   # UWSM:
@@ -91,6 +81,14 @@
         binPath = "/run/current-system/sw/bin/Hyprland";
       };
     };
+  };
+
+  # SDDM:
+  services.displayManager.sddm = {
+    enable = true;
+    enableHidpi = true;
+    wayland.enable = true;
+    wayland.compositor = "kwin";
   };
 
   # Hyprland:
@@ -162,4 +160,3 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "25.05"; # Did you read the comment?
 }
-

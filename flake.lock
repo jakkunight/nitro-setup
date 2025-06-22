@@ -205,6 +205,27 @@
         "type": "github"
       }
     },
+    "genshin-font": {
+      "inputs": {
+        "hywenhei-extended-font": "hywenhei-extended-font",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1739486096,
+        "narHash": "sha256-eMwIlqzZQGiVlgXIuwRNTv01xqTQJc9WCCfTnDlV0cE=",
+        "owner": "jakkunight",
+        "repo": "GenshinImpact-font",
+        "rev": "d094065a519c4f783364877411cfe48023c9a3e0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jakkunight",
+        "repo": "GenshinImpact-font",
+        "type": "github"
+      }
+    },
     "git-hooks": {
       "inputs": {
         "flake-compat": [
@@ -592,6 +613,22 @@
         "type": "github"
       }
     },
+    "hywenhei-extended-font": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1706958192,
+        "narHash": "sha256-zzRUVv+OmINrvhOkQWZQ6EjjsqQMO2oAiOKE7je1F6U=",
+        "owner": "cawa-93",
+        "repo": "HYWenHei-Extended-Font",
+        "rev": "4377078bad15b06e68576cab2173d7467398afe7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cawa-93",
+        "repo": "HYWenHei-Extended-Font",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1750365781,
@@ -676,6 +713,7 @@
     "root": {
       "inputs": {
         "disko": "disko",
+        "genshin-font": "genshin-font",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "nixpkgs": "nixpkgs_2",

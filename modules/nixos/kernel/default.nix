@@ -1,7 +1,6 @@
-{pkgs, ...}:
-{
+{pkgs, ...}: {
   # Use a custom kernel:
-  boot.kernel = true;
+  boot.kernel.enable = true;
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 }

@@ -5,5 +5,7 @@ _: {
     ./disko
     ./audio
     ./nix
+    ./kernel
+    ./nvidia
   ];
 }
