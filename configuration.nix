@@ -81,6 +81,9 @@
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
     nh
+    home-manager
+    disko
+    git
   ];
 
   # UWSM:
