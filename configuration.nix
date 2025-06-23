@@ -22,6 +22,14 @@
   # Set your time zone.
   time.timeZone = "America/Asuncion";
 
+  zramSwap = {
+    enable = true;
+  };
+
+  hardware.bluetooth = {
+    enable = true;
+  };
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -116,6 +124,12 @@
     package32 = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pkgsi686Linux.mesa;
     enable32Bit = true;
   };
+
+  # Trash (GNOME Virtual FileSystem):
+  services.gvfs.enable = true;
+
+  # Automount USB drives:
+  services.udisks2.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
