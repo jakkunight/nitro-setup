@@ -1,19 +1,23 @@
 {
-  description = ''
-    My Setup Settings (v3.0.0)
-  '';
+  description = "Home Manager configuration of jakku";
 
   inputs = {
+<<<<<<< HEAD
     # Nixpkgs:
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixos-unstable";
+=======
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+>>>>>>> rebuild
     };
-
-    # Home Manager:
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+<<<<<<< HEAD
 
     # Disko:
     disko = {
@@ -65,24 +69,29 @@
     };
 
     # Genshin Impact font (with NF glyphs):
+=======
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+    };
+>>>>>>> rebuild
     genshin-font = {
       url = "github:jakkunight/GenshinImpact-font";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Genshin Impact login screen theme:
-    genshin-login = {
-      url = "github:jakkunight/GenshinImpactSDDM";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
-
   outputs = {
-    self,
     nixpkgs,
+    home-manager,
+    disko,
+    stylix,
     ...
   } @ inputs: let
     system = "x86_64-linux";
+<<<<<<< HEAD
     pkgs = import nixpkgs {
       system = "x86_64-linux";
       config = {
@@ -90,14 +99,18 @@
         allowUnfreePredicate = _: true;
       };
     };
+=======
+    pkgs = nixpkgs.legacyPackages.${system};
+>>>>>>> rebuild
   in {
     nixosConfigurations = {
       nitro = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {
-          inherit inputs self;
+          inherit inputs;
         };
         modules = [
+<<<<<<< HEAD
           # Disko:
           inputs.disko.nixosModules.disko
           # Custom config:
@@ -154,49 +167,23 @@
               };
             };
           }
+=======
+          stylix.nixosModules.stylix
+          disko.nixosModules.disko
+          ./configuration.nix
+>>>>>>> rebuild
         ];
       };
     };
-
-    # Home-Manager:
     homeConfigurations = {
-      jakku = inputs.home-manager.lib.homeManagerConfiguration {
+      "jakku" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {
           inherit inputs;
         };
         modules = [
-          ./users/jakku/home.nix
-        ];
-      };
-    };
-
-    # Installers:
-    images = {
-      nitro-installer = inputs.nixos-generators.nixosGenerate {
-        inherit system;
-        format = "install-iso";
-        specialArgs = {
-          inherit inputs;
-          hostname = "nitro";
-        };
-        modules = [
-          inputs.nvf.outputs.nixosModules.default
-          inputs.home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = false;
-              useUserPackages = true;
-              extraSpecialArgs = {
-                inherit inputs;
-              };
-              users = {
-                jakku = import ./users/jakku/home.nix;
-              };
-            };
-          }
-          ./hosts/nitro/configuration.nix
-          ./installer.nix
+          stylix.homeModules.stylix
+          ./home.nix
         ];
       };
     };
