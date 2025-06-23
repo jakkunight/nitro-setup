@@ -1,3 +1,0 @@
-devenv-job:
-  image: ghcr.io/cachix/devenv/devenv:latest
-  script: devenv shell build
