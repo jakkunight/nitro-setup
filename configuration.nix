@@ -14,6 +14,17 @@
     ./modules/nixos
   ];
 
+  # SOPS-NIX:
+  sops = {
+    defaultSopsFile = ./secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+    age.keyFile = "~/.config/sops/age/keys.txt";
+  };
+
+  # INFO: To reference a secret:
+  # - Use `sops.secrets."my-secret"` for plain secrets in secrets.yaml
+  # - Use `sops.secrets."my/nested/secret"` for nested secrets in secrets.yaml
+
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

@@ -19,6 +19,10 @@
     hyprland = {
       url = "github:hyprwm/Hyprland";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     genshin-font = {
       url = "github:jakkunight/GenshinImpact-font";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,6 +33,7 @@
     home-manager,
     disko,
     stylix,
+    sops-nix,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -41,6 +46,7 @@
           inherit inputs;
         };
         modules = [
+          sops-nix.nixosModules.sops
           stylix.nixosModules.stylix
           disko.nixosModules.disko
           ./configuration.nix

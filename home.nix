@@ -45,6 +45,9 @@
 
   programs.zellij = {
     enable = true;
+    settings = {
+      default_shell = "${pkgs.zsh}/bin/zsh";
+    };
   };
 
   programs.gitui = {
@@ -65,11 +68,6 @@
   programs.kitty = {
     enable = true;
     package = pkgs.kitty;
-  };
-
-  programs.wofi = {
-    enable = true;
-    package = pkgs.wofi;
   };
 
   programs.btop = {
