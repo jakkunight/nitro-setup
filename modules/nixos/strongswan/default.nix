@@ -13,18 +13,20 @@
 
   # Enable package forwarding:
   boot.kernel.sysctl = {
-    net.ipv4.ip_forward = 1;
+    "net.ipv4.ip_forward" = 1;
   };
 
   # Enable the NM plugin:
   networking.networkmanager.enableStrongSwan = true;
-  networking.resolveconf.enable = true;
-
+  networking.resolvconf.enable = true;
   # Create the secrets file:
-  sops.templates."andescada.secrets".content = ''
-    %any ${config.sops.placeholder."andescada/gateway_address"} : PSK "${config.sops.placeholder."andescada/psk"}"
-    ${config.sops.placeholder."andescada/username"} : XAUTH "${config.sops.placeholder."andescada/password"}"
-  '';
+  sops.templates."andescada.secrets" = {
+    content = ''
+      ${config.sops.placeholder."andescada/gateway_address"} : PSK "${config.sops.placeholder."andescada/psk"}"
+      ${config.sops.placeholder."andescada/username"} : XAUTH "${config.sops.placeholder."andescada/password"}"
+    '';
+    owner = "jakku";
+  };
   environment.etc = {
     "ipsec.d/andescada/updown.sh".text = ''
       DEFAULT_GATEWAY=$(${pkgs.iproute2}/bin/ip route show | grep -i 'default via'| ${pkgs.gawk}/bin/awk '{print $3 }')
@@ -54,11 +56,14 @@
     '';
   };
 
+  # Open the firewall ports:
+  networking.firewall.allowedUDPPorts = [500 4500];
+
   # Setup StrongSwan:
   services.strongswan = {
     enable = true;
     secrets = [
-      "${config.sops.templates."andescada.secrets".path}"
+      "/run/secrets/rendered/andescada.secrets"
     ];
     connections = {
       andescada = {
