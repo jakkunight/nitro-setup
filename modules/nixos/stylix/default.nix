@@ -2,6 +2,7 @@
   config,
   inputs,
   pkgs,
+  lib,
   ...
 }: {
   stylix = {
@@ -26,6 +27,8 @@
       base0E = "bb9af7";
       base0F = "f7768e";
     };
+    polarity = "dark";
+    image = ./wallpaper.jpg;
     fonts = {
       serif = {
         package = inputs.genshin-font.packages.${pkgs.system}.default;
@@ -44,5 +47,16 @@
         name = "Noto Color Emoji";
       };
     };
+    targets = {
+      qt = {
+        enable = true;
+        platform = lib.mkForce "qtct";
+      };
+    };
   };
+  # qt = {
+  #   enable = true;
+  #   platformTheme = "gtk2";
+  #   style = "gtk2";
+  # };
 }

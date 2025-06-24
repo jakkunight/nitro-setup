@@ -2,6 +2,7 @@
   config,
   inputs,
   pkgs,
+  lib,
   ...
 }: {
   # Home Manager needs a bit of information about you and the paths it should
@@ -44,6 +45,7 @@
       base0E = "bb9af7";
       base0F = "f7768e";
     };
+    polarity = "dark";
     image = ./wallpaper.jpg;
     fonts = {
       serif = {
@@ -94,8 +96,18 @@
       firefox.profileNames = [
         "default"
       ];
+      qt = {
+        enable = true;
+        platform = "qtct";
+      };
     };
   };
+
+  # qt = {
+  #   enable = true;
+  #   platformTheme = "gtk";
+  #   style.name = "gtk3";
+  # };
 
   programs.zsh = {
     enable = true;
@@ -443,6 +455,7 @@
       bindel = [
         # Multimedia:
         ", XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
+        ", XF86AudioPause, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
         ", XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous"
         ", XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next"
         ", XF86AudioMute, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
@@ -475,7 +488,7 @@
         "$mod, D, exec, uwsm app -- ${pkgs.wofi}/bin/wofi --show drun"
         "$mod, A, exec, uwsm app -- ${pkgs.firefox}/bin/firefox"
         "$mod, S, exec, uwsm app -- ${pkgs.vlc}/bin/vlc"
-        "$mod, E, exec, uwsm app -- ${pkgs.nemo-with-extensions}/bin/nemo"
+        "$mod, E, exec, uwsm app -- ${pkgs.nautilus}/bin/nautilus"
         "$mod SHIFT, S, exec, uwsm app -- ${pkgs.hyprlock}/bin/hyprlock"
 
         # Controls:
@@ -598,6 +611,7 @@
     enable = true;
   };
   services = {
+    blueman-applet.enable = true;
     swaync = {
       enable = true;
     };
@@ -636,7 +650,7 @@
         # https://github.com/nix-community/home-manager/issues/632
         program_options = {
           # replace with your favorite file manager
-          file_manager = "${pkgs.nemo-with-extensions}/bin/nemo";
+          file_manager = "${pkgs.nautilus}/bin/nautilus";
         };
       };
     };
