@@ -7,5 +7,6 @@ _: {
     ./nix
     ./kernel
     ./nvidia
+    ./strongswan
   ];
 }

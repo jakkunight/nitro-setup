@@ -45,6 +45,9 @@
 
   programs.zellij = {
     enable = true;
+    settings = {
+      default_shell = "${pkgs.zsh}/bin/zsh";
+    };
   };
 
   programs.gitui = {
@@ -65,11 +68,6 @@
   programs.kitty = {
     enable = true;
     package = pkgs.kitty;
-  };
-
-  programs.wofi = {
-    enable = true;
-    package = pkgs.wofi;
   };
 
   programs.btop = {
@@ -96,6 +94,10 @@
           file_manager = "${pkgs.nautilus}/bin/nautilus";
         };
       };
+    };
+    remmina = {
+      enable = true;
+      systemdService.enable = true;
     };
   };
 
@@ -132,6 +134,7 @@
     pkgs.discord
     pkgs.nautilus
     pkgs.vlc
+    pkgs.remmina
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

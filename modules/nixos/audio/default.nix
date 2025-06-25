@@ -1,7 +1,10 @@
 # Configure NixOS audio:
-_: {
+{pkgs, ...}: {
   services.pipewire = {
     enable = true;
     pulse.enable = true;
   };
+  environment.systemPackages = [
+    pkgs.pavucontrol
+  ];
 }

@@ -14,6 +14,46 @@
     ./modules/nixos
   ];
 
+  # SOPS-NIX:
+  sops = {
+    defaultSopsFile = ./secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+    age.keyFile = "/home/jakku/.config/sops/age/keys.txt";
+    secrets = {
+      "andescada/vpn_subnet_1" = {
+        owner = "jakku";
+      };
+      "andescada/vpn_subnet_2" = {
+        owner = "jakku";
+      };
+      "andescada/gateway_address" = {
+        owner = "jakku";
+      };
+      "andescada/psk" = {
+        owner = "jakku";
+      };
+      "andescada/username" = {
+        owner = "jakku";
+      };
+      "andescada/password" = {
+        owner = "jakku";
+      };
+    };
+  };
+
+  # INFO: To reference a secret:
+  # - Use `sops.secrets."my-secret"` for plain secrets in secrets.yaml
+  # - Use `sops.secrets."my/nested/secret"` for nested secrets in secrets.yaml
+  #
+  # Keys are stored in decripted form after rebuild in `/run/secrets` and
+  # belong to the `root` user by default. To allow another user to access it without
+  # `sudo` use:
+  # ```nix
+  # sops.secrets."my-secret" = {
+  #   owner = config.users.users.${your_user}.name;
+  # };
+  # ```
+
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -84,6 +124,10 @@
     home-manager
     disko
     git
+    zoxide
+    eza
+    sops
+    remmina
   ];
 
   # UWSM:
@@ -96,6 +140,10 @@
         binPath = "/run/current-system/sw/bin/Hyprland";
       };
     };
+  };
+
+  programs.starship = {
+    enable = true;
   };
 
   # SDDM:
