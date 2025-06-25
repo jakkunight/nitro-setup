@@ -95,6 +95,10 @@
         };
       };
     };
+    remmina = {
+      enable = true;
+      systemdService.enable = true;
+    };
   };
 
   # This value determines the Home Manager release that your configuration is
@@ -130,6 +134,7 @@
     pkgs.discord
     pkgs.nautilus
     pkgs.vlc
+    pkgs.remmina
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

@@ -124,6 +124,10 @@
     home-manager
     disko
     git
+    zoxide
+    eza
+    sops
+    remmina
   ];
 
   # UWSM:
@@ -136,6 +140,10 @@
         binPath = "/run/current-system/sw/bin/Hyprland";
       };
     };
+  };
+
+  programs.starship = {
+    enable = true;
   };
 
   # SDDM:
