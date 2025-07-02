@@ -1,6 +1,13 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   wayland.windowManager.hyprland = {
     enable = true;
+    # Use the flake package:
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     systemd.enable = false;
     settings = {
       xwayland = {
@@ -128,10 +135,8 @@
       ];
       # General:
       general = {
-        gaps_in = 5;
+        gaps_in = 2;
         gaps_out = 10;
-        # "col.inactive_border" = "rgba(3d59a1ff) rgba(41a6b5ff) 45deg";
-        # "col.active_border" = "rgba(7dcfffff) rgba(c3e88dff) 45deg";
         border_size = 2;
         resize_on_border = true;
         no_border_on_floating = false;
@@ -148,10 +153,6 @@
           enabled = true;
           range = 30;
           render_power = 3;
-          # color = "rgba(000000AA)";
-          # color_inactive = "rgba(00000000)";
-          # color = "rgba(7dcfffaa)";
-          # color_inactive = "rgba(4fd6beaa)";
         };
         # Blur:
         blur = {
@@ -162,7 +163,7 @@
           ignore_opacity = true;
           xray = true;
           noise = 0;
-          vibrancy = 0;
+          vibrancy = 0.1;
           brightness = 1;
           contrast = 1;
         };
@@ -173,9 +174,6 @@
       };
       # Layouts:
       dwindle = {
-        pseudotile = true;
-        preserve_split = true;
-        force_split = 2;
         smart_split = true;
         smart_resizing = true;
       };
@@ -195,12 +193,6 @@
       settings = {
         ipc = "on";
         splash = false;
-        # preload = [
-        #   "./wallpaper.jpg"
-        # ];
-        # wallpaper = [
-        #   ", ./wallpaper.jpg"
-        # ];
       };
     };
     hyprpolkitagent = {

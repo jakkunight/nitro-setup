@@ -66,7 +66,9 @@
           "max" = 100;
           "orientation" = "horizontal";
         };
-        "tray" = {};
+        "tray" = {
+          "spacing" = 10;
+        };
         "hyprland/workspaces" = {
           "persistent-workspaces" = {
             "*" = 6;
@@ -153,7 +155,8 @@
         "clock" = {
           "format" = "󰃰 {:L%A, %d-%m-%Y %H:%M}";
           "interval" = 1;
-          "tooltip" = false;
+          "tooltip" = true;
+          "tooltip-format" = "<tt><big>{calendar}</big></tt>";
         };
         "custom/notification" = {
           "tooltip" = false;

@@ -103,7 +103,7 @@ in {
         leftauth2 = "xauth";
         xauth_identity = "santiago_wu";
         auto = "add";
-        leftupdown = "/etc/${updown_script.path}";
+        # leftupdown = "/etc/${updown_script.path}";
       };
     };
   };
