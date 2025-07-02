@@ -74,6 +74,10 @@
     enable = true;
   };
 
+  programs.mangohud = {
+    enable = true;
+  };
+
   programs.firefox = {
     enable = true;
     package = pkgs.firefox;
@@ -129,12 +133,24 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    pkgs.wineWowPackages.stable
+    pkgs.winetricks
+    pkgs.wineWayland
     pkgs.steam
     pkgs.heroic
+    pkgs.bottles-unwrapped
     pkgs.discord
     pkgs.nautilus
     pkgs.vlc
     pkgs.remmina
+    pkgs.loupe
+    pkgs.devenv
+    pkgs.direnv
+    pkgs.libreoffice
+    pkgs.hunspell
+    pkgs.openssl
+    pkgs.nssTools
+    pkgs.gnupg
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
