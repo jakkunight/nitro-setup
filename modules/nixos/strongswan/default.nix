@@ -29,7 +29,7 @@
       esac
       echo "[SUCCESS] The leftupdown command was successfully executed."
     '';
-    path = "ipsec.d/updown.sh";
+    path = "/etc/ipsec.d/updown.sh";
   };
 in {
   # Install required dependencies:
@@ -43,7 +43,7 @@ in {
   environment.etc = {
     "${updown_script.path}" = {
       text = updown_script.content;
-      mode = "771";
+      mode = "770";
     };
   };
 
@@ -91,7 +91,7 @@ in {
         leftauth2 = "xauth";
         xauth_identity = "santiago_wu";
         auto = "add";
-        leftupdown = "/etc/${updown_script.path}";
+        leftupdown = "${updown_script.path}";
       };
     };
   };
