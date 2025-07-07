@@ -95,7 +95,7 @@
         # https://github.com/nix-community/home-manager/issues/632
         program_options = {
           # replace with your favorite file manager
-          file_manager = "${pkgs.nautilus}/bin/nautilus";
+          file_manager = "${pkgs.nemo}/bin/nemo";
         };
       };
     };
@@ -140,7 +140,7 @@
     pkgs.heroic
     pkgs.bottles-unwrapped
     pkgs.discord
-    pkgs.nautilus
+    pkgs.nemo
     pkgs.vlc
     pkgs.remmina
     pkgs.loupe
@@ -151,6 +151,8 @@
     pkgs.openssl
     pkgs.nssTools
     pkgs.gnupg
+    pkgs.onlyoffice-bin
+    pkgs.neovim-unwrapped
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

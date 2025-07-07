@@ -72,7 +72,7 @@
         "$mod, D, exec, uwsm app -- ${pkgs.wofi}/bin/wofi --show drun"
         "$mod, A, exec, uwsm app -- ${pkgs.firefox}/bin/firefox"
         "$mod, S, exec, uwsm app -- ${pkgs.vlc}/bin/vlc"
-        "$mod, E, exec, uwsm app -- ${pkgs.nautilus}/bin/nautilus"
+        "$mod, E, exec, uwsm app -- ${pkgs.nemo}/bin/nemo"
         "$mod SHIFT, S, exec, uwsm app -- ${pkgs.hyprlock}/bin/hyprlock"
 
         # Controls:
