@@ -26,83 +26,8 @@
     enable = true;
   };
 
-  programs.zsh = {
-    enable = true;
-    autosuggestion.enable = true;
-    enableCompletion = true;
-    syntaxHighlighting.enable = true;
-    autocd = true;
-  };
-
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-    settings = {
-      add_newline = true;
-      scan_timeout = 10;
-    };
-  };
-
-  programs.zellij = {
-    enable = true;
-    settings = {
-      default_shell = "${pkgs.zsh}/bin/zsh";
-    };
-  };
-
   programs.gitui = {
     enable = true;
-  };
-
-  programs.zoxide = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
-  programs.yazi = {
-    enable = true;
-    enableZshIntegration = true;
-    shellWrapperName = "yy";
-  };
-
-  programs.kitty = {
-    enable = true;
-    package = pkgs.kitty;
-  };
-
-  programs.btop = {
-    enable = true;
-  };
-
-  programs.mangohud = {
-    enable = true;
-  };
-
-  programs.firefox = {
-    enable = true;
-    package = pkgs.firefox;
-  };
-
-  services = {
-    blueman-applet.enable = true;
-    swaync = {
-      enable = true;
-    };
-    udiskie = {
-      enable = true;
-      settings = {
-        # workaround for
-        # https://github.com/nix-community/home-manager/issues/632
-        program_options = {
-          # replace with your favorite file manager
-          file_manager = "${pkgs.nemo}/bin/nemo";
-        };
-      };
-    };
-    remmina = {
-      enable = true;
-      systemdService.enable = true;
-    };
   };
 
   # This value determines the Home Manager release that your configuration is
@@ -133,26 +58,12 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    pkgs.wineWowPackages.stable
-    pkgs.winetricks
-    pkgs.wineWayland
-    pkgs.steam
-    pkgs.heroic
-    pkgs.bottles-unwrapped
-    pkgs.discord
     pkgs.nemo
     pkgs.vlc
     pkgs.remmina
     pkgs.loupe
     pkgs.devenv
     pkgs.direnv
-    pkgs.libreoffice
-    pkgs.hunspell
-    pkgs.openssl
-    pkgs.nssTools
-    pkgs.gnupg
-    pkgs.onlyoffice-bin
-    pkgs.neovim-unwrapped
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

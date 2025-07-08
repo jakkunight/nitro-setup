@@ -5,5 +5,18 @@ _: {
     ./hyprland
     ./wofi
     ./waybar
+    ./firefox
+    ./zellij
+    ./zsh
+    ./starship
+    ./btop
+    ./yazi
+    ./office
+    ./helix
+    ./gaming
+    ./services
+    ./zoxide
+    ./kitty
+    ./thunderbird
   ];
 }
