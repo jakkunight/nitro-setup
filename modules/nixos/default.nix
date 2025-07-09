@@ -8,5 +8,9 @@ _: {
     ./kernel
     ./nvidia
     ./strongswan
+    ./uwsm
+    ./sddm
+    ./blocky
+    ./hyprland
   ];
 }

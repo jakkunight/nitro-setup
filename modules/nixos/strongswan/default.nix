@@ -32,6 +32,27 @@
     path = "/etc/ipsec.d/updown.sh";
   };
 in {
+  # Set the secrets up:
+  sops.secrets = {
+    "andescada/vpn_subnet_1" = {
+      owner = "jakku";
+    };
+    "andescada/vpn_subnet_2" = {
+      owner = "jakku";
+    };
+    "andescada/gateway_address" = {
+      owner = "jakku";
+    };
+    "andescada/psk" = {
+      owner = "jakku";
+    };
+    "andescada/username" = {
+      owner = "jakku";
+    };
+    "andescada/password" = {
+      owner = "jakku";
+    };
+  };
   # Install required dependencies:
   environment.systemPackages = with pkgs; [
     strongswan
