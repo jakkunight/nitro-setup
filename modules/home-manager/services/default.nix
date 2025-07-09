@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  home.services = {
+  services = {
     blueman-applet.enable = true;
     swaync = {
       enable = true;
