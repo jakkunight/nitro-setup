@@ -12,5 +12,6 @@ _: {
     ./sddm
     ./blocky
     ./hyprland
+    ./virtualization
   ];
 }
