@@ -33,14 +33,14 @@
     fonts = {
       serif = {
         package = inputs.genshin-font.packages.${pkgs.system}.default;
-        name = "Genshin Impact";
+        name = "GenshinImpact";
       };
 
       sansSerif = config.stylix.fonts.serif;
 
       monospace = {
         package = pkgs.nerd-fonts.hack;
-        name = "Hack Nerd Font Mono";
+        name = "HackNerdFontMono";
       };
 
       emoji = {

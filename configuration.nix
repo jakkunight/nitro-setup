@@ -2,8 +2,6 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 {
-  config,
-  lib,
   pkgs,
   inputs,
   ...
@@ -83,10 +81,28 @@
   ];
 
   # Fonts:
-  fonts.packages = [
-    pkgs.nerd-fonts.hack
-    inputs.genshin-font.packages.${pkgs.system}.default
-  ];
+  fonts = {
+    enableDefaultPackages = true;
+    packages = with pkgs; [
+      nerd-fonts.hack
+      inputs.genshin-font.packages.${pkgs.system}.default
+    ];
+    fontconfig = {
+      defaultFonts = {
+        serif = [
+          "Hack Nerd Font"
+          "GenshinImpact"
+        ];
+        sansSerif = [
+          "Hack Nerd Font"
+          "GenshinImpact"
+        ];
+        monospace = [
+          "Hack Nerd Font Mono"
+        ];
+      };
+    };
+  };
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
@@ -116,6 +132,7 @@
     git
     zoxide
     eza
+    bat
     sops
     dua
     remmina
