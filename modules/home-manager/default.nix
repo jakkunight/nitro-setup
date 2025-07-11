@@ -19,5 +19,6 @@ _: {
     ./kitty
     ./thunderbird
     ./zed-editor
+    ./zen-browser
   ];
 }
