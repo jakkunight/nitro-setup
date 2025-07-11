@@ -18,5 +18,6 @@ _: {
     ./zoxide
     ./kitty
     ./thunderbird
+    ./zed-editor
   ];
 }

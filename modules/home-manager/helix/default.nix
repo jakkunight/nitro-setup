@@ -33,6 +33,7 @@
       ];
     };
   };
+  # Disable if the theme option is set into Helix config:
   stylix.targets.helix = {
     enable = false;
   };
