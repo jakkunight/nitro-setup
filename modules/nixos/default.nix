@@ -13,5 +13,6 @@ _: {
     ./blocky
     ./hyprland
     ./virtualization
+    ./devenv
   ];
 }
