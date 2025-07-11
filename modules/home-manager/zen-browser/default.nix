@@ -4,11 +4,11 @@
   ...
 }: {
   imports = [
-    inputs.zen-browser.homeModules.twilight
+    inputs.zen-browser.homeModules.beta
   ];
-  home.packages = [
-    inputs.zen-browser.packages."${pkgs.system}".twilight
-  ];
+  # home.packages = [
+  #   inputs.zen-browser.packages."${pkgs.system}".beta
+  # ];
   programs.zen-browser = {
     enable = true;
     policies = {
