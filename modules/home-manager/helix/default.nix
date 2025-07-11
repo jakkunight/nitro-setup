@@ -21,6 +21,9 @@
         nixd = {
           command = "${pkgs.nixd}/bin/nixd";
         };
+        markdown-oxide = {
+          command = "${pkgs.markdown-oxide}/bin/markdown-oxide";
+        };
       };
       language = [
         {
@@ -28,6 +31,14 @@
           auto-format = true;
           formatter = {
             command = "${pkgs.alejandra}/bin/alejandra";
+          };
+        }
+        {
+          name = "markdown";
+          auto-format = true;
+          formatter = {
+            command = "${pkgs.mdformat}/bin/mdformmat";
+            args = ["--stdin"];
           };
         }
       ];
