@@ -9,7 +9,12 @@
     spice-protocol
     win-virtio
     win-spice
+    qemu
+    qemu-utils
+    libvirt
   ];
+
+  programs.virt-manager.enable = true;
 
   virtualisation = {
     libvirtd = {
