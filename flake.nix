@@ -1,5 +1,5 @@
 {
-  description = "Home Manager configuration of jakku";
+  description = "My Setup Settings (v0.5.0)";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -25,6 +25,7 @@
     };
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     genshin-font = {
       url = "github:jakkunight/GenshinImpact-font";

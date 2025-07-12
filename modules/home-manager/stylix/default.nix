@@ -72,9 +72,12 @@
       light = "candy-icons";
     };
     targets = {
-      firefox.profileNames = [
-        "default"
-      ];
+      firefox = {
+        colorTheme.enable = true;
+        profileNames = [
+          "default"
+        ];
+      };
       qt = {
         enable = true;
         platform = "qtct";
