@@ -81,28 +81,33 @@
   ];
 
   # Fonts:
-  fonts = {
-    enableDefaultPackages = true;
-    packages = with pkgs; [
-      nerd-fonts.hack
-      inputs.genshin-font.packages.${pkgs.system}.default
-    ];
-    fontconfig = {
-      defaultFonts = {
-        serif = [
-          "Hack Nerd Font"
-          "GenshinImpact"
-        ];
-        sansSerif = [
-          "Hack Nerd Font"
-          "GenshinImpact"
-        ];
-        monospace = [
-          "Hack Nerd Font Mono"
-        ];
-      };
-    };
-  };
+  # fonts = {
+  #   enableDefaultPackages = true;
+  #   fontDir.enable = true;
+  #   packages = with pkgs; [
+  #     nerd-fonts.hack
+  #     nerd-fonts.bigblue-terminal
+  #     inputs.genshin-font.packages.${pkgs.system}.default
+  #   ];
+  #   fontconfig = {
+  #     defaultFonts = {
+  #       serif = [
+  #         "BigBlueTerm437 Nerd Font Propo"
+  #         "Hack Nerd Font Propo"
+  #         "Genshin Impact"
+  #       ];
+  #       sansSerif = [
+  #         "BigBlueTerm437 Nerd Font Propo"
+  #         "Hack Nerd Font Propo"
+  #         "Genshin Impact"
+  #       ];
+  #       monospace = [
+  #         "BigBlueTerm437 Nerd Font Propo"
+  #         "Hack Nerd Font Mono"
+  #       ];
+  #     };
+  #   };
+  # };
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
