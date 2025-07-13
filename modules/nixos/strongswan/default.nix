@@ -74,7 +74,9 @@ in {
   };
 
   # Enable the NM plugin:
-  networking.networkmanager.enableStrongSwan = true;
+  networking.networkmanager.plugins = with pkgs; [
+    networkmanager_strongswan
+  ];
   networking.resolvconf.enable = true;
   # Create the secrets file:
   sops.templates."andescada.secrets" = {
