@@ -10,6 +10,7 @@
     settings = {
       theme = "tokyonight";
       editor = {
+        idle-timeout = 0;
         cursorline = true;
         auto-completion = true;
         path-completion = true;
@@ -50,6 +51,12 @@
         };
         markdown-oxide = {
           command = "${pkgs.markdown-oxide}/bin/markdown-oxide";
+        };
+        qmlls = {
+          command = "${pkgs.kdePackages.qtdeclarative}/bin/qmlls";
+          args = [
+            "-E"
+          ];
         };
       };
       language = [
