@@ -78,6 +78,11 @@
           "default"
         ];
       };
+      zen-browser = {
+        profileNames = [
+          "default"
+        ];
+      };
       qt = {
         enable = true;
         platform = "qtct";

@@ -8,6 +8,9 @@
     # Use the flake package:
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    plugins = [
+      inputs.hy3.packages.x86_64-linux.hy3
+    ];
     systemd.enable = false;
     settings = {
       xwayland = {
@@ -68,19 +71,19 @@
 
       bind = [
         # Applications:
-        "$mod, Return, exec, uwsm app -- kitty"
-        "$mod, D, exec, uwsm app -- ${pkgs.wofi}/bin/wofi --show drun"
-        "$mod, A, exec, uwsm app -- ${pkgs.firefox}/bin/firefox"
-        "$mod, S, exec, uwsm app -- ${pkgs.vlc}/bin/vlc"
-        "$mod, E, exec, uwsm app -- ${pkgs.nemo}/bin/nemo"
-        "$mod SHIFT, S, exec, uwsm app -- ${pkgs.hyprlock}/bin/hyprlock"
+        "$mod, Return, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.kitty}/bin/kitty"
+        "$mod, D, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.wofi}/bin/wofi --show drun"
+        "$mod, A, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.firefox}/bin/firefox"
+        "$mod, S, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.vlc}/bin/vlc"
+        "$mod, E, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.nemo}/bin/nemo"
+        "$mod SHIFT, S, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.hyprlock}/bin/hyprlock"
 
         # Controls:
-        ", XF86LogOff, exec, uwsm stop"
+        ", XF86LogOff, exec, ${pkgs.uwsm}/bin/uwsm stop"
         "$mod, F, fullscreen"
         "$mod, W, togglefloating"
-        "$mod, Q, killactive"
-        "$mod SHIFT, Q, exec, uwsm stop -r"
+        "$mod, Q, hy3:killactive"
+        "$mod SHIFT, Q, exec, ${pkgs.uwsm}/bin/uwsm stop -r"
 
         # Navigation:
         "$mod, 1, workspace, 1"
@@ -95,36 +98,46 @@
         "$mod, 0, workspace, 10"
 
         # Move focus app to workspace:
-        "$mod SHIFT, 1, movetoworkspace, 1"
-        "$mod SHIFT, 2, movetoworkspace, 2"
-        "$mod SHIFT, 3, movetoworkspace, 3"
-        "$mod SHIFT, 4, movetoworkspace, 4"
-        "$mod SHIFT, 5, movetoworkspace, 5"
-        "$mod SHIFT, 6, movetoworkspace, 6"
-        "$mod SHIFT, 7, movetoworkspace, 7"
-        "$mod SHIFT, 8, movetoworkspace, 8"
-        "$mod SHIFT, 9, movetoworkspace, 9"
-        "$mod SHIFT, 0, movetoworkspace, 10"
+        "$mod SHIFT, 1, hy3:movetoworkspace, 1"
+        "$mod SHIFT, 2, hy3:movetoworkspace, 2"
+        "$mod SHIFT, 3, hy3:movetoworkspace, 3"
+        "$mod SHIFT, 4, hy3:movetoworkspace, 4"
+        "$mod SHIFT, 5, hy3:movetoworkspace, 5"
+        "$mod SHIFT, 6, hy3:movetoworkspace, 6"
+        "$mod SHIFT, 7, hy3:movetoworkspace, 7"
+        "$mod SHIFT, 8, hy3:movetoworkspace, 8"
+        "$mod SHIFT, 9, hy3:movetoworkspace, 9"
+        "$mod SHIFT, 0, hy3:movetoworkspace, 10"
         # Move focus with $mod + arrow keys
-        "$mod, left, movefocus, l"
-        "$mod, right, movefocus, r"
-        "$mod, up, movefocus, u"
-        "$mod, down, movefocus, d"
+        "$mod, left, hy3:movefocus, l"
+        "$mod, right, hy3:movefocus, r"
+        "$mod, up, hy3:movefocus, u"
+        "$mod, down, hy3:movefocus, d"
         # Move focus with $mod + vim keys
-        "$mod, h, movefocus, l"
-        "$mod, l, movefocus, r"
-        "$mod, k, movefocus, u"
-        "$mod, j, movefocus, d"
+        "$mod, h, hy3:movefocus, l"
+        "$mod, l, hy3:movefocus, r"
+        "$mod, k, hy3:movefocus, u"
+        "$mod, j, hy3:movefocus, d"
         # Move windows with $mod + SHIFT + arrow keys
-        "$mod SHIFT, left, movewindow, l"
-        "$mod SHIFT, right, movewindow, r"
-        "$mod SHIFT, up, movewindow, u"
-        "$mod SHIFT, down, movewindow, d"
+        "$mod SHIFT, left, hy3:movewindow, l"
+        "$mod SHIFT, right, hy3:movewindow, r"
+        "$mod SHIFT, up, hy3:movewindow, u"
+        "$mod SHIFT, down, hy3:movewindow, d"
         # Move windows with $mod + SHIFT + vim keys
-        "$mod SHIFT, h, movewindow, l"
-        "$mod SHIFT, l, movewindow, r"
-        "$mod SHIFT, k, movewindow, u"
-        "$mod SHIFT, j, movewindow, d"
+        "$mod SHIFT, h, hy3:movewindow, l"
+        "$mod SHIFT, l, hy3:movewindow, r"
+        "$mod SHIFT, k, hy3:movewindow, u"
+        "$mod SHIFT, j, hy3:movewindow, d"
+        # Hy3:
+        # Create new split:
+        "$mod ALT, t, hy3:makegroup, tab, toggle"
+        "$mod ALT, o, hy3:makegroup, opposite, toggle"
+        "$mod ALT, h, hy3:makegroup, h, toggle"
+        "$mod ALT, k, hy3:makegroup, v, toggle"
+        "$mod ALT, l, hy3:makegroup, h, toggle"
+        "$mod ALT, j, hy3:makegroup, v, toggle"
+        # Toggle to tabbed window:
+        "$mod SHIFT, t, hy3:changegroup, toggletab"
         # Take a screenshot:
         " , PRINT, exec, uwsm app -- ${pkgs.hyprshot}/bin/hyprshot -m output"
         "SHIFT, PRINT, exec, uwsm app -- ${pkgs.hyprshot}/bin/hyprshot -m region"
@@ -140,17 +153,17 @@
         border_size = 2;
         resize_on_border = true;
         no_border_on_floating = false;
-        layout = "dwindle";
+        layout = "hy3";
       };
       # Decorations:
       decoration = {
         rounding = 10;
         # Transparency:
-        active_opacity = 0.80;
+        active_opacity = 0.85;
         inactive_opacity = 0.70;
         # Shadow:
         shadow = {
-          enabled = true;
+          enabled = false;
           range = 30;
           render_power = 3;
         };
@@ -179,6 +192,8 @@
       };
       master = {
         new_status = "slave";
+      };
+      hy3 = {
       };
     };
   };

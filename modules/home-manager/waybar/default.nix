@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   programs.waybar = {
     enable = true;
     settings = {
@@ -7,23 +11,21 @@
         layer = "top";
         position = "top";
         modules-left = [
-          "backlight"
-          "backlight/slider"
           "pulseaudio"
-          "pulseaudio/slider"
-        ];
-        modules-center = [
-          "tray"
-          "hyprland/workspaces"
-        ];
-        modules-right = [
           "network"
           "cpu"
           "temperature"
           "memory"
           "disk"
+          "backlight"
+        ];
+        modules-center = [
+          "hyprland/workspaces"
+        ];
+        modules-right = [
           "battery"
           "clock"
+          "tray"
           "custom/notification"
         ];
         # Modules:
@@ -45,12 +47,6 @@
             "󰛨"
           ];
         };
-        "backlight/slider" = {
-          "min" = 0;
-          "max" = 100;
-          "orientation" = "horizontal";
-          "device" = "intel_backlight";
-        };
         "pulseaudio" = {
           "interval" = 5;
           "format" = "{icon} {volume}%";
@@ -60,11 +56,6 @@
             ""
             ""
           ];
-        };
-        "pulseaudio/slider" = {
-          "min" = 0;
-          "max" = 100;
-          "orientation" = "horizontal";
         };
         "tray" = {
           "spacing" = 10;
@@ -162,14 +153,14 @@
           "tooltip" = false;
           "format" = "{icon}";
           "format-icons" = {
-            "notification" = "<sup></sup>";
-            "none" = "";
-            "dnd-notification" = "<sup></sup>";
-            "dnd-none" = "";
-            "inhibited-notification" = "<sup></sup>";
-            "inhibited-none" = "";
-            "dnd-inhibited-notification" = "<sup></sup>";
-            "dnd-inhibited-none" = "";
+            "notification" = "󱅫";
+            "none" = "󰂚";
+            "dnd-notification" = "󰵙";
+            "dnd-none" = "󱏧";
+            "inhibited-notification" = "󱅫";
+            "inhibited-none" = "󰂚";
+            "dnd-inhibited-notification" = "󰵙";
+            "dnd-inhibited-none" = "󱏧";
           };
           "return-type" = "json";
           "exec-if" = "which swaync-client";
@@ -181,41 +172,6 @@
       };
     };
     style = ''
-      #backlight-slider slider {
-        opacity: 0;
-        border: none;
-        box-shadow: none;
-        min-height: 0rem;
-        min-width: 0rem;
-      }
-      #backlight-slider trough {
-        border-radius: 5px;
-        min-height: 0.2rem;
-        min-width: 4rem;
-      }
-      #backlight-slider highlight {
-        border-radius: 5px;
-        min-width: 4rem;
-        min-height: 0.2rem;
-      }
-      #pulseaudio-slider slider {
-        opacity: 0;
-        background-image: none;
-        border: none;
-        box-shadow: none;
-        min-height: 0rem;
-        min-width: 0rem;
-      }
-      #pulseaudio-slider trough {
-        border-radius: 5px;
-        min-width: 4rem;
-        min-height: 0.2rem;
-      }
-      #pulseaudio-slider highlight {
-        border-radius: 5px;
-        min-width: 4rem;
-        min-height: 0.2rem;
-      }
       #workspaces button {
         font-size: 2rem;
       }

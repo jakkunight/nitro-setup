@@ -27,7 +27,7 @@
     #   base0E = "#a4daff";
     #   base0F = "#c0caf5";
     # };
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyodark.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-terminal-dark.yaml";
     polarity = "dark";
     image = ./wallpaper.jpg;
     fonts = {
