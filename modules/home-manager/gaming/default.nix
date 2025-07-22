@@ -4,12 +4,13 @@
   };
 
   home.packages = with pkgs; [
-    wineWowPackages.stable
+    wineWow64Packages.stable
     winetricks
     wineWayland
-    steam
     heroic
     bottles-unwrapped
     discord
+    (import ./install-capture-age.nix {inherit pkgs;})
+    (import ./run-capture-age.nix {inherit pkgs;})
   ];
 }
