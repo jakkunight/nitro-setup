@@ -80,6 +80,11 @@
     nushell
   ];
 
+  # Plymouth:
+  boot.plymouth = {
+    enable = true;
+  };
+
   # Fonts:
   # fonts = {
   #   enableDefaultPackages = true;
@@ -160,6 +165,11 @@
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  };
+
+  # GameMode:
+  programs.gamemode = {
+    enable = true;
   };
 
   # ClamAV:
