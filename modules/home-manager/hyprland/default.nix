@@ -130,8 +130,8 @@
         "$mod SHIFT, j, hy3:movewindow, d"
         # Hy3:
         # Create new split:
-        "$mod ALT, t, hy3:makegroup, tab, toggle"
-        "$mod ALT, o, hy3:makegroup, opposite, toggle"
+        "$mod ALT, t, hy3:makegroup, tab"
+        "$mod ALT, o, hy3:makegroup, opposite"
         "$mod ALT, h, hy3:makegroup, h, toggle"
         "$mod ALT, k, hy3:makegroup, v, toggle"
         "$mod ALT, l, hy3:makegroup, h, toggle"
