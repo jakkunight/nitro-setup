@@ -16,6 +16,9 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    zjstatus = {
+      url = "github:dj95/zjstatus";
+    };
     hyprland = {
       url = "github:hyprwm/Hyprland";
     };
