@@ -64,7 +64,27 @@
     loupe
     devenv
     direnv
+    audacity
+    kdePackages.kdenlive
+    krita
   ];
+
+  programs.obs-studio = {
+    enable = true;
+    package = (
+      pkgs.obs-studio.override {
+        cudaSupport = true;
+      }
+    );
+    plugins = with pkgs.obs-studio-plugins; [
+      wlrobs
+      obs-pipewire-audio-capture
+      obs-vaapi #optional AMD hardware acceleration
+      obs-gstreamer
+      obs-vkcapture
+      droidcam-obs
+    ];
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

@@ -85,6 +85,11 @@
     enable = true;
   };
 
+  # OBS-Studio (Each user must enable or disable the settings...):
+  programs.obs-studio = {
+    enableVirtualCamera = true;
+  };
+
   # Fonts:
   # fonts = {
   #   enableDefaultPackages = true;
