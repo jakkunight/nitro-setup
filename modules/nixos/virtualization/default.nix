@@ -29,6 +29,9 @@
             OVMFFull.fd
           ];
         };
+        vhostUserPackages = with pkgs; [
+          virtiofsd
+        ];
       };
     };
     spiceUSBRedirection.enable = true;
