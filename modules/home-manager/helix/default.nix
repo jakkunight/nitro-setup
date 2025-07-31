@@ -7,8 +7,19 @@
   programs.helix = {
     enable = true;
     defaultEditor = true;
+    themes = {
+      tokyonight_transparent = {
+        inherits = "tokyonight";
+        "ui.background" = {};
+        "ui.bufferline.background" = {};
+        "ui.cursorline.primary" = {};
+        "ui.cursorline.secondary" = {};
+        "ui.cursorcolumn.primary" = {};
+        "ui.cursorcolumn.secondary" = {};
+      };
+    };
     settings = {
-      theme = "tokyonight";
+      theme = "tokyonight_transparent";
       editor = {
         idle-timeout = 0;
         cursorline = true;
@@ -52,11 +63,18 @@
         markdown-oxide = {
           command = "${pkgs.markdown-oxide}/bin/markdown-oxide";
         };
+        marksman = {
+          command = "${pkgs.marksman}/bin/marksman";
+        };
         qmlls = {
           command = "${pkgs.kdePackages.qtdeclarative}/bin/qmlls";
           args = [
             "-E"
           ];
+        };
+        jdtls = {
+          command = "${pkgs.jdt-language-server}/bin/jdtls";
+          args = [];
         };
       };
       language = [
@@ -77,6 +95,9 @@
             ];
           };
           language-servers = [
+            {
+              name = "marksman";
+            }
             {
               name = "markdown-oxide";
             }

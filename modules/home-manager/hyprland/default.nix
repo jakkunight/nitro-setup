@@ -159,26 +159,26 @@
       decoration = {
         rounding = 10;
         # Transparency:
-        active_opacity = 0.85;
-        inactive_opacity = 0.70;
+        # active_opacity = 1.0;
+        # inactive_opacity = 0.95;
         # Shadow:
         shadow = {
-          enabled = false;
-          range = 30;
+          enabled = true;
+          range = 20;
           render_power = 3;
         };
         # Blur:
         blur = {
           enabled = true;
-          size = 8;
+          size = 10;
           passes = 2;
           new_optimizations = true;
           ignore_opacity = true;
           xray = true;
           noise = 0;
-          vibrancy = 0.1;
-          brightness = 1;
-          contrast = 1;
+          vibrancy = 0;
+          brightness = 1.0;
+          contrast = 1.0;
         };
       };
       # Gestures:

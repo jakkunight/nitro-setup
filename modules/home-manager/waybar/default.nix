@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.waybar = {
     enable = true;
     settings = {
@@ -11,21 +7,21 @@
         layer = "top";
         position = "top";
         modules-left = [
-          "pulseaudio"
           "network"
           "cpu"
           "temperature"
           "memory"
           "disk"
-          "backlight"
         ];
         modules-center = [
           "hyprland/workspaces"
         ];
         modules-right = [
+          "tray"
+          "pulseaudio"
+          "backlight"
           "battery"
           "clock"
-          "tray"
           "custom/notification"
         ];
         # Modules:

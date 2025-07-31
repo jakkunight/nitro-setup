@@ -59,17 +59,17 @@
       name = "Breeze_Hacked";
       size = 36;
     };
-    opacity = {
-      applications = 1.0;
-      terminal = 1.0;
-      desktop = 0.8;
-      popups = 0.8;
-    };
     iconTheme = {
       enable = true;
       package = pkgs.candy-icons;
       dark = "candy-icons";
       light = "candy-icons";
+    };
+    opacity = {
+      applications = 0.90;
+      terminal = 0.75;
+      desktop = 0.70;
+      popups = 0.90;
     };
     targets = {
       firefox = {

@@ -10,6 +10,7 @@ in {
     enable = true;
     settings = {
       default_shell = "${pkgs.zsh}/bin/zsh";
+      pane_frames = false;
     };
   };
 
@@ -21,7 +22,7 @@ in {
           plugin location="file://${inputs.zjstatus.packages.${pkgs.system}.default}/bin/zjstatus.wasm" {
             format_left   "{mode}#[bg=#${colors.base00}] {tabs}"
             format_center ""
-            format_right  "#[bg=#${colors.base00},fg=#${colors.base0D}]#[bg=#${colors.base0D},fg=#${colors.base01},bold] #[bg=#${colors.base02},fg=#${colors.base05},bold] {session} #[bg=#${colors.base03},fg=#${colors.base05},bold]"
+            format_right  "#[bg=#${colors.base00},fg=#${colors.base0B}]#[bg=#${colors.base0B},fg=#${colors.base01},bold]󰃰 #[bg=#${colors.base02},fg=#${colors.base05},bold] {datetime} #[bg=#${colors.base03},fg=#${colors.base05},bold] #[bg=#${colors.base00},fg=#${colors.base0D}]#[bg=#${colors.base0D},fg=#${colors.base01},bold] #[bg=#${colors.base02},fg=#${colors.base05},bold] {session} #[bg=#${colors.base03},fg=#${colors.base05},bold]"
             format_space  ""
             format_hide_on_overlength "true"
             format_precedence "crl"
@@ -71,7 +72,7 @@ in {
 
             datetime        "#[fg=#6C7086,bold] {format} "
             datetime_format "%A, %d %b %Y %H:%M"
-            datetime_timezone "Europe/London"
+            datetime_timezone "America/Asuncion"
           }
         }
       }
