@@ -20,7 +20,7 @@
       url = "github:dj95/zjstatus";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      url = "github:hyprwm/Hyprland?submodules=1";
     };
     hy3 = {
       url = "github:outfoxxed/hy3";
@@ -36,6 +36,10 @@
     };
     genshin-font = {
       url = "github:jakkunight/GenshinImpact-font";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    wanderer-grub-theme = {
+      url = "github:jakkunight/Wanderer-Themes";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.waybar = {
     enable = true;
     settings = {
@@ -167,12 +171,45 @@
         };
       };
     };
-    style = ''
+    style = lib.mkAfter ''
       #workspaces button {
         font-size: 2rem;
+        color: @base03;
       }
       #workspaces button.active {
         font-size: 2rem;
+        color: @base0D;
+      }
+      #battery {
+        color: @base0B;
+      }
+
+      #backlight {
+        color: @base0A;
+      }
+      #pulseaudio {
+        color: @base0E;
+      }
+      #clock {
+        color: @base0C;
+      }
+      #cpu {
+        color: @base0A;
+      }
+      #network {
+        color: @base0C;
+      }
+      #temperature {
+        color: @base09;
+      }
+      #memory {
+        color: @base0D;
+      }
+      #disk {
+        color: @base0B;
+      }
+      #custom-notification {
+        color: @base09;
       }
     '';
   };

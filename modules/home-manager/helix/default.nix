@@ -7,19 +7,8 @@
   programs.helix = {
     enable = true;
     defaultEditor = true;
-    themes = {
-      tokyonight_transparent = {
-        inherits = "tokyonight";
-        "ui.background" = {};
-        "ui.bufferline.background" = {};
-        "ui.cursorline.primary" = {};
-        "ui.cursorline.secondary" = {};
-        "ui.cursorcolumn.primary" = {};
-        "ui.cursorcolumn.secondary" = {};
-      };
-    };
     settings = {
-      theme = "tokyonight_transparent";
+      # theme = "tokyonight_transparent";
       editor = {
         idle-timeout = 0;
         cursorline = true;
@@ -108,6 +97,6 @@
   };
   # Disable if the theme option is set into Helix config:
   stylix.targets.helix = {
-    enable = false;
+    enable = true;
   };
 }
