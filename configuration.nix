@@ -153,7 +153,7 @@
     dua
     remmina
     blocky
-    clamav
+    # clamav
     zellij
     tmux
     yazi
@@ -178,12 +178,16 @@
   };
 
   # ClamAV:
-  services.clamav = {
-    daemon.enable = true;
-    updater.enable = true;
-  };
+  # services.clamav = {
+  #   daemon.enable = true;
+  #   updater.enable = true;
+  # };
 
   programs.starship = {
+    enable = true;
+  };
+
+  programs.nm-applet = {
     enable = true;
   };
 

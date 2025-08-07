@@ -19,5 +19,8 @@
       enable = true;
       systemdService.enable = true;
     };
+    network-manager-applet = {
+      enable = true;
+    };
   };
 }
