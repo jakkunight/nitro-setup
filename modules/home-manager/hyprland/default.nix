@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }: {
   wayland.windowManager.hyprland = {
@@ -73,7 +74,7 @@
         # Applications:
         "$mod, Return, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.kitty}/bin/kitty"
         "$mod, D, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.wofi}/bin/wofi --show drun"
-        "$mod, A, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.firefox}/bin/firefox"
+        "$mod, A, exec, ${pkgs.uwsm}/bin/uwsm app -- ${inputs.zen-browser.packages.${pkgs.system}.beta}/bin/zen-beta"
         "$mod, S, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.vlc}/bin/vlc"
         "$mod, E, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.nemo}/bin/nemo"
         "$mod SHIFT, S, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.hyprlock}/bin/hyprlock"
@@ -149,7 +150,7 @@
       # General:
       general = {
         gaps_in = 2;
-        gaps_out = 10;
+        gaps_out = 0;
         border_size = 2;
         resize_on_border = true;
         no_border_on_floating = false;
@@ -157,19 +158,19 @@
       };
       # Decorations:
       decoration = {
-        rounding = 10;
+        rounding = 0;
         # Transparency:
-        # active_opacity = 1.0;
-        # inactive_opacity = 0.95;
+        active_opacity = lib.mkForce 0.90;
+        inactive_opacity = lib.mkForce 0.80;
         # Shadow:
         shadow = {
-          enabled = true;
+          enabled = false;
           range = 20;
           render_power = 3;
         };
         # Blur:
         blur = {
-          enabled = true;
+          enabled = false;
           size = 10;
           passes = 2;
           new_optimizations = true;
@@ -194,6 +195,11 @@
         new_status = "slave";
       };
       hy3 = {
+      };
+
+      # Misc:
+      misc = {
+        vfr = true;
       };
     };
   };

@@ -61,8 +61,8 @@
       };
       sizes = {
         applications = 12;
-        terminal = 12;
-        desktop = 12;
+        terminal = 14;
+        desktop = 14;
         popups = 12;
       };
     };
@@ -78,10 +78,10 @@
       light = "candy-icons";
     };
     opacity = {
-      applications = 0.90;
-      terminal = 0.90;
-      desktop = 0.900;
-      popups = 0.90;
+      applications = 0.95;
+      terminal = 0.95;
+      desktop = 0.95;
+      popups = 0.95;
     };
     targets = {
       firefox = {
