@@ -14,5 +14,6 @@ _: {
     ./hyprland
     ./virtualization
     ./devenv
+    ./services
   ];
 }
