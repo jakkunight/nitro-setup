@@ -67,6 +67,7 @@
     audacity
     kdePackages.kdenlive
     krita
+    inputs.quickshell.packages.${pkgs.system}.default
   ];
 
   programs.obs-studio = {

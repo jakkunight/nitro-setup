@@ -163,6 +163,7 @@
     wineWayland
     heroic
     bottles-unwrapped
+    kdePackages.qtdeclarative
   ];
 
   # Steam:
