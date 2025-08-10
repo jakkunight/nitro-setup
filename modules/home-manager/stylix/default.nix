@@ -74,8 +74,8 @@
     iconTheme = {
       enable = true;
       package = pkgs.kanagawa-icon-theme;
-      dark = "candy-icons";
-      light = "candy-icons";
+      dark = "Kanagawa";
+      light = "Kanagawa";
     };
     opacity = {
       applications = 0.95;
