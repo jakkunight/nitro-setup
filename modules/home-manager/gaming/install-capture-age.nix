@@ -1,29 +1,34 @@
 {pkgs, ...}: let
-  steam_gid = "813780";
-  ca_setup = "$HOME/Downloads/CaptureAgeSetup.exe";
 in
   pkgs.writeShellScriptBin "install-ca.sh" ''
-    # Download CA installer:
-    echo "[INFO] Downloading CA to $HOME/Downloads..."
-    ${pkgs.curl}/bin/curl -fLo "${ca_setup}" "https://captureage.azureedge.net/cade/prod/CaptureAgeSetup.exe"
+    ca_setup="$HOME/Downloads/CaptureAgeSetup.exe"
+    download_cade() {
+      echo "[INFO] Downloading CA to $HOME/Downloads..."
+      # Download CA installer:
+      ${pkgs.curl}/bin/curl -fLo "$ca_setup" "https://captureage.azureedge.net/cade/prod/CaptureAgeSetup.exe"
+    }
     echo "[INFO] Setting up env vars..."
-    export STEAM_COMPAT_CLIENT_INSTALL_PATH=$HOME/.local/share/Steam
-    export STEAM_COMPAT_DATA_PATH=$HOME/.local/share/Steam/steamapps/compatdata/${steam_gid}
-    export WINEPREFIX=$HOME/.steam/steam/steamapps/compatdata/test/pfx
+    export STEAMAPPS="$HOME/.local/share/Steam/steamapps"
+    export STEAM_COMPAT_DATA_PATH="$STEAMAPPS/compatdata/813780"
+    export STEAM_COMPAT_CLIENT_INSTALL_PATH="$HOME/.steam"
+    export WINEPREFIX="$STEAMAPPS/compatdata/813780/pfx"
+    export WINEDEBUG=warn+all # This is for debug logs
+    export OBS_VKCAPTURE=1 # Enable this for OBS Videogame capture
     echo "[INFO] Select the correct Proton version for your AoE2:DE installation:"
-    select d in $HOME/.steam/root/steamapps/common/*
+    select PROTON_EXEC in $HOME/.steam/root/steamapps/common/*
     do
-        if [[ -n "$d" ]] && [[ -f "$d/proton" ]]; then
+        if [[ -n "$PROTON_EXEC" ]] && [[ -f "$PROTON_EXEC/proton" ]]; then
           break;
         else
-          echo ">>> Wrong Folder Selection!!! Try Again"
+          echo "[WARN] Wrong Folder Selection!!! Try Again"
         fi
     done
-    echo "[INFO] Running CA installer..."
-    "${pkgs.wineWowPackages.stableFull}/bin/wine64 ${ca_setup}"
-    echo "[INFO] Installed CA:DE in your machine!"
     echo "[INFO] Patching WINEPREFIX..."
-    ln -s "$HOME/.local/share/Steam/steamapps/common/AoE2DE" "$HOME/.local/share/Steam/steamapps/compatdata/${steam_gid}/pfx/drive_c/Program Files (x86)/Steam/steamapps/common"
+    protontricks 813780 d3dcompiler_47
+    protontricks 813780 fonts
     echo "[INFO] Patched!"
+    echo "[INFO] Running CA installer..."
+    "$PROTON_EXEC/proton" run "$HOME/Downloads/CaptureAgeSetup.exe"
+    echo "[INFO] Installed CA:DE in your machine!"
     echo "[INFO] Now you can use the \`run-ca.sh\` script to run CA:DE!"
   ''

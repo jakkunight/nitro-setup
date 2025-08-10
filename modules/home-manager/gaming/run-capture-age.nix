@@ -11,5 +11,5 @@ in
           echo ">>> Wrong Folder Selection!!! Try Again"
         fi
     done
-    ${pkgs.wineWowPackages.stableFull}/bin/wine64 "$HOME/.local/share/Steam/steamapps/compatdata/813780/pfx/drive_c/users/steamuser/Local Settings/Application Data/Programs/CaptureAge/CaptureAge.exe"
+    "$d/proton" run "$HOME/.local/share/Steam/steamapps/compatdata/813780/pfx/drive_c/users/steamuser/Local Settings/Application Data/Programs/CaptureAge/CaptureAge.exe"
   ''
