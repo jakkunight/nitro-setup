@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     mdformat
     markdown-oxide
+    wl-clipboard-rs
   ];
   programs.helix = {
     enable = true;
