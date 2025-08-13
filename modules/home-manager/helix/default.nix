@@ -4,6 +4,8 @@
     mdformat
     markdown-oxide
     wl-clipboard-rs
+    presenterm
+    mermaid-cli
   ];
   programs.helix = {
     enable = true;
@@ -77,7 +79,7 @@
         }
         {
           name = "markdown";
-          auto-format = true;
+          auto-format = false;
           formatter = {
             command = "${pkgs.mdformat}/bin/mdformat";
             args = [
