@@ -68,6 +68,18 @@
           command = "${pkgs.jdt-language-server}/bin/jdtls";
           args = [];
         };
+        ruff = {
+          command = "${pkgs.ruff}/bin/ruff";
+          args = [
+            "server"
+          ];
+        };
+        ty = {
+          command = "${pkgs.ty}/bin/ty";
+          args = [
+            "server"
+          ];
+        };
       };
       language = [
         {
@@ -92,6 +104,45 @@
             }
             {
               name = "markdown-oxide";
+            }
+          ];
+        }
+        {
+          name = "qml";
+          auto-format = true;
+          formatter = {
+            command = "${pkgs.kdePackages.qtdeclarative}/bin/qmlformat}";
+            args = [
+              "-n"
+              "-w 4"
+            ];
+          };
+        }
+        {
+          name = "python";
+          auto-format = true;
+          language-servers = [
+            {
+              name = "ruff";
+            }
+            {
+              name = "ty";
+            }
+          ];
+        }
+        {
+          name = "java";
+          auto-format = true;
+          formatter = {
+            command = "${pkgs.google-java-format}/bin/google-java-format";
+            args = [
+              "-"
+              "-a"
+            ];
+          };
+          language-servers = [
+            {
+              name = "jdtls";
             }
           ];
         }
