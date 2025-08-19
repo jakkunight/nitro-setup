@@ -68,6 +68,11 @@
     kdePackages.kdenlive
     krita
     inputs.quickshell.packages.${pkgs.system}.default
+    libsForQt5.qtquickcontrols2
+    libsForQt5.qtmultimedia
+    libsForQt5.qtimageformats
+    libsForQt5.qtsvg
+    kdePackages.qtdeclarative
   ];
 
   programs.obs-studio = {
