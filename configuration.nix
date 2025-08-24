@@ -149,8 +149,21 @@
     eza
     bat
     ripgrep
+    ripgrep-all
+    just
+    fd
+    uutils-coreutils-noprefix
+    xh
     sops
     dua
+    du-dust
+    hyperfine
+    fselect
+    rusty-man
+    wiki-tui
+    delta
+    mprocs
+    presenterm
     remmina
     blocky
     # clamav
