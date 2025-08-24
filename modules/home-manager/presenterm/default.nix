@@ -9,13 +9,18 @@
     defaults = {
       theme = "terminal-dark";
     };
-    transition = {
-      duration_millis = 1000;
-      frames = 60;
-      animation = {
-        style = "fade";
-      };
+    options = {
+      implicit_slide_ends = true;
+      end_slide_shorthand = true;
+      command_prefix = "presenterm:";
     };
+    # transition = {
+    #   duration_millis = 0;
+    #   frames = 0;
+    #   animation = {
+    #     style = "";
+    #   };
+    # };
     # [WARN] Use this at YOUR OWN RISK!!!
     snippet = {
       exec = {
@@ -31,6 +36,10 @@ in {
     packages = with pkgs; [
       presenterm
       mermaid-cli
+      python313Packages.weasyprint
+      typst
+      pandoc
+      d2
     ];
   };
   xdg.configFile."presenterm/${presentermConfigFile}" = {
