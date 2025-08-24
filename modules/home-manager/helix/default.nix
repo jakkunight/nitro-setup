@@ -10,9 +10,16 @@
   programs.helix = {
     enable = true;
     defaultEditor = true;
+    # package = pkgs.evil-helix;
     settings = {
       # theme = "tokyonight_transparent";
       editor = {
+        text-width = 80; # default
+        soft-wrap = {
+          enable = true;
+          wrap-indicator = "";
+          wrap-at-text-width = true;
+        };
         idle-timeout = 0;
         cursorline = true;
         auto-completion = true;
@@ -91,7 +98,7 @@
         }
         {
           name = "markdown";
-          auto-format = false;
+          auto-format = true;
           formatter = {
             command = "${pkgs.mdformat}/bin/mdformat";
             args = [
@@ -102,9 +109,9 @@
             {
               name = "marksman";
             }
-            {
-              name = "markdown-oxide";
-            }
+            # {
+            #   name = "markdown-oxide";
+            # }
           ];
         }
         {
