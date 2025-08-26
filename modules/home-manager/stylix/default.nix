@@ -61,7 +61,7 @@
       };
       sizes = {
         applications = 12;
-        terminal = 14;
+        terminal = 16;
         desktop = 14;
         popups = 12;
       };
@@ -78,10 +78,10 @@
       light = "Kanagawa";
     };
     opacity = {
-      applications = 0.95;
-      terminal = 0.95;
-      desktop = 0.95;
-      popups = 0.95;
+      applications = 0.90;
+      terminal = 0.90;
+      desktop = 0.90;
+      popups = 0.90;
     };
     targets = {
       firefox = {
