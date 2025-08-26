@@ -1,11 +1,7 @@
 {pkgs, ...}: {
   # Install packages to the "$PATH":
   home.packages = with pkgs; [
-    mdformat
-    markdown-oxide
     wl-clipboard-rs
-    presenterm
-    mermaid-cli
   ];
   programs.helix = {
     enable = true;
@@ -100,18 +96,21 @@
           name = "markdown";
           auto-format = true;
           formatter = {
-            command = "${pkgs.mdformat}/bin/mdformat";
+            command = "${pkgs.deno}/bin/deno";
             args = [
+              "fmt"
               "-"
+              "--ext"
+              "md"
             ];
           };
           language-servers = [
             {
               name = "marksman";
             }
-            # {
-            #   name = "markdown-oxide";
-            # }
+            {
+              name = "markdown-oxide";
+            }
           ];
         }
         {
