@@ -13,8 +13,12 @@
     pavucontrol
     alsa-firmware
     alsa-utils
+    alsa-ucm-conf
+    sof-firmware
   ];
   boot.extraModprobeConfig = ''
     options snd-hda-intel model=auto
+    options snd_hda_intel enable=0,1
+    options snd slots=snd-hda-intel
   '';
 }
