@@ -14,6 +14,10 @@ in {
     };
   };
 
+  home.packages = with inputs; [
+    zjstatus.packages.${pkgs.system}.default
+  ];
+
   xdg.configFile."zellij/layouts/default.kdl".text = ''
     layout {
       default_tab_template {
