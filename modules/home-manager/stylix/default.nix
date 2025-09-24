@@ -67,9 +67,9 @@
       };
     };
     cursor = {
-      package = pkgs.breeze-hacked-cursor-theme;
-      name = "Breeze_Hacked";
-      size = 36;
+      package = pkgs.lyra-cursors;
+      name = "LyraB-cursors";
+      size = 32;
     };
     iconTheme = {
       enable = true;
