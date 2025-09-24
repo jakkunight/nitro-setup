@@ -39,6 +39,15 @@
   # Set your time zone.
   time.timeZone = "America/Asuncion";
 
+  # nh:
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 3";
+    flake = "/home/jakku/nitro-setup"; # sets NH_OS_FLAKE variable for you
+    package = inputs.nh.packages.${pkgs.system}.nh;
+  };
+
   # ZRAM Swap:
   zramSwap = {
     enable = true;
@@ -141,7 +150,6 @@
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
-    nh
     home-manager
     disko
     git
