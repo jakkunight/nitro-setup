@@ -3,12 +3,19 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nh = {
+      url = "github:nix-community/nh";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -22,6 +29,7 @@
     };
     zjstatus = {
       url = "github:dj95/zjstatus";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
       url = "github:hyprwm/Hyprland?submodules=1";
@@ -53,36 +61,53 @@
     disko,
     stylix,
     sops-nix,
+    zjstatus,
+    flake-parts,
     ...
   } @ inputs: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
-  in {
-    nixosConfigurations = {
-      nitro = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
+  in
+    flake-parts.lib.mkFlake {inherit inputs;} ({
+        config,
+        withSystem,
+        moduleWithSystem,
+        ...
+      } @ top: {
+        imports = [];
+        systems = ["x86_64-linux"];
+        # perSystem = {
+        #   config,
+        #   pkgs,
+        #   ...
+        # }: {};
+        flake = {
+          nixosConfigurations = {
+            nitro = nixpkgs.lib.nixosSystem {
+              inherit system;
+              specialArgs = {
+                inherit inputs;
+              };
+              modules = [
+                sops-nix.nixosModules.sops
+                stylix.nixosModules.stylix
+                disko.nixosModules.disko
+                ./configuration.nix
+              ];
+            };
+          };
+          homeConfigurations = {
+            "jakku" = home-manager.lib.homeManagerConfiguration {
+              inherit pkgs;
+              extraSpecialArgs = {
+                inherit inputs;
+              };
+              modules = [
+                stylix.homeModules.stylix
+                ./home.nix
+              ];
+            };
+          };
         };
-        modules = [
-          sops-nix.nixosModules.sops
-          stylix.nixosModules.stylix
-          disko.nixosModules.disko
-          ./configuration.nix
-        ];
-      };
-    };
-    homeConfigurations = {
-      "jakku" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          stylix.homeModules.stylix
-          ./home.nix
-        ];
-      };
-    };
-  };
+      });
 }
