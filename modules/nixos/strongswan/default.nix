@@ -11,7 +11,7 @@
         echo "[INFO] Getting interface..."
         iface=lo.ipsec
         echo "[INFO] Removing DNS resolution via VPN DNS Server..."
-        echo "nameserver 94.140.14.14" | ${pkgs.openresolv}/bin/resolvconf -a $iface
+        echo "nameserver 1.1.1.1" | ${pkgs.openresolv}/bin/resolvconf -a $iface
         if [ $? -ne 0 ]; then
           echo "[WARN] Could not remove DNS resolution via VPN DNS Server."
           echo "[WARN] You can still use the VPN, but some domains might be"
