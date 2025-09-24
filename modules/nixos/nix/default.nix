@@ -12,10 +12,11 @@ _: {
         "flakes"
       ];
     };
-    gc = {
-      automatic = true;
-      options = "--delete-older-than 15d";
-      dates = "weekly";
-    };
+    # DEPRECATED: Using NH instaed of this.
+    # gc = {
+    #   automatic = true;
+    #   options = "--delete-older-than 15d";
+    #   dates = "weekly";
+    # };
   };
 }
