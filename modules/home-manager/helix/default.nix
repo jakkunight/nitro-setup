@@ -83,6 +83,10 @@
             "server"
           ];
         };
+        sqruff = {
+          command = "${pkgs.sqruff}/bin/sqruff";
+          args = ["lsp"];
+        };
       };
       language = [
         {
@@ -110,6 +114,27 @@
             }
             {
               name = "markdown-oxide";
+            }
+          ];
+        }
+        {
+          name = "typescript";
+          auto-format = true;
+          formatter = {
+            command = "";
+            args = [];
+          };
+        }
+        {
+          name = "sql";
+          auto-format = true;
+          formatter = {
+            command = "${pkgs.sqruff}/bin/sqruff";
+            args = ["fix" "-"];
+          };
+          language-servers = [
+            {
+              name = "sqruff";
             }
           ];
         }
