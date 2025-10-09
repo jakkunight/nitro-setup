@@ -6,5 +6,8 @@
     nssTools
     gnupg
     onlyoffice-bin
+    zathura
+    tdf
+    mate.atril
   ];
 }
