@@ -35,6 +35,11 @@
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  programs.wireshark = {
+    enable = true;
+    dumpcap.enable = true;
+    usbmon.enable = true;
+  };
 
   # Set your time zone.
   time.timeZone = "America/Asuncion";
@@ -184,6 +189,11 @@
     wineWayland
     heroic
     bottles-unwrapped
+    zenmap
+    nmap
+    filezilla
+    netscanner
+    netsniff-ng
   ];
 
   # Steam:
