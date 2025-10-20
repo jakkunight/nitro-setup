@@ -187,6 +187,9 @@
     wineWowPackages.stable
     winetricks
     wineWayland
+    freetype
+    protonup-rs
+    protonup-qt
     heroic
     bottles-unwrapped
     zenmap
