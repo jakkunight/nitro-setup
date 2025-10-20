@@ -51,8 +51,8 @@
       sansSerif = config.stylix.fonts.serif;
 
       monospace = {
-        package = pkgs.nerd-fonts.hack;
-        name = "HackNerdFontMono";
+        package = pkgs.nerd-fonts.mononoki;
+        name = "MononokiNerdFontMono";
       };
 
       emoji = {
