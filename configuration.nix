@@ -96,7 +96,7 @@
 
   # Plymouth:
   boot.plymouth = {
-    enable = true;
+    enable = false;
   };
 
   # OBS-Studio (Each user must enable or disable the settings...):
