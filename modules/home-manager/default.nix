@@ -12,6 +12,7 @@ _: {
     ./btop
     ./yazi
     ./office
+    ./qutebrowser
     ./helix
     ./gaming
     ./services
