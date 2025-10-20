@@ -61,6 +61,12 @@
         marksman = {
           command = "${pkgs.marksman}/bin/marksman";
         };
+        gpt = {
+          command = "${pkgs.helix-gpt}/bin/helix-gpt";
+          args = [
+            "--authCopilot"
+          ];
+        };
         qmlls = {
           command = "${pkgs.kdePackages.qtdeclarative}/bin/qmlls";
           args = [
@@ -95,6 +101,14 @@
           formatter = {
             command = "${pkgs.alejandra}/bin/alejandra";
           };
+          language-servers = [
+            {
+              name = "nixd";
+            }
+            {
+              name = "gpt";
+            }
+          ];
         }
         {
           name = "markdown";
@@ -114,6 +128,9 @@
             }
             {
               name = "markdown-oxide";
+            }
+            {
+              name = "gpt";
             }
           ];
         }
