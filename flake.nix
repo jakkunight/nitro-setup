@@ -95,6 +95,19 @@
                 ./configuration.nix
               ];
             };
+            live = nixpkgs.lib.nixosSystem {
+              inherit system;
+              specialArgs = {
+                inherit inputs;
+              };
+              modules = [
+                (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+                sops-nix.nixosModules.sops
+                stylix.nixosModules.stylix
+                disko.nixosModules.disko
+                ./configuration.nix
+              ];
+            };
           };
           homeConfigurations = {
             "jakku" = home-manager.lib.homeManagerConfiguration {
