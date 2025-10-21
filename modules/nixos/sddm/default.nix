@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   # SDDM:
   services.displayManager.sddm = {
-    enable = true;
+    enable = false;
     package = pkgs.kdePackages.sddm;
     enableHidpi = true;
     wayland.enable = true;
