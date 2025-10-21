@@ -5,10 +5,13 @@
 }: {
   services.greetd = {
     enable = true;
-    # settings = {
-    #   default_session = {
-    #     command = "${inputs.hyprland.packages.x86_64-linux.hyprland}/bin/Hyprland";
-    #   };
-    # };
+    settings = let
+      hyprland_uwsm = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd uwsm start hyprland-uwsm.desktop";
+        user = "jakku";
+      };
+    in {
+      default_session = hyprland_uwsm;
+    };
   };
 }
