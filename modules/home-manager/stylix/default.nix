@@ -60,10 +60,10 @@
         name = "Noto Color Emoji";
       };
       sizes = {
-        applications = 12;
-        terminal = 16;
-        desktop = 12;
-        popups = 12;
+        applications = 14;
+        terminal = 14;
+        desktop = 14;
+        popups = 14;
       };
     };
     cursor = {
