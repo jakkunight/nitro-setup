@@ -15,5 +15,6 @@ _: {
     ./virtualization
     ./devenv
     ./services
+    ./greetd
   ];
 }
