@@ -54,6 +54,7 @@
       url = "github:jakkunight/Wanderer-Themes";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    textfox.url = "github:adriankarlen/textfox";
   };
   outputs = {
     nixpkgs,
