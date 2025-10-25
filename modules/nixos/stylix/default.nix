@@ -37,10 +37,10 @@
       };
     };
     opacity = {
-      applications = 0.95;
-      terminal = 0.75;
-      desktop = 0.85;
-      popups = 0.95;
+      applications = 0.50;
+      terminal = 0.85;
+      desktop = 0.50;
+      popups = 0.50;
     };
     targets = {
       qt = {

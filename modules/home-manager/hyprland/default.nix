@@ -151,11 +151,11 @@
       ];
       # General:
       general = {
-        gaps_in = 2;
-        gaps_out = 0;
+        gaps_in = 8;
+        gaps_out = 16;
         border_size = 2;
         resize_on_border = true;
-        no_border_on_floating = false;
+        no_border_on_floating = true;
         layout = "dwindle";
       };
       # Decorations:
@@ -166,22 +166,23 @@
         # inactive_opacity = lib.mkForce 0.80;
         # Shadow:
         shadow = {
-          enabled = false;
-          range = 20;
+          enabled = true;
+          range = 10;
           render_power = 3;
         };
         # Blur:
         blur = {
-          enabled = false;
-          size = 10;
+          enabled = true;
+          size = 4;
           passes = 2;
           new_optimizations = true;
           ignore_opacity = true;
-          xray = true;
-          noise = 0;
-          vibrancy = 0;
+          xray = false;
+          noise = 0.10;
+          vibrancy = 1;
           brightness = 1.0;
-          contrast = 1.0;
+          contrast = 1.5;
+          popups = true;
         };
       };
       # Gestures:
@@ -192,6 +193,8 @@
       dwindle = {
         smart_split = true;
         smart_resizing = true;
+        pseudotile = true;
+        preserve_split = false;
       };
       master = {
         new_status = "slave";
