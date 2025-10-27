@@ -152,15 +152,15 @@
       # General:
       general = {
         gaps_in = 8;
-        gaps_out = 16;
+        gaps_out = 8;
         border_size = 2;
         resize_on_border = true;
-        no_border_on_floating = true;
+        no_border_on_floating = false;
         layout = "dwindle";
       };
       # Decorations:
       decoration = {
-        rounding = 0;
+        rounding = 8;
         # Transparency:
         # active_opacity = lib.mkForce 0.90;
         # inactive_opacity = lib.mkForce 0.80;
@@ -172,16 +172,16 @@
         };
         # Blur:
         blur = {
-          enabled = true;
+          enabled = false;
           size = 4;
           passes = 2;
           new_optimizations = true;
           ignore_opacity = true;
           xray = false;
-          noise = 0.10;
-          vibrancy = 1;
+          noise = 0.0;
+          vibrancy = 1.0;
           brightness = 1.0;
-          contrast = 1.5;
+          contrast = 1.0;
           popups = true;
         };
       };
