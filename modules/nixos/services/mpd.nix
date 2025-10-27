@@ -1,6 +1,6 @@
 {config, ...}: {
   services.mpd = {
-    enable = true;
+    enable = false;
     musicDirectory = "/home/jakku/Music";
     extraConfig = ''
       audio_output {
