@@ -41,7 +41,7 @@
     # };
     base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa-dragon.yaml";
     polarity = "dark";
-    image = ./wallpaper.jpg;
+    image = ./programmer-boy-wallpapers.png;
     fonts = {
       serif = {
         package = inputs.genshin-font.packages.${pkgs.system}.default;
