@@ -29,7 +29,7 @@
       "$mod" = "SUPER";
       input = {
         kb_layout = "latam";
-        follow_mouse = 1;
+        follow_mouse = 0;
       };
       exec-once = [
         "uwsm app -- systemctl --user start waybar.service"
