@@ -18,7 +18,7 @@ in {
     zjstatus.packages.${pkgs.system}.default
   ];
 
-  xdg.configFile."zellij/layouts/default.kdl".text = ''
+  xdg.configFile."zellij/layouts/zjstatus.kdl".text = ''
     layout {
       default_tab_template {
           children
