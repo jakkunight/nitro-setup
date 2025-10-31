@@ -169,7 +169,7 @@
     xh
     sops
     dua
-    du-dust
+    dust
     hyperfine
     fselect
     rusty-man
@@ -186,7 +186,7 @@
     gitui
     wineWowPackages.stable
     winetricks
-    wineWayland
+    wine-wayland
     freetype
     protonup-rs
     protonup-qt

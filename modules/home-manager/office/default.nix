@@ -5,9 +5,11 @@
     openssl
     nssTools
     gnupg
-    onlyoffice-bin
+    onlyoffice-desktopeditors
     zathura
     tdf
     mate.atril
+    texliveFull
+    pandoc
   ];
 }

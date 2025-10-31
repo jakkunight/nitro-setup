@@ -6,7 +6,7 @@
   home.packages = with pkgs; [
     wineWow64Packages.stable
     winetricks
-    wineWayland
+    wine-wayland
     heroic
     bottles-unwrapped
     discord
