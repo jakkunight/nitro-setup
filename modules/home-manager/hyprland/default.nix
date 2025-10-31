@@ -167,7 +167,7 @@
         # Shadow:
         shadow = {
           enabled = true;
-          range = 10;
+          range = 25;
           render_power = 3;
         };
         # Blur:
