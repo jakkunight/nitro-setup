@@ -29,7 +29,7 @@
       "$mod" = "SUPER";
       input = {
         kb_layout = "latam";
-        follow_mouse = 0;
+        follow_mouse = 1;
       };
       exec-once = [
         "uwsm app -- systemctl --user start waybar.service"
@@ -173,15 +173,15 @@
         # Blur:
         blur = {
           enabled = false;
-          size = 4;
+          size = 8;
           passes = 2;
           new_optimizations = true;
           ignore_opacity = true;
           xray = false;
-          noise = 0.0;
-          vibrancy = 1.0;
-          brightness = 1.0;
-          contrast = 1.0;
+          noise = 0.15;
+          vibrancy = 1.2;
+          brightness = 1.2;
+          contrast = 1.2;
           popups = true;
         };
       };

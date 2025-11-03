@@ -78,10 +78,10 @@
       light = "Kanagawa";
     };
     opacity = {
-      applications = 0.85;
-      terminal = 0.80;
-      desktop = 0.80;
-      popups = 0.80;
+      applications = 0.95;
+      terminal = 0.85;
+      desktop = 0.85;
+      popups = 0.85;
     };
     targets = {
       firefox = {
