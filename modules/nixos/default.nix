@@ -16,5 +16,6 @@ _: {
     ./devenv
     ./services
     ./greetd
+    ./niri
   ];
 }
