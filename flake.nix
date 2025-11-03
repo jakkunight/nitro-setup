@@ -18,6 +18,10 @@
       url = "github:nix-community/nh";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     stylix = {
       url = "github:danth/stylix";
@@ -95,19 +99,6 @@
                 ./configuration.nix
               ];
             };
-            live = nixpkgs.lib.nixosSystem {
-              inherit system;
-              specialArgs = {
-                inherit inputs;
-              };
-              modules = [
-                (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
-                sops-nix.nixosModules.sops
-                stylix.nixosModules.stylix
-                disko.nixosModules.disko
-                ./configuration.nix
-              ];
-            };
           };
           homeConfigurations = {
             "jakku" = home-manager.lib.homeManagerConfiguration {
@@ -120,6 +111,36 @@
                 ./home.nix
               ];
             };
+          };
+          packages.x86_64-linux.live = inputs.nixos-generators.nixosGenerate {
+            inherit system;
+            specialArgs = {
+              inherit inputs;
+            };
+            format = "install-iso";
+            modules = [
+              (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+              sops-nix.nixosModules.sops
+              stylix.nixosModules.stylix
+              disko.nixosModules.disko
+              home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users = {
+                    jakku = ./home.nix;
+                  };
+                  extraSpecialArgs = let
+                    pkgs = import nixpkgs {
+                      inherit system;
+                      config.allowUnfree = true; # Allow unfree packages here
+                    };
+                  in {inherit inputs pkgs;};
+                };
+              }
+              ./configuration.nix
+            ];
           };
         };
       });
