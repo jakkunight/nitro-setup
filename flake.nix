@@ -29,7 +29,6 @@
     };
     zjstatus = {
       url = "github:dj95/zjstatus";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
       url = "github:hyprwm/Hyprland?submodules=1";
