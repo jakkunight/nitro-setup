@@ -21,6 +21,7 @@ _: {
     ./thunderbird
     ./zed-editor
     ./zen-browser
+    ./brave
     ./presenterm
   ];
 }
