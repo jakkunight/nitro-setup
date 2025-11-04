@@ -17,5 +17,6 @@ _: {
     ./services
     ./greetd
     ./niri
+    ./xfce
   ];
 }
