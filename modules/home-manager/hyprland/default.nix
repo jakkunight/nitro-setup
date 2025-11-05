@@ -7,8 +7,8 @@
   wayland.windowManager.hyprland = {
     enable = true;
     # Use the flake package:
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    package = null;
+    portalPackage = null;
     # plugins = [
     #   inputs.hy3.packages.x86_64-linux.hy3
     # ];
@@ -25,6 +25,7 @@
       ];
       monitor = [
         "eDP-1,preferred,auto,1.0"
+        ",preferred,auto,1.0"
       ];
       "$mod" = "SUPER";
       input = {
