@@ -18,5 +18,6 @@ _: {
     ./greetd
     ./niri
     ./xfce
+    ./ly
   ];
 }
