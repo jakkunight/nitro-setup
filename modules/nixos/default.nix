@@ -10,14 +10,12 @@ _: {
     ./strongswan
     ./uwsm
     ./sddm
-    ./blocky
     ./hyprland
     ./virtualization
     ./devenv
     ./services
-    ./greetd
     ./niri
     ./xfce
-    ./ly
+    ./sddm
   ];
 }
