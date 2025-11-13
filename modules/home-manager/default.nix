@@ -23,5 +23,6 @@ _: {
     ./zen-browser
     ./brave
     ./presenterm
+    ./ghostty
   ];
 }
