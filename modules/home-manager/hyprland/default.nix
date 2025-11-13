@@ -24,8 +24,8 @@
         "NVD_BACKEND,direct"
       ];
       monitor = [
-        "eDP-1,preferred,auto,1.0"
-        ",preferred,auto,1.0"
+        "eDP-1,preferred,auto,1"
+        ",preferred,auto,1,mirror"
       ];
       "$mod" = "SUPER";
       input = {
@@ -192,16 +192,23 @@
       };
       # Layouts:
       dwindle = {
-        smart_split = true;
+        smart_split = false;
         smart_resizing = true;
-        pseudotile = true;
-        preserve_split = false;
+        pseudotile = false;
+        preserve_split = true;
+        force_split = 2;
       };
       master = {
+        mfact = 0.7;
         new_status = "slave";
+        smart_resizing = true;
+        drop_at_cursor = true;
       };
       # hy3 = {
       # };
+      windowrulev2 = [
+        # "center, floating:1"
+      ];
 
       # Misc:
       misc = {

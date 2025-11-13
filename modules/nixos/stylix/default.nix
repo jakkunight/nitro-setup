@@ -31,16 +31,27 @@
       };
       sizes = {
         applications = 12;
-        terminal = 14;
+        terminal = 16;
         desktop = 12;
         popups = 12;
       };
     };
+    cursor = {
+      package = pkgs.lyra-cursors;
+      name = "LyraB-cursors";
+      size = 32;
+    };
+    icons = {
+      enable = true;
+      package = pkgs.kanagawa-icon-theme;
+      dark = "Kanagawa";
+      light = "Kanagawa";
+    };
     opacity = {
-      applications = 0.50;
+      applications = 0.95;
       terminal = 0.85;
-      desktop = 0.50;
-      popups = 0.50;
+      desktop = 0.85;
+      popups = 0.85;
     };
     targets = {
       qt = {

@@ -61,7 +61,7 @@
       };
       sizes = {
         applications = 12;
-        terminal = 14;
+        terminal = 16;
         desktop = 12;
         popups = 12;
       };
@@ -71,7 +71,7 @@
       name = "LyraB-cursors";
       size = 32;
     };
-    iconTheme = {
+    icons = {
       enable = true;
       package = pkgs.kanagawa-icon-theme;
       dark = "Kanagawa";

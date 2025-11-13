@@ -1,12 +1,21 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   # SDDM:
   services.displayManager.sddm = {
-    enable = false;
+    enable = true;
     package = pkgs.kdePackages.sddm;
     enableHidpi = true;
     wayland.enable = true;
     wayland.compositor = "kwin";
-    theme = "${pkgs.sddm-astronaut.override {embeddedTheme = "japanese_aesthetic";}}/share/sddm/themes/sddm-astronaut-theme";
+    theme = "${pkgs.sddm-astronaut.override {embeddedTheme = "hyprland_kath";}}/share/sddm/themes/sddm-astronaut-theme";
+    settings = {
+      Theme = {
+        CursorTheme = "LyraB-cursors";
+      };
+    };
   };
   environment.systemPackages = with pkgs; [
     kdePackages.qtmultimedia
