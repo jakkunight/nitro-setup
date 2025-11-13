@@ -3,6 +3,9 @@
   home.packages = with pkgs; [
     wl-clipboard-rs
   ];
+  home.sessionVariables = {
+    COPILOT_API_KEY = "ghu_5AzUtyscuXcdssFtmfpPrmXokZmFgU1JWP1k";
+  };
   programs.helix = {
     enable = true;
     defaultEditor = true;
@@ -52,20 +55,36 @@
     };
     languages = {
       language-server = {
+        scls = {
+          command = "${pkgs.simple-completion-language-server}/bin/simple-completion-language-server";
+          config = {
+            feature_words = false; # enable completion by word
+            feature_snippets = true; # enable snippets
+            snippets_first = true; # completions will return before snippets by default
+            snippets_inline_by_word_tail = false; # suggest snippets by WORD tail, for example text `xsq|` become `x^2|` when snippet `sq` has body `^2`
+            feature_unicode_input = false; # enable "unicode input"
+            feature_paths = false; # enable path completion
+            feature_citations = false; # enable citation completion (only on `citation` feature enabled)
+          };
+        };
         nixd = {
           command = "${pkgs.nixd}/bin/nixd";
+        };
+        nil = {
+          command = "${pkgs.nil}/bin/nil";
         };
         markdown-oxide = {
           command = "${pkgs.markdown-oxide}/bin/markdown-oxide";
         };
         marksman = {
           command = "${pkgs.marksman}/bin/marksman";
+          args = [
+            "server"
+          ];
         };
         gpt = {
-          command = "${pkgs.helix-gpt}/bin/helix-gpt";
-          args = [
-            "--authCopilot"
-          ];
+          # command = "${pkgs.helix-gpt}/bin/helix-gpt";
+          command = "";
         };
         qmlls = {
           command = "${pkgs.kdePackages.qtdeclarative}/bin/qmlls";
@@ -77,14 +96,12 @@
           command = "${pkgs.jdt-language-server}/bin/jdtls";
           args = [];
         };
+        basedpyright = {
+          command = "${pkgs.basedpyright}/bin/basedpyright-langserver";
+        };
+
         ruff = {
           command = "${pkgs.ruff}/bin/ruff";
-          args = [
-            "server"
-          ];
-        };
-        ty = {
-          command = "${pkgs.ty}/bin/ty";
           args = [
             "server"
           ];
@@ -104,6 +121,12 @@
           language-servers = [
             {
               name = "nixd";
+            }
+            {
+              name = "nil";
+            }
+            {
+              name = "scls";
             }
             {
               name = "gpt";
@@ -130,6 +153,24 @@
               name = "markdown-oxide";
             }
             {
+              name = "scls";
+            }
+            {
+              name = "gpt";
+            }
+          ];
+        }
+        {
+          name = "rust";
+          auto-format = true;
+          language-servers = [
+            {
+              name = "scls";
+            }
+            {
+              name = "rust-analyzer";
+            }
+            {
               name = "gpt";
             }
           ];
@@ -141,6 +182,14 @@
             command = "";
             args = [];
           };
+          language-servers = [
+            {
+              name = "scls";
+            }
+            {
+              name = "gpt";
+            }
+          ];
         }
         {
           name = "sql";
@@ -152,6 +201,12 @@
           language-servers = [
             {
               name = "sqruff";
+            }
+            {
+              name = "scls";
+            }
+            {
+              name = "gpt";
             }
           ];
         }
@@ -165,16 +220,34 @@
               "-w 4"
             ];
           };
+          language-servers = [
+            {
+              name = "scls";
+            }
+
+            {
+              name = "qmlls";
+            }
+            {
+              name = "gpt";
+            }
+          ];
         }
         {
           name = "python";
           auto-format = true;
           language-servers = [
             {
+              name = "basedpyright";
+            }
+            {
+              name = "scls";
+            }
+            {
               name = "ruff";
             }
             {
-              name = "ty";
+              name = "gpt";
             }
           ];
         }
@@ -190,7 +263,13 @@
           };
           language-servers = [
             {
+              name = "scls";
+            }
+            {
               name = "jdtls";
+            }
+            {
+              name = "gpt";
             }
           ];
         }
