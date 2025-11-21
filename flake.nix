@@ -2,7 +2,7 @@
   description = "My Setup Settings (v0.5.0)";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs";
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     disko = {
