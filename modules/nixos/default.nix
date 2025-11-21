@@ -17,5 +17,6 @@ _: {
     ./niri
     ./xfce
     ./sddm
+    ./ollama.nix
   ];
 }
