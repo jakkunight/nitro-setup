@@ -67,6 +67,7 @@
     audacity
     kdePackages.kdenlive
     krita
+    handbrake
   ];
 
   programs.obs-studio = {
@@ -79,7 +80,7 @@
     plugins = with pkgs.obs-studio-plugins; [
       wlrobs
       obs-pipewire-audio-capture
-      obs-vaapi #optional AMD hardware acceleration
+      # obs-vaapi #optional AMD hardware acceleration
       obs-gstreamer
       obs-vkcapture
       droidcam-obs
