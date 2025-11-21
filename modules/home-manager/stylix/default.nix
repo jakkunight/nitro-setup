@@ -52,7 +52,7 @@
 
       monospace = {
         package = pkgs.nerd-fonts.mononoki;
-        name = "MononokiNerdFontMono";
+        name = "MononokiNerdFontPropo";
       };
 
       emoji = {
