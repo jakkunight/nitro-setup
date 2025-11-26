@@ -2,7 +2,7 @@
   description = "My Setup Settings (v0.5.0)";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     disko = {
@@ -48,6 +48,7 @@
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
     genshin-font = {
       url = "github:jakkunight/GenshinImpact-font";
