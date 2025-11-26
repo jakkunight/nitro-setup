@@ -39,6 +39,7 @@
     enable = true;
     dumpcap.enable = true;
     usbmon.enable = true;
+    package = pkgs.wireshark;
   };
 
   # Set your time zone.
@@ -145,6 +146,7 @@
       "networkmanager"
       "libvirtd"
       "input"
+      "wireshark"
     ];
     packages = [
     ];
@@ -197,6 +199,7 @@
     filezilla
     netscanner
     netsniff-ng
+    termshark
   ];
 
   # Steam:
