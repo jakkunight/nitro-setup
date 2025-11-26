@@ -24,5 +24,6 @@ _: {
     ./brave
     ./presenterm
     ./ghostty
+    ./wlogout
   ];
 }
