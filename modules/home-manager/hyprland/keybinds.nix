@@ -3,7 +3,7 @@
   inputs,
   ...
 }: {
-  programs.windowManager.hyprland.settings = {
+  wayland.windowManager.hyprland.settings = {
     # Keybindings
     bindel = [
       # Multimedia:
@@ -37,12 +37,14 @@
 
     bind = [
       # Applications:
-      "$mod, Return, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.kitty}/bin/kitty"
+      # "$mod, Return, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.kitty}/bin/kitty"
+      "$mod, Return, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.ghostty}/bin/ghostty"
       "$mod, D, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.wofi}/bin/wofi --show drun"
       "$mod, A, exec, ${pkgs.uwsm}/bin/uwsm app -- ${inputs.zen-browser.packages.${pkgs.system}.beta}/bin/zen-beta"
       "$mod, S, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.vlc}/bin/vlc"
       "$mod, E, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.nemo}/bin/nemo"
       "$mod SHIFT, S, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.hyprlock}/bin/hyprlock"
+      "$mod SHIFT, P, exec, ${pkgs.wlogout}/bin/wlogout"
 
       # Controls:
       ", XF86LogOff, exec, ${pkgs.uwsm}/bin/uwsm stop"

@@ -1,5 +1,5 @@
 _: {
-  programs.windowManager.hyprland.settings = {
+  wayland.windowManager.hyprland.settings = {
     # General:
     general = {
       gaps_in = 8;
