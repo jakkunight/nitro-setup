@@ -82,6 +82,9 @@
             "server"
           ];
         };
+        tinymist = {
+          command = "${pkgs.tinymist}/bin/tinymist";
+        };
         gpt = {
           # command = "${pkgs.helix-gpt}/bin/helix-gpt";
           command = "";
@@ -157,6 +160,23 @@
             }
             {
               name = "gpt";
+            }
+          ];
+        }
+        {
+          name = "typst";
+          auto-format = true;
+          formatter = {
+            command = "${pkgs.typstyle}/bin/typstyle";
+            args = [
+              "-i"
+              "-t"
+              "4"
+            ];
+          };
+          language-servers = [
+            {
+              name = "tinymist";
             }
           ];
         }
