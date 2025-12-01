@@ -11,7 +11,7 @@
     # author = "Folke Lemaitre (https://github.com/folke)";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa-dragon.yaml";
     polarity = "dark";
-    image = ./wallpaper.jpg;
+    image = ./wallpapers/hypr-chan-v2.png;
     fonts = {
       serif = {
         package = inputs.genshin-font.packages.${pkgs.system}.default;
