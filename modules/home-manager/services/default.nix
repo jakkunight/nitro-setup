@@ -1,4 +1,7 @@
 {pkgs, ...}: {
+  imports = [
+    ./mpd
+  ];
   services = {
     blueman-applet.enable = true;
     swaync = {
