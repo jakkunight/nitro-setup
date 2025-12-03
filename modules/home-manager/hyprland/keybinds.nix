@@ -37,8 +37,8 @@
 
     bind = [
       # Applications:
-      # "$mod, Return, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.kitty}/bin/kitty"
-      "$mod, Return, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.ghostty}/bin/ghostty"
+      "$mod, Return, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.kitty}/bin/kitty"
+      # "$mod, Return, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.ghostty}/bin/ghostty"
       "$mod, D, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.wofi}/bin/wofi --show drun"
       "$mod, A, exec, ${pkgs.uwsm}/bin/uwsm app -- ${inputs.zen-browser.packages.${pkgs.system}.beta}/bin/zen-beta"
       "$mod, S, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.vlc}/bin/vlc"

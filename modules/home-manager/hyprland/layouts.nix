@@ -1,10 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}: let
-  cfg = config.home-manager.programs.windowManager.hyprland.settings;
-in {
+_: {
   wayland.windowManager.hyprland.settings = {
     # Select active layout:
     general = {

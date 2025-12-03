@@ -1,4 +1,8 @@
-_: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     ./keybinds.nix
     ./decorations.nix
@@ -13,9 +17,10 @@ _: {
     # Use the flake package:
     package = null;
     portalPackage = null;
-    # plugins = [
-    #   inputs.hy3.packages.x86_64-linux.hy3
-    # ];
+    plugins = [
+      inputs.hy3.packages.x86_64-linux.hy3
+      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprfocus
+    ];
     systemd.enable = false;
     settings = {
       "$mod" = "SUPER";
@@ -39,8 +44,8 @@ _: {
       };
       # hy3 = {
       # };
-      windowrulev2 = [
-        # "center, floating:1"
+      windowrule = [
+        "match:float yes, center on"
       ];
 
       # Misc:
