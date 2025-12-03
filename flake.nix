@@ -59,6 +59,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     textfox.url = "github:adriankarlen/textfox";
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
   outputs = {
     nixpkgs,
@@ -66,7 +70,6 @@
     disko,
     stylix,
     sops-nix,
-    zjstatus,
     flake-parts,
     ...
   } @ inputs: let
