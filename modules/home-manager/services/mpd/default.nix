@@ -1,8 +1,12 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   services.mpd = {
     enable = true;
-    musicDirectory = "/home/jakku/Music";
-    network.startWhenNeeded = pkgs.stdenv.hostPlatform.system == "x86_64-linux";
+    musicDirectory = "${config.home.homeDirectory}/Music";
+    playlistDirectory = "${config.home.homeDirectory}/Music/Playlists";
     extraConfig = ''
       audio_output {
         type "pipewire"
@@ -15,15 +19,23 @@
     mpd
     mpv
     puddletag
+    yt-dlp
+    ffmpeg
+    matugen
   ];
 
   home.sessionVariables = {
-    MPD_HOST = "run/user/1000/mpd/socket";
+    MPD_HOST = "/run/user/1000/mpd/socket";
   };
 
   programs.rmpc = {
     enable = true;
     package = pkgs.rmpc;
-    # config = '''';
+    config = ''
+      (
+        address: "/run/user/1000/mpd/socket",
+        cache_dir: Some("/home/jakku/.cache/rmpc"),
+      )
+    '';
   };
 }
