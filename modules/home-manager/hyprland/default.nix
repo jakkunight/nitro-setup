@@ -44,9 +44,9 @@
       };
       # hy3 = {
       # };
-      windowrule = [
-        "match:float yes, center on"
-      ];
+      # windowrule = [
+      #   "match:float yes, center on"
+      # ];
 
       # Misc:
       misc = {
