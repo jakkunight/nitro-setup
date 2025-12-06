@@ -1,5 +1,4 @@
 {
-  inputs,
   lib,
   pkgs,
   ...
@@ -16,7 +15,7 @@
       # Hyprfocus:
       # Load the plugin manually
       exec-once = [
-        "hyprctl plugin load ${inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprfocus}/lib/libhyprfocus.so"
+        "hyprctl plugin load ${pkgs.hyprlandPlugins.hyprfocus}/lib/libhyprfocus.so"
       ];
       plugin = {
         hyprfocus = {
@@ -32,9 +31,11 @@
           "hypr, 0.28, 0.29, 0.69, 1.08"
         ];
         animation = [
-          "hyprfocusIn, 1, 1, hyprIn"
-          "hyprfocusOut, 1, 1, hyprOut"
-          "windows, 1, 4, hypr"
+          # "hyprfocusIn, 1, 1, hyprIn"
+          # "hyprfocusOut, 1, 1, hyprOut"
+          "windows, 1, 4, hyprIn"
+          "windowsOut, 1, 4, hyprOut"
+          "windowsIn, 1, 4, hyprIn"
         ];
       };
       # Decorations:

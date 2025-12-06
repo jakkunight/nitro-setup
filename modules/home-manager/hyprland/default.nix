@@ -1,6 +1,6 @@
 {
-  inputs,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -17,9 +17,8 @@
     # Use the flake package:
     package = null;
     portalPackage = null;
-    plugins = [
-      inputs.hy3.packages.x86_64-linux.hy3
-      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprfocus
+    plugins = with pkgs.hyprlandPlugins; [
+      hyprfocus
     ];
     systemd.enable = false;
     settings = {
@@ -60,4 +59,8 @@
       enable = true;
     };
   };
+
+  home.packages = [
+    inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
+  ];
 }
