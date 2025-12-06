@@ -1,143 +1,42 @@
 {
-  description = "My Setup Settings (v0.5.0)";
+  description = "Your new project, powered by flake-parts!";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
-
-    disko = {
-      url = "github:nix-community/disko/latest";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nh = {
-      url = "github:nix-community/nh";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    stylix = {
-      url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    zjstatus = {
-      url = "github:dj95/zjstatus";
-    };
-    hyprland = {
-      url = "github:hyprwm/Hyprland?submodules=1";
-    };
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-    genshin-font = {
-      url = "github:jakkunight/GenshinImpact-font";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    wanderer-grub-theme = {
-      url = "github:jakkunight/Wanderer-Themes";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    textfox.url = "github:adriankarlen/textfox";
   };
-  outputs = {
-    nixpkgs,
-    home-manager,
-    disko,
-    stylix,
-    sops-nix,
-    flake-parts,
-    ...
-  } @ inputs: let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-  in
-    flake-parts.lib.mkFlake {inherit inputs;} ({
+  outputs = {flake-parts, ...} @ inputs:
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      imports = [
+        # Anything that declares a `perSystem` attribute.
+      ];
+      systems = ["x86_64-linux"];
+      perSystem = {
         config,
-        withSystem,
-        moduleWithSystem,
+        self',
+        inputs',
+        pkgs,
+        system,
         ...
-      } @ top: {
-        imports = [];
-        systems = ["x86_64-linux"];
-        # perSystem = {
-        #   config,
-        #   pkgs,
-        #   ...
-        # }: {};
-        flake = {
-          nixosConfigurations = {
-            nitro = nixpkgs.lib.nixosSystem {
-              inherit system;
-              specialArgs = {
-                inherit inputs;
-              };
-              modules = [
-                sops-nix.nixosModules.sops
-                stylix.nixosModules.stylix
-                disko.nixosModules.disko
-                ./configuration.nix
-              ];
-            };
-          };
-          homeConfigurations = {
-            "jakku" = home-manager.lib.homeManagerConfiguration {
-              inherit pkgs;
-              extraSpecialArgs = {
-                inherit inputs;
-              };
-              modules = [
-                stylix.homeModules.stylix
-                ./home.nix
-              ];
-            };
-          };
-          packages.x86_64-linux.live = inputs.nixos-generators.nixosGenerate {
-            inherit system;
-            specialArgs = {
-              inherit inputs;
-            };
-            format = "install-iso";
-            modules = [
-              (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
-              sops-nix.nixosModules.sops
-              stylix.nixosModules.stylix
-              disko.nixosModules.disko
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  users = {
-                    jakku = ./home.nix;
-                  };
-                  extraSpecialArgs = let
-                    pkgs = import nixpkgs {
-                      inherit system;
-                      config.allowUnfree = true; # Allow unfree packages here
-                    };
-                  in {inherit inputs pkgs;};
-                };
-              }
-              ./configuration.nix
-            ];
-          };
-        };
-      });
+      }: {
+        # Outputs of a regular flake.nix that depends on a specific
+        # `system` attribute.
+        # Allows definition of system-specific attributes
+        # without needing to declare the system explicitly!
+        #
+        # Quick rundown of the provided arguments:
+        # - config is a reference to the full configuration, lazily evaluated
+        # - self' is the outputs as provided here, without system. (self'.packages.default)
+        # - inputs' is the input without needing to specify system (inputs'.foo.packages.bar)
+        # - pkgs is an instance of nixpkgs for your specific system
+        # - system is the system this configuration is for
+
+        # This is equivalent to packages.<system>.default
+        # packages.default = pkgs.hello;
+      };
+      # flake = {
+      #   # The usual flake attributes can be defined here, including
+      #   # system-agnostic and/or arbitrary outputs.
+      # };
+    };
 }
