@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  inherit (lib) types mkOption mkEnableOption mkIf;
+  inherit (lib) types mkOption;
 in {
   options = {
     cpuVendor = let
@@ -15,39 +15,6 @@ in {
     in
       mkOption {
         type = cpuType;
-        default = null;
-      };
-    gpuConfig = let
-      inherit (types) nullOr submodule;
-      nvidiaConfigType = submodule {
-        options = {};
-        config = {};
-      };
-      noveauConfigType = submodule {
-        options = {};
-      };
-      amdgpuConfigType = submodule {
-        options = {};
-      };
-      gpuConfigType = submodule {
-        options = {
-          nvidiaConfig = mkOption {
-            type = nullOr nvidiaConfigType;
-            default = null;
-          };
-          amdgpuConfig = mkOption {
-            type = nullOr amdgpuConfigType;
-            default = null;
-          };
-          noveauConfig = mkOption {
-            type = nullOr noveauConfigType;
-            default = null;
-          };
-        };
-      };
-    in
-      mkOption {
-        type = nullOr gpuConfigType;
         default = null;
       };
   };
@@ -83,8 +50,6 @@ in {
         imports = [
           (modulesPath + "/installer/scan/not-detected.nix")
         ];
-      };
-      "hardware/gpu" = {
       };
     };
   };
