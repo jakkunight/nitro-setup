@@ -1,6 +1,15 @@
-{withSystem, inputs, config, lib, ...}: {
-  options = {};
-  config = {
-    flake.modules.nixos."hardware-gpu" = if 
+{lib, ...}: {
+  options = let
+    inherit (lib) types mkOption;
+  in {
+    gpuClass = mkOption {
+      type = with types;
+        nullOr (enum [
+          "nvidia"
+          "noveau"
+          "amdgpu"
+        ]);
+      default = null;
+    };
   };
 }
