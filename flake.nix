@@ -12,6 +12,10 @@
     flake-file = {
       url = "github:vic/flake-file";
     };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     treefmt-nix.url = "github:numtide/treefmt-nix";
     disko = {
       url = "github:nix-community/disko";
