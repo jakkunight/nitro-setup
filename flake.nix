@@ -22,11 +22,6 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Extra inputs:
-    helix = {
-      url = "github:helix-editor/helix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     wanderer-grub-theme = {
       url = "github:jakkunight/Wanderer-Themes";
       inputs.nixpkgs.follows = "nixpkgs";
