@@ -35,11 +35,32 @@
 
   outputs = {
     flake-parts,
-    import-tree,
+    home-manager,
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} ({
-        imports = [flake-parts.flakeModules.modules];
-      }
-      // (import-tree ./modules));
+        withSystem,
+        config,
+        lib,
+        ...
+      } @ top: {
+        imports = [
+          flake-parts.flakeModules.modules
+          home-manager.flakeModules.home-manager
+        ];
+        systems = [
+          "x86_64-linux"
+        ];
+        perSystem = {
+          config,
+          pkgs,
+          ...
+        }: {
+          # Packages and Devshells
+        };
+        flake = {
+          # NixOS modules:
+          # Home Manager modules:
+        };
+      });
 }
