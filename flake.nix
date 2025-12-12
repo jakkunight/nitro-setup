@@ -2,7 +2,8 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "https://flakehub.com/f/DeterminateSystems/nixpkgs-weekly/*";
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
     };
@@ -37,5 +38,8 @@
     import-tree,
     ...
   } @ inputs:
-    flake-parts.lib.mkFlake {inherit inputs;} (import-tree ./modules);
+    flake-parts.lib.mkFlake {inherit inputs;} ({
+        imports = [flake-parts.flakeModules.modules];
+      }
+      // (import-tree ./modules));
 }
