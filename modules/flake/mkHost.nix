@@ -40,14 +40,43 @@ in {
     in
       mkOption {
         type = types.attrsOf nixosHostType;
+        default = {};
       };
   };
   config = {
     flake.nixosConfigurations = let
-      mkHost = hostname: { system, userModules }: inputs.nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = (builtins.mapAttrs);
-      };
-       in {}
+      loadModulesForUser = username: modules: (
+        # Load NixOS modules:
+        # (username, modules[]) => loadedModules[];
+        # Load user creation module:
+        # (username) => userModule
+        # Concat the modules:
+        # (userModule, loadedModules[]) => userLoadedModules[];
+        (builtins.map (module: config.flake.modules.nixos.${module} or {}))
+        ++ [
+          {
+            imports = [
+              inputs.home-manager.nixosModules.home-manager
+            ];
+            home-manager.users.${username}.imports =
+              [
+                ({osConfig, ...}: {
+                  home.stateVersion = osConfig.system.stateVersion;
+                })
+              ]
+              ++ (builtins.map (module: config.flake.modules.home.${module} or {}));
+          }
+        ]
+      );
+      mkHost = hostname: {
+        system,
+        user,
+      }:
+        inputs.nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = lib.attrsets.attrValues (builtins.mapAttrs loadModulesForUser user);
+        };
+    in
+      builtins.mapAttrs mkHost config.nixosHosts;
   };
 }
