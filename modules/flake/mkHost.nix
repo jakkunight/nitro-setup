@@ -18,11 +18,30 @@ in {
 
   options = {
     nixosHosts = let
+      userConfig = types.submodule {
+        options = {
+          extraGroups = {
+            type = types.listOf types.nonEmptyStr;
+            default = [];
+          };
+          useDefaultShell = mkOption {
+            type = types.bool;
+            default = true;
+          };
+          shell = mkOption {
+            type = types.nullOr types.package;
+            default = null;
+          };
+        };
+      };
       userModules = types.submodule {
         options = {
           modules = mkOption {
             type = types.listOf (types.attrs);
-            default = {};
+            default = [];
+          };
+          userConfig = mkOption {
+            type = userConfig;
           };
         };
       };
@@ -34,47 +53,57 @@ in {
             ];
             default = "x86_64-linux";
           };
-          users = types.attrsOf userModules;
+          users = mkOption {
+            type = types.attrsOf userModules;
+            default = [];
+          };
         };
       };
     in
       mkOption {
         type = types.attrsOf nixosHostType;
-        default = {};
       };
   };
   config = {
     flake.nixosConfigurations = let
-      loadModulesForUser = username: modules: (
+      loadModulesForUser = username: {
+        userConfig,
+        modules,
+      }: (
         # Load NixOS modules:
         # (username, modules[]) => loadedModules[];
         # Load user creation module:
         # (username) => userModule
         # Concat the modules:
         # (userModule, loadedModules[]) => userLoadedModules[];
-        (builtins.map (module: config.flake.modules.nixos.${module} or {}))
+        (builtins.map (module: config.flake.modules.nixos.${module} or {}) modules)
         ++ [
-          {
+          (_: {
             imports = [
               inputs.home-manager.nixosModules.home-manager
             ];
+            users.users.${username} = {
+              isNormalUser = true;
+              initialPassword = "${username}";
+              inherit (userConfig) extraGroups useDefaultShell shell;
+            };
             home-manager.users.${username}.imports =
               [
                 ({osConfig, ...}: {
-                  home.stateVersion = osConfig.system.stateVersion;
+                  home.stateVersion = "${osConfig.system.stateVersion}";
                 })
               ]
-              ++ (builtins.map (module: config.flake.modules.home.${module} or {}));
-          }
+              ++ (builtins.map (module: config.flake.modules.home.${module} or {}) modules);
+          })
         ]
       );
       mkHost = hostname: {
         system,
-        user,
+        users,
       }:
         inputs.nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = lib.attrsets.attrValues (builtins.mapAttrs loadModulesForUser user);
+          modules = lib.lists.flatten (lib.attrsets.attrValues (builtins.mapAttrs loadModulesForUser users));
         };
     in
       builtins.mapAttrs mkHost config.nixosHosts;

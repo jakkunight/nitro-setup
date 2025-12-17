@@ -10,8 +10,11 @@
       jakku = let
         systemModules = with config.flake.modules.nixos; [];
         homeModules = with config.flake.modules.home; [];
-      in
-        homeModules + systemModules;
+      in {
+        modules = systemModules ++ homeModules;
+        userConfig = {
+        };
+      };
     };
   };
 }
