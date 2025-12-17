@@ -8,8 +8,10 @@
     system = "x86_64-linux";
     users = {
       jakku = let
-        systemModules = with config.flake.modules.nixos; [];
-        homeModules = with config.flake.modules.home; [];
+        systemModules = [
+          "boot/grub/wanderer-theme"
+        ];
+        homeModules = [];
       in {
         modules = systemModules ++ homeModules;
         userConfig = {
