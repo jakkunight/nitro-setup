@@ -4,5 +4,9 @@
   config,
   ...
 }: {
-  flake.modules.nixos."development/devenv" = {pkgs, ...}: {};
+  flake.modules.nixos."development/devenv" = {pkgs, ...}: {
+    environment.systemPackages = with pkgs; [
+      devenv
+    ];
+  };
 }

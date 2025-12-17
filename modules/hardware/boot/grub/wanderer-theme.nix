@@ -4,13 +4,8 @@
   config,
   ...
 }: {
-  flake.modules.nixos."boot/grub/wanderer-themes" = {pkgs, ...}: {
-    options = {
-      enable = lib.mkEnableOption {
-        default = false;
-      };
-    };
-    config = lib.mkIf (config.flake.modules.nixos."boot/grub/wanderer-themes".enable) {
+  flake.modules.nixos."hardware/boot/grub/wanderer-themes" = {pkgs, ...}: {
+    config = {
       # NOTE:
       # These services are disabled, since they add A LOT of time to the
       # boot process and almos everything that has something to do with the

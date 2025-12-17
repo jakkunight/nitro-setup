@@ -20,8 +20,8 @@ in {
     nixosHosts = let
       userConfig = types.submodule {
         options = {
-          extraGroups = {
-            type = types.listOf types.nonEmptyStr;
+          extraGroups = mkOption {
+            type = types.listOf types.str;
             default = [];
           };
           useDefaultShell = mkOption {
@@ -37,7 +37,7 @@ in {
       userModules = types.submodule {
         options = {
           modules = mkOption {
-            type = types.listOf (types.attrs);
+            type = types.listOf (types.nonEmptyStr);
             default = [];
           };
           userConfig = mkOption {
@@ -85,7 +85,9 @@ in {
             users.users.${username} = {
               isNormalUser = true;
               initialPassword = "${username}";
-              inherit (userConfig) extraGroups useDefaultShell shell;
+              extraGroups = userConfig.extraGroups;
+              useDefaultShell = userConfig.useDefaultShell;
+              shell = userConfig.shell;
             };
             home-manager.users.${username}.imports =
               [
