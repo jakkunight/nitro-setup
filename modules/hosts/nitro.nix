@@ -13,6 +13,7 @@
           "hardware/disk/drivers"
           "hardware/boot/grub/wanderer-themes"
           "hardware/cpu/intel"
+          "hardware/cpu/scheduler"
           "hardware/kernel"
           "hardware/networking"
           "hardware/audio/pipewire"
@@ -26,6 +27,8 @@
           "music-player/rmpc"
           "git"
           "nh"
+          "time"
+          "keyboard-layout"
         ];
       in {
         modules = jakkuModules;
