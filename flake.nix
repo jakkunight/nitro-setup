@@ -14,6 +14,19 @@
       url = "https://flakehub.com/f/nix-community/disko/*";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    genshin-font = {
+      url = "github:jakkunight/GenshinImpact-font";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    wanderer-grub-theme = {
+      url = "github:jakkunight/Wanderer-Themes";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     treefmt-nix.url = "https://flakehub.com/f/numtide/treefmt-nix/*";
   };
   outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);

@@ -76,7 +76,7 @@ in {
         # (username) => userModule
         # Concat the modules:
         # (userModule, loadedModules[]) => userLoadedModules[];
-        (builtins.map (module: config.flake.modules.nixos.${module} or {}) modules)
+        (builtins.map (module: (config.flake.modules.nixos.${module} or {})) modules)
         ++ [
           (_: {
             imports = [
@@ -95,7 +95,7 @@ in {
                   home.stateVersion = "${osConfig.system.stateVersion}";
                 })
               ]
-              ++ (builtins.map (module: config.flake.modules.home.${module} or {}) modules);
+              ++ (builtins.map (module: (config.flake.modules.homeManager.${module} or {})) modules);
           })
         ]
       );

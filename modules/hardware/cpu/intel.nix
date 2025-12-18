@@ -1,9 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}: {
-  flake.modules.nixos."hardware/cpu/intel" = {modulesPath, ...}: {
+{lib, ...}: {
+  flake.modules.nixos."hardware/cpu/intel" = {
+    modulesPath,
+    config,
+    ...
+  }: {
     imports = [
       (modulesPath + "/installer/scan/not-detected.nix")
     ];

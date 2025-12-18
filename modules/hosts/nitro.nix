@@ -8,17 +8,27 @@
     system = "x86_64-linux";
     users = {
       jakku = let
-        systemModules = [
+        jakkuModules = [
           "hardware/disk/layouts/simple-no-swap"
           "hardware/disk/drivers"
           "hardware/boot/grub/wanderer-themes"
           "hardware/cpu/intel"
           "hardware/kernel"
           "hardware/networking"
+          "hardware/audio/pipewire"
+          "development/devshell"
+          "filemanager/yazi"
+          "terminal/multiplexer/zellij"
+          "terminal/prompt/starship"
+          "text-editor/helix"
+          "theming/stylix/nightmare"
+          "music-player/mpd"
+          "music-player/rmpc"
+          "git"
+          "nh"
         ];
-        homeModules = [];
       in {
-        modules = systemModules ++ homeModules;
+        modules = jakkuModules;
         userConfig = {
           extraGroups = [
             "wheel"

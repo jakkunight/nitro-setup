@@ -8,7 +8,7 @@
       };
     };
   };
-  flake.modules.home."terminal/prompt/starship" = {pkgs, ...}: {
+  flake.modules.homeManager."terminal/prompt/starship" = {pkgs, ...}: {
     programs.starship = {
       enable = true;
       enableZshIntegration = true;

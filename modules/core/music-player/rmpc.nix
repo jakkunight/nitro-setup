@@ -1,8 +1,7 @@
 {inputs, ...}: {
-  # flake.modules.nixos."mpd" = _: {
-
-  # };
-  flake.modules.home."mpd" = {
+  flake.modules.nixos."music-player/mpd" = _: {
+  };
+  flake.modules.homeManager."music-player/mpd" = {
     config,
     pkgs,
     ...
@@ -32,7 +31,7 @@
       MPD_HOST = "/run/user/1000/mpd/socket";
     };
   };
-  flake.modules.home."rmpc" = {
+  flake.modules.homeManager."music-player/rmpc" = {
     pkgs,
     config,
     osConfig,
@@ -43,8 +42,12 @@
       package = pkgs.rmpc;
       config = ''
         (
-          address: "/run/user/${osConfig.users.users.${config.home.username}.uid}/mpd/socket",
-          cache_dir: Some("${config.home.homeDirectory}.cache/rmpc"),
+          address: "/run/user/${(
+          if osConfig.users.users.${config.home.username}.uid == null
+          then "1000"
+          else osConfig.users.users.${config.home.username}.uid
+        )}/mpd/socket",
+          cache_dir: Some("${(config.home.homeDirectory or "/home/${config.home.username}")}.cache/rmpc"),
         )
       '';
     };

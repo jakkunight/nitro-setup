@@ -10,7 +10,7 @@
       pandoc
     ];
   };
-  flake.modules.home."text-editor/helix" = {pkgs, ...}: {
+  flake.modules.homeManager."text-editor/helix" = {pkgs, ...}: {
     # Install packages to the "$PATH":
     home.packages = with pkgs; [
       wl-clipboard-rs

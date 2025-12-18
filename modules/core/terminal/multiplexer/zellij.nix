@@ -4,7 +4,7 @@
       zellij
     ];
   };
-  flake.modules.home."terminal/multiplexer/zellij" = {pkgs, ...}: {
+  flake.modules.homeManager."terminal/multiplexer/zellij" = {pkgs, ...}: {
     programs.zellij = {
       enable = true;
       enableZshIntegration = true;

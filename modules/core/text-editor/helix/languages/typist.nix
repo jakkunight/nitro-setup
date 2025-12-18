@@ -1,5 +1,5 @@
 {
-  flake.modules.home."text-editor/helix" = {pkgs, ...}: {
+  flake.modules.homeManager."text-editor/helix" = {pkgs, ...}: {
     programs.helix.languages = {
       language-server = {
         tinymist = {

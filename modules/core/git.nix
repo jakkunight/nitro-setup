@@ -5,7 +5,7 @@
       gitui
     ];
   };
-  flake.modules.home."git" = {
+  flake.modules.homeManager."git" = {
     programs = {
       git = {
         enable = true;
