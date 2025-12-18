@@ -8,6 +8,12 @@
     imports = [
       inputs.stylix.nixosModules.stylix
     ];
+
+    console = {
+      font = "${pkgs.terminus_font}/share/consolefonts/ter-v24b.psf.gz";
+      useXkbConfig = true; # use xkb.options in tty.
+    };
+
     stylix = {
       enable = true;
       base16Scheme = lib.mkDefault "${pkgs.base16-schemes}/share/themes/kanagawa-dragon.yaml";
