@@ -29,6 +29,7 @@
           "nh"
           "time"
           "keyboard-layout"
+          "system-state"
         ];
       in {
         modules = jakkuModules;
