@@ -55,8 +55,8 @@ modules, and so.
 #### Other tools
 
 - [x] NixHelper
-- [ ] Zoxide
-- [ ] Eza
+- [x] Zoxide
+- [x] Eza
 - [ ] DUA
 - [ ] DU-Dust
 - [x] Btop
@@ -64,7 +64,7 @@ modules, and so.
 - [ ] uutils coreutils
 - [ ] Ripgrep
 - [ ] fd
-- [ ] Bat
+- [x] Bat
 - [ ] XH
 - [ ] FSelect
 - [ ] Delta
