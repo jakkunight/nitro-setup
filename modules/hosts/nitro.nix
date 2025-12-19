@@ -27,6 +27,7 @@
           "music-player/rmpc"
           "git"
           "nh"
+          "nix"
           "time"
           "keyboard-layout"
           "system-state"
