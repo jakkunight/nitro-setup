@@ -21,9 +21,9 @@ modules, and so.
 
 #### Hardware
 
-- [ ] CPU: Intel
+- [x] CPU: Intel
 - [ ] GPU: NVIDIA GEFORCE RTX 40+ series
-- [ ] Audio server: PipeWire
+- [x] Audio server: PipeWire
 - [ ] Keyboard settings: XREMAP
 
 #### Secrets Manager
@@ -32,34 +32,34 @@ modules, and so.
 
 #### Text Editor
 
-- [ ] Helix
+- [x] Helix
 
 #### File Manager
 
-- [ ] Yazi
+- [x] Yazi
 
 #### Ricing
 
-- [ ] Stylix
+- [x] Stylix
 
 #### Control Version
 
-- [ ] Git
-- [ ] Gitui
+- [x] Git
+- [x] Gitui
 
 #### Shell
 
-- [ ] ZSH (Login)
+- [x] ZSH (Login)
 - [ ] Nushell
 
 #### Other tools
 
-- [ ] NixHelper
+- [x] NixHelper
 - [ ] Zoxide
 - [ ] Eza
 - [ ] DUA
 - [ ] DU-Dust
-- [ ] Btop
+- [x] Btop
 - [ ] Presenterm
 - [ ] uutils coreutils
 - [ ] Ripgrep
@@ -73,7 +73,7 @@ modules, and so.
 
 ### Development
 
-- [ ] Devenv
+- [x] Devenv
 - [ ] Kondo
 - [ ] Hyperfine
 - [ ] Just

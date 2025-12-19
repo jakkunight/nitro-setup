@@ -24,14 +24,6 @@ in {
             type = types.listOf types.str;
             default = [];
           };
-          useDefaultShell = mkOption {
-            type = types.bool;
-            default = true;
-          };
-          shell = mkOption {
-            type = types.nullOr types.package;
-            default = null;
-          };
         };
       };
       userModules = types.submodule {
@@ -88,8 +80,6 @@ in {
               isNormalUser = true;
               initialPassword = "${username}";
               extraGroups = userConfig.extraGroups;
-              useDefaultShell = userConfig.useDefaultShell;
-              shell = userConfig.shell;
             };
             home-manager.users.${username}.imports =
               [

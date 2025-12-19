@@ -1,8 +1,9 @@
 {
-  flake.modules.homeManager."text-editor/helix" = {pkgs, ...}: {
-    programs.helix.languages = {
-      language-server = {
-        tinymist = {
+  flake.modules.homeManager."text-editor/helix" =
+    { pkgs, ... }:
+    {
+      programs.helix.languages = {
+        language-server.tinymist = {
           command = "${pkgs.tinymist}/bin/tinymist";
         };
 
@@ -19,13 +20,10 @@
               ];
             };
             language-servers = [
-              {
-                name = "tinymist";
-              }
+              "tinymist"
             ];
           }
         ];
       };
     };
-  };
 }

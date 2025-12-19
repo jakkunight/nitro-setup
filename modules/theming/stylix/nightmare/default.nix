@@ -16,7 +16,7 @@
 
     stylix = {
       enable = true;
-      base16Scheme = lib.mkDefault "${pkgs.base16-schemes}/share/themes/kanagawa-dragon.yaml";
+      base16Scheme = lib.mkDefault "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
       polarity = "dark";
       image = ./wallpapers/default.jpg;
       fonts = {
@@ -78,7 +78,7 @@
     ];
     stylix = {
       enable = true;
-      base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/kanagawa-dragon.yaml";
+      base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
       polarity = "dark";
       image = ./wallpapers/default.jpg;
       fonts = {

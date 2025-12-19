@@ -1,8 +1,9 @@
 {
-  flake.modules.homeManager."text-editor/helix" = {pkgs, ...}: {
-    programs.helix.languages = {
-      language-server = {
-        nixd = {
+  flake.modules.homeManager."text-editor/helix" =
+    { pkgs, ... }:
+    {
+      programs.helix.languages = {
+        language-server.nixd = {
           command = "${pkgs.nixd}/bin/nixd";
           config = {
             nixpkgs = {
@@ -14,7 +15,7 @@
             };
           };
         };
-        nil = {
+        language-server.nil = {
           command = "${pkgs.nil}/bin/nil";
         };
         language = [
@@ -25,13 +26,11 @@
               command = "${pkgs.alejandra}/bin/alejandra";
             };
             language-servers = [
-              {
-                name = "nixd";
-              }
+              "nixd"
+              "nil"
             ];
           }
         ];
       };
     };
-  };
 }

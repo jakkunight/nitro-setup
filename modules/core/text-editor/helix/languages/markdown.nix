@@ -12,6 +12,7 @@
           ];
         };
 
+      };
         language = [
           {
             name = "markdown";
@@ -26,16 +27,11 @@
               ];
             };
             language-servers = [
-              {
-                name = "marksman";
-              }
-              {
-                name = "scls";
-              }
+              "marksman"
+              "markdown-oxide"
             ];
           }
         ];
-      };
     };
   };
 }
