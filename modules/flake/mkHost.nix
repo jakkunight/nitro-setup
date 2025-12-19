@@ -66,6 +66,8 @@ in {
   };
   config = {
     flake.nixosConfigurations = let
+      loadHomeModules = modules: (builtins.map (module: (config.flake.modules.homeManager.${module} or {})) modules);
+      loadNixosModules = modules: (builtins.map (module: (config.flake.modules.nixos.${module} or {})) modules);
       loadModulesForUser = username: {
         userConfig,
         modules,
@@ -76,7 +78,7 @@ in {
         # (username) => userModule
         # Concat the modules:
         # (userModule, loadedModules[]) => userLoadedModules[];
-        (builtins.map (module: (config.flake.modules.nixos.${module} or {})) modules)
+        (loadNixosModules modules)
         ++ [
           (_: {
             imports = [
@@ -95,7 +97,7 @@ in {
                   home.stateVersion = "${osConfig.system.stateVersion}";
                 })
               ]
-              ++ (builtins.map (module: (config.flake.modules.homeManager.${module} or {})) modules);
+              ++ (loadHomeModules modules);
           })
         ]
       );
