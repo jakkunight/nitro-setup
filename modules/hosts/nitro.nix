@@ -14,6 +14,7 @@
           "hardware/boot/grub/wanderer-themes"
           "hardware/cpu/intel"
           "hardware/cpu/scheduler"
+          "hardware/gpu/nvidia"
           "hardware/kernel"
           "hardware/networking"
           "hardware/audio/pipewire"
@@ -37,6 +38,15 @@
           "time"
           "keyboard-layout"
           "system-state"
+          "desktop/nightmare/hyprland"
+          "desktop/nightmare/hypridle"
+          "desktop/nightmare/hyprpaper"
+          "desktop/nightmare/sddm"
+          "desktop/nightmare/waybar"
+          "desktop/nightmare/wofi"
+          "desktop/nightmare/hyprlock"
+          "secrets/sops"
+          "secrets/jakku"
         ];
       in {
         modules = jakkuModules;

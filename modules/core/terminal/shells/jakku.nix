@@ -8,7 +8,7 @@ _: {
       autosuggestions = {
         enable = true;
       };
-      enableSyntaxHighlighting = true;
+      syntaxHighlighting.enable = true;
       enableCompletion = true;
     };
     users.users."jakku".shell = pkgs.zsh;
