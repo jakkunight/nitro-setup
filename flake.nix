@@ -14,6 +14,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko = {
       url = "https://flakehub.com/f/nix-community/disko/*";
       inputs.nixpkgs.follows = "nixpkgs";

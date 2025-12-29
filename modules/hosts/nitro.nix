@@ -11,6 +11,7 @@
         jakkuModules = [
           "hardware/disk/layouts/simple-no-swap"
           "hardware/disk/drivers"
+          "hardware/disk/filesystems"
           "hardware/boot/grub/wanderer-themes"
           "hardware/cpu/intel"
           "hardware/cpu/scheduler"
@@ -18,7 +19,8 @@
           "hardware/kernel"
           "hardware/networking"
           "hardware/audio/pipewire"
-          "development/devshell"
+          "installer"
+          "development/devenv"
           "filemanager/yazi"
           "terminal/multiplexer/zellij"
           "terminal/prompt/starship"
@@ -47,6 +49,7 @@
           "desktop/nightmare/hyprlock"
           "secrets/sops"
           "secrets/jakku"
+          "applications/gaming"
         ];
       in {
         modules = jakkuModules;

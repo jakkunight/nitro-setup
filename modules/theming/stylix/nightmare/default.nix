@@ -74,8 +74,6 @@
     lib,
     ...
   }: {
-    imports = [
-    ];
     stylix = {
       enable = true;
       base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/kanagawa-dragon.yaml";
