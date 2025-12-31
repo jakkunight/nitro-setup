@@ -1,4 +1,6 @@
-{inputs, ...}: {
+{inputs, ...}: let
+  wallpaper = ./wallpapers/default.jpg;
+in {
   flake.modules.nixos."theming/stylix/nightmare" = {
     pkgs,
     config,
@@ -16,9 +18,9 @@
 
     stylix = {
       enable = true;
-      base16Scheme = lib.mkDefault "${pkgs.base16-schemes}/share/themes/kanagawa-dragon.yaml";
+      # base16Scheme = lib.mkDefault "${pkgs.base16-schemes}/share/themes/kanagawa-dragon.yaml";
       polarity = "dark";
-      image = ./wallpapers/default.jpg;
+      image = wallpaper;
       fonts = {
         serif = {
           package = inputs.genshin-font.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -76,9 +78,9 @@
   }: {
     stylix = {
       enable = true;
-      base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/kanagawa-dragon.yaml";
+      # base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/kanagawa-dragon.yaml";
       polarity = "dark";
-      image = ./wallpapers/default.jpg;
+      image = wallpaper;
       fonts = {
         serif = {
           package = inputs.genshin-font.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -116,8 +118,8 @@
       };
       opacity = {
         applications = 0.95;
-        terminal = 0.75;
-        desktop = 0.85;
+        terminal = 0.50;
+        desktop = 0.40;
         popups = 0.85;
       };
       targets = {

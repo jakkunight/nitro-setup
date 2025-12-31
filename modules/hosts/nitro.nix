@@ -50,6 +50,13 @@
           "secrets/sops"
           "secrets/jakku"
           "applications/gaming"
+          "applications/discord"
+          "applications/zed-editor"
+          "applications/finances"
+          "applications/vlc"
+          "applications/zen-browser"
+          "applications/nemo"
+          "applications/kitty"
         ];
       in {
         modules = jakkuModules;
