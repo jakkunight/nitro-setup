@@ -1,5 +1,6 @@
 {inputs, ...}: let
   wallpaper = ./wallpapers/default.jpg;
+  palette = "tokyo-night-dark";
 in {
   flake.modules.nixos."theming/stylix/nightmare" = {
     pkgs,
@@ -18,7 +19,7 @@ in {
 
     stylix = {
       enable = true;
-      # base16Scheme = lib.mkDefault "${pkgs.base16-schemes}/share/themes/kanagawa-dragon.yaml";
+      base16Scheme = lib.mkDefault "${pkgs.base16-schemes}/share/themes/${palette}.yaml";
       polarity = "dark";
       image = wallpaper;
       fonts = {
@@ -78,7 +79,7 @@ in {
   }: {
     stylix = {
       enable = true;
-      # base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/kanagawa-dragon.yaml";
+      base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/${palette}.yaml";
       polarity = "dark";
       image = wallpaper;
       fonts = {
@@ -118,7 +119,7 @@ in {
       };
       opacity = {
         applications = 0.95;
-        terminal = 0.50;
+        terminal = 0.70;
         desktop = 0.40;
         popups = 0.85;
       };
