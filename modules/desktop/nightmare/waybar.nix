@@ -1,11 +1,18 @@
 _: {
+  flake.modules.nixos."desktop/nightmare/waybar" = _: {
+    programs.waybar.enable = true;
+  };
   flake.modules.homeManager."desktop/nightmare/waybar" = {
     pkgs,
     lib,
     ...
   }: {
+    home.packages = with pkgs; [
+      waybar
+    ];
     programs.waybar = {
       enable = true;
+      package = pkgs.waybar;
       settings = {
         main-bar = {
           name = "main";
@@ -216,6 +223,11 @@ _: {
     };
     stylix.targets.waybar = {
       font = "serif";
+    };
+    wayland.windowManager.hyprland.settings = {
+      exec-once = [
+        "${pkgs.uwsm}/bin/uwsm app -- systemctl --user start waybar.service"
+      ];
     };
   };
 }

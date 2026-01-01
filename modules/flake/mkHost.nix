@@ -81,6 +81,7 @@ in {
               initialPassword = "${username}";
               extraGroups = userConfig.extraGroups;
             };
+            home-manager.backupFileExtension = "bak";
             home-manager.users.${username}.imports =
               [
                 ({osConfig, ...}: {

@@ -14,64 +14,93 @@ in {
       hardware.bluetooth.enable = lib.mkForce true;
       services.power-profiles-daemon.enable = lib.mkForce true;
       services.upower.enable = lib.mkForce true;
+
+      # services.noctalia-shell = {
+      #   enable = true;
+      #   target = "my-hyprland-session.target";
+      # };
     };
-    homeManager.${moduleName} = _: {
+    homeManager.${moduleName} = {config, ...}: {
       imports = [
         inputs.noctalia.homeModules.default
       ];
       # configure options
       programs.noctalia-shell = {
         enable = true;
+        systemd.enable = true;
         settings = {
           # configure noctalia here
           bar = {
-            density = "compact";
-            position = "right";
+            density = "default";
+            position = "top";
             showCapsule = false;
+            showOutline = false;
+            floating = true;
+            wallpaper = {
+              enable = true;
+              fillMode = "center";
+            };
             widgets = {
               left = [
                 {
-                  id = "ControlCenter";
-                  useDistroLogo = true;
+                  icon = "nix";
+                  id = "CustomButton";
+                  leftClickExec = "qs -c noctalia-shell ipc call launcher toggle";
                 }
                 {
-                  id = "WiFi";
+                  id = "Clock";
+                  usePrimaryColor = false;
                 }
                 {
-                  id = "Bluetooth";
+                  id = "SystemMonitor";
+                }
+                {
+                  id = "ActiveWindow";
+                }
+                {
+                  id = "MediaMini";
                 }
               ];
               center = [
                 {
-                  hideUnoccupied = false;
                   id = "Workspace";
-                  labelMode = "none";
                 }
               ];
               right = [
                 {
-                  alwaysShowPercentage = false;
-                  id = "Battery";
-                  warningThreshold = 30;
+                  id = "ScreenRecorder";
                 }
                 {
-                  formatHorizontal = "HH:mm";
-                  formatVertical = "HH mm";
-                  id = "Clock";
-                  useMonospacedFont = true;
-                  usePrimaryColor = true;
+                  id = "Tray";
+                }
+                {
+                  id = "NotificationHistory";
+                }
+                {
+                  id = "Battery";
+                }
+                {
+                  id = "Volume";
+                }
+                {
+                  id = "Brightness";
+                }
+                {
+                  id = "ControlCenter";
                 }
               ];
             };
           };
-          colorSchemes.predefinedScheme = "Monochrome";
           general = {
-            avatarImage = "/home/drfoobar/.face";
+            avatarImage = "${config.home.homeDirectory}/.face";
             radiusRatio = 0.2;
+            lockOnSuspend = true;
+            showSessionButtonsOnLockScreen = true;
+            showHibernateOnLockScreen = false;
           };
           location = {
-            monthBeforeDay = true;
-            name = "Marseille, France";
+            monthBeforeDay = false;
+            name = "Asuncion, Paraguay";
           };
         };
         # this may also be a string or a path to a JSON file,

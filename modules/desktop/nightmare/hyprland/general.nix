@@ -31,8 +31,10 @@
       wayland.windowManager.hyprland = {
         enable = true;
         # Use the flake package:
-        package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-        portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+        # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+        # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+        package = null;
+        portalPackage = null;
         systemd.enable = false;
         settings = {
           "$mod" = "SUPER";
@@ -40,11 +42,6 @@
             kb_layout = "latam";
             follow_mouse = 1;
           };
-          exec-once = [
-            "uwsm app -- systemctl --user start waybar.service"
-            # "${pkgs.uwsm}/bin/uwsm app -- ${inputs.quickshell.packages.${pkgs.system}.default}/bin/quickshell"
-            # "${pkgs.uwsm}/bin/uwsm app -- ${pkgs.quickshell}/bin/quickshell"
-          ];
 
           # Cursor:
           cursor = {
