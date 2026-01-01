@@ -1,35 +1,6 @@
 {inputs, ...}: let
-  wallpaper = ./wallpapers/version-luna-iii-launcher-animation-durin.png;
+  wallpaper = ./wallpapers/default.jpg;
   palette = "tokyo-night-dark";
-  colorScheme = pkgs:
-    if palette == "" || palette == null
-    then {
-      base00 = "1a1b26"; # Background
-      base01 = "16161e"; # Lighter background (terminal black)
-      base02 = "2f3549"; # Selection background
-      base03 = "444b6a"; # Comments, invisibles
-      base04 = "787c99"; # Dark foreground
-      base05 = "a9b1d6"; # Default foreground
-      base06 = "cbccd1"; # Light foreground
-      base07 = "d5d6db"; # Lightest foreground
-      base08 = "c0caf5"; # Variables, XML tags
-      base09 = "a9b1d6"; # Integers, booleans
-      base0A = "0db9d7"; # Classes, search text bg
-      base0B = "9ece6a"; # Strings
-      base0C = "b4f9f8"; # Regex, escape chars
-      base0D = "2ac3de"; # Functions, methods
-      base0E = "bb9af7"; # Keywords, storage
-      base0F = "f7768e"; # Deprecated, special
-      base10 = "16161e"; # Darker background
-      base11 = "0f0f14"; # Darkest background
-      base12 = "ff7a93"; # Bright red
-      base13 = "ff9e64"; # Bright orange
-      base14 = "73daca"; # Bright green/teal
-      base15 = "7dcfff"; # Bright cyan
-      base16 = "89ddff"; # Bright blue
-      base17 = "bb9af7"; # Bright magenta
-    }
-    else "${pkgs.base16-schemes}/share/themes/${palette}.yaml";
 in {
   flake.modules.nixos."theming/stylix/nightmare" = {
     pkgs,
@@ -48,7 +19,7 @@ in {
 
     stylix = {
       enable = true;
-      base16Scheme = lib.mkDefault (colorScheme pkgs);
+      base16Scheme = lib.mkDefault "${pkgs.base16-schemes}/share/themes/${palette}.yaml";
       polarity = "dark";
       image = wallpaper;
       fonts = {
@@ -108,7 +79,7 @@ in {
   }: {
     stylix = {
       enable = true;
-      base16Scheme = lib.mkForce (colorScheme pkgs);
+      base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/${palette}.yaml";
       polarity = "dark";
       image = wallpaper;
       fonts = {
@@ -148,8 +119,8 @@ in {
       };
       opacity = {
         applications = 0.95;
-        terminal = 0.80;
-        desktop = 0.80;
+        terminal = 0.70;
+        desktop = 0.40;
         popups = 0.85;
       };
       targets = {
