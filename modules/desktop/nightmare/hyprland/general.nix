@@ -1,6 +1,12 @@
-{inputs, ...}: {
+{inputs, ...}: let
+  moduleName = "desktop/nightmare/hyprland";
+in {
   flake.modules = {
-    nixos."desktop/nightmare/hyprland" = {pkgs, ...}: {
+    nixos.${moduleName} = {
+      pkgs,
+      lib,
+      ...
+    }: {
       # Hyprland:
       nix.settings = {
         substituters = [
@@ -22,12 +28,24 @@
         xwayland.enable = true;
       };
 
-      hardware.graphics = {
-        package32 = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pkgsi686Linux.mesa;
-        enable32Bit = true;
+      programs.uwsm = {
+        enable = true;
+        package = pkgs.uwsm;
+        waylandCompositors = {
+          hyprland = {
+            prettyName = lib.mkForce "Hyprland";
+            comment = "Hyprland compositor managed by UWSM";
+            binPath = lib.mkForce "/run/current-system/sw/bin/Hyprland";
+          };
+        };
       };
     };
-    homeManager."desktop/nightmare/hyprland" = {pkgs, ...}: {
+    homeManager.${moduleName} = {
+      pkgs,
+      config,
+      ...
+    }: {
+      xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
       wayland.windowManager.hyprland = {
         enable = true;
         # Use the flake package:

@@ -2,8 +2,9 @@
 {
   inputs = {
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
-    nixpkgs.url = "https://flakehub.com/f/DeterminateSystems/nixpkgs-weekly/*";
-    flake-parts.url = "https://flakehub.com/f/hercules-ci/flake-parts/*";
+    # nixpkgs.url = "https://flakehub.com/f/DeterminateSystems/nixpkgs-weekly/*";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
     # all other inputs your flake needs, like nixpkgs.
     home-manager = {
@@ -19,7 +20,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     disko = {
-      url = "https://flakehub.com/f/nix-community/disko/*";
+      url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
@@ -57,7 +58,7 @@
       url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    treefmt-nix.url = "https://flakehub.com/f/numtide/treefmt-nix/*";
+    treefmt-nix.url = "github:numtide/treefmt-nix/";
   };
   outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
 }

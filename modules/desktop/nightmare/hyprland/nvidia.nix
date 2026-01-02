@@ -1,4 +1,10 @@
-_: {
+{inputs, ...}: {
+  flake.modules.nixos."desktop/nightmare/hyprland/nvidia" = {pkgs, ...}: {
+    hardware.graphics = {
+      package32 = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pkgsi686Linux.mesa;
+      enable32Bit = true;
+    };
+  };
   flake.modules.homeManager."desktop/nightmare/hyprland/nvidia" = _: {
     wayland.windowManager.hyprland.settings = {
       env = [

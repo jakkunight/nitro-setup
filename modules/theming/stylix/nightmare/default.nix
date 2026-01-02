@@ -1,6 +1,6 @@
 {inputs, ...}: let
   wallpaper = ./wallpapers/default.jpg;
-  palette = "tokyo-night-dark";
+  palette = "kanagawa";
 in {
   flake.modules.nixos."theming/stylix/nightmare" = {
     pkgs,
@@ -59,8 +59,8 @@ in {
       };
       opacity = {
         applications = 0.95;
-        terminal = 0.70;
-        desktop = 0.60;
+        terminal = 0.80;
+        desktop = 0.70;
         popups = 0.85;
       };
       targets = {
@@ -119,8 +119,8 @@ in {
       };
       opacity = {
         applications = 0.95;
-        terminal = 0.70;
-        desktop = 0.40;
+        terminal = 0.80;
+        desktop = 0.75;
         popups = 0.85;
       };
       targets = {

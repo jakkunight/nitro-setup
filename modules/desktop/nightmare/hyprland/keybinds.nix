@@ -36,7 +36,7 @@
         # Applications:
         "$mod, Return, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.kitty}/bin/kitty"
         # "$mod, Return, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.ghostty}/bin/ghostty"
-        "$mod, D, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.wofi}/bin/wofi --show drun"
+        "$mod, D, exec, ${pkgs.uwsm}/bin/uwsm app -- \"$(${pkgs.wofi}/bin/wofi --show drun --define=drun-print_desktop_file=true | sed -E \"s/(\.desktop) /\1:/\")\""
         "$mod, A, exec, ${pkgs.uwsm}/bin/uwsm app -- ${inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.twilight}/bin/zen-twilight"
         "$mod, S, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.vlc}/bin/vlc"
         "$mod, E, exec, ${pkgs.uwsm}/bin/uwsm app -- ${pkgs.nemo}/bin/nemo"

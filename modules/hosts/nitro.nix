@@ -1,9 +1,4 @@
-{
-  inputs,
-  config,
-  lib,
-  ...
-}: {
+_: {
   nixosHosts.nitro = {
     system = "x86_64-linux";
     users = {
@@ -44,9 +39,9 @@
           "desktop/nightmare/hyprland/nvidia"
           "desltop/nightmare/hyprpaper"
           "desktop/nightmare/wofi"
-          "desktop/nigthmare/waybar"
           "desktop/nightmare/hyprlock"
           "desktop/nightmare/hypridle"
+          "desktop/nightmare/waybar"
           "secrets/sops"
           "secrets/jakku"
           "applications/gaming"
