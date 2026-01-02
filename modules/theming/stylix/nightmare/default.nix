@@ -1,5 +1,5 @@
 {inputs, ...}: let
-  wallpaper = ./wallpapers/default.jpg;
+  wallpaper = ./wallpapers/9s-wallpaper.jpg;
   palette = "kanagawa";
 in {
   flake.modules.nixos."theming/stylix/nightmare" = {
