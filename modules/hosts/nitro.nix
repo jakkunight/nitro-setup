@@ -7,7 +7,7 @@ _: {
           "hardware/disk/layouts/simple-no-swap"
           "hardware/disk/drivers"
           "hardware/disk/filesystems"
-          "hardware/boot/grub/wanderer-themes"
+          "hardware/boot/grub/yorha-grub-theme"
           "hardware/cpu/intel"
           "hardware/gpu/nvidia"
           "hardware/kernel"
