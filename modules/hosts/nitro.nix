@@ -52,6 +52,11 @@ _: {
           "applications/zen-browser"
           "applications/nemo"
           "applications/kitty"
+          "applications/gparted"
+          "applications/ventoy"
+          "applications/krita"
+          "applications/obs-studio"
+          "applications/obs-studio/nvidia"
         ];
       in {
         modules = jakkuModules;
