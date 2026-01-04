@@ -3,9 +3,14 @@ _: let
 in {
   flake.modules = {
     homeManager.${moduleName} = {pkgs, ...}: {
-      home.packages = with pkgs; [
-        zed-editor
-      ];
+      programs.zed-editor = {
+        enable = true;
+        extraPackages = with pkgs; [
+          nixd
+          nil
+        ];
+        package = pkgs.zed-editor;
+      };
     };
   };
 }
