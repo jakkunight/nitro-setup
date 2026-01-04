@@ -54,6 +54,10 @@
       url = "github:jakkunight/Wanderer-Themes";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    yorha-grub-theme = {
+      url = "github:jakkunight/yorha-grub-theme";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     silentSDDM = {
       url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
