@@ -24,12 +24,12 @@ in {
         enable = true;
         package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
         portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-        withUWSM = true;
+        withUWSM = false;
         xwayland.enable = true;
       };
 
       programs.uwsm = {
-        enable = true;
+        enable = false;
         package = pkgs.uwsm;
         waylandCompositors = {
           hyprland = {
@@ -43,17 +43,19 @@ in {
     homeManager.${moduleName} = {
       pkgs,
       config,
+      osConfig,
       ...
     }: {
       xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
       wayland.windowManager.hyprland = {
         enable = true;
         # Use the flake package:
-        # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-        # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-        package = null;
-        portalPackage = null;
-        systemd.enable = false;
+        package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+        portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+        # package = null;
+        # portalPackage = null;
+        # Set this to true if using UWSM:
+        systemd.enable = !(osConfig.programs.hyprland.withUWSM && osConfig.programs.uwsm.enable);
         settings = {
           "$mod" = "SUPER";
           input = {
