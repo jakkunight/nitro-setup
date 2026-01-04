@@ -1,6 +1,10 @@
 {inputs, ...}: let
-  wallpaper = ./wallpapers/9s-wallpaper.jpg;
+  wallpaper = ./wallpapers/nier-automata-wallpaper.jpg;
   palette = "kanagawa";
+  colorscheme = pkgs:
+    if palette == "" || palette == null
+    then "${pkgs.base16-schemes}/share/themes/${palette}.yaml"
+    else ./nier-automata.yaml;
 in {
   flake.modules.nixos."theming/stylix/nightmare" = {
     pkgs,
@@ -19,7 +23,7 @@ in {
 
     stylix = {
       enable = true;
-      base16Scheme = lib.mkDefault "${pkgs.base16-schemes}/share/themes/${palette}.yaml";
+      # base16Scheme = lib.mkDefault (colorscheme pkgs);
       polarity = "dark";
       image = wallpaper;
       fonts = {
@@ -79,7 +83,7 @@ in {
   }: {
     stylix = {
       enable = true;
-      base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/${palette}.yaml";
+      # base16Scheme = lib.mkForce (colorscheme pkgs);
       polarity = "dark";
       image = wallpaper;
       fonts = {
