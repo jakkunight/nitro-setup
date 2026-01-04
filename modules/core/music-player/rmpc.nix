@@ -4,6 +4,8 @@
   flake.modules.homeManager."music-player/mpd" = {
     config,
     pkgs,
+    osConfig,
+    lib,
     ...
   }: {
     services.mpd = {
@@ -26,15 +28,12 @@
       ffmpeg
       matugen
     ];
-
-    home.sessionVariables = {
-      MPD_HOST = "/run/user/1000/mpd/socket";
-    };
   };
   flake.modules.homeManager."music-player/rmpc" = {
     pkgs,
     config,
     osConfig,
+    lib,
     ...
   }: {
     programs.rmpc = {
@@ -47,7 +46,7 @@
           then "1000"
           else osConfig.users.users.${config.home.username}.uid
         )}/mpd/socket",
-          cache_dir: Some("${(config.home.homeDirectory or "/home/${config.home.username}")}.cache/rmpc"),
+          cache_dir: Some("${config.home.homeDirectory}/.cache/rmpc"),
         )
       '';
     };
