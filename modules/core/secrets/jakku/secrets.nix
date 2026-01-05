@@ -4,7 +4,33 @@
     config,
     lib,
     ...
-  }: {
+  }: let
+    andescada-updown = pkgs.writeShellScriptBin "andescada-updown" ''
+      echo "[UPDOWN] Initilizing script..."
+      case "$PLUTO_VERB" in
+        up-client)
+          echo "[INFO] Turning up IPSec Client..."
+          echo "[INFO] Getting interface..."
+          iface=lo.ipsec
+          echo "[INFO] Removing DNS resolution via VPN DNS Server..."
+          echo "nameserver 1.1.1.1" | ${pkgs.openresolv}/bin/resolvconf -a $iface
+          if [ $? -ne 0 ]; then
+            echo "[WARN] Could not remove DNS resolution via VPN DNS Server."
+            echo "[WARN] You can still use the VPN, but some domains might be"
+            echo "[WARN] unaccessable due to security policies."
+          else
+             echo "[SUCCESS] VPN DNS Server resolution removed!"
+          fi
+          echo "[SUCCESS] The IPSec Client is UP!"
+          ;;
+        down-client)
+          echo "[INFO] Turning down IPSec Client..."
+          echo "[SUCCESS] The IPSec Client is DOWN!"
+          ;;
+      esac
+      echo "[SUCCESS] The leftupdown command was successfully executed."
+    '';
+  in {
     imports = [
       inputs.sops-nix.nixosModules.sops
     ];
@@ -36,6 +62,7 @@
     environment.systemPackages = with pkgs; [
       strongswan
       strongswanNM
+      andescada-updown
     ];
     # The swanctl command complains when the following directories don't exist:
     # See: https://wiki.strongswan.org/projects/strongswan/wiki/Swanctldirectory
@@ -62,54 +89,49 @@
         connections {
           andescada {
             version = 1
+            keyingtries = 1
             aggressive = yes
-            rekey_time = 28800
-            over_time = 600
-            local_addrs = %any
+            proposals = aes128-sha256-modp1536
+
+            local_addrs = 0.0.0.0/0,::/0
             remote_addrs = ${config.sops.placeholder."andescada/gateway_address"}
 
-            local {
-              auth = psk
-              id = andescada-client
-            }
-            local-xauth {
-              auth = xauth
-              id = andescada-client
-            }
-
-            remote {
+            local-1 {
               auth = psk
               id = %any
             }
 
+            remote-1 {
+              auth = psk
+              id = %any
+            }
+
+            local-2 {
+              auth = xauth
+              xauth_id = ${config.sops.placeholder."andescada/username"}
+            }
+
+            vips = 0.0.0.0,::
+
             children {
               vpn-tunnel {
-                local_ts = ${config.sops.placeholder."andescada/vpn_subnet_1"}, ${config.sops.placeholder."andescada/vpn_subnet_2"}
-                remote_ts = ${config.sops.placeholder."andescada/vpn_subnet_1"}, ${config.sops.placeholder."andescada/vpn_subnet_2"}
-
-
+                start_action = none # default
                 esp_proposals = aes128-sha256-modp1536
-                start_action = start
-                mode = tunnel
-
-                dpd_action = restart
-                close_action = restart
+                remote_ts = 10.0.0.0/8
+                # local_ts = 192.168.1.0/24
+                updown = ${(lib.getExe andescada-updown)}
               }
             }
-            proposals = aes128-sha256-modp1536
-            encap = yes
-            # local_port = 500
-            # remote_port = 500
           }
         }
         secrets {
-          ike-andescada {
-            id = andescada-client
-            secret = "${config.sops.placeholder."andescada/psk"}"
+          ike-1 {
+            secret = ${config.sops.placeholder."andescada/psk"}
+            id = %any
           }
-          xauth-andescada {
-              id = ${config.sops.placeholder."andescada/username"}
-              secret = "${config.sops.placeholder."andescada/password"}"
+          xauth-1 {
+            secret = ${config.sops.placeholder."andescada/password"}
+            id = ${config.sops.placeholder."andescada/username"}
           }
         }
       '';
