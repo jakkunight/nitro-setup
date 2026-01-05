@@ -57,6 +57,7 @@ _: {
           "applications/krita"
           "applications/obs-studio"
           "applications/obs-studio/nvidia"
+          "applications/remmina"
         ];
       in {
         modules = jakkuModules;
