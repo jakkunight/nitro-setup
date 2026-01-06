@@ -24,6 +24,8 @@ _: {
           "terminal/utils/bat"
           "terminal/utils/eza"
           "terminal/utils/zoxide"
+          "terminal/utils/widgets"
+          "terminal/utils/nmap"
           "text-editor/helix"
           "theming/stylix/nightmare"
           "music-player/mpd"
@@ -58,6 +60,9 @@ _: {
           "applications/obs-studio"
           "applications/obs-studio/nvidia"
           "applications/remmina"
+          "applications/libreoffice"
+          "applications/wireshark"
+          "applications/zenmap"
         ];
       in {
         modules = jakkuModules;
