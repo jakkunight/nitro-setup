@@ -26,6 +26,7 @@ _: {
           "terminal/utils/zoxide"
           "terminal/utils/widgets"
           "terminal/utils/nmap"
+          "terminal/utils/coreutils"
           "text-editor/helix"
           "theming/stylix/nightmare"
           "music-player/mpd"

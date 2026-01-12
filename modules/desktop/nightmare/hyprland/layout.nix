@@ -14,7 +14,7 @@ _: {
         force_split = 2;
       };
       master = {
-        mfact = 0.55;
+        mfact = 0.60;
         orientation = "left";
         new_status = "slave";
         smart_resizing = true;

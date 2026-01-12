@@ -8,7 +8,7 @@ in {
       # questionable, so it is marked as UNFREE and INSECURE.
       nixpkgs.config.allowUnfree = true;
       nixpkgs.config.permittedInsecurePackages = [
-        "ventoy-1.1.07"
+        "ventoy-1.1.10"
         "ventoy-gtk3-1.1.07"
       ];
       environment.systemPackages = with pkgs; [

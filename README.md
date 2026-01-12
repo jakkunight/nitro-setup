@@ -1,4 +1,4 @@
-# My Setup Settings (v0.5.0b)
+# My Setup Settings (v0.7.0b)
 
 This is a setup using the good old [`flake-parts`](https://flake.parts/)
 framework and the allmighty
@@ -22,13 +22,13 @@ modules, and so.
 #### Hardware
 
 - [x] CPU: Intel
-- [ ] GPU: NVIDIA GEFORCE RTX 40+ series
+- [x] GPU: NVIDIA GEFORCE RTX 40+ series
 - [x] Audio server: PipeWire
 - [ ] Keyboard settings: XREMAP
 
 #### Secrets Manager
 
-- [ ] SOPS-NIX
+- [x] SOPS-NIX
 
 #### Text Editor
 
@@ -57,33 +57,33 @@ modules, and so.
 - [x] NixHelper
 - [x] Zoxide
 - [x] Eza
-- [ ] DUA
-- [ ] DU-Dust
+- [x] DUA
+- [x] DU-Dust
 - [x] Btop
 - [ ] Presenterm
-- [ ] uutils coreutils
-- [ ] Ripgrep
-- [ ] fd
+- [x] uutils coreutils
+- [x] Ripgrep
+- [x] fd
 - [x] Bat
-- [ ] XH
-- [ ] FSelect
-- [ ] Delta
-- [ ] Ripgrep-all
-- [ ] MProcs
+- [x] XH
+- [x] FSelect
+- [x] Delta
+- [x] Ripgrep-all
+- [x] MProcs
 
 ### Development
 
 - [x] Devenv
 - [ ] Kondo
 - [ ] Hyperfine
-- [ ] Just
-- [ ] Mask
+- [x] Just
+- [x] Mask
 
 ### Networking
 
 - [ ] Netscanner
-- [ ] Wireshark
-- [ ] nmap
+- [x] Wireshark
+- [x] nmap
 
 ### Security
 

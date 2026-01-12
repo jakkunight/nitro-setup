@@ -72,7 +72,7 @@
           # Blur:
           blur = {
             enabled = true;
-            size = 6;
+            size = 2;
             passes = 3;
             new_optimizations = true;
             ignore_opacity = true;
@@ -80,7 +80,7 @@
             noise = 0.15;
             vibrancy = 1.0;
             brightness = 1.0;
-            contrast = 1.5;
+            contrast = 1.0;
             popups = true;
           };
         };

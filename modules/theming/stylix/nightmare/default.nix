@@ -1,6 +1,6 @@
 {inputs, ...}: let
-  wallpaper = ./wallpapers/nier-automata-wallpaper.jpg;
-  palette = "kanagawa";
+  wallpaper = ./wallpapers/9s-wallpaper-v2.jpg;
+  palette = "grayscale-dark";
   colorscheme = pkgs:
     if palette == "" || palette == null
     then "${pkgs.base16-schemes}/share/themes/${palette}.yaml"
@@ -23,7 +23,7 @@ in {
 
     stylix = {
       enable = true;
-      # base16Scheme = lib.mkDefault (colorscheme pkgs);
+      base16Scheme = lib.mkDefault (colorscheme pkgs);
       polarity = "dark";
       image = wallpaper;
       fonts = {
@@ -83,7 +83,7 @@ in {
   }: {
     stylix = {
       enable = true;
-      # base16Scheme = lib.mkForce (colorscheme pkgs);
+      base16Scheme = lib.mkForce (colorscheme pkgs);
       polarity = "dark";
       image = wallpaper;
       fonts = {
@@ -136,7 +136,7 @@ in {
           ];
         };
         zen-browser = {
-          enable = false;
+          enable = true;
           enableCss = true;
           profileNames = [
             "default"

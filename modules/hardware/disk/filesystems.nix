@@ -16,5 +16,6 @@
       "ntfs"
       "cifs"
     ];
+    services.gvfs.enable = true;
   };
 }
