@@ -57,6 +57,10 @@ in {
         ldapnomnom
         ldapmonitor
         woeusb
+        partimage
+        partclone
+        ntfsprogs-plus
+        partclone-utils
       ];
     };
   };

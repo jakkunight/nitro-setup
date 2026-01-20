@@ -16,7 +16,7 @@ _: {
       master = {
         mfact = 0.60;
         orientation = "left";
-        new_status = "slave";
+        new_status = "master";
         smart_resizing = true;
         drop_at_cursor = false;
       };

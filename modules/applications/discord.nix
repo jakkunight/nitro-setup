@@ -8,7 +8,7 @@ in {
     homeManager.${moduleName} = {pkgs, ...}: {
       home.packages = with pkgs; [
         discord-rpc
-        discord
+        discord-canary
         discord-gamesdk
       ];
     };
