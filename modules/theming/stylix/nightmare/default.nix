@@ -1,10 +1,10 @@
 {inputs, ...}: let
   wallpaper = ./wallpapers/9s-wallpaper-v2.jpg;
-  palette = "grayscale-dark";
+  palette = "kanagawa";
   colorscheme = pkgs:
     if palette == "" || palette == null
-    then "${pkgs.base16-schemes}/share/themes/${palette}.yaml"
-    else ./nier-automata.yaml;
+    then ./nier-automata.yaml
+    else "${pkgs.base16-schemes}/share/themes/${palette}.yaml";
 in {
   flake.modules.nixos."theming/stylix/nightmare" = {
     pkgs,
