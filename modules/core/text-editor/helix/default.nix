@@ -1,4 +1,4 @@
-{inputs, ...}: {
+_: {
   flake.modules.nixos."text-editor/helix" = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       helix
@@ -8,6 +8,7 @@
       marksman
       tinymist
       pandoc
+      typst
     ];
   };
   flake.modules.homeManager."text-editor/helix" = {pkgs, ...}: {
@@ -61,6 +62,17 @@
               "spacer"
               "diff"
             ];
+          };
+          statusline = {
+            left = ["spinner" "mode" "version-control"];
+            center = ["file-name" "read-only-indicator" "file-modification-indicator"];
+            right = ["diagnostics" "selections" "register" "position" "file-encoding"];
+            separator = "";
+            mode = {
+              normal = "NORMAL";
+              insert = "INSERT";
+              select = "SELECT";
+            };
           };
         };
         keys = {};
