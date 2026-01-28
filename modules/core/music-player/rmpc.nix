@@ -25,7 +25,8 @@
       mpv
       puddletag
       yt-dlp
-      ffmpeg
+      youtube-tui # This one is a MUST
+      ffmpeg # Used to play my music and videos ad hoc.
       matugen
     ];
   };
