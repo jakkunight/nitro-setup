@@ -16,7 +16,8 @@ _: {
       master = {
         mfact = 0.60;
         orientation = "left";
-        new_status = "master";
+        new_status = "slave";
+        new_on_top = true;
         smart_resizing = true;
         drop_at_cursor = false;
       };
@@ -24,6 +25,7 @@ _: {
         "$mod, R, layoutmsg, swapwithmaster"
         "$mod, M, layoutmsg, cyclenext"
         "$mod, N, layoutmsg, cycleprev"
+        "$mod, SPACE, layoutmsg, focusmaster master"
       ];
     };
   };
