@@ -8,20 +8,20 @@ in {
           eza
         ];
         shellAliases = {
-          ls = "eza --icons always";
-          ll = "eza --icons always -l";
-          la = "eza --icons always -la";
-          tree = "eza --icons always --tree";
+          ls = "eza --icons always -gh";
+          ll = "eza --icons always -lgh";
+          la = "eza --icons always -lagh";
+          tree = "eza --icons always --tree -agh";
         };
       };
     };
     homeManager.${module} = _: {
       programs.eza.enable = true;
       home.shellAliases = {
-        ls = "eza --icons always";
-        ll = "eza --icons always -l";
-        la = "eza --icons always -la";
-        tree = "eza --icons always --tree";
+        ls = "eza --icons always -gh";
+        ll = "eza --icons always -lgh";
+        la = "eza --icons always -lagh";
+        tree = "eza --icons always --tree -agh";
       };
     };
   };
