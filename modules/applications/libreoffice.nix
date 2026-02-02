@@ -5,6 +5,10 @@ in {
     homeManager.${moduleName} = {pkgs, ...}: {
       home.packages = with pkgs; [
         libreoffice
+        # Office alternatives
+        abiword
+        gnumeric
+        presenterm # A MUST
       ];
     };
   };

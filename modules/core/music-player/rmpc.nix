@@ -27,6 +27,7 @@
       yt-dlp
       youtube-tui # This one is a MUST
       ffmpeg # Used to play my music and videos ad hoc.
+      ani-cli # Also a MUST
       matugen
     ];
   };

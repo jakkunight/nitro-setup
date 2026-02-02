@@ -1,5 +1,5 @@
 {inputs, ...}: let
-  wallpaper = ./wallpapers/9s-wallpaper-v2.jpg;
+  wallpaper = ./wallpapers/default.jpg;
   palette = "kanagawa";
   colorscheme = pkgs:
     if palette == "" || palette == null
@@ -63,8 +63,8 @@ in {
       };
       opacity = {
         applications = 0.95;
-        terminal = 0.80;
-        desktop = 0.70;
+        terminal = 0.90;
+        desktop = 0.85;
         popups = 0.85;
       };
       targets = {
@@ -123,8 +123,8 @@ in {
       };
       opacity = {
         applications = 0.95;
-        terminal = 0.80;
-        desktop = 0.75;
+        terminal = 0.85;
+        desktop = 0.85;
         popups = 0.85;
       };
       targets = {
