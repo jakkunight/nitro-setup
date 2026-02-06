@@ -23,6 +23,11 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    devenv = {
+      url = "github:cachix/devenv";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    awww.url = "git+https://codeberg.org/LGFae/awww";
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,7 +40,7 @@
       url = "github:xremap/nix-flake";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland?submodules=1";
+      url = "github:hyprwm/Hyprland";
     };
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
