@@ -2,7 +2,11 @@ _: let
   moduleName = "virtualization";
 in {
   flake.modules = {
-    nixos.${moduleName} = {pkgs, ...}: {
+    nixos.${moduleName} = {
+      pkgs,
+      lib,
+      ...
+    }: {
       # NOTE:
       # DON'T FORGET TO ADD YOUR USER TO THE LIBVIRT GROUP.
       # INFO: VirtManager setup:
@@ -26,6 +30,7 @@ in {
       virtualisation = {
         libvirtd = {
           enable = true;
+          onBoot = "ignore";
           qemu = {
             swtpm = {
               enable = true;
