@@ -29,7 +29,7 @@ _: {
           text-width = 80; # default
           soft-wrap = {
             enable = true;
-            wrap-indicator = "";
+            wrap-indicator = "󰁕";
             wrap-at-text-width = true;
           };
           idle-timeout = 0;
