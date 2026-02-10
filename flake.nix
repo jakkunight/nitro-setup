@@ -63,11 +63,12 @@
       url = "github:jakkunight/yorha-grub-theme";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    milk-grub-theme.url = "github:gemakfy/MilkGrub";
     silentSDDM = {
       url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     treefmt-nix.url = "github:numtide/treefmt-nix/";
   };
-  outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules) // (inputs.import-tree ./packages) // (inputs.import-tree ./scripts);
+  outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./src);
 }
