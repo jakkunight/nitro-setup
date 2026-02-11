@@ -220,7 +220,7 @@ in
       # Bootstrap the config to `/etc/nixos`
       system.copySystemConfiguration = false;
       environment.etc.nixos.source = ../../.;
-      system.includeBuildDependencies = true;
+      # system.includeBuildDependencies = true;
 
       # Timezone:
       time.timeZone = "America/Asuncion";

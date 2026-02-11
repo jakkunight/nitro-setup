@@ -3,9 +3,6 @@ let
 in
   {inputs, ...}: {
     flake.nixosModules.${moduleName} = {pkgs, ...}: {
-      imports = [
-        inputs.determinate.nixosModules.default
-      ];
       programs = {
         git.enable = true;
         nh = {
