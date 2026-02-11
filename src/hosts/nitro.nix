@@ -11,6 +11,7 @@ in
         self.nixosModules.${hostname}
         self.nixosModules.jakku
         self.nixosModules.core
+        self.nixosModules.kanagawa-theme
       ];
     };
 

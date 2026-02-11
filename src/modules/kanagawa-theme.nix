@@ -4,6 +4,7 @@ in
   {
     inputs,
     self,
+    withSystem,
     ...
   }: {
     flake.nixosModules.${moduleName} = {
@@ -17,7 +18,7 @@ in
       stylix = {
         enable = true;
         base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
-        image = "${self."x86_64-linux".packages.wallpapers}/share/wallpapers/wanderer-sakura-wallpaper.jpg";
+        image = "${withSystem pkgs.stdenv.hostPlatform.system self.packages.wallpapers}/share/wallpapers/wanderer-sakura-wallpaper.jpg";
       };
     };
     flake.homeModules.${moduleName} = {
