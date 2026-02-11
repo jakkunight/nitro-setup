@@ -18,7 +18,7 @@ in
       stylix = {
         enable = true;
         base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
-        image = "${withSystem pkgs.stdenv.hostPlatform.system self.packages.wallpapers}/share/wallpapers/wanderer-sakura-wallpaper.jpg";
+        image = "${withSystem pkgs.stdenv.hostPlatform.system self.packages.wallpapers}/share/wallpapers/wanderer-scaramouche-sumeru.jpg";
       };
     };
     flake.homeModules.${moduleName} = {

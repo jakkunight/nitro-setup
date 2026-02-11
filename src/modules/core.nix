@@ -1,10 +1,20 @@
 let
   moduleName = "core";
 in
-  _: {
+  {inputs, ...}: {
     flake.nixosModules.${moduleName} = {pkgs, ...}: {
+      imports = [
+        inputs.determinate.nixosModules.default
+      ];
       programs = {
         git.enable = true;
+        nh = {
+          enable = true;
+          clean = {
+            enable = true;
+            extraArgs = "--keep 5 --keep-since 3d";
+          };
+        };
         starship = {
           enable = true;
           settings = {
