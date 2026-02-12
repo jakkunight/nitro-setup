@@ -27,10 +27,12 @@ in
       ...
     }: {
       imports = [
-        inputs.stylix.nixosModules.stylix
+        inputs.stylix.homeModules.stylix
       ];
       stylix = {
         enable = true;
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
+        image = "${self.packages.${pkgs.stdenv.hostPlatform.system}.wallpapers}/share/wallpapers/wanderer-scaramouche-sumeru.jpg";
       };
     };
   }

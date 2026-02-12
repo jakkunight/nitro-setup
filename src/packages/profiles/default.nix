@@ -1,15 +1,14 @@
 let
-  packageName = "wallpapers";
+  packageName = "profiles";
 in {
   perSystem = {pkgs, ...}: {
     packages."${packageName}" = pkgs.stdenvNoCC.mkDerivation {
       name = "${packageName}";
-      pname = "${packageName}";
       src = ./.;
       dontBuild = true;
       installPhase = ''
-        mkdir -p $out/share/wallpapers
-        cp -r $src/* $out/share/wallpapers
+        mkdir -p $out/share/profiles
+        cp -r $src/* $out/share/profiles
       '';
     };
   };

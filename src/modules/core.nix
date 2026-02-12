@@ -78,6 +78,18 @@ in
         chafa
         clamav
         vulnix
+        bluetuith
       ];
+    };
+    flake.homeModules.${moduleName} = {pkgs, ...}: {
+      programs = {
+        kitty.enable = true;
+        starship.enable = true;
+        yazi.enable = true;
+        helix.enable = true;
+      };
+      services = {
+        
+      };
     };
   }

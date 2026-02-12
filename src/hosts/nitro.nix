@@ -12,6 +12,7 @@ in
         self.nixosModules.jakku
         self.nixosModules.core
         self.nixosModules.kanagawa-theme
+        self.nixosModules.nightmare-desktop
       ];
     };
 

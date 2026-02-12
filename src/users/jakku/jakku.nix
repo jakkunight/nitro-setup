@@ -220,12 +220,18 @@ in
       ...
     }: {
       home = {
-        inherit (osConfig.users.users.${username}) home;
-        inherit username;
-        inherit (osConfig.system) stateVersion;
+        stateVersion = "26.05";
+        username = "${username}";
+        homeDirectory = "/home/${username}";
       };
 
       # Let Home Manager install and manage itself.
       programs.home-manager.enable = true;
+
+      imports = [
+        self.homeModules.nightmare-desktop
+        self.homeModules.kanagawa-theme
+        self.homeModules.core
+      ];
     };
   }
