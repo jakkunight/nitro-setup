@@ -214,11 +214,7 @@ in
         ];
       };
 
-    flake.homeModules.${username} = {
-      osConfig,
-      pkgs,
-      ...
-    }: {
+    flake.homeModules.${username} = {pkgs, ...}: {
       home = {
         stateVersion = "26.05";
         username = "${username}";
@@ -232,6 +228,8 @@ in
         self.homeModules.nightmare-desktop
         self.homeModules.kanagawa-theme
         self.homeModules.core
+        self.homeModules.zen-browser
+        self.homeModules.office
       ];
     };
   }

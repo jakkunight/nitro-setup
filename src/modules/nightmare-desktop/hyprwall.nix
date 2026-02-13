@@ -23,7 +23,7 @@ in
         ];
         bashOptions = [];
         text = ''
-          SERVICE_NAME="your-service"
+          SERVICE_NAME="hyprwall"
           PID_FILE="/var/run/''${SERVICE_NAME}.pid"
           handle() {
             case $1 in
@@ -33,7 +33,7 @@ in
                 local MAX=''${#WALLPAPERS[@]}
                 local RAND
                 RAND=$(shuf -n 1 -i $MIN-"$MAX")
-                awww img --transition-type any --transition-fps 30 --transition-step 90 --transition-duration 1 "''${WALLPAPERS[RAND]}"
+                awww img --resize crop --transition-type any --transition-fps 30 --transition-step 90 --transition-duration 1 "''${WALLPAPERS[RAND]}"
               ;;
             esac
           }

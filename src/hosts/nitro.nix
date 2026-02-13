@@ -13,6 +13,7 @@ in
         self.nixosModules.core
         self.nixosModules.kanagawa-theme
         self.nixosModules.nightmare-desktop
+        self.nixosModules.gaming
       ];
     };
 

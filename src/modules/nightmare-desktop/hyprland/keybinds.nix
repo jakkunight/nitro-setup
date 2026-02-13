@@ -2,11 +2,7 @@ let
   moduleName = "nightmare-desktop";
 in
   {inputs, ...}: {
-    flake.homeModules.${moduleName} = {
-      osConfig,
-      pkgs,
-      ...
-    }: {
+    flake.homeModules.${moduleName} = {pkgs, ...}: {
       wayland.windowManager.hyprland.settings = {
         # Keybindings
         bindel = [

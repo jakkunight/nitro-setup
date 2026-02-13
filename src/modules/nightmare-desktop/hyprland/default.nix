@@ -29,11 +29,7 @@ in
         xwayland.enable = true;
       };
     };
-    flake.homeModules.${moduleName} = {
-      osConfig,
-      pkgs,
-      ...
-    }: {
+    flake.homeModules.${moduleName} = {pkgs, ...}: {
       wayland.windowManager.hyprland = {
         enable = true;
         # Use the flake package:
