@@ -4,7 +4,7 @@ in
   {inputs, ...}: {
     flake.nixosModules.${moduleName} = {
       pkgs,
-      config,
+      lib,
       ...
     }: {
       # Use the Cachix binary cache:
@@ -27,6 +27,11 @@ in
         portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
         withUWSM = false;
         xwayland.enable = true;
+      };
+
+      hardware.graphics = {
+        package = lib.mkForce inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa;
+        package32 = lib.mkForce inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pkgsi686Linux.mesa;
       };
     };
     flake.homeModules.${moduleName} = {pkgs, ...}: {

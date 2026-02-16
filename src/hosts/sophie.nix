@@ -4,12 +4,16 @@ in
   {
     inputs,
     self,
-    lib,
     ...
   }: {
     flake.nixosConfigurations.${hostname} = inputs.nixpkgs.lib.nixosSystem {
       modules = [
         self.nixosModules.${hostname}
+        self.nixosModules.jakku
+        self.nixosModules.core
+        self.nixosModules.kanagawa-theme
+        self.nixosModules.nightmare-desktop
+        self.nixosModules.gaming
       ];
     };
 
@@ -23,8 +27,9 @@ in
       # Extra drivers:
       imports = [
         (modulesPath + "/installer/scan/not-detected.nix")
-        inputs.milk-grub-theme.nixosModule
         inputs.disko.nixosModules.disko
+        # Use Determinate Nix in this host:
+        inputs.determinate.nixosModules.default
       ];
 
       # CPU:
@@ -33,40 +38,6 @@ in
         updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
       };
       boot.kernelModules = ["kvm-intel"];
-
-      # Disko configuration:
-      disko = {
-        enableConfig = lib.mkForce true;
-        devices = {
-          disk.${hostname} = {
-            device = "/dev/sda";
-            type = "disk";
-            content = {
-              type = "gpt";
-              partitions = {
-                ESP = {
-                  type = "EF00";
-                  size = "1G";
-                  content = {
-                    type = "filesystem";
-                    format = "vfat";
-                    mountpoint = "/boot";
-                    mountOptions = ["umask=0077"];
-                  };
-                };
-                root = {
-                  size = "100%";
-                  content = {
-                    type = "filesystem";
-                    format = "ext4";
-                    mountpoint = "/";
-                  };
-                };
-              };
-            };
-          };
-        };
-      };
 
       # Disk drivers:
       boot.initrd.availableKernelModules = [
@@ -77,6 +48,9 @@ in
         "usb_storage"
         "sd_mod"
       ];
+
+      # Disko config:
+      inherit (self.diskoConfigurations.simpleNoSwap {device = "/dev/sda";}) disko;
 
       # Bootloader:
       # NOTE:
@@ -101,10 +75,8 @@ in
           device = "nodev";
           useOSProber = true;
           efiInstallAsRemovable = false;
-          # Use the MilkGRUB Theme:
-          gfxmodeEfi = "1920x1080"; # set your resolution
-          gfxpayloadEfi = "keep";
-          milk-theme.enable = true;
+          # Use the YoRHa theme:
+          theme = lib.mkForce "${inputs.yorha-grub-theme.packages.${pkgs.stdenv.hostPlatform.system}.default}";
         };
       };
 
@@ -162,8 +134,10 @@ in
       services.blueman.enable = true;
       environment.systemPackages = with pkgs; [
         blueberry
+        disko
       ];
 
+      # GPU:
       # Enable OpenGL:
       hardware.graphics = {
         # Use this from NixOS 24.11+
@@ -177,5 +151,27 @@ in
       # Bootstrap the config to `/etc/nixos`
       system.copySystemConfiguration = false;
       environment.etc.nixos.source = ../../.;
+      # system.includeBuildDependencies = true;
+
+      # Timezone:
+      time.timeZone = "America/Asuncion";
+
+      # Locale:
+      i18n.defaultLocale = "es_PY.UTF-8";
+      services.xserver.enable = false;
+      services.xserver.xkb.layout = "latam";
+      services.libinput.enable = true;
+
+      # Kernel Console:
+      console = {
+        font = "${pkgs.terminus_font}/share/consolefonts/ter-v24b.psf.gz";
+        useXkbConfig = true; # use xkb.options in tty.
+      };
+
+      # Disable autologin for all users on TTY:
+      services.getty.autologinUser = lib.mkForce null;
+      systemd.services."autovt@tty1".enable = false;
+
+      # System Theme:
     };
   }

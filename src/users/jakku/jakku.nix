@@ -203,7 +203,7 @@ in
       };
     };
 
-    flake.homeConfigurations.${username} = let
+    flake.homeConfigurations."${username}" = let
       system = "x86_64-linux";
       pkgs = inputs.nixpkgs.legacyPackages.${system};
     in
@@ -214,7 +214,7 @@ in
         ];
       };
 
-    flake.homeModules.${username} = {pkgs, ...}: {
+    flake.homeModules."${username}" = {pkgs, ...}: {
       home = {
         stateVersion = "26.05";
         username = "${username}";

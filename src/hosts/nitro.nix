@@ -50,35 +50,7 @@ in
       ];
 
       # Disko config:
-      disko.devices = {
-        disk.${hostname} = {
-          device = "/dev/sda";
-          type = "disk";
-          content = {
-            type = "gpt";
-            partitions = {
-              ESP = {
-                type = "EF00";
-                size = "1G";
-                content = {
-                  type = "filesystem";
-                  format = "vfat";
-                  mountpoint = "/boot";
-                  mountOptions = ["umask=0077"];
-                };
-              };
-              root = {
-                size = "100%";
-                content = {
-                  type = "filesystem";
-                  format = "ext4";
-                  mountpoint = "/";
-                };
-              };
-            };
-          };
-        };
-      };
+      inherit (self.diskoConfigurations.simpleNoSwap {name = "${hostname}"; device = "/dev/nvme0n1";}) disko;
 
       # Bootloader:
       # NOTE:

@@ -1,7 +1,7 @@
 let
   moduleName = "core";
 in
-  {inputs, ...}: {
+  {inputs, config, ...}: {
     flake.nixosModules.${moduleName} = {pkgs, ...}: {
       programs = {
         git.enable = true;
@@ -82,7 +82,6 @@ in
       ];
     };
     flake.homeModules.${moduleName} = {
-      config,
       pkgs,
       ...
     }: {
@@ -129,7 +128,7 @@ in
         package = pkgs.rmpc;
         config = ''
           (
-            address: "/run/user/${builtins.getEnv "UID"}/mpd/socket",
+            address: "/run/user/${config.home.uid}/mpd/socket",
             cache_dir: Some("${config.home.homeDirectory}/.cache/rmpc"),
           )
         '';

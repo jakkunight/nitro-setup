@@ -1,6 +1,7 @@
 let
-moduleName = "office";
-in _: {
+  moduleName = "office";
+in
+  _: {
     flake.homeModules.${moduleName} = {pkgs, ...}: {
       home.packages = with pkgs; [
         libreoffice
