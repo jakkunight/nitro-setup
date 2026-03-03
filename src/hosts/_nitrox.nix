@@ -1,5 +1,5 @@
 let
-  feature = "nitro";
+  feature = "nitrox";
 in
 {
   self,
@@ -14,8 +14,8 @@ in
       nvidiaBusId = "PCI:1:0:0";
       amdgpuBusId = "";
     })
-    (self.diskoLayoutFactory.mkSimpleNoSwap {
-      device = "/dev/nvme0n1";
+    (self.diskoLayoutFactory.mkSimpleNoSwapLuks {
+      device = "/dev/nvme1n1";
       deviceName = "${feature}";
       host = "${feature}";
     })
@@ -35,27 +35,18 @@ in
             zen-kernel
             inputs.determinate.nixosModules.default
             kanagawa-theme
-            silent-sddm
-            nightmare-desktop
             jakku
+          ];
+          system.stateVersion = "26.05";
+          programs.git.enable = true;
+          environment.systemPackages = with pkgs; [
+            gitui
           ];
           i18n.defaultLocale = "es_PY.UTF-8";
           time.timeZone = "America/Asuncion";
-          services.xserver = {
-            xkb.layout = "latam";
-          };
-          services.libinput.enable = true;
-          # system.includeBuildDependencies = true;
-          environment.systemPackages = with pkgs; [
-            gitui
-            inputs.home-manager.packages.${system}.home-manager
-            inputs.disko.packages.${system}.disko
-          ];
+          programs.nh.enable = true;
         };
     }
   ];
   flake.nixosConfigurations.${feature} = self.factory.mkHost { name = feature; };
-  flake.nixosConfigurations."${feature}-offline-installer" = self.factory.mkOfflineInstaller {
-    name = feature;
-  };
 }

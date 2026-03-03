@@ -46,6 +46,14 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+    hyprland-easymotion = {
+      url = "github:bryewalks/hyprland-easymotion";
+      inputs.hyprland.follows = "hyprland";
+    };
+    hypr-darkwindow = {
+      url = "github:micha4w/Hypr-DarkWindow"; # Make sure to change the tag to match your hyprland version
+      inputs.hyprland.follows = "hyprland";
+    };
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -70,5 +78,5 @@
     };
     treefmt-nix.url = "github:numtide/treefmt-nix/";
   };
-  outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./src);
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./src);
 }
