@@ -9,7 +9,7 @@ in
 {
   flake.modules = {
     nixos.${feature} =
-      { pkgs, ... }:
+      { pkgs, lib, config, ... }:
       {
         imports = with self.modules.nixos; [
           hyprland
@@ -21,6 +21,11 @@ in
           enable32Bit = true;
           package32 =
             inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pkgsi686Linux.mesa;
+        };
+        environment.variables = lib.mkIf (builtins.elem "nvidia" config.services.xserver.videoDrivers) {
+          LIBVA_DRIVER_NAM = "nvidia";
+          __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+          ELECTRON_OZONE_PLATFORM_HINT = "auto";
         };
       };
     homeManager.${feature} =
@@ -298,15 +303,12 @@ in
               ",preferred,auto,1,mirror"
             ];
             env = [
-              "LIBVA_DRIVER_NAME,nvidia"
-              "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-              "ELECTRON_OZONE_PLATFORM_HINT,auto"
             ];
             exec-once = [
               "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-              "hyprctl plugin load ${
-                inputs.hyprglass.packages.${pkgs.stdenv.hostPlatform.system}.hyprglass
-              }/lib/hyprglass.so"
+              # "hyprctl plugin load ${
+              # inputs.hyprglass.packages.${pkgs.stdenv.hostPlatform.system}.hyprglass
+              # }/lib/hyprglass.so"
               # "hyprctl plugin load ${
               #   inputs.hypr-darkwindow.packages.${pkgs.stdenv.hostPlatform.system}.Hypr-DarkWindow
               # }/lib/libHypr-DarkWindow.so"
@@ -316,12 +318,12 @@ in
               #   inputs.hyprland-easymotion.packages.${pkgs.stdenv.hostPlatform.system}.hyprland-easymotion
               # }/lib/hypreasymotion.so"
             ];
-            plugin = {
-              hyprglass = {
-                default_theme = "dark";
-                default_preset = "glass";
-              };
-            };
+            # plugin = {
+            #   hyprglass = {
+            #     default_theme = "dark";
+            #     default_preset = "glass";
+            #   };
+            # };
             # Hyprbars:
             # hyprbars-button = "bgcolor, size, icon, on-click, fgcolor";
             general = {
