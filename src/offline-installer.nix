@@ -53,22 +53,6 @@
             programs.nh.enable = true;
             programs.git.enable = true;
             # system.includeBuildDependencies = true;
-            image.modules =
-              { config, ... }:
-              {
-                isoImage = {
-                  contents = [
-                    {
-                      source = ./nix-cfg;
-                      target = "/nix-cfg";
-                    }
-                  ];
-                  storeContents = [
-                    config.system.build.toplevel
-                  ];
-                  includeSystemBuildDependencies = true;
-                };
-              };
 
             environment.systemPackages = with pkgs; [
               gitui
