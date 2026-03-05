@@ -39,7 +39,101 @@ in
           hyprwall
           swaync
           # ashell
+          hyprlock
+          hypridle
         ];
+
+        services.hypridle = {
+          settings = {
+            general = {
+              lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
+            };
+            listener = {
+              timeout = 900;
+              "on-timeout" = "${pkgs.hyprlock}/bin/hyprlock";
+            };
+          };
+        };
+
+        programs.hyprlock =
+          let
+            profile = "${config.home.homeDirectory}/.face";
+            rgba = color: alpha: "rgba(${color}${alpha})";
+            rgb = color: "rgba(${color})";
+          in
+          {
+            settings = {
+              animations = {
+                enabled = true;
+                fade_in = {
+                  duration = 300;
+                  bezier = "easeOutQuint";
+                };
+                fade_out = {
+                  duration = 300;
+                  bezier = "easeOutQuint";
+                };
+              };
+              # User profile
+              image = {
+                path = "${profile}";
+                size = "130";
+                rounding = "-1";
+                position = "0, 40";
+                halign = "center";
+                valign = "center";
+              };
+              shape = [
+                # User box
+                {
+                  xray = "false"; # if true, make a "hole" in the background (rectangle of specified size, no rotation)
+                  size = "300, 60";
+                  rounding = "-1";
+                  color = rgba config.lib.stylix.colors.base00 "70";
+                  position = "0, -130";
+                  halign = "center";
+                  valign = "center";
+                }
+              ];
+              label = [
+                # Date
+                {
+                  text = "cmd[update:1000] echo -e \"$(date +\"%A, %B %d\")\"";
+                  font_color = rgb config.lib.stylix.colors.base06;
+                  font_size = "25";
+                  position = "0, 350";
+                  halign = "center";
+                  valign = "center";
+                }
+                # Time
+                {
+                  text = "cmd[update:1000] echo -e \"$(date +\"%I:%M\")\"";
+                  font_color = rgb config.lib.stylix.colors.base06;
+                  font_size = "120";
+                  position = "0, 250";
+                  halign = "center";
+                  valign = "center";
+                }
+                # User label
+                {
+                  text = "    $USER";
+                  font_color = rgb config.lib.stylix.colors.base06;
+                  font_size = "18";
+                  position = "0, -130";
+                  halign = "center";
+                  valign = "center";
+                }
+              ];
+              input-field = {
+                size = lib.mkForce "300, 60";
+                position = lib.mkForce "0, -210";
+                halign = "center";
+                valign = "center";
+              };
+            };
+
+          };
+
         programs.ashell.settings =
           let
             inherit (config.lib.stylix.colors.withHashtag)
@@ -86,13 +180,24 @@ in
             };
           };
         wayland.windowManager.hyprland = {
-          plugins = with pkgs; [
-            # inputs.hyprchroma.packages.${pkgs.stdenv.hostPlatform.system}."Hypr-DarkWindow"
-            # inputs.hypr-darkwindow.packages.${pkgs.stdenv.hostPlatform.system}.Hypr-DarkWindow
-          ];
           settings = {
-            input.kb_layout = "latam";
+            # plugin = {
+            #   hyprbars = {
+            #     # example config
+            #     bar_height = 20;
 
+            #     # example buttons (R -> L)
+            #     # hyprbars-button = color, size, on-click
+            #     hyprbars-button = lib.mkAfter [
+            #       "rgb(${config.lib.stylix.colors.base08}), 10, 󰖭, hyprctl dispatch killactive"
+            #       "rgb(${config.lib.stylix.colors.base0C}), 10, , hyprctl dispatch fullscreen 1"
+            #     ];
+            #     # cmd to run on double click of the bar
+            #     on_double_click = "hyprctl dispatch fullscreen 1";
+            #   };
+            # };
+            input.kb_layout = "latam";
+            input.follow_mouse = 0;
             bindel = [
               # Multimedia:
               ", XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
@@ -200,17 +305,29 @@ in
             exec-once = [
               "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
               "hyprctl plugin load ${
-                inputs.hypr-darkwindow.packages.${pkgs.stdenv.hostPlatform.system}.Hypr-DarkWindow
-              }/lib/libHypr-DarkWindow.so"
-              "systemctl --user enable --now hyprwall"
+                inputs.hyprglass.packages.${pkgs.stdenv.hostPlatform.system}.hyprglass
+              }/lib/hyprglass.so"
+              # "hyprctl plugin load ${
+              #   inputs.hypr-darkwindow.packages.${pkgs.stdenv.hostPlatform.system}.Hypr-DarkWindow
+              # }/lib/libHypr-DarkWindow.so"
+              # "hyprctl plugin load ${pkgs.hyprlandPlugins.hyprbars}/lib/libhyprbarsso."
+              "systemctl --user restart hyprwall"
               # "hyprctl plugin load ${
               #   inputs.hyprland-easymotion.packages.${pkgs.stdenv.hostPlatform.system}.hyprland-easymotion
               # }/lib/hypreasymotion.so"
             ];
+            plugin = {
+              hyprglass = {
+                default_theme = "dark";
+                default_preset = "glass";
+              };
+            };
+            # Hyprbars:
+            # hyprbars-button = "bgcolor, size, icon, on-click, fgcolor";
             general = {
               layout = "master";
-              gaps_in = 8;
-              gaps_out = 16;
+              gaps_in = 0;
+              gaps_out = 0;
               border_size = 0;
               resize_on_border = true;
             };
@@ -234,15 +351,15 @@ in
             # Hypr-DarkWindow:
             windowrule = [
               # Transparent apps:
-              "darkwindow:shade chromakey targetOpacity=0.8, match:class .*"
+              # "darkwindow:shade chromakey targetOpacity=0.8, match:class .*"
             ];
             # Decorations:
             decoration = {
               rounding = 0;
               rounding_power = 0;
               # Transparency:
-              # active_opacity = lib.mkForce 1.0;
-              # inactive_opacity = lib.mkForce 1.0;
+              active_opacity = lib.mkForce 0.95;
+              inactive_opacity = lib.mkForce 0.90;
 
               # Shadow:
               shadow = {
@@ -253,15 +370,15 @@ in
               # Blur:
               blur = {
                 enabled = true;
-                size = 12;
-                passes = 3;
+                size = 8;
+                passes = 2;
                 new_optimizations = true;
                 ignore_opacity = true;
                 xray = false;
                 noise = 0.2;
                 vibrancy = 1.0;
                 brightness = 1.0;
-                contrast = 1.5;
+                contrast = 1.1;
                 popups = true;
               };
             };

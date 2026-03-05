@@ -42,9 +42,6 @@ in
           systemd.enable = true;
           settings = {
             "$mod" = "SUPER";
-            input = {
-              follow_mouse = 1;
-            };
 
             # Cursor:
             cursor = {

@@ -1,6 +1,7 @@
 {
   inputs,
   self,
+  lib,
   ...
 }:
 {
@@ -15,9 +16,9 @@
         self.modules.homeManager.${user}
         {
           home = {
-            username = "${user}";
-            homeDirectory = "/home/${user}";
-            stateVersion = "26.05";
+            username = lib.mkDefault "${user}";
+            homeDirectory = lib.mkDefault "/home/${user}";
+            stateVersion = lib.mkDefault "26.05";
           };
         }
       ];

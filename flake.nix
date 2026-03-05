@@ -67,6 +67,10 @@
       url = "github:jakkunight/Wanderer-Themes";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprglass = {
+      url = "github:jakkunight/hyprglass";
+      inputs.hyprland.follows = "hyprland";
+    };
     yorha-grub-theme = {
       url = "github:jakkunight/yorha-grub-theme";
       inputs.nixpkgs.follows = "nixpkgs";

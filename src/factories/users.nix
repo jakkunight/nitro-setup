@@ -1,4 +1,7 @@
-{ lib, ... }:
+{
+  lib,
+  ...
+}:
 {
   flake.factory.mkUser =
     {
@@ -22,7 +25,7 @@
           initialPassword = "${name}";
         };
       };
-      homeModules.${name} = {
+      homeManager.${name} = {
         home = {
           username = "${name}";
           homeDirectory = "/home/${name}";

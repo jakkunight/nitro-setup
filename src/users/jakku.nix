@@ -14,6 +14,7 @@ in
       isAdmin = true;
       hasNetworkAccess = true;
     })
+    (self.factory.mkHomeManagerNixosModuleConfiguration { name = user; })
     {
       nixos.${user} =
         { pkgs, ... }:
@@ -22,6 +23,7 @@ in
             core
             gaming
             libvirt
+            home-manager-nixos-module
           ];
           users.users.${user} = {
             useDefaultShell = false;
@@ -39,13 +41,18 @@ in
         imports = with self.modules.homeManager; [
           devenv
           core
-          kanagawa-theme
+          # kanagawa-theme
           gaming
           nightmare-desktop
           swaync
           kde
           libreoffice
         ];
+        home = {
+          username = "${user}";
+          homeDirectory = "/home/${user}";
+          stateVersion = "26.05";
+        };
       };
     }
   ];
