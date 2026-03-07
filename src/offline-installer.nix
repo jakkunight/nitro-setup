@@ -15,7 +15,7 @@
       modules = [
         self.modules.nixos.${name}
         (
-          { pkgs, ... }:
+          { pkgs, modulesPath, ... }:
           let
             flakeOutPaths =
               let
@@ -52,7 +52,8 @@
             system.stateVersion = "26.05";
             programs.nh.enable = true;
             programs.git.enable = true;
-            # system.includeBuildDependencies = true;
+
+            system.includeBuildDependencies = true;
 
             environment.systemPackages = with pkgs; [
               gitui

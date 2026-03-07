@@ -45,7 +45,7 @@ in
             xkb.layout = "latam";
           };
           services.libinput.enable = true;
-          system.includeBuildDependencies = true;
+          # system.includeBuildDependencies = true;
           environment.systemPackages = with pkgs; [
             gitui
             inputs.home-manager.packages.${system}.home-manager
