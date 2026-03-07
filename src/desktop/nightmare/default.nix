@@ -9,7 +9,12 @@ in
 {
   flake.modules = {
     nixos.${feature} =
-      { pkgs, lib, config, ... }:
+      {
+        pkgs,
+        lib,
+        config,
+        ...
+      }:
       {
         imports = with self.modules.nixos; [
           hyprland
@@ -330,7 +335,7 @@ in
               layout = "master";
               gaps_in = 0;
               gaps_out = 0;
-              border_size = 0;
+              border_size = 2;
               resize_on_border = true;
             };
             master = {
@@ -372,8 +377,8 @@ in
               # Blur:
               blur = {
                 enabled = true;
-                size = 8;
-                passes = 2;
+                size = 15;
+                passes = 3;
                 new_optimizations = true;
                 ignore_opacity = true;
                 xray = false;
@@ -535,14 +540,14 @@ in
                 "tooltip" = false;
                 "format" = "{icon}";
                 "format-icons" = {
-                  "notification" = "󱅫";
+                  "notification" = "󱅫 ";
                   "none" = "󰂚";
-                  "dnd-notification" = "󰵙";
+                  "dnd-notification" = "󰵙 ";
                   "dnd-none" = "󱏧";
-                  "inhibited-notification" = "󱅫";
-                  "inhibited-none" = "󰂚";
-                  "dnd-inhibited-notification" = "󰵙";
-                  "dnd-inhibited-none" = "󱏧";
+                  "inhibited-notification" = "󱅫 ";
+                  "inhibited-none" = "󰂚 ";
+                  "dnd-inhibited-notification" = "󰵙 ";
+                  "dnd-inhibited-none" = "󱏧 ";
                 };
                 "return-type" = "json";
                 "exec-if" = "which swaync-client";
@@ -554,13 +559,31 @@ in
             };
           };
           style = lib.mkAfter ''
+            window#waybar {
+              border-style: solid;
+              border-width: 2px;
+              border-color: @base0D;
+              padding: 2px;
+            }
             #workspaces button {
-              font-size: 2rem;
+              font-size: 1rem;
               color: @base03;
+              box-shadow: none;
+            }
+            #workspaces button:hover {
+              font-size: 1rem;
+              color: @base0D;
+              border-width: 1px;
+              border-color: @base0D;
+              background-color: transparent;
             }
             #workspaces button.active {
-              font-size: 2rem;
+              font-size: 1rem;
               color: @base0D;
+              border-width: 1px;
+              border-color: @base0D;
+              background-color: transparent;
+              box-shadow: none;
             }
             #battery {
               color: @base0B;
