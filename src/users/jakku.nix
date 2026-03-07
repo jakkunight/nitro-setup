@@ -47,6 +47,7 @@ in
           swaync
           kde
           libreoffice
+          nightmare-helix
         ];
         home = {
           username = "${user}";

@@ -12,6 +12,8 @@ in
           nixfmt
           bash-language-server
           rumdl
+          deno
+          marksman
           vscode-json-languageserver
           ron-lsp
           yaml-language-server
