@@ -20,7 +20,19 @@ in
       programs.helix = {
         defaultEditor = true;
         settings = {
-
+          editor = {
+            bufferline = lib.mkForce "always";
+            trim-trailing-whitespace = true;
+            trim-final-newlines = true;
+            soft-wrap = {
+              enable = true;
+            };
+            inline-diagnostics = {
+              cursor-line = "warning";
+              other-lines = "hint";
+            };
+            end-of-line-diagnostics = "hint";
+          };
         };
         languages = {
           language = [
