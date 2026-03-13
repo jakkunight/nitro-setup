@@ -80,8 +80,8 @@ in
             sansSerif = config.stylix.fonts.serif;
 
             monospace = {
-              package = pkgs.nerd-fonts.mononoki;
-              name = "MononokiNerdFontPropo";
+              package = pkgs.nerd-fonts.caskaydia-mono;
+              name = "CaskaydiaMonoNerdFontPropo";
             };
 
             emoji = {
@@ -90,7 +90,7 @@ in
             };
             sizes = {
               applications = 12;
-              terminal = 16;
+              terminal = 14;
               desktop = 14;
               popups = 12;
             };
@@ -108,8 +108,8 @@ in
           };
           opacity = {
             applications = 0.95;
-            terminal = 0.80;
-            desktop = 0.85;
+            terminal = 0.90;
+            desktop = 0.90;
             popups = 0.85;
           };
           targets = {
