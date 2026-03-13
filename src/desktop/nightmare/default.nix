@@ -304,8 +304,8 @@ in
               )
             );
             monitor = [
-              "eDP-1,preferred,auto,1"
-              ",preferred,auto,1,mirror"
+              "eDP-1,highres,auto,1"
+              ",highres,auto,1"
             ];
             env = [
             ];
@@ -342,7 +342,7 @@ in
               mfact = 0.55;
               orientation = "left";
               new_status = "slave";
-              new_on_top = true;
+              new_on_top = false;
               smart_resizing = true;
               drop_at_cursor = false;
             };
@@ -377,12 +377,12 @@ in
               # Blur:
               blur = {
                 enabled = true;
-                size = 15;
+                size = 7;
                 passes = 3;
                 new_optimizations = true;
                 ignore_opacity = true;
                 xray = false;
-                noise = 0.2;
+                noise = 0.1;
                 vibrancy = 1.0;
                 brightness = 1.0;
                 contrast = 1.1;
