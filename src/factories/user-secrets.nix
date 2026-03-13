@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.factory.mkSystemSecrets =
+  flake.factory.mkUserSecrets =
     {
       owner ? throw "You must provide a secrets owner",
       defaultSopsFormat ? "yaml",
@@ -9,7 +9,7 @@
       secrets ? [ ],
     }:
     {
-      homeModules.sops-nix =
+      homeModules."${owner}-secrets" =
         {
           pkgs,
           config,

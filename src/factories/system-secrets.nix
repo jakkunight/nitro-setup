@@ -9,10 +9,9 @@
       secrets ? [ ],
     }:
     {
-      nixos.sops-nix =
+      nixos."${owner}-system-secrets" =
         {
           pkgs,
-          config,
           ...
         }:
         {
@@ -27,15 +26,21 @@
 
           sops = {
             inherit defaultSopsFile defaultSopsFormat;
-            age = { inherit keyFile; };
-            secrets = builtins.listToAttrs (
-              map (x: {
-                name = "${x}";
-                value = {
-                  owner = config.users.users.${owner}.name;
-                };
-              }) secrets
-            );
+            age = {
+              inherit keyFile;
+              generateKey = false;
+            };
+            secrets =
+              let
+                modList = map (x: {
+                  name = x;
+                  value = {
+                    inherit owner;
+                  };
+                }) secrets;
+                result = (builtins.listToAttrs modList);
+              in
+              result;
           };
         };
     };
