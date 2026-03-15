@@ -1,5 +1,5 @@
 let
-  feature = "kanagawa-theme";
+  feature = "stylix";
   # NOTE:
   # Define here the colors to be used, since the usage of a YAML file will require internet connection (!?) to download the parser.
   defaultColorscheme = {
@@ -51,7 +51,6 @@ in
       {
         pkgs,
         lib,
-        config,
         ...
       }:
       {
@@ -67,64 +66,16 @@ in
         stylix = {
           enable = true;
           base16Scheme = lib.mkDefault defaultColorscheme;
-          polarity = "dark";
-          image = "${
+          polarity = lib.mkDefault "dark";
+          image = lib.mkDefault "${
             self.packages.${pkgs.stdenv.system}.wanderer-wallpapers
           }/share/wallpapers/wanderer-traditional-japanese-picture.jpg";
-          fonts = {
-            serif = {
-              package = inputs.genshin-font.packages.${pkgs.stdenv.hostPlatform.system}.default;
-              name = "GenshinImpact";
-            };
-
-            sansSerif = config.stylix.fonts.serif;
-
-            monospace = {
-              package = pkgs.nerd-fonts.caskaydia-mono;
-              name = "CaskaydiaMonoNerdFontPropo";
-            };
-
-            emoji = {
-              package = pkgs.noto-fonts-color-emoji;
-              name = "Noto Color Emoji";
-            };
-            sizes = {
-              applications = 12;
-              terminal = 14;
-              desktop = 14;
-              popups = 12;
-            };
-          };
-          cursor = {
-            package = pkgs.afterglow-cursors-recolored;
-            name = "Afterglow-Recolored-Dracula-Cyan";
-            size = 32;
-          };
-          icons = {
-            enable = true;
-            package = pkgs.kanagawa-icon-theme;
-            dark = "Kanagawa";
-            light = "Kanagawa";
-          };
-          opacity = {
-            applications = 0.95;
-            terminal = 0.90;
-            desktop = 0.90;
-            popups = 0.85;
-          };
-          targets = {
-            qt = {
-              enable = true;
-              platform = lib.mkForce "qtct";
-            };
-          };
         };
       };
     homeManager.${feature} =
       {
         pkgs,
         lib,
-        config,
         ...
       }:
       {
@@ -133,59 +84,12 @@ in
         ];
 
         stylix = {
-          enable = true;
+          enable = lib.mkDefault true;
           base16Scheme = lib.mkDefault defaultColorscheme;
-          polarity = "dark";
-          image = "${
+          polarity = lib.mkDefault "dark";
+          image = lib.mkDefault "${
             self.packages.${pkgs.stdenv.system}.wanderer-wallpapers
           }/share/wallpapers/wanderer-traditional-japanese-picture.jpg";
-          fonts = {
-            serif = {
-              package = inputs.genshin-font.packages.${pkgs.stdenv.hostPlatform.system}.default;
-              name = "GenshinImpact";
-            };
-
-            sansSerif = config.stylix.fonts.serif;
-
-            monospace = {
-              package = pkgs.nerd-fonts.mononoki;
-              name = "MononokiNerdFontPropo";
-            };
-
-            emoji = {
-              package = pkgs.noto-fonts-color-emoji;
-              name = "Noto Color Emoji";
-            };
-            sizes = {
-              applications = 12;
-              terminal = 16;
-              desktop = 14;
-              popups = 12;
-            };
-          };
-          cursor = {
-            package = pkgs.afterglow-cursors-recolored;
-            name = "Afterglow-Recolored-Dracula-Cyan";
-            size = 32;
-          };
-          icons = {
-            enable = true;
-            package = pkgs.kanagawa-icon-theme;
-            dark = "Kanagawa";
-            light = "Kanagawa";
-          };
-          opacity = {
-            applications = 0.95;
-            terminal = 0.80;
-            desktop = 0.85;
-            popups = 0.85;
-          };
-          targets = {
-            qt = {
-              enable = true;
-              platform = lib.mkForce "qtct";
-            };
-          };
         };
       };
   };
