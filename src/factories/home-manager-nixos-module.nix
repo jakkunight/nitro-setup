@@ -1,6 +1,3 @@
-let
-  feature = "home-manager-nixos-module";
-in
 { inputs, self, ... }:
 {
   flake.factory.mkHomeManagerNixosModuleConfiguration =
@@ -8,13 +5,13 @@ in
       name ? throw "Please provide a valid username",
     }:
     {
-      nixos.${feature} = {
+      nixos."${name}-home" = {
         imports = [
           inputs.home-manager.nixosModules.home-manager
         ];
 
         home-manager = {
-          useGlobalPkgs = true;
+          useGlobalPkgs = false;
           useUserPackages = false;
           users.${name} = self.modules.homeManager.${name};
         };

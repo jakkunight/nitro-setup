@@ -35,7 +35,7 @@ in
             core
             gaming
             libvirt
-            home-manager-nixos-module
+            jakku-home
             andescada
           ];
           users.users.${user} = {
