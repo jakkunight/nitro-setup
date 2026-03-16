@@ -23,8 +23,6 @@ in
             disk
             bluetooth
             networking
-            nvidia-gpu
-            nvidia-prime
             pipewire
             yorha-grub
             zen-kernel
@@ -35,7 +33,7 @@ in
             kde
             cinnamon
             ballade
-            sophie
+            # sophie
             jakku
           ];
           i18n.defaultLocale = "es_PY.UTF-8";
