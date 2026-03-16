@@ -119,10 +119,6 @@ in
         ...
       }:
       {
-        imports = [
-          self.modules.homeManager.stylix
-        ];
-
         stylix = {
           base16Scheme = defaultColorscheme;
           polarity = "dark";

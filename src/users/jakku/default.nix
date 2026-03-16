@@ -59,7 +59,7 @@ in
         imports = with self.modules.homeManager; [
           devenv
           core
-          # kanagawa-theme
+          kanagawa-theme
           gaming
           nightmare-desktop
           swaync
@@ -77,5 +77,8 @@ in
   ];
   flake.homeConfigurations.${user} = self.factory.mkHomeConfiguration {
     inherit user;
+    extraModules = [
+      self.modules.homeManager.stylix-standalone-hm
+    ];
   };
 }
