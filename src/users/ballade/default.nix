@@ -63,10 +63,4 @@ in
       };
     }
   ];
-  flake.homeConfigurations.${user} = self.factory.mkHomeConfiguration {
-    inherit user;
-    extraModules = [
-      self.modules.homeManager.stylix-standalone-hm
-    ];
-  };
 }
