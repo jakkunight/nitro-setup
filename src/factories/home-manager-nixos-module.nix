@@ -14,6 +14,7 @@
           useGlobalPkgs = false;
           useUserPackages = false;
           users.${name} = self.modules.homeManager.${name};
+          backupFileExtension = "backup";
         };
       };
     };

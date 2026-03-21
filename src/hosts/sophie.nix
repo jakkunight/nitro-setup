@@ -11,7 +11,7 @@ in
   flake.modules = lib.mkMerge [
     (self.diskoLayoutFactory.mkSimpleNoSwap {
       device = "/dev/sda";
-      deviceName = "${feature}";
+      deviceName = "main";
       host = "${feature}";
     })
     {
