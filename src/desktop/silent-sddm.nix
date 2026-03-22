@@ -1,290 +1,301 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 {
   flake.modules.nixos."silent-sddm" =
     {
       config,
       lib,
+      pkgs,
       ...
     }:
     {
       imports = [
         inputs.silentSDDM.nixosModules.default
       ];
-      programs.silentSDDM = {
-        enable = true;
-        theme = "default";
-        backgrounds = {
-          "9s-wallpaper" = toString (config.stylix.image); # 9s-wallpaper.jpg
+      # Use Haveged to speed up the boot time:
+      services.haveged.enable = true;
+
+      # Config silent SDDM:
+      programs.silentSDDM =
+        let
+          backgroundImage = "${
+            self.packages.${pkgs.stdenv.hostPlatform.system}.wanderer-wallpapers
+          }/share/wallpapers/scaramouche-sword-field.jpg";
+        in
+        {
+          enable = true;
+          theme = "default";
+          backgrounds = {
+            "wallpaper" = toString backgroundImage;
+          };
+          profileIcons = builtins.mapAttrs (username: userdata: "${userdata.home}/.face") (
+            lib.filterAttrs (username: userdata: userdata.isNormalUser || username == "root") config.users.users
+          );
+          settings = {
+            "General" = {
+              scale = 1.0;
+              enable-animations = true;
+              animated-background-placeholder = "";
+              background-fill-mode = "fill";
+            };
+            "LockScreen" = {
+              display = true;
+              padding-top = 0;
+              padding-right = 0;
+              padding-bottom = 0;
+              padding-left = 0;
+              background = "${baseNameOf backgroundImage}";
+              use-background-color = false;
+              background-color = config.lib.stylix.colors.withHashtag.base00;
+              blur = 32;
+              brightness = 0.0;
+              saturation = 0.0;
+            };
+            "LockScreen.Clock" = {
+              display = true;
+              position = "top-center";
+              align = "center";
+              format = "hh:mm";
+              font-family = "${config.stylix.fonts.monospace.name}";
+              font-size = 70;
+              font-weight = 900;
+              color = "${config.lib.stylix.colors.withHashtag.base05}";
+            };
+            "LockScreen.Date" = {
+              display = true;
+              format = "dddd, MMMM dd, yyyy";
+              locale = "es_PY";
+              font-family = "${config.stylix.fonts.monospace.name}";
+              font-size = 14;
+              font-weight = 600;
+              color = "${config.lib.stylix.colors.withHashtag.base05}";
+              margin-top = -15;
+            };
+            "LockScreen.Message" = {
+              display = true;
+              position = "\"bottom\"-center";
+              align = "center";
+              text = "Press any key";
+              font-family = "${config.stylix.fonts.monospace.name}";
+              font-size = 12;
+              font-weight = 400;
+              display-icon = true;
+              icon = "enter.svg";
+              icon-size = 16;
+              color = "${config.lib.stylix.colors.withHashtag.base05}";
+              paint-icon = true;
+              spacing = 0;
+            };
+            "LoginScreen" = {
+              background = "${baseNameOf backgroundImage}";
+              use-background-color = false;
+              background-color = "${config.lib.stylix.colors.withHashtag.base00}";
+              blur = 0;
+              brightness = 0.0;
+              saturation = 0.0;
+            };
+            "LoginScreen.LoginArea" = {
+              position = "center";
+              margin = -1;
+            };
+            "LoginScreen.LoginArea.Avatar" = {
+              shape = "circle";
+              border-radius = 35;
+              active-size = 120;
+              inactive-size = 80;
+              inactive-opacity = 0.35;
+              active-border-size = 0;
+              inactive-border-size = 0;
+              active-border-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              inactive-border-color = "${config.lib.stylix.colors.withHashtag.base05}";
+            };
+            "LoginScreen.LoginArea.Username" = {
+              font-family = "${config.stylix.fonts.monospace.name}";
+              font-size = 16;
+              font-weight = 700;
+              color = "${config.lib.stylix.colors.withHashtag.base05}";
+              margin = 10;
+            };
+            "LoginScreen.LoginArea.PasswordInput" = {
+              width = 200;
+              height = 30;
+              display-icon = true;
+              font-family = "${config.stylix.fonts.monospace.name}";
+              font-size = 12;
+              icon = "password.svg";
+              icon-size = 16;
+              content-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              background-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              background-opacity = 0.15;
+              border-size = 0;
+              border-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              border-radius-left = 10;
+              border-radius-right = 10;
+              margin-top = 10;
+              masked-character = "●";
+            };
+            "LoginScreen.LoginArea.LoginButton" = {
+              background-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              background-opacity = 0.15;
+              active-background-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              active-background-opacity = 0.30;
+              icon = "arrow-right.svg";
+              icon-size = 18;
+              content-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              active-content-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              border-size = 0;
+              border-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              border-radius-left = 10;
+              border-radius-right = 10;
+              margin-left = 5;
+              show-text-if-no-password = true;
+              hide-if-not-needed = false;
+              font-family = "${config.stylix.fonts.monospace.name}";
+              font-size = 12;
+              font-weight = 600;
+            };
+            "LoginScreen.LoginArea.Spinner" = {
+              display-text = true;
+              text = "Logging in";
+              font-family = "${config.stylix.fonts.monospace.name}";
+              font-weight = 600;
+              font-size = 14;
+              icon-size = 30;
+              icon = "spinner.svg";
+              color = "${config.lib.stylix.colors.withHashtag.base05}";
+              spacing = 5;
+            };
+            "LoginScreen.LoginArea.WarningMessage" = {
+              font-family = "${config.stylix.fonts.monospace.name}";
+              font-size = 11;
+              font-weight = 400;
+              normal-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              warning-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              error-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              margin-top = 10;
+            };
+            "LoginScreen.MenuArea.Buttons" = {
+              margin-top = 50;
+              margin-right = 50;
+              margin-bottom = 50;
+              margin-left = 50;
+              size = 30;
+              border-radius = 5;
+              spacing = 10;
+              font-family = "${config.stylix.fonts.monospace.name}";
+            };
+            "LoginScreen.MenuArea.Popups" = {
+              max-height = 300;
+              item-height = 30;
+              item-spacing = 2;
+              padding = 5;
+              display-scrollbar = true;
+              margin = 5;
+              background-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              background-opacity = 0.15;
+              active-option-background-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              active-option-background-opacity = 0.30;
+              content-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              active-content-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              font-family = "${config.stylix.fonts.monospace.name}";
+              border-size = 0;
+              border-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              font-size = 11;
+              icon-size = 16;
+            };
+            "LoginScreen.MenuArea.Session" = {
+              display = true;
+              position = "bottom-left";
+              index = 0;
+              popup-direction = "up";
+              popup-align = "center";
+              display-session-name = true;
+              button-width = 200;
+              popup-width = 200;
+              background-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              background-opacity = 0.0;
+              active-background-opacity = 0.30;
+              content-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              active-content-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              border-size = 0;
+              font-size = 10;
+              icon-size = 16;
+            };
+            "LoginScreen.MenuArea.Layout" = {
+              display = true;
+              position = "bottom-right";
+              index = 0;
+              popup-direction = "up";
+              popup-align = "center";
+              popup-width = 180;
+              display-layout-name = true;
+              background-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              background-opacity = 0.0;
+              active-background-opacity = 0.30;
+              content-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              active-content-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              border-size = 0;
+              font-size = 10;
+              icon = "language.svg";
+              icon-size = 16;
+            };
+            "LoginScreen.MenuArea.Keyboard" = {
+              display = true;
+              position = "bottom-right";
+              index = 0;
+              background-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              background-opacity = 0.0;
+              active-background-opacity = 0.30;
+              content-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              active-content-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              border-size = 0;
+              icon = "keyboard.svg";
+              icon-size = 16;
+            };
+            "LoginScreen.MenuArea.Power" = {
+              display = true;
+              position = "bottom-right";
+              index = 0;
+              popup-direction = "up";
+              popup-align = "center";
+              popup-width = 100;
+              background-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              background-opacity = 0.0;
+              active-background-opacity = 0.30;
+              content-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              active-content-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              border-size = 0;
+              icon = "power.svg";
+              icon-size = 16;
+            };
+            "LoginScreen.VirtualKeyboard" = {
+              scale = 1.0;
+              position = "login";
+              start-hidden = true;
+              background-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              background-opacity = 0.15;
+              key-content-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              key-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              key-opacity = 0.15;
+              key-active-background-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              key-active-opacity = 0.30;
+              selection-background-color = "#CCCCCC";
+              selection-content-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              primary-color = "#FFF";
+              border-size = 0;
+              border-color = "${config.lib.stylix.colors.withHashtag.base00}";
+            };
+            "Tooltips" = {
+              enable = true;
+              font-family = "${config.stylix.fonts.monospace.name}";
+              font-size = 11;
+              content-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              background-color = "${config.lib.stylix.colors.withHashtag.base05}";
+              background-opacity = 0.15;
+              border-radius = 5;
+              disable-user = false;
+              disable-login-button = false;
+            };
+          };
         };
-        profileIcons = builtins.mapAttrs (username: userdata: "${userdata.home}/.face") (
-          lib.filterAttrs (username: userdata: userdata.isNormalUser || username == "root") config.users.users
-        );
-        settings = {
-          "General" = {
-            scale = 1.0;
-            enable-animations = true;
-            animated-background-placeholder = "";
-            background-fill-mode = "fill";
-          };
-          "LockScreen" = {
-            display = true;
-            padding-top = 0;
-            padding-right = 0;
-            padding-bottom = 0;
-            padding-left = 0;
-            background = "${baseNameOf config.stylix.image}";
-            use-background-color = false;
-            background-color = "#000000";
-            blur = 32;
-            brightness = 0.0;
-            saturation = 0.0;
-          };
-          "LockScreen.Clock" = {
-            display = true;
-            position = "top-center";
-            align = "center";
-            format = "hh:mm";
-            font-family = "RedHatDisplay";
-            font-size = 70;
-            font-weight = 900;
-            color = "#FFFFFF";
-          };
-          "LockScreen.Date" = {
-            display = true;
-            format = "dddd, MMMM dd, yyyy";
-            locale = "en_US";
-            font-family = "RedHatDisplay";
-            font-size = 14;
-            font-weight = 600;
-            color = "#FFFFFF";
-            margin-top = -15;
-          };
-          "LockScreen.Message" = {
-            display = true;
-            position = "\"bottom\"-center";
-            align = "center";
-            text = "Press any key";
-            font-family = "RedHatDisplay";
-            font-size = 12;
-            font-weight = 400;
-            display-icon = true;
-            icon = "enter.svg";
-            icon-size = 16;
-            color = "#FFFFFF";
-            paint-icon = true;
-            spacing = 0;
-          };
-          "LoginScreen" = {
-            background = "${baseNameOf config.stylix.image}";
-            use-background-color = false;
-            background-color = "#000000";
-            blur = 0;
-            brightness = 0.0;
-            saturation = 0.0;
-          };
-          "LoginScreen.LoginArea" = {
-            position = "center";
-            margin = -1;
-          };
-          "LoginScreen.LoginArea.Avatar" = {
-            shape = "circle";
-            border-radius = 35;
-            active-size = 120;
-            inactive-size = 80;
-            inactive-opacity = 0.35;
-            active-border-size = 0;
-            inactive-border-size = 0;
-            active-border-color = "#FFFFFF";
-            inactive-border-color = "#FFFFFF";
-          };
-          "LoginScreen.LoginArea.Username" = {
-            font-family = "RedHatDisplay";
-            font-size = 16;
-            font-weight = 700;
-            color = "#FFFFFF";
-            margin = 10;
-          };
-          "LoginScreen.LoginArea.PasswordInput" = {
-            width = 200;
-            height = 30;
-            display-icon = true;
-            font-family = "RedHatDisplay";
-            font-size = 12;
-            icon = "password.svg";
-            icon-size = 16;
-            content-color = "#FFFFFF";
-            background-color = "#FFFFFF";
-            background-opacity = 0.15;
-            border-size = 0;
-            border-color = "#FFFFFF";
-            border-radius-left = 10;
-            border-radius-right = 10;
-            margin-top = 10;
-            masked-character = "●";
-          };
-          "LoginScreen.LoginArea.LoginButton" = {
-            background-color = "#FFFFFF";
-            background-opacity = 0.15;
-            active-background-color = "#FFFFFF";
-            active-background-opacity = 0.30;
-            icon = "arrow-right.svg";
-            icon-size = 18;
-            content-color = "#FFFFFF";
-            active-content-color = "#FFFFFF";
-            border-size = 0;
-            border-color = "#FFFFFF";
-            border-radius-left = 10;
-            border-radius-right = 10;
-            margin-left = 5;
-            show-text-if-no-password = true;
-            hide-if-not-needed = false;
-            font-family = "RedHatDisplay";
-            font-size = 12;
-            font-weight = 600;
-          };
-          "LoginScreen.LoginArea.Spinner" = {
-            display-text = true;
-            text = "Logging in";
-            font-family = "RedHatDisplay";
-            font-weight = 600;
-            font-size = 14;
-            icon-size = 30;
-            icon = "spinner.svg";
-            color = "#FFFFFF";
-            spacing = 5;
-          };
-          "LoginScreen.LoginArea.WarningMessage" = {
-            font-family = "RedHatDisplay";
-            font-size = 11;
-            font-weight = 400;
-            normal-color = "#FFFFFF";
-            warning-color = "#FFFFFF";
-            error-color = "#FFFFFF";
-            margin-top = 10;
-          };
-          "LoginScreen.MenuArea.Buttons" = {
-            margin-top = 50;
-            margin-right = 50;
-            margin-bottom = 50;
-            margin-left = 50;
-            size = 30;
-            border-radius = 5;
-            spacing = 10;
-            font-family = "RedHatDisplay";
-          };
-          "LoginScreen.MenuArea.Popups" = {
-            max-height = 300;
-            item-height = 30;
-            item-spacing = 2;
-            padding = 5;
-            display-scrollbar = true;
-            margin = 5;
-            background-color = "#FFFFFF";
-            background-opacity = 0.15;
-            active-option-background-color = "#FFFFFF";
-            active-option-background-opacity = 0.30;
-            content-color = "#FFFFFF";
-            active-content-color = "#FFFFFF";
-            font-family = "RedHatDisplay";
-            border-size = 0;
-            border-color = "#FFFFFF";
-            font-size = 11;
-            icon-size = 16;
-          };
-          "LoginScreen.MenuArea.Session" = {
-            display = true;
-            position = "bottom-left";
-            index = 0;
-            popup-direction = "up";
-            popup-align = "center";
-            display-session-name = true;
-            button-width = 200;
-            popup-width = 200;
-            background-color = "#FFFFFF";
-            background-opacity = 0.0;
-            active-background-opacity = 0.30;
-            content-color = "#FFFFFF";
-            active-content-color = "#FFFFFF";
-            border-size = 0;
-            font-size = 10;
-            icon-size = 16;
-          };
-          "LoginScreen.MenuArea.Layout" = {
-            display = true;
-            position = "bottom-right";
-            index = 0;
-            popup-direction = "up";
-            popup-align = "center";
-            popup-width = 180;
-            display-layout-name = true;
-            background-color = "#FFFFFF";
-            background-opacity = 0.0;
-            active-background-opacity = 0.30;
-            content-color = "#FFFFFF";
-            active-content-color = "#FFFFFF";
-            border-size = 0;
-            font-size = 10;
-            icon = "language.svg";
-            icon-size = 16;
-          };
-          "LoginScreen.MenuArea.Keyboard" = {
-            display = true;
-            position = "bottom-right";
-            index = 0;
-            background-color = "#FFFFFF";
-            background-opacity = 0.0;
-            active-background-opacity = 0.30;
-            content-color = "#FFFFFF";
-            active-content-color = "#FFFFFF";
-            border-size = 0;
-            icon = "keyboard.svg";
-            icon-size = 16;
-          };
-          "LoginScreen.MenuArea.Power" = {
-            display = true;
-            position = "bottom-right";
-            index = 0;
-            popup-direction = "up";
-            popup-align = "center";
-            popup-width = 100;
-            background-color = "#FFFFFF";
-            background-opacity = 0.0;
-            active-background-opacity = 0.30;
-            content-color = "#FFFFFF";
-            active-content-color = "#FFFFFF";
-            border-size = 0;
-            icon = "power.svg";
-            icon-size = 16;
-          };
-          "LoginScreen.VirtualKeyboard" = {
-            scale = 1.0;
-            position = "login";
-            start-hidden = true;
-            background-color = "#FFFFFF";
-            background-opacity = 0.15;
-            key-content-color = "#FFFFFF";
-            key-color = "#FFFFFF";
-            key-opacity = 0.15;
-            key-active-background-color = "#FFFFFF";
-            key-active-opacity = 0.30;
-            selection-background-color = "#CCCCCC";
-            selection-content-color = "#FFFFFF";
-            primary-color = "#FFF";
-            border-size = 0;
-            border-color = "#000000";
-          };
-          "Tooltips" = {
-            enable = true;
-            font-family = "RedHatDisplay";
-            font-size = 11;
-            content-color = "#FFFFFF";
-            background-color = "#FFFFFF";
-            background-opacity = 0.15;
-            border-radius = 5;
-            disable-user = false;
-            disable-login-button = false;
-          };
-        };
-      };
     };
 }
