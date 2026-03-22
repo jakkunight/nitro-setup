@@ -19,6 +19,7 @@ in
         imports = with self.modules.nixos; [
           hyprland
           kitty
+          foot
         ];
 
         hardware.graphics = {
@@ -27,10 +28,14 @@ in
           package32 =
             inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pkgsi686Linux.mesa;
         };
+        environment.systemPackages = with pkgs; [
+          nvidia-vaapi-driver
+          egl-wayland
+        ];
         environment.variables = lib.mkIf (builtins.elem "nvidia" config.services.xserver.videoDrivers) {
-          LIBVA_DRIVER_NAM = "nvidia";
+          LIBVA_DRIVER_NAME = "nvidia";
           __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-          ELECTRON_OZONE_PLATFORM_HINT = "auto";
+          NIXOS_OZONE_WL = "1";
         };
       };
     homeManager.${feature} =
@@ -44,6 +49,7 @@ in
         imports = with self.modules.homeManager; [
           hyprland
           kitty
+          foot
           zen-browser
           waybar
           hyprwall
@@ -51,7 +57,16 @@ in
           # ashell
           hyprlock
           hypridle
+          zsh
+          nushell
+          qutebrowser
         ];
+
+        programs.zsh.initContent = lib.mkOrder 1200 ''
+          clear
+          ${pkgs.fastfetch}/bin/fastfetch
+          echo "Welcome back, $USER! (^.^)"
+        '';
 
         services.hypridle = {
           settings = {
@@ -206,6 +221,13 @@ in
             #     on_double_click = "hyprctl dispatch fullscreen 1";
             #   };
             # };
+            env = [
+              "LIBVA_DRIVER_NAME,nvidia"
+              "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+              # "ELECTRON_OZONE_PLATFORM_HINT,auto"
+              "NVD_BACKEND,direct"
+              "AQ_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"
+            ];
             input.kb_layout = "latam";
             input.follow_mouse = 0;
             bindel = [
@@ -240,13 +262,15 @@ in
 
             bind = [
               # Applications:
-              "$mod, Return, exec, ${pkgs.kitty}/bin/kitty"
+              "$mod, Return, exec, ${pkgs.foot}/bin/foot"
+              # "$mod, Return, exec, ${pkgs.kitty}/bin/kitty"
               # "$mod, Return, exec, ${pkgs.ghostty}/bin/ghostty"
               "$mod, D, exec, ${pkgs.wofi}/bin/wofi --show drun"
               # "$mod, D, exec, ${pkgs.hyprlauncher}/bin/hyprlauncher"
               "$mod, A, exec, ${
                 inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.twilight
               }/bin/zen-twilight"
+              "$mod, R, exec, ${pkgs.qutebrowser}/bin/qutebrowser"
               "$mod, S, exec, ${pkgs.vlc}/bin/vlc"
               "$mod, E, exec, ${pkgs.nemo}/bin/nemo"
               "$mod SHIFT, S, exec, ${pkgs.hyprlock}/bin/hyprlock"
@@ -306,8 +330,6 @@ in
             monitor = [
               "eDP-1,highres,auto,1"
               ",highres,auto,1"
-            ];
-            env = [
             ];
             exec-once = [
               "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"

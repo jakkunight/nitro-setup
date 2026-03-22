@@ -4,7 +4,7 @@ in
 {
   flake.modules = {
     nixos.${feature} =
-      { config, ... }:
+      { config, pkgs, ... }:
       {
         # Enable unfree packages:
         nixpkgs.config.allowUnfree = true;
@@ -17,6 +17,7 @@ in
 
         # Enable NVIDIA drivers:
         services.xserver.videoDrivers = [
+          "modsetting"
           "nvidia"
         ];
 
@@ -32,6 +33,10 @@ in
         boot.kernelParams = [
           "nvidia-drm.fbdev=1"
           "NVreg_EnableGpuFirmware=0"
+        ];
+
+        environment.systemPackages = with pkgs; [
+          nvtopPackages.nvidia
         ];
       };
   };
