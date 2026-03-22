@@ -35,9 +35,12 @@ in
         wayland.windowManager.hyprland = {
           enable = true;
           # Use the flake package:
-          package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-          portalPackage =
-            inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+          # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+          # portalPackage =
+          #   inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+          # Set this if using NixOS Home-Manager module:
+          package = null;
+          portalPackage = null;
           # Set this to true if using UWSM:
           systemd.enable = true;
           settings = {
