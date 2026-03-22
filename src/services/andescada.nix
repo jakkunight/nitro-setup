@@ -132,7 +132,7 @@ in
         environment.etc."strongswan.conf".text = "";
         systemd.services.strongswan-swanctl = {
           description = "strongSwan IPsec IKEv1/IKEv2 daemon using swanctl";
-          wantedBy = [ "multi-user.target" ];
+          wantedBy = [ ];
           wants = [ "network-online.target" ];
           after = [ "network-online.target" ];
           path = with pkgs; [
