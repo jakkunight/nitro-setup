@@ -26,6 +26,7 @@ in
             trim-final-newlines = true;
             soft-wrap = {
               enable = true;
+              wrap-indicator = lib.mkForce "↪";
             };
             inline-diagnostics = {
               cursor-line = "warning";
