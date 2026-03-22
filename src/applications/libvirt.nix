@@ -4,7 +4,7 @@ in
 {
   flake.modules = {
     nixos.${feature} =
-      { pkgs, ... }:
+      { pkgs, lib, ... }:
       {
         # NOTE:
         # DON'T FORGET TO ADD YOUR USER TO THE LIBVIRT GROUP.
@@ -46,6 +46,11 @@ in
           qemuGuest.enable = true;
           spice-vdagentd.enable = true; # enable copy and paste between host and guest
         };
+        # Disable socket service at boot time:
+        systemd.services.virtlogd.wantedBy = lib.mkForce [ ];
+        systemd.services.libvirtd.wantedBy = lib.mkForce [ ];
+        systemd.services.spice-vdagent.wantedBy = lib.mkForce [ ];
+        systemd.services.dnsmask.wantedBy = lib.mkForce [ ];
       };
   };
 }
