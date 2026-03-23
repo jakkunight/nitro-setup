@@ -61,6 +61,7 @@ in
           nushell
           qutebrowser
           remmina
+          wofi
         ];
 
         programs.zsh.initContent = lib.mkOrder 1200 ''
@@ -640,6 +641,43 @@ in
               color: @base09;
             }
           '';
+        };
+        programs.wofi = {
+          settings = {
+            allow_images = true;
+          };
+          style = lib.mkAfter ''
+            * {
+              background: transparent;
+            }
+
+            #window {
+              margin: auto;
+              padding: 10px;
+            }
+
+            #input {
+              padding: 10px;
+              margin-bottom: 10px;
+            }
+
+            #outer-box {
+              padding: 20px;
+            }
+
+            #img {
+              margin-right: 6px;
+            }
+
+            #entry {
+              padding: 10px;
+            }
+
+            #text {
+              margin: 2px;
+            }
+          '';
+
         };
         # stylix.targets.waybar = {
         #   font = "serif";

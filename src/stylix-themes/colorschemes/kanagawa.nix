@@ -1,8 +1,6 @@
 let
-  feature = "stylix";
-  # NOTE:
-  # Define here the colors to be used, since the usage of a YAML file will require internet connection (!?) to download the parser.
-  defaultColorscheme = {
+  feature = "kanagawa";
+  theme = {
     # --- Base backgrounds ---
     base00 = "1F1F28"; # Default background (editor background)
     base01 = "16161D"; # Deeper background (statusline, splits)
@@ -41,56 +39,12 @@ let
   };
 in
 {
-  inputs,
-  self,
-  ...
-}:
-{
   flake.modules = {
-    nixos.${feature} =
-      {
-        pkgs,
-        lib,
-        ...
-      }:
-      {
-        imports = [
-          inputs.stylix.nixosModules.stylix
-        ];
-
-        console = {
-          font = "${pkgs.terminus_font}/share/consolefonts/ter-u18b.psf.gz";
-          useXkbConfig = true; # use xkb.options in tty.
-        };
-
-        stylix = {
-          enable = true;
-          base16Scheme = lib.mkDefault defaultColorscheme;
-          polarity = lib.mkDefault "dark";
-          image = lib.mkDefault "${
-            self.packages.${pkgs.stdenv.hostPlatform.system}.default-wallpaper
-          }/share/wallpapers/default-nix.png";
-        };
-      };
-    homeManager.${feature} =
-      {
-        pkgs,
-        lib,
-        ...
-      }:
-      {
-        imports = [
-          inputs.stylix.homeModules.stylix
-        ];
-
-        stylix = {
-          enable = lib.mkDefault true;
-          base16Scheme = lib.mkDefault defaultColorscheme;
-          polarity = lib.mkDefault "dark";
-          image = lib.mkDefault "${
-            self.packages.${pkgs.stdenv.hostPlatform.system}.default-wallpaper
-          }/share/wallpapers/default-nix.png";
-        };
-      };
+    nixos.${feature} = {
+      stylix.base16Scheme = theme;
+    };
+    homeManager.${feature} = {
+      stylix.base16Scheme = theme;
+    };
   };
 }
