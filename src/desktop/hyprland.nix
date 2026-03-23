@@ -28,6 +28,9 @@ in
           withUWSM = false;
           xwayland.enable = true;
         };
+        environment.variables = {
+          OZONE_PLATFORM_HINT = "wayland";
+        };
       };
     homeManager.${feature} =
       { pkgs, ... }:
@@ -41,7 +44,7 @@ in
           # Set this if using NixOS Home-Manager module:
           package = null;
           portalPackage = null;
-          # Set this to true if using UWSM:
+          # Set this to true if not using UWSM:
           systemd.enable = true;
           settings = {
             "$mod" = "SUPER";
