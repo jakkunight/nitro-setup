@@ -48,6 +48,7 @@ in
         };
         # Disable socket service at boot time:
         systemd.services.virtlogd.wantedBy = lib.mkForce [ ];
+        systemd.sockets.virtlogd.wantedBy = lib.mkForce [ ];
         systemd.services.libvirtd.wantedBy = lib.mkForce [ ];
         systemd.services.spice-vdagent.wantedBy = lib.mkForce [ ];
         systemd.services.dnsmask.wantedBy = lib.mkForce [ ];
