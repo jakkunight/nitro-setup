@@ -16,10 +16,10 @@ in
             enable = true; # Easiest to use and most distros use this by default.
             wifi = {
               powersave = true;
-              macAddress = "random";
+              macAddress = "permanent";
             };
             ethernet = {
-              macAddress = "random";
+              macAddress = "permanent";
             };
           };
         };
