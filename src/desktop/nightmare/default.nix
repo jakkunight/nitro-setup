@@ -60,6 +60,7 @@ in
           zsh
           nushell
           qutebrowser
+          remmina
         ];
 
         programs.zsh.initContent = lib.mkOrder 1200 ''
