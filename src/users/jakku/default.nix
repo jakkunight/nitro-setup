@@ -37,6 +37,7 @@ in
             libvirt
             jakku-home
             andescada
+            asciinema
           ];
           users.users.${user} = {
             useDefaultShell = false;
@@ -66,6 +67,7 @@ in
           kde
           libreoffice
           nightmare-helix
+          asciinema
         ];
         home = {
           username = "${user}";
