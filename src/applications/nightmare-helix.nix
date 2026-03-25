@@ -16,6 +16,9 @@ in
         yaml-language-server
         taplo
         vscode-json-languageserver
+        ruff
+        ty
+        sqruff
       ];
       programs.helix = {
         defaultEditor = true;
@@ -36,6 +39,16 @@ in
           };
         };
         languages = {
+          language-server = {
+            sqruff = {
+              command = "${pkgs.sqruff}/bin/sqruff";
+              args = [
+                "lsp"
+                "--dialect"
+                "ansi"
+              ];
+            };
+          };
           language = [
             {
               name = "markdown";
@@ -119,6 +132,36 @@ in
             {
               name = "javascript";
               auto-format = true;
+            }
+            {
+              name = "python";
+              auto-format = true;
+              formatter = {
+                command = "${pkgs.ruff}/bin/ruff";
+                args = [
+                  "format"
+                  "-"
+                ];
+              };
+              language-servers = [
+                "ruff"
+              ];
+            }
+            {
+              name = "sql";
+              auto-format = true;
+              formatter = {
+                command = "${pkgs.sqruff}/bin/sqruff";
+                args = [
+                  "fix"
+                  "--dialect"
+                  "ansi"
+                  "-"
+                ];
+              };
+              language-servers = [
+                "sqruff"
+              ];
             }
           ];
         };
