@@ -18,25 +18,11 @@ in
       {
         imports = with self.modules.nixos; [
           hyprland
+          hyprland-nvidia
           kitty
           foot
         ];
 
-        hardware.graphics = {
-          package = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa;
-          enable32Bit = true;
-          package32 =
-            inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pkgsi686Linux.mesa;
-        };
-        environment.systemPackages = with pkgs; [
-          nvidia-vaapi-driver
-          egl-wayland
-        ];
-        environment.variables = lib.mkIf (builtins.elem "nvidia" config.services.xserver.videoDrivers) {
-          LIBVA_DRIVER_NAME = "nvidia";
-          __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-          NIXOS_OZONE_WL = "1";
-        };
       };
     homeManager.${feature} =
       {
@@ -208,27 +194,7 @@ in
           };
         wayland.windowManager.hyprland = {
           settings = {
-            # plugin = {
-            #   hyprbars = {
-            #     # example config
-            #     bar_height = 20;
-
-            #     # example buttons (R -> L)
-            #     # hyprbars-button = color, size, on-click
-            #     hyprbars-button = lib.mkAfter [
-            #       "rgb(${config.lib.stylix.colors.base08}), 10, 󰖭, hyprctl dispatch killactive"
-            #       "rgb(${config.lib.stylix.colors.base0C}), 10, , hyprctl dispatch fullscreen 1"
-            #     ];
-            #     # cmd to run on double click of the bar
-            #     on_double_click = "hyprctl dispatch fullscreen 1";
-            #   };
-            # };
             env = [
-              "LIBVA_DRIVER_NAME,nvidia"
-              "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-              # "ELECTRON_OZONE_PLATFORM_HINT,auto"
-              "NVD_BACKEND,direct"
-              "AQ_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"
             ];
             input.kb_layout = "latam";
             input.follow_mouse = 0;
@@ -363,7 +329,7 @@ in
               resize_on_border = true;
             };
             master = {
-              mfact = 0.55;
+              mfact = 0.50;
               orientation = "left";
               new_status = "slave";
               new_on_top = false;
@@ -389,18 +355,18 @@ in
               rounding = 0;
               rounding_power = 0;
               # Transparency:
-              active_opacity = lib.mkForce 0.95;
+              active_opacity = lib.mkForce 1.0;
               inactive_opacity = lib.mkForce 0.90;
 
               # Shadow:
               shadow = {
-                enabled = true;
+                enabled = false;
                 range = 25;
                 render_power = 3;
               };
               # Blur:
               blur = {
-                enabled = true;
+                enabled = false;
                 size = 7;
                 passes = 3;
                 new_optimizations = true;
@@ -579,6 +545,21 @@ in
                 "on-click" = "${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw";
                 "on-click-right" = "${pkgs.swaynotificationcenter}/bin/swaync-client -d -sw";
                 "escape" = true;
+              };
+              "mpris" = {
+                "format" = "{player-icon} ";
+                "format-paused" = "{status_icon} <i>{dynamic}</i>";
+                "on-click-middle" = "${pkgs.playerctl}/bin/playerctl play-pause";
+                "on-click" = "${pkgs.playerctl}/bin/playerctl previous";
+                "on-click-right" = "${pkgs.playerctl}/bin/playerctl next";
+                "player-icons" = {
+                  "spotify" = " ";
+                  "firefox" = "󰖟 ";
+                  "mpv" = "󰐹 ";
+                  "mpd" = "󰫔 ";
+                  "vlc" = "󰕼 ";
+                };
+                "max-length" = "30";
               };
             };
           };
