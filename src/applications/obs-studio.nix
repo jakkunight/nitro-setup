@@ -22,7 +22,7 @@ in
   flake.modules.homeManager.${feature} =
     { pkgs, ... }:
     {
-      programs.obs-studio = {
+      home.programs.obs-studio = {
         enable = true;
         enableVirtualCamera = true;
         plugins = with pkgs.obs-studio-plugins; [
@@ -62,7 +62,7 @@ in
   flake.modules.homeManager."${feature}-nvidia" =
     { pkgs, ... }:
     {
-      programs.obs-studio = {
+      home.programs.obs-studio = {
         enable = true;
         package = (
           pkgs.obs-studio.override {
