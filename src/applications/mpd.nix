@@ -22,8 +22,22 @@ in
           '';
           network.startWhenNeeded = true;
         };
+        services.playerctld = {
+          enable = true;
+        };
+        services.mpdris2 = {
+          enable = true;
+          mpd = {
+            host = "127.0.0.1";
+            port = 6600;
+          };
+          multimediaKeys = true;
+          notifications = true;
+        };
+        services.mpris-proxy.enable = true;
         home.packages = with pkgs; [
           mpd
+          mpdris2
         ];
       };
   };
