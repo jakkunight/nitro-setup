@@ -38,6 +38,7 @@ in
             jakku-home
             andescada
             asciinema
+            obs-studio-nvidia
           ];
           users.users.${user} = {
             useDefaultShell = false;
@@ -69,7 +70,6 @@ in
           nightmare-helix
           brave
           asciinema
-          obs-studio-nvidia
           kdenlive
           krita
         ];

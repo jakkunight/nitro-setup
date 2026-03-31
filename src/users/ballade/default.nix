@@ -30,6 +30,7 @@ in
             core
             gaming
             libvirt
+            obs-studio
             ballade-home
           ];
           users.users.${user} = {
@@ -56,7 +57,6 @@ in
           nightmare-helix
           krita
           kdenlive
-          obs-studio
         ];
         home = {
           username = "${user}";

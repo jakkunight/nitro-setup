@@ -22,9 +22,8 @@ in
   flake.modules.homeManager.${feature} =
     { pkgs, ... }:
     {
-      home.programs.obs-studio = {
+      programs.obs-studio = {
         enable = true;
-        enableVirtualCamera = true;
         plugins = with pkgs.obs-studio-plugins; [
           wlrobs
           droidcam-obs
@@ -62,14 +61,13 @@ in
   flake.modules.homeManager."${feature}-nvidia" =
     { pkgs, ... }:
     {
-      home.programs.obs-studio = {
+      programs.obs-studio = {
         enable = true;
         package = (
           pkgs.obs-studio.override {
             cudaSupport = true;
           }
         );
-        enableVirtualCamera = true;
         plugins = with pkgs.obs-studio-plugins; [
           wlrobs
           droidcam-obs
