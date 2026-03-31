@@ -67,7 +67,11 @@ in
           kde
           libreoffice
           nightmare-helix
+          brave
           asciinema
+          obs-studio-nvidia
+          kdenlive
+          krita
         ];
         home = {
           username = "${user}";
