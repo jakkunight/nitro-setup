@@ -54,6 +54,7 @@ in
           swaync
           libreoffice
           nightmare-helix
+          krita
         ];
         home = {
           username = "${user}";

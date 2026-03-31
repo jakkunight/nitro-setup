@@ -54,6 +54,9 @@ in
           swaync
           libreoffice
           nightmare-helix
+          krita
+          kdenlive
+          obs-studio
         ];
         home = {
           username = "${user}";
