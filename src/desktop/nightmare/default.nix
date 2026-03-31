@@ -399,6 +399,8 @@ in
               ];
               modules-right = [
                 "tray"
+                "mpd"
+                "mpris"
                 "pulseaudio"
                 "backlight"
                 "battery"
@@ -531,9 +533,9 @@ in
                 "format" = "{icon}";
                 "format-icons" = {
                   "notification" = "󱅫 ";
-                  "none" = "󰂚";
+                  "none" = "󰂚 ";
                   "dnd-notification" = "󰵙 ";
-                  "dnd-none" = "󱏧";
+                  "dnd-none" = "󱏧 ";
                   "inhibited-notification" = "󱅫 ";
                   "inhibited-none" = "󰂚 ";
                   "dnd-inhibited-notification" = "󰵙 ";
@@ -546,20 +548,30 @@ in
                 "on-click-right" = "${pkgs.swaynotificationcenter}/bin/swaync-client -d -sw";
                 "escape" = true;
               };
+              "mpd" = {
+                "format" = "  ";
+                "format-paused" = "  ";
+                "format-disconnected" = "  ";
+                "format-stopped" = "  ";
+                "interval" = 10;
+                "on-click" = "${pkgs.mpc}/bin/mpc toggle";
+              };
               "mpris" = {
-                "format" = "{player-icon} ";
-                "format-paused" = "{status_icon} <i>{dynamic}</i>";
-                "on-click-middle" = "${pkgs.playerctl}/bin/playerctl play-pause";
-                "on-click" = "${pkgs.playerctl}/bin/playerctl previous";
-                "on-click-right" = "${pkgs.playerctl}/bin/playerctl next";
+                "interval" = 1;
+                "format" = "{player_icon}";
+                "format-paused" = "{status_icon}";
                 "player-icons" = {
-                  "spotify" = " ";
-                  "firefox" = "󰖟 ";
-                  "mpv" = "󰐹 ";
-                  "mpd" = "󰫔 ";
-                  "vlc" = "󰕼 ";
+                  "default" = "  ";
                 };
-                "max-length" = "30";
+                "status-icons" = {
+                  "paused" = "  ";
+                  "disconnected" = "  ";
+                };
+                "title-len" = 8;
+                "artist-len" = 8;
+                "album-len" = 8;
+                "position-len" = 8;
+                "length-len" = 8;
               };
             };
           };
