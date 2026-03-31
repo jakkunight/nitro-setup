@@ -15,7 +15,7 @@ in
           obs-multi-rtmp
           obs-pipewire-audio-capture
           obs-plugin-countdown
-          obs-obs-vkcapture
+          obs-vkcapture
         ];
       };
     };
@@ -32,7 +32,7 @@ in
           obs-multi-rtmp
           obs-pipewire-audio-capture
           obs-plugin-countdown
-          obs-obs-vkcapture
+          obs-vkcapture
         ];
       };
     };
@@ -54,7 +54,7 @@ in
           obs-multi-rtmp
           obs-pipewire-audio-capture
           obs-plugin-countdown
-          obs-obs-vkcapture
+          obs-vkcapture
         ];
       };
 
@@ -77,7 +77,7 @@ in
           obs-multi-rtmp
           obs-pipewire-audio-capture
           obs-plugin-countdown
-          obs-obs-vkcapture
+          obs-vkcapture
         ];
       };
     };
