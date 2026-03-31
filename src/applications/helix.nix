@@ -41,6 +41,8 @@ in
           taplo
           pandoc
           typst
+          tinymist
+          typstyle
           wl-clipboard-rs
           xclip
         ];

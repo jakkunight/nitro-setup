@@ -40,6 +40,13 @@ in
         };
         languages = {
           language-server = {
+            tinymist = {
+              command = "${pkgs.tinymist}/bin/tinymist";
+              config = {
+                exportPdf = "onSave";
+                formatterMode = "typstyle";
+              };
+            };
             sqruff = {
               command = "${pkgs.sqruff}/bin/sqruff";
               args = [
@@ -112,7 +119,6 @@ in
               formatter = {
                 command = "${pkgs.typstyle}/bin/typstyle";
                 args = [
-                  "-i"
                   "-t"
                   "4"
                 ];
