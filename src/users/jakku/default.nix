@@ -72,6 +72,7 @@ in
           asciinema
           kdenlive
           krita
+          gimp
         ];
         home = {
           username = "${user}";
