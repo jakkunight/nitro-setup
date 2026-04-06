@@ -19,7 +19,7 @@
         let
           backgroundImage = "${
             self.packages.${pkgs.stdenv.hostPlatform.system}.wanderer-wallpapers
-          }/share/wallpapers/scaramouche-sword-field.jpg";
+          }/share/wallpapers/wanderer-speedup-wallpaper.jpg";
         in
         {
           enable = true;
