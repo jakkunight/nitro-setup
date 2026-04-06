@@ -19,6 +19,8 @@ in
         ruff
         ty
         sqruff
+        pyright
+        python314Packages.python-lsp-server
       ];
       programs.helix = {
         defaultEditor = true;
@@ -45,7 +47,24 @@ in
               config = {
                 exportPdf = "onSave";
                 formatterMode = "typstyle";
+                preview = {
+                  background.enable = true;
+                  background.args = [
+                    "--data-plane-host=127.0.0.1:0"
+                    "--invert-colors=never"
+                    "--open"
+                  ];
+                };
               };
+            };
+            ruff = {
+              command = "${pkgs.ruff}/bin/ruff";
+              args = [
+                "server"
+              ];
+            };
+            pylsp = {
+              command = "${pkgs.python314Packages.python-lsp-server}/bin/pylsp";
             };
             sqruff = {
               command = "${pkgs.sqruff}/bin/sqruff";
@@ -53,6 +72,12 @@ in
                 "lsp"
                 "--dialect"
                 "ansi"
+              ];
+            };
+            pyright = {
+              command = "${pkgs.pyright}/bin/pyright";
+              args = [
+                "-"
               ];
             };
           };
@@ -151,6 +176,8 @@ in
               };
               language-servers = [
                 "ruff"
+                # "pyright"
+                "pylsp"
               ];
             }
             {
