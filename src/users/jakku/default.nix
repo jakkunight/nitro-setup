@@ -73,6 +73,8 @@ in
           kdenlive
           krita
           gimp
+          terminal-gadgets
+          wanderer-fastfetch
         ];
         home = {
           username = "${user}";

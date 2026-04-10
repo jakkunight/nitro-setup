@@ -17,7 +17,7 @@ in
       {
         imports = with self.modules.nixos; [
           stylix
-          kanagawa-dragon
+          kanagawa
         ];
 
         console = {
@@ -67,7 +67,7 @@ in
           };
           opacity = {
             applications = 0.95;
-            terminal = 0.90;
+            terminal = 0.95;
             desktop = 0.90;
             popups = 0.85;
           };
@@ -81,7 +81,7 @@ in
       }:
       {
         imports = with self.modules.homeManager; [
-          kanagawa-dragon
+          kanagawa
         ];
         stylix = {
           polarity = "dark";
@@ -125,7 +125,7 @@ in
           };
           opacity = {
             applications = 0.95;
-            terminal = 0.80;
+            terminal = 0.90;
             desktop = 0.85;
             popups = 0.85;
           };

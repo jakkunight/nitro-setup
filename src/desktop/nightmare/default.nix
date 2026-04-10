@@ -230,8 +230,8 @@ in
 
             bind = [
               # Applications:
-              "$mod, Return, exec, ${pkgs.foot}/bin/foot"
-              # "$mod, Return, exec, ${pkgs.kitty}/bin/kitty"
+              # "$mod, Return, exec, ${pkgs.foot}/bin/foot"
+              "$mod, Return, exec, ${pkgs.kitty}/bin/kitty"
               # "$mod, Return, exec, ${pkgs.ghostty}/bin/ghostty"
               "$mod, D, exec, ${pkgs.wofi}/bin/wofi --show drun"
               # "$mod, D, exec, ${pkgs.hyprlauncher}/bin/hyprlauncher"

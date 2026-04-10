@@ -43,8 +43,11 @@ in
     nixos.${feature} = {
       stylix.base16Scheme = theme;
     };
-    homeManager.${feature} = {
-      stylix.base16Scheme = theme;
-    };
+    homeManager.${feature} =
+      { lib, ... }:
+      {
+        stylix.base16Scheme = theme;
+        programs.helix.settings.theme = lib.mkForce "kanagawa";
+      };
   };
 }

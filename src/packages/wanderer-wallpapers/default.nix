@@ -11,8 +11,8 @@ in
         dontBuild = true;
         dontUnpack = true;
         installPhase = ''
-          mkdir -p $out/share/wallpapers
-          cp -R $src/* $out/share/wallpapers
+          mkdir -p $out/share
+          cp -R $src/* $out/share
         '';
       };
     };

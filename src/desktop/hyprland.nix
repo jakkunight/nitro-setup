@@ -90,7 +90,7 @@ in
             # Misc:
             misc = {
               disable_splash_rendering = true;
-              vfr = true;
+              # vfr = true;
             };
           };
         };
