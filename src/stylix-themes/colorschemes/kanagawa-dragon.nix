@@ -60,7 +60,7 @@ in
       { lib, ... }:
       {
         stylix.base16Scheme = theme;
-        programs.helix.settings.theme = lib.mkForce "kanagawa-dragon";
+        # programs.helix.settings.theme = lib.mkForce "kanagawa-dragon";
       };
   };
 }
