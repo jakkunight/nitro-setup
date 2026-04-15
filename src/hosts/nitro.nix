@@ -33,6 +33,7 @@ in
             pipewire
             yorha-grub
             zen-kernel
+            zram
             inputs.determinate.nixosModules.default
             kanagawa-theme
             silent-sddm
