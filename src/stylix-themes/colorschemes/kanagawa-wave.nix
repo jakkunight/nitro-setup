@@ -1,6 +1,10 @@
 let
   feature = "kanagawa-wave";
   theme = {
+    # Meta:
+    slug = "kanagawa-wave";
+    scheme = "Kanagawa Wave";
+    author = "Jakku Night";
     # Fondo principal (background)
     base00 = "#1f1f28";
     # Fondo alternativo (lighter background) - derivado de selection.background

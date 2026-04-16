@@ -1,6 +1,10 @@
 let
   feature = "kanagawa-lotus";
   theme = {
+    # Meta:
+    slug = "kanagawa-lotus";
+    scheme = "Kanagawa Lotus";
+    author = "Jakku Night";
     # Fondo principal (background)
     base00 = "#f2ecbc";
     # Fondo alternativo (lighter background) - derivado de selection.background

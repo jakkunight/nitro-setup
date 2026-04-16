@@ -1,6 +1,10 @@
 let
   feature = "kanagawa-dragon";
   theme = {
+    # Meta:
+    slug = "kanagawa-dragon";
+    scheme = "Kanagawa Dragon";
+    author = "Jakku Night";
     # Fondo principal (background)
     base00 = "#181616";
     # Fondo alternativo (lighter background)
@@ -53,14 +57,18 @@ let
 in
 {
   flake.modules = {
-    nixos.${feature} = {
-      stylix.base16Scheme = theme;
-    };
-    homeManager.${feature} =
-      { lib, ... }:
+    nixos.${feature} =
+      { pkgs, ... }:
       {
-        stylix.base16Scheme = theme;
+        # stylix.base16Scheme = theme;
+        stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa-dragon.yaml";
+      };
+    homeManager.${feature} =
+      { lib, pkgs, ... }:
+      {
+        # stylix.base16Scheme = theme;
         # programs.helix.settings.theme = lib.mkForce "kanagawa-dragon";
+        stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa-dragon.yaml";
       };
   };
 }

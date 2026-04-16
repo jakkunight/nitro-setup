@@ -1,6 +1,10 @@
 let
   feature = "kanagawa";
   theme = {
+    # Meta:
+    slug = "kanagawa";
+    scheme = "Kanagawa";
+    author = "Jakku Night";
     # --- Base backgrounds ---
     base00 = "1F1F28"; # Default background (editor background)
     base01 = "16161D"; # Deeper background (statusline, splits)
@@ -40,14 +44,18 @@ let
 in
 {
   flake.modules = {
-    nixos.${feature} = {
-      stylix.base16Scheme = theme;
-    };
-    homeManager.${feature} =
-      { lib, ... }:
+    nixos.${feature} =
+      { pkgs, ... }:
       {
-        stylix.base16Scheme = theme;
+        # stylix.base16Scheme = theme;
+        stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
+      };
+    homeManager.${feature} =
+      { lib, pkgs, ... }:
+      {
+        # stylix.base16Scheme = theme;
         # programs.helix.settings.theme = lib.mkForce "kanagawa";
+        stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
       };
   };
 }
