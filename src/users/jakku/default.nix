@@ -82,6 +82,11 @@ in
           homeDirectory = "/home/${user}";
           stateVersion = "26.05";
         };
+        programs.zed-editor = {
+          userSettings = {
+            helix_mode = true;
+          };
+        };
       };
     }
   ];

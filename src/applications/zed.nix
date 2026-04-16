@@ -10,12 +10,10 @@ in
           zed-editor
         ];
       };
-    homeManager.${feature} =
-      { pkgs, ... }:
-      {
-        programs.zed-editor = {
-          enable = true;
-        };
+    homeManager.${feature} = _: {
+      programs.zed-editor = {
+        enable = true;
       };
+    };
   };
 }
