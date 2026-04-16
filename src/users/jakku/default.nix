@@ -75,6 +75,7 @@ in
           gimp
           terminal-gadgets
           wanderer-fastfetch
+          zed
         ];
         home = {
           username = "${user}";
