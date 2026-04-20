@@ -71,6 +71,9 @@
     #   url = "github:jakkunight/hyprglass";
     #   inputs.hyprland.follows = "hyprland";
     # };
+    oracle-database = {
+      url = "https://github.com/drupol/nix-oracle-db/blob/main/modules/oracle-database.nix";
+    };
     yorha-grub-theme = {
       url = "github:jakkunight/yorha-grub-theme";
       inputs.nixpkgs.follows = "nixpkgs";
