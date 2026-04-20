@@ -76,6 +76,7 @@ in
           terminal-gadgets
           wanderer-fastfetch
           zed
+          opencode
         ];
         home = {
           username = "${user}";
