@@ -22,6 +22,7 @@ in
         bat
         starship
         presenterm
+        zathura
       ];
     };
     homeManager.${feature} = {
@@ -43,6 +44,7 @@ in
         bat
         starship
         presenterm
+        zathura
       ];
     };
   };
