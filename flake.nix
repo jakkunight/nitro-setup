@@ -72,7 +72,7 @@
     #   inputs.hyprland.follows = "hyprland";
     # };
     oracle-database = {
-      url = "https://github.com/drupol/nix-oracle-db/blob/main/modules/oracle-database.nix";
+      url = "github:drupol/nix-oracle-db";
     };
     yorha-grub-theme = {
       url = "github:jakkunight/yorha-grub-theme";
