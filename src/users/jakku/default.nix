@@ -70,6 +70,7 @@ in
           nightmare-helix
           brave
           asciinema
+          audacity
           kdenlive
           krita
           gimp
