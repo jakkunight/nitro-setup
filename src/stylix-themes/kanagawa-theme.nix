@@ -39,8 +39,8 @@ in
             sansSerif = config.stylix.fonts.serif;
 
             monospace = {
-              package = pkgs.nerd-fonts.mononoki;
-              name = "MononokiNerdFontPropo";
+              package = pkgs.nerd-fonts.caskaydia-cove;
+              name = "CaskaydiaCoveNerdFontPropo";
             };
 
             emoji = {
@@ -97,8 +97,8 @@ in
             sansSerif = config.stylix.fonts.serif;
 
             monospace = {
-              package = pkgs.nerd-fonts.mononoki;
-              name = "MononokiNerdFontPropo";
+              package = pkgs.nerd-fonts.caskaydia-cove;
+              name = "CaskaydiaCoveNerdFontPropo";
             };
 
             emoji = {

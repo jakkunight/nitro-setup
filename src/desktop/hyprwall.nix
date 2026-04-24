@@ -78,10 +78,13 @@
         };
       };
 
-      # wayland.windowManager.hyprland.settings = {
-      #   exec-once = [
-      #     "systemctl --user start hyprwall || ${lib.getExe hyprwall} &"
-      #   ];
-      # };
+      wayland.windowManager.hyprland.settings = {
+        exec-once = [
+          "systemctl --user start hyprwall || ${lib.getExe hyprwall} &"
+        ];
+        bind = [
+          "$mod, Z, exec, systemctl --user stop hyprwall.service &2> /dev/null && systemctl --user start hyprpaper.service &2> /dev/null"
+        ];
+      };
     };
 }
