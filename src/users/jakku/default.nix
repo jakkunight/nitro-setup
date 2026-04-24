@@ -39,12 +39,14 @@ in
             andescada
             asciinema
             obs-studio-nvidia
+            podman
           ];
           users.users.${user} = {
             useDefaultShell = false;
             shell = pkgs.zsh;
             extraGroups = [
               "libvirtd"
+              "podman"
             ];
           };
 
