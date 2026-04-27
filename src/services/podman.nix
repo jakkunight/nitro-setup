@@ -4,7 +4,10 @@ in
 {
   flake.modules.nixos.${feature} = _: {
     virtualisation = {
-      containers.enable = true;
+      containers = {
+        enable = true;
+        registries.search = [ "docker.io" ];
+      };
       podman = {
         enable = true;
         dockerCompat = true;
