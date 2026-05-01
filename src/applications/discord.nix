@@ -7,7 +7,8 @@ in
       { pkgs, ... }:
       {
         environment.systemPackages = with pkgs; [
-          discord-canary
+          # discord-canary
+          discord
         ];
       };
     homeManager.${feature} =
@@ -15,7 +16,8 @@ in
       {
         programs.discord = {
           enable = true;
-          package = pkgs.discord-canary;
+          # package = pkgs.discord-canary;
+          package = pkgs.discord;
         };
       };
   };
