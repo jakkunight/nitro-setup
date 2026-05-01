@@ -29,7 +29,7 @@ in
           polarity = "dark";
           image = "${
             self.packages.${pkgs.stdenv.hostPlatform.system}.wanderer-wallpapers
-          }/share/wallpapers/wanderer-speedup-wallpaper.jpg";
+          }/share/wallpapers/scaramouche-wallpaper-fanart.jpg";
           fonts = {
             serif = {
               package = inputs.genshin-font.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -87,7 +87,7 @@ in
           polarity = "dark";
           image = "${
             self.packages.${pkgs.stdenv.hostPlatform.system}.wanderer-wallpapers
-          }/share/wallpapers/wanderer-speedup-wallpaper.jpg";
+          }/share/wallpapers/scaramouche-wallpaper-fanart.jpg";
           fonts = {
             serif = {
               package = inputs.genshin-font.packages.${pkgs.stdenv.hostPlatform.system}.default;

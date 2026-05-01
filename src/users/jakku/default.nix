@@ -40,6 +40,7 @@ in
             asciinema
             obs-studio-nvidia
             podman
+            nix-auth
           ];
           users.users.${user} = {
             useDefaultShell = false;
