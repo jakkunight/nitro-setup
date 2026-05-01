@@ -21,6 +21,7 @@ in
         sqruff
         pyright
         python314Packages.python-lsp-server
+        simple-completion-language-server
       ];
       programs.helix = {
         defaultEditor = true;
@@ -42,6 +43,22 @@ in
         };
         languages = {
           language-server = {
+            scls = {
+              command = "${pkgs.simple-completion-language-server}/bin/simple-completion-language-server";
+              config = {
+                feature_words = true; # enable completion by word
+                feature_snippets = true; # enable snippets
+                snippets_first = true; # completions will return before snippets by default
+                snippets_inline_by_word_tail = false; # suggest snippets by WORD tail, for example text `xsq|` become `x^2|` when snippet `sq` has body `^2`
+                feature_unicode_input = true; # enable "unicode input"
+                feature_paths = true; # enable path completion
+                feature_citations = true; # enable citation completion (only on `citation` feature enabled)
+              };
+              environment = {
+                RUST_LOG = "info,simple-completion-language-server=info";
+                LOG_FILE = "/tmp/completion.log";
+              };
+            };
             tinymist = {
               command = "${pkgs.tinymist}/bin/tinymist";
               config = {
@@ -97,6 +114,7 @@ in
               language-servers = [
                 "marksman"
                 "rumdl"
+                "scls"
               ];
             }
             {
@@ -108,6 +126,7 @@ in
               language-servers = [
                 "nixd"
                 "nil"
+                "scls"
               ];
             }
             {
@@ -116,6 +135,9 @@ in
               formatter = {
                 command = "${pkgs.jsonfmt}/bin/jsonfmt";
               };
+              language-servers = [
+                "scls"
+              ];
             }
             {
               name = "yaml";
@@ -126,6 +148,9 @@ in
                   "-"
                 ];
               };
+              language-servers = [
+                "scls"
+              ];
             }
             {
               name = "toml";
@@ -137,6 +162,9 @@ in
                   "-"
                 ];
               };
+              language-servers = [
+                "scls"
+              ];
             }
             {
               name = "typst";
@@ -150,19 +178,29 @@ in
               };
               language-servers = [
                 "tinymist"
+                "scls"
               ];
             }
             {
               name = "html";
               auto-format = true;
+              language-servers = [
+                "scls"
+              ];
             }
             {
               name = "css";
               auto-format = true;
+              language-servers = [
+                "scls"
+              ];
             }
             {
               name = "javascript";
               auto-format = true;
+              language-servers = [
+                "scls"
+              ];
             }
             {
               name = "python";
@@ -178,6 +216,7 @@ in
                 "ruff"
                 # "pyright"
                 "pylsp"
+                "scls"
               ];
             }
             {
@@ -194,6 +233,7 @@ in
               };
               language-servers = [
                 "sqruff"
+                "scls"
               ];
             }
           ];
