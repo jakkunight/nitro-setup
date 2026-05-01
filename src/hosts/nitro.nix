@@ -32,7 +32,8 @@ in
             nvidia-prime
             pipewire
             yorha-grub
-            zen-kernel
+            # zen-kernel # Since it's vulnerable to Copy.fail exploit
+            latest-kernel
             zram
             inputs.determinate.nixosModules.default
             kanagawa-theme

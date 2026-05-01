@@ -25,7 +25,8 @@ in
             networking
             pipewire
             yorha-grub
-            zen-kernel
+            # zen-kernel # Since it's vulnerable to Copy.fail exploit.
+            latest-kernel
             inputs.determinate.nixosModules.default
             kanagawa-theme
             silent-sddm
@@ -33,7 +34,7 @@ in
             kde
             cinnamon
             ballade
-            # sophie
+            sophie
             jakku
           ];
           i18n.defaultLocale = "es_PY.UTF-8";
