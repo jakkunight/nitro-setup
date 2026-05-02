@@ -41,6 +41,8 @@ in
             obs-studio-nvidia
             podman
             nix-auth
+            wireshark
+            multimedia-production
           ];
           users.users.${user} = {
             useDefaultShell = false;
@@ -48,6 +50,8 @@ in
             extraGroups = [
               "libvirtd"
               "podman"
+              "wireshark"
+              "jackaudio"
             ];
           };
 

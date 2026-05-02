@@ -16,6 +16,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-auth.url = "github:numtide/nix-auth";
+    musnix = {
+      url = "github:musnix/musnix";
+    };
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
