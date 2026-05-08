@@ -74,6 +74,13 @@ in
                 };
               };
             };
+            jdtls = {
+              command = "${pkgs.jdt-language-server}/bin/jdtls";
+              args = [
+                "-data"
+                "~/.cache/jdtls/workspace"
+              ];
+            };
             ruff = {
               command = "${pkgs.ruff}/bin/ruff";
               args = [
@@ -199,6 +206,18 @@ in
               name = "javascript";
               auto-format = true;
               language-servers = [
+                "scls"
+              ];
+            }
+            {
+              name = "java";
+              auto-format = true;
+              formatter = {
+                command = "${pkgs.google-java-format}/bin/google-java-format";
+                args = [ "-" ];
+              };
+              language-servers = [
+                "jdtls"
                 "scls"
               ];
             }
