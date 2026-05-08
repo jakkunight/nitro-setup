@@ -10,7 +10,7 @@ in
           lmms
         ];
       };
-    homeManager =
+    homeManager.${feature} =
       { pkgs, ... }:
       {
         home.packages = with pkgs; [

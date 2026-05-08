@@ -9,6 +9,7 @@ in
         environment.systemPackages = with pkgs; [
           mpv
           ffmpeg # Used to play my music and videos ad hoc.
+          vlc
         ];
       };
     homeManager.${feature} =
@@ -17,6 +18,7 @@ in
         home.packages = with pkgs; [
           mpv
           ffmpeg # Used to play my music and videos ad hoc.
+          vlc
         ];
       };
   };

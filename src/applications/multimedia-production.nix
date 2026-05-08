@@ -11,7 +11,7 @@ in
     nixos.${feature} =
       { pkgs, ... }:
       {
-        imports = with self.nixos; [
+        imports = with self.modules.nixos; [
           jack
           lmms
           inputs.musnix.nixosModules.musnix
@@ -25,7 +25,7 @@ in
           libjack2
           jack2
           qjackctl
-          jack2Full
+          # jack2Full
           jack_capture
         ];
         security.sudo.extraConfig = ''
@@ -33,20 +33,20 @@ in
         '';
         musnix = {
           enable = true;
-          alsaSeq.enable = true;
-          ffado.enable = true;
-          rtcqs.enable = true;
-          soundcardPciId = "00:1f.3";
-          kernel = {
-            realtime = true;
-            packages = pkgs.linuxPackages_latest;
-          };
-          rtirq = {
-            enable = true;
-            resetAll = 1;
-            prioLow = 0;
-            nameList = "rtc0 snd";
-          };
+          # alsaSeq.enable = true;
+          # ffado.enable = true;
+          # rtcqs.enable = true;
+          # soundcardPciId = "00:1f.3";
+          # kernel = {
+          #   realtime = true;
+          #   packages = pkgs.linuxPackages_latest;
+          # };
+          # rtirq = {
+          #   enable = true;
+          # resetAll = 1;
+          # prioLow = 0;
+          # nameList = "rtc0 snd";
+          # };
         };
       };
   };

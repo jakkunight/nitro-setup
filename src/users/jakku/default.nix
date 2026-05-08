@@ -52,6 +52,7 @@ in
               "podman"
               "wireshark"
               "jackaudio"
+              "audio"
             ];
           };
 
