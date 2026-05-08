@@ -88,6 +88,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     treefmt-nix.url = "github:numtide/treefmt-nix/";
+    oisd = {
+      url = "https://big.oisd.nl/domainswild";
+      flake = false;
+    };
   };
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./src);
 }
