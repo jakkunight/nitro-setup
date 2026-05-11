@@ -43,7 +43,7 @@ in
             nix-auth
             wireshark
             multimedia-production
-            dn-over-tls
+            dns-over-tls
           ];
           users.users.${user} = {
             useDefaultShell = false;

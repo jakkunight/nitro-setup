@@ -27,6 +27,11 @@ in
           # http3 = true;
           # http3_probe = true;
 
+          # static = {
+          #   cloudflare-security-dot = {
+          #     stamp = "";
+          #   };
+          # };
           sources.public-resolvers = {
             urls = [
               "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
@@ -38,7 +43,6 @@ in
           server_names = [
             "cloudflare-security"
             "cloudflare"
-
           ];
           blocked_names.blocked_names_file =
             let
