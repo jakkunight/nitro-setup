@@ -193,6 +193,7 @@ in
             };
           };
         wayland.windowManager.hyprland = {
+          configType = "hyprlang";
           settings = {
             env = [
             ];
