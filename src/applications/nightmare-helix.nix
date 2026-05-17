@@ -15,6 +15,7 @@ in
         typescript-language-server
         yaml-language-server
         taplo
+        tombi
         vscode-json-languageserver
         ruff
         ty
@@ -58,6 +59,17 @@ in
                 RUST_LOG = "info,simple-completion-language-server=info";
                 LOG_FILE = "/tmp/completion.log";
               };
+            };
+            # tombi = {
+            #   command = "${pkgs.tombi}/bin/tombi";
+            #   args = [];
+            # };
+            taplo = {
+              command = "${pkgs.taplo}/bin/taplo";
+              args = [
+                "lsp"
+                "stdio"
+              ];
             };
             tinymist = {
               command = "${pkgs.tinymist}/bin/tinymist";
@@ -165,11 +177,13 @@ in
               formatter = {
                 command = "${pkgs.taplo}/bin/taplo";
                 args = [
-                  "format"
+                  "fmt"
                   "-"
                 ];
               };
               language-servers = [
+                "tombi"
+                "taplo"
                 "scls"
               ];
             }
