@@ -29,11 +29,13 @@ in
           polarity = "dark";
           image = "${
             self.packages.${pkgs.stdenv.hostPlatform.system}.wanderer-wallpapers
-          }/share/wallpapers/scaramouche-wallpaper-fanart.jpg";
+          }/share/wallpapers/wanderer-scaramouche-aranaras-wallpaper.jpg";
           fonts = {
             serif = {
-              package = inputs.genshin-font.packages.${pkgs.stdenv.hostPlatform.system}.default;
-              name = "GenshinImpact";
+              package = pkgs.nerd-fonts.caskaydia-cove;
+              name = "CaskaydiaCoveNerdFontPropo";
+              # package = inputs.genshin-font.packages.${pkgs.stdenv.hostPlatform.system}.default;
+              # name = "GenshinImpact";
             };
 
             sansSerif = config.stylix.fonts.serif;
@@ -87,11 +89,13 @@ in
           polarity = "dark";
           image = "${
             self.packages.${pkgs.stdenv.hostPlatform.system}.wanderer-wallpapers
-          }/share/wallpapers/scaramouche-wallpaper-fanart.jpg";
+          }/share/wallpapers/wanderer-scaramouche-aranaras-wallpaper.jpg";
           fonts = {
             serif = {
-              package = inputs.genshin-font.packages.${pkgs.stdenv.hostPlatform.system}.default;
-              name = "GenshinImpact";
+              # package = inputs.genshin-font.packages.${pkgs.stdenv.hostPlatform.system}.default;
+              # name = "GenshinImpact";
+              package = pkgs.nerd-fonts.caskaydia-cove;
+              name = "CaskaydiaCoveNerdFontPropo";
             };
 
             sansSerif = config.stylix.fonts.serif;
