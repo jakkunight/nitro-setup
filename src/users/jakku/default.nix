@@ -14,7 +14,8 @@ in
       isAdmin = true;
       hasNetworkAccess = true;
     })
-    (self.factory.mkHomeManagerNixosModuleConfiguration { name = user; })
+    # (self.factory.mkHomeManagerNixosModuleConfiguration { name = user; })
+    # (self.factory.mkHomeConfiguration { name = user; })
     (self.factory.mkSystemSecrets {
       owner = user;
       defaultSopsFile = ./secrets.yaml;
@@ -35,7 +36,7 @@ in
             core
             gaming
             libvirt
-            jakku-home
+            # jakku-home
             andescada
             asciinema
             obs-studio-nvidia
@@ -101,4 +102,12 @@ in
       };
     }
   ];
+  flake.homeConfigurations.${user} = (
+    self.factory.mkHomeConfiguration {
+      inherit user;
+      extraModules = with self.modules.homeManager; [
+        stylix-standalone-hm
+      ];
+    }
+  );
 }
