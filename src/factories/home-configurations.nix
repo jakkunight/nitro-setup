@@ -13,6 +13,7 @@
     }:
     (inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = import inputs.nixpkgs { inherit system; };
+      extraSpecialArgs = { inherit inputs; };
       modules = lib.concatLists [
         extraModules
         [
