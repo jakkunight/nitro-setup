@@ -1,0 +1,162 @@
+
+        configType = "lua";
+        settings = {
+          env = [
+          ];
+          input.kb_layout = "latam";
+          input.follow_mouse = 0;
+          bindel = [
+            # Multimedia:
+            ", XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
+            ", XF86AudioPause, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
+            ", XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous"
+            ", XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next"
+            ", XF86AudioMute, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+            ", XF86AudioRaiseVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+            ", XF86AudioLowerVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+            ", XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set +5%"
+            ", XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%-"
+          ];
+          binde = [
+            # Resize windows with $mod + CTRL + arrow keys
+            "$mod CTRL, left, resizeactive, -1% 0%"
+            "$mod CTRL, right, resizeactive, 1% 0%"
+            "$mod CTRL, up, resizeactive, 0% 1%"
+            "$mod CTRL, down, resizeactive, 0% -1%"
+            # Resize windows with $mod + CTRL + vim keys
+            "$mod CTRL, h, resizeactive, -1% 0%"
+            "$mod CTRL, l, resizeactive, 1% 0%"
+            "$mod CTRL, k, resizeactive, 0% 1%"
+            "$mod CTRL, j, resizeactive, 0%% -1%"
+          ];
+          bindm = [
+            # Move/resize windows with mainMod + LMB/RMB and dragging
+            "$mod, mouse:272, movewindow"
+            "$mod, mouse:273, resizewindow"
+          ];
+
+          bind = [
+            # Applications:
+            "$mod, Return, exec, ${pkgs.kitty}/bin/kitty"
+            "$mod, D, exec, ${pkgs.wofi}/bin/wofi --show drun"
+            "$mod, A, exec, ${
+              inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.twilight
+            }/bin/zen-twilight"
+            "$mod, R, exec, ${pkgs.qutebrowser}/bin/qutebrowser"
+            "$mod, S, exec, ${pkgs.vlc}/bin/vlc"
+            "$mod, E, exec, ${pkgs.nemo}/bin/nemo"
+            "$mod SHIFT, S, exec, ${pkgs.hyprlock}/bin/hyprlock"
+            "$mod SHIFT, P, exec, ${pkgs.wlogout}/bin/wlogout"
+
+            # Controls:
+            "$mod, F, fullscreen"
+            "$mod, W, togglefloating"
+            "$mod, Q, killactive"
+            # Take a screenshot:
+            " , PRINT, exec, ${pkgs.hyprshot}/bin/hyprshot -m output"
+            "SHIFT, PRINT, exec, ${pkgs.hyprshot}/bin/hyprshot -m region"
+            "$mod SHIFT, Q, exit"
+
+            # Focus controls:
+            # hyprEasymotions:
+
+            # # Move focus with $mod + arrow keys
+            "$mod, left, movefocus, l"
+            "$mod, right, movefocus, r"
+            "$mod, up, movefocus, u"
+            "$mod, down, movefocus, d"
+            # # Move focus with $mod + vim keys
+            "$mod, h, movefocus, l"
+            "$mod, l, movefocus, r"
+            "$mod, k, movefocus, u"
+            "$mod, j, movefocus, d"
+            # # Move windows with $mod + SHIFT + arrow keys
+            "$mod SHIFT, left, movewindow, l"
+            "$mod SHIFT, right, movewindow, r"
+            "$mod SHIFT, up, movewindow, u"
+            "$mod SHIFT, down, movewindow, d"
+            # # Move windows with $mod + SHIFT + vim keys
+            "$mod SHIFT, h, movewindow, l"
+            "$mod SHIFT, l, movewindow, r"
+            "$mod SHIFT, k, movewindow, u"
+            "$mod SHIFT, j, movewindow, d"
+          ]
+          ++ (
+            # Navigation:
+            # workspaces
+            # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
+            builtins.concatLists (
+              builtins.genList (
+                i:
+                let
+                  ws = i + 1;
+                in
+                [
+                  "$mod, code:1${toString i}, workspace, ${toString ws}"
+                  "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+                ]
+              ) 9
+            )
+          );
+          monitor = [
+            "eDP-1,highres,auto,1"
+            ",highres,auto,1"
+          ];
+          exec-once = [
+            "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+            "systemctl --user restart hyprwall"
+          ];
+          general = {
+            layout = "master";
+            gaps_in = 0;
+            gaps_out = 0;
+            border_size = 2;
+            resize_on_border = true;
+          };
+          master = {
+            mfact = 0.50;
+            orientation = "left";
+            new_status = "slave";
+            new_on_top = false;
+            smart_resizing = true;
+            drop_at_cursor = false;
+          };
+          # Apply blur for Wofi and Waybar:
+          layerrule = [
+            "match:namespace waybar, blur on"
+            "match:namespace waybar, blur_popups on"
+            "match:namespace wofi, blur on"
+            "match:namespace wofi, blur_popups on"
+            "match:namespace wofi, xray 1"
+            "match:namespace wofi, dim_around on"
+          ];
+          # Decorations:
+          decoration = {
+            rounding = 0;
+            rounding_power = 0;
+            # Transparency:
+            active_opacity = lib.mkForce 1.0;
+            inactive_opacity = lib.mkForce 0.90;
+
+            # Shadow:
+            shadow = {
+              enabled = false;
+              range = 25;
+              render_power = 3;
+            };
+            # Blur:
+            blur = {
+              enabled = false;
+              size = 7;
+              passes = 3;
+              new_optimizations = true;
+              ignore_opacity = true;
+              xray = false;
+              noise = 0.1;
+              vibrancy = 1.0;
+              brightness = 1.0;
+              contrast = 1.1;
+              popups = true;
+            };
+          };
+        };
