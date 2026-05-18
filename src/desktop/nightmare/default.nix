@@ -33,7 +33,7 @@ in
       }:
       {
         imports = with self.modules.homeManager; [
-          hyprland
+          nightmare-hyprland
           kitty
           foot
           zen-browser
