@@ -37,7 +37,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
-      url = "github:nix-community/stylix";
+      url = "github:jakkunight/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     xremap--flake = {

@@ -2230,7 +2230,7 @@
     "oisd": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-6YPJ3ymkMzEpW1YxOQ5Qo8g964eg5gLWyU9ufMQyzVw=",
+        "narHash": "sha256-T7vzjSCDQmmjDT7H1Xj/0hwVVrZpvu5dJL+3pTvyGmA=",
         "type": "file",
         "url": "https://big.oisd.nl/domainswild"
       },
@@ -2474,15 +2474,15 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1778776709,
-        "narHash": "sha256-YhnEcpiY6+l3RFA+cPmdTaeODGvNRuqE8B7VBjPVIxo=",
-        "owner": "nix-community",
+        "lastModified": 1779128183,
+        "narHash": "sha256-jNi5/Im6p2JuqMkhKKllToxvr61pM3z/TsyvMXJ3PBs=",
+        "owner": "jakkunight",
         "repo": "stylix",
-        "rev": "e8ea85b4f7dddda9603e0f1ac86cd92cee3b2819",
+        "rev": "f349abad7cdd0d27f74b0a92af5aa8213f86d937",
         "type": "github"
       },
       "original": {
-        "owner": "nix-community",
+        "owner": "jakkunight",
         "repo": "stylix",
         "type": "github"
       }

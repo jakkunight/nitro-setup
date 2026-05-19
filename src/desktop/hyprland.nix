@@ -75,24 +75,6 @@ in
           portalPackage = null;
           # Set this to true if not using UWSM:
           systemd.enable = true;
-          settings = {
-            "$mod" = "SUPER";
-
-            # Cursor:
-            cursor = {
-              no_hardware_cursors = true;
-            };
-            # Gestures:
-            gestures = {
-              workspace = true;
-            };
-
-            # Misc:
-            misc = {
-              disable_splash_rendering = true;
-              # vfr = true;
-            };
-          };
         };
 
         services = {
