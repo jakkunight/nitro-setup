@@ -19,10 +19,10 @@
     musnix = {
       url = "github:musnix/musnix";
     };
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixos-generators = {
+    #   url = "github:nix-community/nixos-generators";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,32 +32,32 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     awww.url = "git+https://codeberg.org/LGFae/awww";
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # noctalia = {
+    #   url = "github:noctalia-dev/noctalia-shell";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     stylix = {
       url = "github:jakkunight/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    xremap--flake = {
-      url = "github:xremap/nix-flake";
-    };
+    # xremap--flake = {
+    #   url = "github:xremap/nix-flake";
+    # };
     hyprland = {
       url = "github:hyprwm/Hyprland";
     };
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-    hyprland-easymotion = {
-      url = "github:bryewalks/hyprland-easymotion";
-      inputs.hyprland.follows = "hyprland";
-    };
-    hypr-darkwindow = {
-      url = "github:micha4w/Hypr-DarkWindow"; # Make sure to change the tag to match your hyprland version
-      inputs.hyprland.follows = "hyprland";
-    };
+    # hyprland-plugins = {
+    #   url = "github:hyprwm/hyprland-plugins";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
+    # hyprland-easymotion = {
+    #   url = "github:bryewalks/hyprland-easymotion";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
+    # hypr-darkwindow = {
+    #   url = "github:micha4w/Hypr-DarkWindow"; # Make sure to change the tag to match your hyprland version
+    #   inputs.hyprland.follows = "hyprland";
+    # };
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -108,222 +108,8 @@ in
             }
           ];
           # ---- BINDS ----
-          # In order to make my binds a bit better? I'll go with the
-          # AoE2:DE keyboard layout as follows:
-          # - Exit submap => ESCAPE (for all submaps)
-          # - SUPER + RETURN => Open terminal
-          # - SUPER + SPACE => Open app launcher
-          # - SUPER + Q => Quit mode
-          #   - Q => Kill active window
-          #   - W => Quit active window
-          #   - E => Exit Hyprland session
-          # - SUPER + W => Window focus mode
-          #   - H => Focus the left window
-          #   - L => Focus the right window
-          #   - K => Focus the up window
-          #   - J => Focus the down window
-          # - SUPER + E => Window move mode
-          #   - H => Move the window left
-          #   - L => Move the window right
-          #   - K => Move the window up
-          #   - J => Move the window down
-          # - SUPER + R => Window resize mode
-          #   - H => Resize the window left
-          #   - L => Resize the window right
-          #   - K => Resize the window up
-          #   - J => Resize the window down
-          # - SUPER + T => Window type mode
-          #   - Q => Toggle float
-          #   - W => Toggle fullscreen
-          # - SUPER + A => Quick app mode
-          #   - Q => Open web browser
-          #   - W => Open network manager
-          #   - E => Open file manager
-          #   - R => Open music player
-          define_submap = [
-            # Define submap for Quit mode (SUPER + Q)
-            {
-              _args = [
-                "quit"
-                "reset"
-                (lib.generators.mkLuaInline ''
-                  function()
-                    -- Kill active window
-                    hl.bind("q", function()
-                      hl.dsp.window.kill()
-                    end)
 
-                    -- Quit active window
-                    hl.bind("w", function()
-                      hl.dsp.window.close()
-                    end)
-
-                    -- Exit Hyprland session
-                    hl.bind("e", hl.dsp.exit())
-
-                    -- Lock screen
-                    hl.bind("r", function()
-                      hl.dsp.exec_cmd("${pkgs.hyprlock}/bin/hyprlock --grace 0")
-                    end)
-                  end
-                '')
-              ];
-            }
-            # Define submap for Window focus mode (SUPER + W)
-            {
-              _args = [
-                "focus"
-                "reset"
-                (lib.generators.mkLuaInline ''
-                  function()
-                    -- Focus left window
-                    hl.bind("h", function()
-                      hl.dsp.focus({ direction = "l" })
-                    end)
-
-                    -- Focus right window
-                    hl.bind("l", function()
-                      hl.dsp.focus({ direction = "r" })
-                      hl.dsp.submap("reset")
-                    end)
-
-                    -- Focus up window
-                    hl.bind("k", function()
-                      hl.dsp.focus({ direction = "u" })
-                      hl.dsp.submap("reset")
-                    end)
-
-                    -- Focus down window
-                    hl.bind("j", function()
-                      hl.dsp.focus({ direction = "r" })
-                      hl.dsp.submap("reset")
-                    end)
-                  end
-                '')
-              ];
-            }
-            # Define submap for Window move mode (SUPER + E)
-            {
-              _args = [
-                "move"
-                (lib.generators.mkLuaInline ''
-                  function()
-                    -- Exit submap
-                    hl.bind("escape", hl.dsp.submap("reset"))
-
-                    -- move left window
-                    hl.bind("h", function()
-                      hl.dsp.window.move({ direction = "l" })
-                    end)
-
-                    -- move right window
-                    hl.bind("l", function()
-                      hl.dsp.window.move({ direction = "r" })
-                    end)
-
-                    -- move up window
-                    hl.bind("k", function()
-                      hl.dsp.window.move({ direction = "u" })
-                    end)
-
-                    -- move down window
-                    hl.bind("j", function()
-                      hl.dsp.window.move({ direction = "r" })
-                    end)
-
-                  end
-                '')
-              ];
-            }
-            # Define submap for Window resize mode (SUPER + R)
-            {
-              _args = [
-                "resize"
-                (lib.generators.mkLuaInline ''
-                  function()
-                    -- Exit submap
-                    hl.bind("escape", hl.dsp.submap("reset"))
-
-                    -- Resize window left (shrink width)
-                    hl.bind("h", hl.dsp.window.resize({ x = -20, y = 0, relative = true }), { repeating = true })
-
-                    -- Resize window right (expand width)
-                    hl.bind("l", hl.dsp.window.resize({ x = 20, y = 0, relative = true }), { repeating = true })
-
-                    -- Resize window up (shrink height)
-                    hl.bind("k", hl.dsp.window.resize({ x = 0, y = -20, relative = true }), { repeating = true })
-
-                    -- Resize window down (expand height)
-                    hl.bind("j", hl.dsp.window.resize({ x = 0, y = 20, relative = true }), { repeating = true })
-                  end
-                '')
-              ];
-            }
-            # Define submap for Window type mode (SUPER + T)
-            {
-              _args = [
-                "window-type"
-                (lib.generators.mkLuaInline ''
-                  function()
-                    -- Exit submap
-                    hl.bind("escape", hl.dsp.submap("reset"))
-
-                    -- Toggle float
-                    hl.bind("q", function()
-                      hl.dsp.window.float()
-                      hl.dsp.submap("reset")
-                    end)
-
-                    -- Toggle fullscreen
-                    hl.bind("w", function()
-                      hl.dsp.window.fullscreen()
-                      hl.dsp.submap("reset")
-                    end)
-                  end
-                '')
-              ];
-            }
-            # Define submap for Quick app mode (SUPER + A)
-            {
-              _args = [
-                "quick-app"
-                (lib.generators.mkLuaInline ''
-                  function()
-                    -- Exit submap
-                    hl.bind("escape", hl.dsp.submap("reset"))
-
-                    -- Open web browser (Zen Browser)
-                    hl.bind("q", function()
-                      hl.dsp.exec_cmd("${
-                        inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.twilight
-                      }/bin/zen-twilight")
-                      hl.dsp.submap("reset")
-                    end)
-
-                    -- Open network manager (Impala)
-                    hl.bind("w", function()
-                      hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty sh -c '${pkgs.impala}/bin/impala'")
-                      hl.dsp.submap("reset")
-                    end)
-
-                    -- Open file manager (Yazi)
-                    hl.bind("e", function()
-                      hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty sh -c '${pkgs.nemo}/bin/nemo'")
-                      hl.dsp.submap("reset")
-                    end)
-
-                    -- Open music player (RMPC)
-                    hl.bind("r", function()
-                      hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty sh -c '${pkgs.rmpc}/bin/rmpc --address 127.0.0.1:6600'")
-                      hl.dsp.submap("reset")
-                    end)
-                  end
-                '')
-              ];
-            }
-          ];
           bind = [
-            # Open terminal (Kitty)
             {
               _args = [
                 "SUPER + RETURN"
@@ -332,7 +118,6 @@ in
                 '')
               ];
             }
-            # Open app launcher (Wofi)
             {
               _args = [
                 "SUPER + SPACE"
@@ -341,61 +126,359 @@ in
                 '')
               ];
             }
-            # Enter Quit mode
             {
               _args = [
                 "SUPER + Q"
                 (lib.generators.mkLuaInline ''
-                  hl.dsp.submap("quit", "reset")
+                  hl.dsp.window.close()
                 '')
               ];
             }
-            # Enter Window focus mode
             {
               _args = [
                 "SUPER + W"
                 (lib.generators.mkLuaInline ''
-                  hl.dsp.submap("focus", "reset")
+                  hl.dsp.window.float()
                 '')
               ];
             }
-            # Enter Window move mode
             {
               _args = [
                 "SUPER + E"
                 (lib.generators.mkLuaInline ''
-                  hl.dsp.submap("move")
+                  hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty sh -c '${pkgs.yazi}/bin/yazi'")
                 '')
               ];
             }
-            # Enter Window resize mode
             {
               _args = [
                 "SUPER + R"
                 (lib.generators.mkLuaInline ''
-                  hl.dsp.submap("resize")
+                  hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty sh -c '${pkgs.rmpc}/bin/rmpc --address 127.0.0.1:6600'")
                 '')
               ];
             }
-            # Enter Window type mode
             {
               _args = [
                 "SUPER + T"
                 (lib.generators.mkLuaInline ''
-                  hl.dsp.submap("window-type", "reset")
+                  hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty sh -c '${pkgs.networkmanager}/bin/nmtui'")
                 '')
               ];
             }
-            # Enter Quick app mode
             {
               _args = [
                 "SUPER + A"
                 (lib.generators.mkLuaInline ''
-                  hl.dsp.submap("quick-app", "reset")
+                  hl.dsp.exec_cmd("${
+                    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.twilight
+                  }/bin/zen-twilight")
                 '')
               ];
             }
+            {
+              _args = [
+                "SUPER + S"
+                (lib.generators.mkLuaInline ''
+                  hl.dsp.exec_cmd("${pkgs.vlc}/bin/vlc")
+                '')
+              ];
+            }
+            {
+              _args = [
+                "SUPER + D"
+                (lib.generators.mkLuaInline ''
+                  hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty sh -c '${pkgs.helix}/bin/hx'")
+                '')
+              ];
+            }
+            {
+              _args = [
+                "SUPER + F"
+                (lib.generators.mkLuaInline ''
+                  hl.dsp.window.fullscreen()
+                '')
+              ];
+            }
+            {
+              _args = [
+                "SUPER + mouse:272"
+                (lib.generators.mkLuaInline ''
+                  hl.dsp.window.drag()
+                '')
+                { mouse = true; }
+              ];
+            }
+            {
+              _args = [
+                "SUPER + mouse:273"
+                (lib.generators.mkLuaInline ''
+                  hl.dsp.window.resize()
+                '')
+                { mouse = true; }
+              ];
+            }
+            # Multimedia controls
+            {
+              _args = [
+                "XF86AudioRaiseVolume"
+                (toLua ''
+                  hl.dsp.exec_cmd("${pkgs.wireplumber}/bin/wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+")
+                '')
+                {
+                  locked = true;
+                  repeating = true;
+                }
+              ];
+            }
+            {
+              _args = [
+                "XF86AudioLowerVolume"
+                (toLua ''
+                  hl.dsp.exec_cmd("${pkgs.wireplumber}/bin/wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-")
+                '')
+                {
+                  locked = true;
+                  repeating = true;
+                }
+              ];
+            }
+            {
+              _args = [
+                "XF86AudioMute"
+                (toLua ''
+                  hl.dsp.exec_cmd("${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
+                '')
+                {
+                  locked = true;
+                  repeating = true;
+                }
+              ];
+            }
+            {
+              _args = [
+                "XF86AudioMicMute"
+                (toLua ''
+                  hl.dsp.exec_cmd("${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle")
+                '')
+                {
+                  locked = true;
+                  repeating = true;
+                }
+              ];
+            }
+            # LCD Brightness controls:
+            {
+              _args = [
+                "XF86MonBrightnessUp"
+                (toLua ''
+                  hl.dsp.exec_cmd("${pkgs.brightnessctl}/bin/brightnessctl -e4 -n2 set 5%+")
+                '')
+                {
+                  locked = true;
+                  repeating = true;
+                }
+              ];
+            }
+            {
+              _args = [
+                "XF86MonBrightnessDown"
+                (toLua ''
+                  hl.dsp.exec_cmd("${pkgs.brightnessctl}/bin/brightnessctl -e4 -n2 set 5%-")
+                '')
+                {
+                  locked = true;
+                  repeating = true;
+                }
+              ];
+            }
+            # Music Player controls (must be compatible with Playerctl)
+            {
+              _args = [
+                "XF86AudioNext"
+                (toLua ''
+                  hl.dsp.exec_cmd("${pkgs.playerctl}/bin/playerctl next")
+                '')
+                {
+                  locked = true;
+                }
+              ];
+            }
+            {
+              _args = [
+                "XF86AudioPrev"
+                (toLua ''
+                  hl.dsp.exec_cmd("${pkgs.playerctl}/bin/playerctl previous")
+                '')
+                {
+                  locked = true;
+                }
+              ];
+            }
+            {
+              _args = [
+                "XF86AudioPause"
+                (toLua ''
+                  hl.dsp.exec_cmd("${pkgs.playerctl}/bin/playerctl play-pause")
+                '')
+                {
+                  locked = true;
+                }
+              ];
+            }
+            {
+              _args = [
+                "XF86AudioPlay"
+                (toLua ''
+                  hl.dsp.exec_cmd("${pkgs.playerctl}/bin/playerctl play-pause")
+                '')
+                {
+                  locked = true;
+                }
+              ];
+            }
           ]
+          ++
+            # Focus:
+
+            [
+              {
+                _args = [
+                  "SUPER + left"
+                  (toLua ''
+                    hl.dsp.focus({ direction = "left" })
+                  '')
+                ];
+              }
+              {
+                _args = [
+                  "SUPER + right"
+                  (toLua ''
+                    hl.dsp.focus({ direction = "right" })
+                  '')
+                ];
+              }
+              {
+                _args = [
+                  "SUPER + up"
+                  (toLua ''
+                    hl.dsp.focus({ direction = "up" })
+                  '')
+                ];
+              }
+              {
+                _args = [
+                  "SUPER + down"
+                  (toLua ''
+                    hl.dsp.focus({ direction = "down" })
+                  '')
+                ];
+              }
+            ]
+          ++
+            # Move:
+            [
+              {
+                _args = [
+                  "SUPER + SHIFT + left"
+                  (toLua ''
+                    hl.dsp.window.move({ direction = "left" })
+                  '')
+                ];
+              }
+              {
+                _args = [
+                  "SUPER + SHIFT + right"
+                  (toLua ''
+                    hl.dsp.window.move({ direction = "right" })
+                  '')
+                ];
+              }
+              {
+                _args = [
+                  "SUPER + SHIFT + up"
+                  (toLua ''
+                    hl.dsp.window.move({ direction = "up" })
+                  '')
+                ];
+              }
+              {
+                _args = [
+                  "SUPER + SHIFT + down"
+                  (toLua ''
+                    hl.dsp.window.move({ direction = "down" })
+                  '')
+                ];
+              }
+            ]
+          ++
+            # Resize:
+            [
+              {
+                _args = [
+                  "SUPER + ALT + left"
+                  (toLua ''
+                    hl.dsp.window.resize({
+                      x = -5,
+                      y = 0,
+                      relative = true
+                    })
+                  '')
+                  {
+                    locked = true;
+                    repeating = true;
+                  }
+                ];
+              }
+              {
+                _args = [
+                  "SUPER + ALT + right"
+                  (toLua ''
+                    hl.dsp.window.resize({
+                      x = 5,
+                      y = 0,
+                      relative = true
+                    })
+                  '')
+                  {
+                    locked = true;
+                    repeating = true;
+                  }
+                ];
+              }
+              {
+                _args = [
+                  "SUPER + ALT + up"
+                  (toLua ''
+                    hl.dsp.window.resize({
+                      x = 0,
+                      y = 5,
+                      relative = true
+                    })
+                  '')
+                  {
+                    locked = true;
+                    repeating = true;
+                  }
+                ];
+              }
+              {
+                _args = [
+                  "SUPER + ALT + down"
+                  (toLua ''
+                    hl.dsp.window.resize({
+                      x = 0,
+                      y = -5,
+                      relative = true
+                    })
+                  '')
+                  {
+                    locked = true;
+                    repeating = true;
+                  }
+                ];
+              }
+            ]
           # Move active window to another workspace:
           ++ (map
             (i: {
