@@ -251,8 +251,9 @@ in
                 "spacing" = 10;
               };
               "hyprland/workspaces" = {
+                # "move-to-monitor" = true;
                 "persistent-workspaces" = {
-                  "*" = 6;
+                  "*" = 7;
                 };
                 "format" = "{icon}";
                 "format-icons" = {
@@ -261,7 +262,8 @@ in
                   "3" = "󰨡";
                   "4" = "󰕼";
                   "5" = "󰓓";
-                  "6" = "";
+                  "6" = "";
+                  "7" = "";
                   "default" = "";
                 };
               };
