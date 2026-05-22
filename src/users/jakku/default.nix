@@ -88,6 +88,7 @@ in
           wanderer-fastfetch
           zed
           opencode
+          ollama
         ];
         home = {
           username = "${user}";
