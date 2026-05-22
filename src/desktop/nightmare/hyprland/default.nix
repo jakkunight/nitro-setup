@@ -16,9 +16,6 @@ in
     }:
     let
       toLua = x: lib.generators.mkLuaInline x;
-      terminal_app = "kitty";
-      # filemanager_app = "nemo";
-      app_launcher = "wofi";
     in
     {
       imports = with self.modules.homeManager; [
@@ -113,9 +110,7 @@ in
             {
               _args = [
                 "SUPER + RETURN"
-                (lib.generators.mkLuaInline ''
-                  hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty")
-                '')
+                (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty")'')
               ];
             }
             {
@@ -146,7 +141,7 @@ in
               _args = [
                 "SUPER + E"
                 (lib.generators.mkLuaInline ''
-                  hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty sh -c '${pkgs.yazi}/bin/yazi'")
+                  hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty sh -c '${pkgs.yazi}/bin/yazi'", { float = true, center = true, size = {"(monitor_w*0.5)", "(monitor_h*0.5)"} })
                 '')
               ];
             }
@@ -154,7 +149,7 @@ in
               _args = [
                 "SUPER + R"
                 (lib.generators.mkLuaInline ''
-                  hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty sh -c '${pkgs.rmpc}/bin/rmpc --address 127.0.0.1:6600'")
+                  hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty sh -c '${pkgs.rmpc}/bin/rmpc --address 127.0.0.1:6600'", { float = true, center = true, size = {"(monitor_w*0.5)", "(monitor_h*0.5)"} })
                 '')
               ];
             }
@@ -162,7 +157,7 @@ in
               _args = [
                 "SUPER + T"
                 (lib.generators.mkLuaInline ''
-                  hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty sh -c '${pkgs.networkmanager}/bin/nmtui'")
+                  hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty sh -c '${pkgs.networkmanager}/bin/nmtui'", { float = true, center = true, size = {"(monitor_w*0.5)", "(monitor_h*0.5)"} })
                 '')
               ];
             }
@@ -180,7 +175,7 @@ in
               _args = [
                 "SUPER + S"
                 (lib.generators.mkLuaInline ''
-                  hl.dsp.exec_cmd("${pkgs.vlc}/bin/vlc")
+                  hl.dsp.exec_cmd("${pkgs.vlc}/bin/vlc", { float = true, center = true, size = {"(monitor_w*0.5)", "(monitor_h*0.5)"} })
                 '')
               ];
             }
@@ -188,7 +183,7 @@ in
               _args = [
                 "SUPER + D"
                 (lib.generators.mkLuaInline ''
-                  hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty sh -c '${pkgs.helix}/bin/hx'")
+                  hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty sh -c '${pkgs.helix}/bin/hx'", { float = true, center = true, size = {"(monitor_w*0.5)", "(monitor_h*0.5)"} })
                 '')
               ];
             }
@@ -200,6 +195,39 @@ in
                 '')
               ];
             }
+            {
+              _args = [
+                "SUPER + G"
+                (lib.generators.mkLuaInline ''
+                  hl.dsp.window.center()
+                '')
+              ];
+            }
+            {
+              _args = [
+                "SUPER + Z"
+                (toLua ''
+                  hl.dsp.exec_cmd("${pkgs.hyprlock}/bin/hyprlock")
+                '')
+              ];
+            }
+            {
+              _args = [
+                "SUPER + C"
+                (toLua ''
+                  hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty sh -c '${pkgs.clock-rs}/bin/clock-rs'", { float = true, center = true, size = { 600, 480 } })
+                '')
+              ];
+            }
+            {
+              _args = [
+                "SUPER + V"
+                (toLua ''
+                  hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty sh -c '${pkgs.btop}/bin/btop'", { float = true, center = true, size = {"(monitor_w*0.5)", "(monitor_h*0.5)"} })
+                '')
+              ];
+            }
+            # Mouse controls
             {
               _args = [
                 "SUPER + mouse:272"
