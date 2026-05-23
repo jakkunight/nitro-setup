@@ -88,7 +88,7 @@ in
           wanderer-fastfetch
           zed
           opencode
-          ollama
+          ollama-cuda
         ];
         home = {
           username = "${user}";
