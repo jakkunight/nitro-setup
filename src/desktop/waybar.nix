@@ -1,7 +1,7 @@
 let
   feature = "waybar";
 in
-{ lib, ... }:
+{ inputs, lib, ... }:
 {
   flake.modules = {
     homeManager.${feature} =
@@ -11,8 +11,13 @@ in
         ...
       }:
       {
-        programs.waybar.enable = true;
-        programs.waybar.systemd.enable = true;
+        programs = {
+          waybar = {
+            enable = true;
+            # package = inputs.waybar-git.packages.${pkgs.stdenv.hostPlatform.system}.waybar;
+            systemd.enable = true;
+          };
+        };
       };
   };
 }
