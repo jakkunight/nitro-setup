@@ -10,6 +10,11 @@ in
     {
       environment.systemPackages = with pkgs; [
         ollama
+        llama-cpp-vulkan
+        lmstudio
+        # vllm
+        llmfit
+
       ];
     };
   flake.modules.homeManager.${feature} =
@@ -17,6 +22,11 @@ in
     {
       home.packages = with pkgs; [
         ollama
+        llama-cpp-vulkan
+        lmstudio
+        # vllm
+        llmfit
+
       ];
     };
   # ======== OLLAMA CUDA ========
@@ -25,6 +35,11 @@ in
     {
       environment.systemPackages = with pkgs; [
         ollama-cuda
+        llama-cpp-vulkan
+        lmstudio
+        # vllm
+        llmfit
+
       ];
     };
   flake.modules.homeManager.${extra-feature} =
@@ -32,6 +47,11 @@ in
     {
       home.packages = with pkgs; [
         ollama-cuda
+        llama-cpp-vulkan
+        lmstudio
+        # vllm
+        llmfit
+
       ];
     };
   # ======== OLLAMA VULKAN ========
@@ -40,6 +60,11 @@ in
     {
       environment.systemPackages = with pkgs; [
         ollama-vulkan
+        llama-cpp-vulkan
+        lmstudio
+        # vllm
+        llmfit
+
       ];
     };
   flake.modules.homeManager.${extra-feature-2} =
@@ -47,6 +72,11 @@ in
     {
       home.packages = with pkgs; [
         ollama-vulkan
+        llama-cpp-vulkan
+        lmstudio
+        # vllm
+        llmfit
+
       ];
     };
 }
