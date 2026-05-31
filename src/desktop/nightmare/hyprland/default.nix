@@ -182,8 +182,11 @@ in
             {
               _args = [
                 "SUPER + D"
-                (lib.generators.mkLuaInline ''
-                  hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty sh -c '${pkgs.helix}/bin/hx'", { float = true, center = true, size = {"(monitor_w*0.5)", "(monitor_h*0.5)"} })
+                # (lib.generators.mkLuaInline ''
+                #   hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty sh -c '${pkgs.helix}/bin/hx'", { float = true, center = true, size = {"(monitor_w*0.5)", "(monitor_h*0.5)"} })
+                # '')
+                (toLua ''
+                  hl.dsp.exec_cmd("${pkgs.wofi}/bin/wofi --show drun")
                 '')
               ];
             }
