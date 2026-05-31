@@ -1,5 +1,7 @@
 let
   feature = "kanagawa-theme";
+  # wallpaper = "wanderer-scaramouche-aranaras-wallpaper.jpg";
+  wallpaper = "AthenaOS-wallpaper.png";
 in
 {
   inputs,
@@ -29,7 +31,7 @@ in
           polarity = "dark";
           image = "${
             self.packages.${pkgs.stdenv.hostPlatform.system}.wanderer-wallpapers
-          }/share/wallpapers/wanderer-scaramouche-aranaras-wallpaper.jpg";
+          }/share/wallpapers/${wallpaper}";
           fonts = {
             serif = {
               package = pkgs.nerd-fonts.caskaydia-cove;
@@ -89,7 +91,7 @@ in
           polarity = "dark";
           image = "${
             self.packages.${pkgs.stdenv.hostPlatform.system}.wanderer-wallpapers
-          }/share/wallpapers/wanderer-scaramouche-aranaras-wallpaper.jpg";
+          }/share/wallpapers/${wallpaper}";
           fonts = {
             serif = {
               # package = inputs.genshin-font.packages.${pkgs.stdenv.hostPlatform.system}.default;
