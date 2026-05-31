@@ -3,7 +3,7 @@
   inputs = {
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     # nixpkgs.url = "https://flakehub.com/f/DeterminateSystems/nixpkgs-weekly/*";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs";
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
     # all other inputs your flake needs, like nixpkgs.
@@ -16,6 +16,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-auth.url = "github:numtide/nix-auth";
+    waybar-git = {
+      url = "github:Alexays/Waybar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     musnix = {
       url = "github:musnix/musnix";
     };
@@ -37,7 +41,7 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
     stylix = {
-      url = "github:jakkunight/stylix";
+      url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # xremap--flake = {
