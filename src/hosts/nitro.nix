@@ -36,7 +36,8 @@ in
             latest-kernel
             zram
             inputs.determinate.nixosModules.default
-            kanagawa-theme
+            # kanagawa-theme
+            tokyonight-theme
             silent-sddm
             nightmare-desktop
             jakku

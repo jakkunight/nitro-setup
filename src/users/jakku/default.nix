@@ -71,7 +71,8 @@ in
         imports = with self.modules.homeManager; [
           devenv
           core
-          kanagawa-theme
+          # kanagawa-theme
+          tokyonight-theme
           gaming
           nightmare-desktop
           swaync
@@ -93,7 +94,7 @@ in
         home = {
           username = "${user}";
           homeDirectory = "/home/${user}";
-          stateVersion = "26.05";
+          stateVersion = "26.11";
         };
         programs.zed-editor = {
           userSettings = {
