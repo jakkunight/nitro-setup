@@ -60,12 +60,14 @@ in
               rounding = 0;
               rounding_power = 0.0;
               blur = {
-                enabled = false;
-                size = 8;
-                passes = 2;
+                enabled = true;
+                size = 4;
+                passes = 1;
                 ignore_opacity = true;
                 new_optimizations = true;
                 xray = true;
+                contrast = 1.2;
+                brightness = 1.2;
               };
               shadow = {
                 enabled = true;
@@ -118,6 +120,22 @@ in
                 "SUPER + SPACE"
                 (lib.generators.mkLuaInline ''
                   hl.dsp.exec_cmd("${pkgs.wofi}/bin/wofi --show drun")
+                '')
+              ];
+            }
+            {
+              _args = [
+                "Print"
+                (lib.generators.mkLuaInline ''
+                  hl.dsp.exec_cmd("${pkgs.hyprshot}/bin/hyprshot -m active -m output")
+                '')
+              ];
+            }
+            {
+              _args = [
+                "SHIFT + Print"
+                (lib.generators.mkLuaInline ''
+                  hl.dsp.exec_cmd("${pkgs.hyprshot}/bin/hyprshot -m region")
                 '')
               ];
             }
