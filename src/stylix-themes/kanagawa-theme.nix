@@ -130,10 +130,10 @@ in
             light = "Kanagawa";
           };
           opacity = {
-            applications = 0.95;
-            terminal = 0.90;
-            desktop = 0.85;
-            popups = 0.85;
+            applications = 0.75;
+            terminal = 0.75;
+            desktop = 0.75;
+            popups = 0.75;
           };
         };
       };
