@@ -29,9 +29,14 @@ in
           # };
         };
         environment.systemPackages = with pkgs; [
-          pavucontrol
           bluez5
           alsa-utils
+          pwvucontrol
+          alsa-firmware
+          sof-firmware
+          alsa-scarlett-gui
+          helvum
+          wiremix
         ];
       };
   };
