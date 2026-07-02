@@ -8,7 +8,8 @@ in
       {
         environment.systemPackages = with pkgs; [
           # discord-canary
-          discord
+          # discord
+          discord-ptb
         ];
       };
     homeManager.${feature} =
@@ -17,7 +18,8 @@ in
         programs.discord = {
           enable = true;
           # package = pkgs.discord-canary;
-          package = pkgs.discord;
+          # package = pkgs.discord;
+          package = pkgs.discord-ptb;
         };
       };
   };
