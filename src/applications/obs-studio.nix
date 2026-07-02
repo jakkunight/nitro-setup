@@ -16,6 +16,7 @@ in
           obs-pipewire-audio-capture
           obs-plugin-countdown
           obs-vkcapture
+          obs-composite-blur
         ];
       };
     };
@@ -32,6 +33,7 @@ in
           obs-pipewire-audio-capture
           obs-plugin-countdown
           obs-vkcapture
+          obs-composite-blur
         ];
       };
     };
@@ -54,6 +56,7 @@ in
           obs-pipewire-audio-capture
           obs-plugin-countdown
           obs-vkcapture
+          obs-composite-blur
         ];
       };
 
@@ -76,6 +79,7 @@ in
           obs-pipewire-audio-capture
           obs-plugin-countdown
           obs-vkcapture
+          obs-composite-blur
         ];
       };
     };
