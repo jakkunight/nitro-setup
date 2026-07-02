@@ -48,7 +48,7 @@ in
       { pkgs, ... }:
       {
         # stylix.base16Scheme = theme;
-        stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-terminal-dark.yaml";
+        stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-city-terminal-dark.yaml";
       };
     homeManager.${feature} =
       { lib, pkgs, ... }:

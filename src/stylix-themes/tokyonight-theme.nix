@@ -1,7 +1,7 @@
 let
   feature = "tokyonight-theme";
-  # wallpaper = "wanderer-scaramouche-aranaras-wallpaper.jpg";
-  wallpaper = "AthenaOS-wallpaper.png";
+  wallpaper = "wanderer-scaramouche-aranaras-wallpaper.jpg";
+  # wallpaper = "AthenaOS-wallpaper.png";
 in
 {
   inputs,
