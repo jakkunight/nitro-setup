@@ -1,7 +1,7 @@
 let
   feature = "kanagawa-theme";
-  # wallpaper = "wanderer-scaramouche-aranaras-wallpaper.jpg";
-  wallpaper = "AthenaOS-wallpaper.png";
+  wallpaper = "wanderer-scaramouche-aranaras-wallpaper.jpg";
+  # wallpaper = "AthenaOS-wallpaper.png";
 in
 {
   inputs,
@@ -130,10 +130,10 @@ in
             light = "Kanagawa";
           };
           opacity = {
-            applications = 0.75;
-            terminal = 0.75;
-            desktop = 0.75;
-            popups = 0.75;
+            applications = 0.90;
+            terminal = 0.90;
+            desktop = 0.90;
+            popups = 0.90;
           };
         };
       };
