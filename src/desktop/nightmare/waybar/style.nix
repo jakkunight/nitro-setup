@@ -19,8 +19,8 @@ in
       }
       window.side#waybar {
         border-bottom: 2px solid @base0D;
-        border-right: 2px solid @base04;
-        border-top: 2px solid @base04;
+        border-right: 2px solid @base0D;
+        border-top: 2px solid @base0D;
         border-radius: 0 15 15 0;
         padding-top: 2px;
         padding-bottom: 2px;
