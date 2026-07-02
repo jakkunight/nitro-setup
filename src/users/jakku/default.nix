@@ -4,6 +4,7 @@ in
 {
   self,
   lib,
+  inputs,
   ...
 }:
 {
@@ -45,6 +46,7 @@ in
             wireshark
             multimedia-production
             dns-over-tls
+            devenv
           ];
           users.users.${user} = {
             useDefaultShell = false;
@@ -65,6 +67,22 @@ in
           nix.settings = {
             trusted-users = [ "${user}" ];
           };
+
+          environment.systemPackages = with pkgs; [
+            nmap
+            zenmap
+            gparted
+            ntfs3g
+            exfatprogs
+            exfat
+            nemo-with-extensions
+            anydesk
+            alsa-scarlett-gui
+          ];
+          hardware.firmware = [
+            inputs.scarlett2-firmware-nix.packages.${pkgs.stdenv.hostPlatform.system}.scarlett2-firmware-nix
+          ];
+          services.fwupd.enable = true;
 
         };
       homeManager.${user} = {
