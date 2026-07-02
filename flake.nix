@@ -96,6 +96,12 @@
       url = "https://big.oisd.nl/domainswild";
       flake = false;
     };
+    llama-cpp-turboquant = {
+      url = "github:TheTom/llama-cpp-turboquant";
+    };
+    scarlett2-firmware-nix = {
+      url = "github:jakkunight/scarlett2-firmware-nix";
+    };
   };
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./src);
 }
