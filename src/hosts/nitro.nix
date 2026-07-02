@@ -35,12 +35,18 @@ in
             # zen-kernel # Since it's vulnerable to Copy.fail exploit
             latest-kernel
             zram
-            inputs.determinate.nixosModules.default
+            # Disabled due to errors
+            # inputs.determinate.nixosModules.default
             # kanagawa-theme
             tokyonight-theme
             silent-sddm
             nightmare-desktop
             jakku
+          ];
+          # Enable flakes!
+          nix.settings.experimental-features = lib.mkDefault [
+            "nix-command"
+            "flakes"
           ];
           i18n.defaultLocale = "es_PY.UTF-8";
           time.timeZone = "America/Asuncion";
