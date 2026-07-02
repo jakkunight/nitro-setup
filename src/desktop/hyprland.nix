@@ -51,15 +51,15 @@ in
           nvidia-vaapi-driver
           egl-wayland
         ];
-        # environment.variables = lib.mkIf (builtins.elem "nvidia" config.services.xserver.videoDrivers) {
-        #   LIBVA_DRIVER_NAME = "nvidia";
-        #   __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-        #   NIXOS_OZONE_WL = "1";
-        #   AQ_DRM_DEVICES = "/dev/dri/card0:/dev/dri/card1";
-        #   NVD_BACKEND = "direct";
-        #   ELECTRON_OZONE_PLATFORM_HINT = "auto";
-        #   OZONE_PLATFORM_HINT = "wayland";
-        # };
+        environment.variables = lib.mkIf (builtins.elem "nvidia" config.services.xserver.videoDrivers) {
+          LIBVA_DRIVER_NAME = "nvidia";
+          __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+          NIXOS_OZONE_WL = "1";
+          AQ_DRM_DEVICES = "/dev/dri/card0:/dev/dri/card1";
+          NVD_BACKEND = "direct";
+          ELECTRON_OZONE_PLATFORM_HINT = "auto";
+          # OZONE_PLATFORM_HINT = "wayland";
+        };
       };
     homeManager.${feature} =
       { pkgs, ... }:

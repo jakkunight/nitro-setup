@@ -20,20 +20,6 @@ in
     {
       imports = with self.modules.homeManager; [
         hyprland
-        # kitty
-        # foot
-        # zen-browser
-        # waybar
-        # hyprwall
-        # swaync
-        # ashell
-        # hyprlock
-        # hypridle
-        # zsh
-        # nushell
-        # qutebrowser
-        # remmina
-        # wofi
       ];
       wayland.windowManager.hyprland = {
         enable = true;
@@ -45,8 +31,8 @@ in
               # master layout for now:
               layout = "master";
               border_size = 2;
-              gaps_in = 0;
-              gaps_out = 0;
+              gaps_in = 2;
+              gaps_out = 4;
               gaps_workspaces = 0;
               float_gaps = 0;
               resize_on_border = true;
@@ -57,8 +43,8 @@ in
               # snap = { };
             };
             decoration = {
-              rounding = 0;
-              rounding_power = 0.0;
+              rounding = 16;
+              # rounding_power = 1.0;
               blur = {
                 enabled = true;
                 size = 4;
@@ -96,16 +82,25 @@ in
             {
               output = "eDP-1";
               mode = "preferred";
-              position = "auto";
+              position = "0x0";
               scale = 1;
             }
             {
               output = "";
-              mode = "preferred";
-              position = "auto";
+              mode = "highres";
+              position = "auto-right";
               scale = 1;
             }
           ];
+
+          workspace_rule = [
+            {
+              workspace = "r[1-7]";
+              monitor = "eDP-1";
+              persistent = true;
+            }
+          ];
+
           # ---- BINDS ----
 
           bind = [
