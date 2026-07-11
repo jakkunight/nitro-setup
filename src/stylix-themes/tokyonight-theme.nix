@@ -1,7 +1,8 @@
 let
   feature = "tokyonight-theme";
-  wallpaper = "wanderer-scaramouche-aranaras-wallpaper.jpg";
-  # wallpaper = "AthenaOS-wallpaper.png";
+  # wallpaper = "wanderer-scaramouche-aranaras-wallpaper.jpg";
+  # wallpaper = "";
+  wallpaper = "AthenaOS-wallpaper.png";
 in
 {
   inputs,
@@ -113,7 +114,7 @@ in
             };
             sizes = {
               applications = 12;
-              terminal = 16;
+              terminal = 14;
               desktop = 14;
               popups = 12;
             };
