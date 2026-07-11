@@ -10,12 +10,12 @@ in
         position = "left";
         width = 72;
         spacing = 8;
-        margin-top = 4;
-        margin-bottom = 4;
+        margin-top = 8;
+        margin-bottom = 8;
         modules-left = [
-          "wlr/taskbar"
         ];
         modules-center = [
+          "wlr/taskbar"
         ];
         modules-right = [
         ];

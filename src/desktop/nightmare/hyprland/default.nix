@@ -31,8 +31,8 @@ in
               # master layout for now:
               layout = "master";
               border_size = 2;
-              gaps_in = 2;
-              gaps_out = 4;
+              gaps_in = 4;
+              gaps_out = 8;
               gaps_workspaces = 0;
               float_gaps = 0;
               resize_on_border = true;
@@ -57,6 +57,14 @@ in
               };
               shadow = {
                 enabled = true;
+                range = 15;
+                render_power = 3;
+                color = lib.mkForce config.lib.stylix.colors.withHashtag.base0D;
+                color_inactive = lib.mkForce config.lib.stylix.colors.withHashtag.base04;
+                offset = [
+                  0
+                  0
+                ];
               };
               glow = {
                 enabled = false;
@@ -108,6 +116,14 @@ in
               _args = [
                 "SUPER + RETURN"
                 (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty")'')
+              ];
+            }
+            # Experimental:
+            # Text to speech to use the Nate Gentile agentic Linux workflow.
+            {
+              _args = [
+                "SUPER + H"
+                (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${pkgs.handy}/bin/handy --toggle-transcription")'')
               ];
             }
             {
