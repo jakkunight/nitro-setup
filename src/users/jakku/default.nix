@@ -47,6 +47,7 @@ in
             multimedia-production
             dns-over-tls
             devenv
+            hermes-agent
           ];
           users.users.${user} = {
             useDefaultShell = false;
@@ -78,6 +79,8 @@ in
             nemo-with-extensions
             anydesk
             alsa-scarlett-gui
+            handy
+            wtype
           ];
           hardware.firmware = [
             inputs.scarlett2-firmware-nix.packages.${pkgs.stdenv.hostPlatform.system}.scarlett2-firmware-nix
@@ -105,6 +108,7 @@ in
           gimp
           terminal-gadgets
           wanderer-fastfetch
+          obs-studio-nvidia
           zed
           opencode
           ollama-cuda
