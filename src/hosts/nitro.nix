@@ -59,7 +59,15 @@ in
             gitui
             inputs.home-manager.packages.${system}.home-manager
             inputs.disko.packages.${system}.disko
+            gparted-full
           ];
+
+          services.tlp = {
+            enable = true;
+            pd = {
+              enable = true;
+            };
+          };
         };
     }
   ];
