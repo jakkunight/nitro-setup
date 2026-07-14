@@ -64,4 +64,12 @@ in
       };
     }
   ];
+  flake.homeConfigurations.${user} = (
+    self.factory.mkHomeConfiguration {
+      inherit user;
+      extraModules = with self.modules.homeManager; [
+        stylix-standalone-hm
+      ];
+    }
+  );
 }

@@ -1,5 +1,5 @@
 let
-  feature = "sophie";
+  feature = "germain";
 in
 {
   self,
@@ -15,7 +15,7 @@ in
       host = "${feature}";
     })
     {
-      nixos.${feature} =
+      nixos."${feature}" =
         { pkgs, ... }:
         {
           imports = with self.modules.nixos; [
@@ -34,7 +34,7 @@ in
             kde
             cinnamon
             ballade
-            sophie
+            # sophie
             jakku
           ];
           i18n.defaultLocale = "es_PY.UTF-8";
