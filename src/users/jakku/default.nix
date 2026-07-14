@@ -48,6 +48,15 @@ in
             dns-over-tls
             devenv
             hermes-agent
+            scarlett2-firmware
+            nmap
+            gparted
+            ntfs3g
+            exfat-progs
+            nemo
+            anydesk
+            handy
+            wtype
           ];
           users.users.${user} = {
             useDefaultShell = false;
@@ -68,25 +77,6 @@ in
           nix.settings = {
             trusted-users = [ "${user}" ];
           };
-
-          environment.systemPackages = with pkgs; [
-            nmap
-            zenmap
-            gparted
-            ntfs3g
-            exfatprogs
-            exfat
-            nemo-with-extensions
-            anydesk
-            alsa-scarlett-gui
-            handy
-            wtype
-          ];
-          hardware.firmware = [
-            inputs.scarlett2-firmware-nix.packages.${pkgs.stdenv.hostPlatform.system}.scarlett2-firmware-nix
-          ];
-          services.fwupd.enable = true;
-
         };
       homeManager.${user} = {
         imports = with self.modules.homeManager; [
@@ -109,7 +99,7 @@ in
           terminal-gadgets
           wanderer-fastfetch
           obs-studio-nvidia
-          zed
+          zed-editor
           opencode
           ollama-cuda
         ];
@@ -117,11 +107,6 @@ in
           username = "${user}";
           homeDirectory = "/home/${user}";
           stateVersion = "26.11";
-        };
-        programs.zed-editor = {
-          userSettings = {
-            helix_mode = true;
-          };
         };
       };
     }
