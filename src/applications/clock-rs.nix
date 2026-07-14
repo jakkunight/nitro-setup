@@ -10,10 +10,10 @@ in
           clock-rs
         ];
       };
-    homeManager.${feature} = {pkgs, ...}:{
-		home.packages = with pkgs; [
-			clock-rs
-		];
+    homeManager.${feature} = { pkgs, ... }: {
+      home.packages = with pkgs; [
+        clock-rs
+      ];
     };
   };
 }
