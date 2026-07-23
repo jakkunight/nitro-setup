@@ -3,7 +3,7 @@ let
 in
 { inputs, ... }:
 {
-  flake.diskoLayoutFactory.${layout} =
+  flake.lib.diskoLayoutFactory.${layout} =
     {
       deviceName ? throw "A device name is needed. ('disk-label')",
       device ? throw "A device is needed. (/dev/sda)",

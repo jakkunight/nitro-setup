@@ -9,12 +9,12 @@ in
 }:
 {
   flake.modules = lib.mkMerge [
-    (self.factory.mkNvidiaPrimeConfig {
+    (self.lib.factory.mkNvidiaPrimeConfig {
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:1:0:0";
       amdgpuBusId = "";
     })
-    (self.diskoLayoutFactory.mkSimpleNoSwap {
+    (self.lib.diskoLayoutFactory.mkSimpleNoSwap {
       device = "/dev/nvme0n1";
       deviceName = "${feature}";
       host = "${feature}";
@@ -74,8 +74,8 @@ in
         };
     }
   ];
-  flake.nixosConfigurations.${feature} = self.factory.mkHost { name = feature; };
-  flake.nixosConfigurations."${feature}-offline-installer" = self.factory.mkOfflineInstaller {
+  flake.nixosConfigurations.${feature} = self.lib.factory.mkHost { name = feature; };
+  flake.nixosConfigurations."${feature}-offline-installer" = self.lib.factory.mkOfflineInstaller {
     name = feature;
   };
 }

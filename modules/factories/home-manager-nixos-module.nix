@@ -1,6 +1,6 @@
 { inputs, self, ... }:
 {
-  flake.factory.mkHomeManagerNixosModuleConfiguration =
+  flake.lib.factory.mkHomeManagerNixosModuleConfiguration =
     {
       name ? throw "Please provide a valid username",
     }:

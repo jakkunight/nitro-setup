@@ -87,6 +87,8 @@ in
         imports = with self.modules.homeManager; [
           kanagawa
         ];
+        home.pointerCursor.enable = true;
+        stylix.targets.qt.enable = false;
         stylix = {
           polarity = "dark";
           image = "${

@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.factory.mkSystemSecrets =
+  flake.lib.factory.mkSystemSecrets =
     {
       owner ? throw "You must provide a secrets owner",
       defaultSopsFormat ? "yaml",

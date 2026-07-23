@@ -5,7 +5,7 @@
   ...
 }:
 {
-  flake.factory.mkHost =
+  flake.lib.factory.mkHost =
     {
       name ? throw "You must provide a valid host name",
       system ? "x86_64-linux",

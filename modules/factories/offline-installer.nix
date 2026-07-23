@@ -5,7 +5,7 @@
   ...
 }:
 {
-  flake.factory.mkOfflineInstaller =
+  flake.lib.factory.mkOfflineInstaller =
     {
       name ? throw "You must provide a valid host name",
       system ? "x86_64-linux",

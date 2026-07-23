@@ -8,14 +8,14 @@ in
 }:
 {
   flake.modules = lib.mkMerge [
-    (self.factory.mkUser {
+    (self.lib.factory.mkUser {
       name = user;
       uid = 1002;
-      isAdmin = false;
+      isAdmin = true;
       hasNetworkAccess = true;
     })
-    (self.factory.mkHomeManagerNixosModuleConfiguration { name = user; })
-    (self.factory.mkSystemSecrets {
+    (self.lib.factory.mkHomeManagerNixosModuleConfiguration { name = user; })
+    (self.lib.factory.mkSystemSecrets {
       owner = user;
       defaultSopsFile = ./secrets.yaml;
       secrets = [
@@ -65,7 +65,7 @@ in
     }
   ];
   flake.homeConfigurations.${user} = (
-    self.factory.mkHomeConfiguration {
+    self.lib.factory.mkHomeConfiguration {
       inherit user;
       extraModules = with self.modules.homeManager; [
         stylix-standalone-hm

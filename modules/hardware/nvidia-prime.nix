@@ -2,7 +2,7 @@ let
   feature = "nvidia-prime";
 in
 {
-  flake.factory.mkNvidiaPrimeConfig =
+  flake.lib.factory.mkNvidiaPrimeConfig =
     {
       nvidiaBusId ? throw "Set your NVIDIA bus id",
       intelBusId ? throw "Set your Intel bus id",

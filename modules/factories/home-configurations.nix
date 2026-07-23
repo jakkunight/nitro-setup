@@ -5,7 +5,7 @@
   ...
 }:
 {
-  flake.factory.mkHomeConfiguration =
+  flake.lib.factory.mkHomeConfiguration =
     {
       user ? throw "You must provide a homeConfiguration user",
       system ? "x86_64-linux",

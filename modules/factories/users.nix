@@ -3,7 +3,7 @@
   ...
 }:
 {
-  flake.factory.mkUser =
+  flake.lib.factory.mkUser =
     {
       name ? throw "You must provide a valid username",
       uid ? throw "You must provide a valid uid",
