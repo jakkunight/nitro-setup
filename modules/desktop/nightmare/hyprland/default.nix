@@ -33,7 +33,7 @@ in
               locale = "es_PY";
               # master layout for now:
               layout = "master";
-              border_size = 2;
+              border_size = 4;
               gaps_in = 4;
               gaps_out = 8;
               gaps_workspaces = 0;
@@ -47,30 +47,35 @@ in
             };
             decoration = {
               rounding = 16;
-              # rounding_power = 1.0;
+              active_opacity = 0.90;
+              inactive_opacity = 0.85;
+              fullscreen_opacity = 1.0;
               blur = {
                 enabled = true;
-                size = 4;
-                passes = 1;
+                size = 8;
+                passes = 2;
                 ignore_opacity = true;
                 new_optimizations = true;
                 xray = true;
-                contrast = 1.2;
-                brightness = 1.2;
+                contrast = 1.1;
+                brightness = 1.1;
+                noise = 0.24;
               };
               shadow = {
                 enabled = true;
-                range = 15;
+                range = 8;
                 render_power = 3;
-                color = lib.mkForce config.lib.stylix.colors.withHashtag.base0D;
-                color_inactive = lib.mkForce config.lib.stylix.colors.withHashtag.base04;
                 offset = [
                   0
                   0
                 ];
               };
               glow = {
-                enabled = false;
+                enabled = true;
+                range = 20;
+                render_power = 3;
+                color = lib.mkForce config.lib.stylix.colors.withHashtag.base0D;
+                color_inactive = lib.mkForce config.lib.stylix.colors.withHashtag.base04;
               };
             };
             input = {
