@@ -32,7 +32,7 @@ in
             nvidia-prime
             pipewire
             yorha-grub
-            # zen-kernel # Since it's vulnerable to Copy.fail exploit
+            # zen-kernel
             latest-kernel
             zram
             # Disabled due to errors
@@ -60,6 +60,9 @@ in
             inputs.home-manager.packages.${system}.home-manager
             inputs.disko.packages.${system}.disko
             gparted-full
+            helix
+            yazi
+            btop-cuda
           ];
 
           services.tlp = {

@@ -1,8 +1,8 @@
 let
   feature = "tokyonight-theme";
-  # wallpaper = "wanderer-scaramouche-aranaras-wallpaper.jpg";
+  wallpaper = "wanderer-scaramouche-aranaras-wallpaper.jpg";
   # wallpaper = "";
-  wallpaper = "AthenaOS-wallpaper.png";
+  # wallpaper = "AthenaOS-wallpaper.png";
 in
 {
   inputs,
@@ -36,7 +36,7 @@ in
           fonts = {
             serif = {
               package = pkgs.nerd-fonts.caskaydia-cove;
-              name = "CaskaydiaCoveNerdFontPropo";
+              name = "CaskaydiaCove Nerd Font Propo";
               # package = inputs.genshin-font.packages.${pkgs.stdenv.hostPlatform.system}.default;
               # name = "GenshinImpact";
             };
@@ -45,7 +45,7 @@ in
 
             monospace = {
               package = pkgs.nerd-fonts.caskaydia-cove;
-              name = "CaskaydiaCoveNerdFontPropo";
+              name = "CaskaydiaCove Nerd Font Mono";
             };
 
             emoji = {
@@ -98,14 +98,14 @@ in
               # package = inputs.genshin-font.packages.${pkgs.stdenv.hostPlatform.system}.default;
               # name = "GenshinImpact";
               package = pkgs.nerd-fonts.caskaydia-cove;
-              name = "CaskaydiaCoveNerdFontPropo";
+              name = "CaskaydiaCove Nerd Font Propo";
             };
 
             sansSerif = config.stylix.fonts.serif;
 
             monospace = {
               package = pkgs.nerd-fonts.caskaydia-cove;
-              name = "CaskaydiaCoveNerdFontPropo";
+              name = "CaskaydiaCove Nerd Font Mono";
             };
 
             emoji = {

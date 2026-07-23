@@ -45,7 +45,7 @@ in
             nix-auth
             wireshark
             multimedia-production
-            dns-over-tls
+            # dns-over-tls
             devenv
             hermes-agent
             scarlett2-firmware
@@ -70,6 +70,11 @@ in
             ];
           };
 
+          environment.systemPackages = with pkgs; [
+            pi-coding-agent
+
+          ];
+
           environment.sessionVariables = {
             EDITOR = "hx";
           };
@@ -84,6 +89,7 @@ in
           core
           # kanagawa-theme
           tokyonight-theme
+          zed
           gaming
           nightmare-desktop
           swaync
@@ -99,7 +105,6 @@ in
           terminal-gadgets
           wanderer-fastfetch
           obs-studio-nvidia
-          zed-editor
           opencode
           ollama-cuda
         ];

@@ -21,6 +21,9 @@ in
       imports = with self.modules.homeManager; [
         hyprland
       ];
+      home.packages = with pkgs; [
+        wf-recorder
+      ];
       wayland.windowManager.hyprland = {
         enable = true;
         configType = "lua";
@@ -256,6 +259,48 @@ in
                 "SUPER + V"
                 (toLua ''
                   hl.dsp.exec_cmd("${pkgs.kitty}/bin/kitty sh -c '${pkgs.btop}/bin/btop'", { float = true, center = true, size = {"(monitor_w*0.5)", "(monitor_h*0.5)"} })
+                '')
+              ];
+            }
+            # TODO: Add a recording tool. Work in progress.
+            # Should clone the script from @end4
+            #
+            # if pgrep wf-recorder > /dev/null; then
+            #     notify-send "Recording Stopped" "Stopped" -a 'Recorder' &
+            #     pkill wf-recorder &
+            # else
+            #     if [[ $FULLSCREEN_FLAG -eq 1 ]]; then
+            #         notify-send "Starting recording" 'recording_'"$(getdate)"'.mp4' -a 'Recorder' & disown
+            #         if [[ $SOUND_FLAG -eq 1 ]]; then
+            #             wf-recorder -o "$(getactivemonitor)" --pixel-format yuv420p -f './recording_'"$(getdate)"'.mp4' -t --audio="$(getaudiooutput)"
+            #         else
+            #             wf-recorder -o "$(getactivemonitor)" --pixel-format yuv420p -f './recording_'"$(getdate)"'.mp4' -t
+            #         fi
+            #     else
+            #         # If a manual region was provided via --region, use it; otherwise run slurp as before.
+            #         if [[ -n "$MANUAL_REGION" ]]; then
+            #             region="$MANUAL_REGION"
+            #         else
+            #             if ! region="$(slurp 2>&1)"; then
+            #                 notify-send "Recording cancelled" "Selection was cancelled" -a 'Recorder' & disown
+            #                 exit 1
+            #             fi
+            #         fi
+
+            #         notify-send "Starting recording" 'recording_'"$(getdate)"'.mp4' -a 'Recorder' & disown
+            #         if [[ $SOUND_FLAG -eq 1 ]]; then
+            #             wf-recorder --pixel-format yuv420p -f './recording_'"$(getdate)"'.mp4' -t --geometry "$region" --audio="$(getaudiooutput)"
+            #         else
+            #             wf-recorder --pixel-format yuv420p -f './recording_'"$(getdate)"'.mp4' -t --geometry "$region"
+            #         fi
+            #     fi
+            # fi
+            #
+            {
+              _args = [
+                "SUPER + P"
+                (toLua ''
+                  hl.dsp.exec_cmd("${pkgs.wf-recorder}/bin/wf-recorder --audio --file=~/Videos/$(date \"+%F-%H-%M-%S\")-record.mkv")
                 '')
               ];
             }

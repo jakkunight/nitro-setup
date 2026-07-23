@@ -14,7 +14,7 @@ in
         programs = {
           waybar = {
             enable = true;
-            package = inputs.waybar-git.packages.${pkgs.stdenv.hostPlatform.system}.waybar;
+            # package = inputs.waybar-git.packages.${pkgs.stdenv.hostPlatform.system}.waybar;
             systemd.enable = true;
           };
         };

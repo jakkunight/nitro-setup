@@ -9,8 +9,8 @@ in
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
-        # ollama
-        # llama-cpp-vulkan
+        llama-swap
+        llama-swap
         lmstudio
         # vllm
         llmfit
@@ -36,7 +36,7 @@ in
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
-        # llama-cpp-vulkan
+        llama-swap
         (llama-cpp.override { cudaSupport = true; })
         lmstudio
         # vllm
@@ -61,7 +61,7 @@ in
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
-        # llama-cpp-vulkan
+        llama-swap
         (llama-cpp.override { cudaSupport = true; })
         lmstudio
         # vllm
@@ -86,7 +86,7 @@ in
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
-        # llama-cpp-vulkan
+        llama-swap
         (llama-cpp.override { cudaSupport = true; })
         lmstudio
         # vllm
@@ -111,7 +111,7 @@ in
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
-        # llama-cpp-vulkan
+        llama-swap
         (llama-cpp.override { cudaSupport = true; })
         lmstudio
         # vllm
@@ -136,7 +136,7 @@ in
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
-        # llama-cpp-vulkan
+        llama-swap
         (llama-cpp.override { cudaSupport = true; })
         lmstudio
         # vllm

@@ -21,6 +21,7 @@ in
           hyprland-nvidia
           kitty
           foot
+          ghostty
         ];
 
       };
@@ -36,6 +37,7 @@ in
           nightmare-hyprland
           kitty
           foot
+          ghostty
           zen-browser
           nightmare-waybar
           hyprwall
@@ -55,6 +57,11 @@ in
           ${pkgs.fastfetch}/bin/fastfetch
           echo "Welcome back, $USER! (^.^)"
         '';
+
+        programs.kitty = {
+          font.package = lib.mkForce config.stylix.fonts.monospace.package;
+          font.name = lib.mkForce "family=\"${config.stylix.fonts.monospace.name}\"";
+        };
 
         services.hypridle = {
           settings = {
@@ -229,9 +236,9 @@ in
           '';
 
         };
-        # stylix.targets.waybar = {
-        #   font = "serif";
-        # };
+        stylix.targets.waybar = {
+          font = "serif";
+        };
         stylix.targets.zen-browser.profileNames = [
           "default"
         ];

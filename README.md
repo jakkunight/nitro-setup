@@ -30,4 +30,4 @@ modules, and so, while keeping a flexible directory structure.
 - Text editor: Helix
 - Secondary text editor: Zed
 - Web browser: ZenBrowser + Brave
-- File manager: Yazi + Nautilus
+- File manager: Yazi + Nemo
