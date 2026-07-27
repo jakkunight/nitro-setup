@@ -23,6 +23,7 @@ in
         pyright
         python314Packages.python-lsp-server
         simple-completion-language-server
+        markdown-oxide
       ];
       programs.helix = {
         defaultEditor = true;
@@ -132,6 +133,7 @@ in
               };
               language-servers = [
                 "marksman"
+                "markdown-oxide"
                 "rumdl"
                 "scls"
               ];

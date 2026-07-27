@@ -14,6 +14,7 @@ in
           rumdl
           deno
           marksman
+          markdown-oxide
           vscode-json-languageserver
           ron-lsp
           yaml-language-server

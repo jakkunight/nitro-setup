@@ -1,5 +1,5 @@
 let
-  feature = "nightmare-waybar";
+  feature = "_nightmare-waybar";
 in
 { inputs, self, ... }: {
   flake.modules.homeManager.${feature} = { pkgs, lib, ... }: {

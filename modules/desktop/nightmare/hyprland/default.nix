@@ -33,9 +33,9 @@ in
               locale = "es_PY";
               # master layout for now:
               layout = "master";
-              border_size = 4;
-              gaps_in = 4;
-              gaps_out = 8;
+              border_size = 2;
+              gaps_in = 0;
+              gaps_out = 0;
               gaps_workspaces = 0;
               float_gaps = 0;
               resize_on_border = true;
@@ -46,9 +46,9 @@ in
               # snap = { };
             };
             decoration = {
-              rounding = 16;
-              active_opacity = 0.90;
-              inactive_opacity = 0.85;
+              rounding = 0;
+              # active_opacity = 0.90;
+              # inactive_opacity = 0.85;
               fullscreen_opacity = 1.0;
               blur = {
                 enabled = true;
@@ -56,13 +56,13 @@ in
                 passes = 2;
                 ignore_opacity = true;
                 new_optimizations = true;
-                xray = true;
-                contrast = 1.1;
-                brightness = 1.1;
-                noise = 0.24;
+                xray = false;
+                contrast = 1.0;
+                brightness = 1.0;
+                noise = 0.8;
               };
               shadow = {
-                enabled = true;
+                enabled = false;
                 range = 8;
                 render_power = 3;
                 offset = [
@@ -71,7 +71,7 @@ in
                 ];
               };
               glow = {
-                enabled = true;
+                enabled = false;
                 range = 20;
                 render_power = 3;
                 color = lib.mkForce config.lib.stylix.colors.withHashtag.base0D;
