@@ -18,8 +18,8 @@
       programs.silentSDDM =
         let
           backgroundImage = "${
-            self.packages.${pkgs.stdenv.hostPlatform.system}.wanderer-wallpapers
-          }/share/wallpapers/wanderer-speedup-wallpaper.jpg";
+            self.packages.${pkgs.stdenv.hostPlatform.system}.jakkunight-wallpapers
+          }/share/wallpapers/jakkunight-wallpaper-8.png";
         in
         {
           enable = true;

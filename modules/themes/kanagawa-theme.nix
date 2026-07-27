@@ -1,7 +1,8 @@
 let
   feature = "kanagawa-theme";
-  wallpaper = "wanderer-scaramouche-aranaras-wallpaper.jpg";
-  # wallpaper = "AthenaOS-wallpaper.png";
+  # wallpaper = "${self.packages.${pkgs.stdenv.hostPlatform.system}.wanderer-wallpapers}/share/wallpapers/wanderer-scaramouche-aranaras-wallpaper.jpg";
+  # wallpaper = "${self.packages.${pkgs.stdenv.hostPlatform.system}.wanderer-wallpapers}/share/wallpapers/AthenaOS-wallpaper.png";
+
 in
 {
   inputs,
@@ -16,6 +17,11 @@ in
         config,
         ...
       }:
+      let
+        wallpaper = "${
+          self.packages.${pkgs.stdenv.hostPlatform.system}.jakkunight-wallpapers
+        }/share/wallpapers/jakkunight-wallpaper-9.png";
+      in
       {
         imports = with self.modules.nixos; [
           stylix
@@ -29,9 +35,7 @@ in
 
         stylix = {
           polarity = "dark";
-          image = "${
-            self.packages.${pkgs.stdenv.hostPlatform.system}.wanderer-wallpapers
-          }/share/wallpapers/${wallpaper}";
+          image = "${wallpaper}";
           fonts = {
             serif = {
               package = pkgs.nerd-fonts.mononoki;
@@ -83,6 +87,11 @@ in
         config,
         ...
       }:
+      let
+        wallpaper = "${
+          self.packages.${pkgs.stdenv.hostPlatform.system}.jakkunight-wallpapers
+        }/share/wallpapers/jakkunight-wallpaper-9.png";
+      in
       {
         imports = with self.modules.homeManager; [
           kanagawa
@@ -91,9 +100,7 @@ in
         stylix.targets.qt.enable = false;
         stylix = {
           polarity = "dark";
-          image = "${
-            self.packages.${pkgs.stdenv.hostPlatform.system}.wanderer-wallpapers
-          }/share/wallpapers/${wallpaper}";
+          image = "${wallpaper}";
           fonts = {
             serif = {
               # package = inputs.genshin-font.packages.${pkgs.stdenv.hostPlatform.system}.default;
