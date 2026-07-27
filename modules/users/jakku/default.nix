@@ -87,8 +87,9 @@ in
         imports = with self.modules.homeManager; [
           devenv
           core
-          # kanagawa-theme
-          tokyonight-theme
+          kanagawa-theme
+          # tokyonight-theme
+          # pandora-theme
           zed
           gaming
           nightmare-desktop
@@ -106,7 +107,7 @@ in
           wanderer-fastfetch
           obs-studio-nvidia
           opencode
-          ollama-cuda
+          llama-cpp
         ];
         home = {
           username = "${user}";

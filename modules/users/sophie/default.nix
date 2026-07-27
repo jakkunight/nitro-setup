@@ -48,7 +48,7 @@ in
       homeManager.${user} = {
         imports = with self.modules.homeManager; [
           core
-          kanagawa-theme
+          pandora-theme
           gaming
           nightmare-desktop
           swaync

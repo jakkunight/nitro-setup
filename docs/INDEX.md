@@ -10,11 +10,11 @@ timestamp: 2026-07-22
 This file contains the index of the OKF-compatible wiki for Nix/flake-parts
 knowledge.
 
-The wiki follows the [Google OKF Specification](./google-okf.md).
+The wiki follows the [Google OKF Specification](./google-okf-spec.md).
 
 ## Contents
 
-- [Google OKF Specification (local copy)](./google-okf.md)
+- [Google OKF Specification (local copy)](./google-okf-spec.md)
 
 ## Nix & Flake-Parts Knowledge
 

@@ -28,7 +28,7 @@ in
             # zen-kernel # Since it's vulnerable to Copy.fail exploit.
             latest-kernel
             inputs.determinate.nixosModules.default
-            kanagawa-theme
+            pandora-theme
             silent-sddm
             nightmare-desktop
             kde

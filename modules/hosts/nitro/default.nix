@@ -37,8 +37,8 @@ in
             zram
             # Disabled due to errors
             # inputs.determinate.nixosModules.default
-            # kanagawa-theme
-            tokyonight-theme
+            kanagawa-theme
+            # tokyonight-theme
             silent-sddm
             nightmare-desktop
             jakku
