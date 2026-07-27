@@ -57,6 +57,7 @@ in
             anydesk
             handy
             wtype
+            llama-cpp
           ];
           users.users.${user} = {
             useDefaultShell = false;
@@ -83,7 +84,7 @@ in
             trusted-users = [ "${user}" ];
           };
         };
-      homeManager.${user} = {
+      homeManager.${user} = { pkgs, ... }: {
         imports = with self.modules.homeManager; [
           devenv
           core
@@ -113,6 +114,10 @@ in
           username = "${user}";
           homeDirectory = "/home/${user}";
           stateVersion = "26.11";
+          packages = with pkgs; [
+            (llama-cpp.override { cudaSupport = true; })
+
+          ];
         };
       };
     }

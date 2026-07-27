@@ -34,8 +34,8 @@ in
           }/share/wallpapers/${wallpaper}";
           fonts = {
             serif = {
-              package = pkgs.nerd-fonts.caskaydia-cove;
-              name = "CaskaydiaCoveNerdFontPropo";
+              package = pkgs.nerd-fonts.mononoki;
+              name = "MononokiNerdFontPropo";
               # package = inputs.genshin-font.packages.${pkgs.stdenv.hostPlatform.system}.default;
               # name = "GenshinImpact";
             };
@@ -43,8 +43,8 @@ in
             sansSerif = config.stylix.fonts.serif;
 
             monospace = {
-              package = pkgs.nerd-fonts.caskaydia-cove;
-              name = "CaskaydiaCoveNerdFontPropo";
+              package = pkgs.nerd-fonts.mononoki;
+              name = "MononokiNerdFontMono";
             };
 
             emoji = {
@@ -98,15 +98,15 @@ in
             serif = {
               # package = inputs.genshin-font.packages.${pkgs.stdenv.hostPlatform.system}.default;
               # name = "GenshinImpact";
-              package = pkgs.nerd-fonts.caskaydia-cove;
-              name = "CaskaydiaCoveNerdFontPropo";
+              package = pkgs.nerd-fonts.mononoki;
+              name = "MononokiNerdFontPropo";
             };
 
             sansSerif = config.stylix.fonts.serif;
 
             monospace = {
-              package = pkgs.nerd-fonts.caskaydia-cove;
-              name = "CaskaydiaCoveNerdFontPropo";
+              package = pkgs.nerd-fonts.mononoki;
+              name = "MononokiNerdFontMono";
             };
 
             emoji = {
