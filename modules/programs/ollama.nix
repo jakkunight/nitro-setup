@@ -17,8 +17,8 @@ in
 
       ];
       services = {
-# Removed ollama service block
-# Removed llama-cpp service block
+        # Removed ollama service block
+        # Removed llama-cpp service block
       };
     };
   flake.modules.homeManager.${feature} =

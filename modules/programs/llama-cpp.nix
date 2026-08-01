@@ -14,15 +14,15 @@ in
         llmfit
         llama-swap
       ];
-      services = {
-        llama-cpp = {
-          enable = true;
-          package = (pkgs.llama-cpp.override { cudaSupport = true; });
-          settings = {
-            ctx-size = 262144;
-          };
-        };
-      };
+      # services = {
+      #   llama-cpp = {
+      #     enable = true;
+      #     package = (pkgs.llama-cpp.override { cudaSupport = true; });
+      #     settings = {
+      #       ctx-size = 262144;
+      #     };
+      #   };
+      # };
     };
   flake.modules.homeManager.${feature} =
     { pkgs, ... }:

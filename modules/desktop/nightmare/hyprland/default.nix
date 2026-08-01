@@ -59,7 +59,7 @@ in
                 xray = false;
                 contrast = 1.0;
                 brightness = 1.0;
-                noise = 0.8;
+                noise = 0.0;
               };
               shadow = {
                 enabled = false;
