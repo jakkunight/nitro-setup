@@ -22,7 +22,7 @@ in
       {
         imports = with self.modules.nixos; [
           stylix
-          synth-midnight-dark
+          kanagawa
         ];
 
         console = {
@@ -89,7 +89,7 @@ in
       in
       {
         imports = with self.modules.homeManager; [
-          synth-midnight-dark
+          kanagawa
         ];
         home.pointerCursor.enable = true;
         stylix.targets.qt.enable = false;
