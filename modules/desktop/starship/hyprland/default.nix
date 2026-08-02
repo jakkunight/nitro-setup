@@ -47,16 +47,19 @@ in
             };
             decoration = {
               rounding = 0;
-              # active_opacity = 0.90;
-              # inactive_opacity = 0.85;
+              # Holographic window transparency. Complements the theme's
+              # stylix.opacity.applications (0.90) while keeping a visible
+              # blur layer behind windows; fullscreen stays opaque.
+              active_opacity = lib.mkForce 0.88;
+              inactive_opacity = lib.mkForce 0.75;
               fullscreen_opacity = 1.0;
               blur = {
                 enabled = true;
-                size = 8;
-                passes = 2;
+                size = 6;
+                passes = 3;
                 ignore_opacity = true;
                 new_optimizations = true;
-                xray = false;
+                xray = true;
                 contrast = 1.0;
                 brightness = 1.0;
                 noise = 0.0;
@@ -130,7 +133,7 @@ in
               _args = [
                 "SUPER + SPACE"
                 (lib.generators.mkLuaInline ''
-                  hl.dsp.exec_cmd("${pkgs.wofi}/bin/wofi --show drun")
+                  hl.dsp.exec_cmd("${pkgs.quickshell}/bin/quickshell -p ${config.xdg.configHome}/quickshell/launcher.qml -n")
                 '')
               ];
             }
@@ -204,7 +207,7 @@ in
               _args = [
                 "SUPER + D"
                 (toLua ''
-                  hl.dsp.exec_cmd("${pkgs.wofi}/bin/wofi --show drun")
+                  hl.dsp.exec_cmd("${pkgs.quickshell}/bin/quickshell -p ${config.xdg.configHome}/quickshell/launcher.qml -n")
                 '')
               ];
             }

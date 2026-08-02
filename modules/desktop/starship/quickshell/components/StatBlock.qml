@@ -15,14 +15,14 @@ ColumnLayout {
     text: hudStatBlock.label
     color: Colors.base04
     font.family: Colors.fontFamily
-    font.pixelSize: 9
+    font.pixelSize: 12
   }
 
   Text {
     text: hudStatBlock.value
     color: hudStatBlock.accent
     font.family: Colors.fontFamily
-    font.pixelSize: 13
+    font.pixelSize: 17
     font.weight: Font.DemiBold
   }
 }

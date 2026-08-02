@@ -10,8 +10,8 @@ Row {
   spacing: 8
 
   Rectangle {
-    width: 30
-    height: 30
+    width: 38
+    height: 38
     radius: width / 2
     clip: true
     border.color: Colors.base0C
@@ -32,7 +32,7 @@ Row {
       text: hudUserBadge.userName
       color: Colors.base05
       font.family: Colors.fontFamily
-      font.pixelSize: 12
+      font.pixelSize: 15
       font.weight: Font.DemiBold
     }
 
@@ -40,7 +40,7 @@ Row {
       text: "STARSHIP HUD"
       color: Colors.base0C
       font.family: Colors.fontFamily
-      font.pixelSize: 8
+      font.pixelSize: 11
     }
   }
 }

@@ -7,9 +7,10 @@ Rectangle {
   property bool active: false
   property int wsId: 0
   signal activate(int id)
+  signal moveTo(int id)
 
-  width: 30
-  height: 26
+  width: 38
+  height: 32
   radius: 4
   color: active ? Colors.base0C : "transparent"
   border.color: active ? Colors.base0C : (hovered ? Colors.base06 : Colors.base03)
@@ -22,15 +23,21 @@ Rectangle {
     text: hudWorkspaceButton.wsId
     color: active ? Colors.base00 : Colors.base05
     font.family: Colors.fontFamily
-    font.pixelSize: 13
+    font.pixelSize: 16
     font.weight: Font.DemiBold
   }
 
   MouseArea {
     anchors.fill: parent
     hoverEnabled: true
+    acceptedButtons: Qt.LeftButton | Qt.MiddleButton
     onEntered: hudWorkspaceButton.hovered = true
     onExited: hudWorkspaceButton.hovered = false
-    onClicked: hudWorkspaceButton.activate(hudWorkspaceButton.wsId)
+    onClicked: function (mouse) {
+      if (mouse.button === Qt.LeftButton)
+        hudWorkspaceButton.activate(hudWorkspaceButton.wsId)
+      else if (mouse.button === Qt.MiddleButton)
+        hudWorkspaceButton.moveTo(hudWorkspaceButton.wsId)
+    }
   }
 }

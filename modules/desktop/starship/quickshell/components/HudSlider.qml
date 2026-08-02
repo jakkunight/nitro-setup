@@ -40,9 +40,10 @@ Item {
       if (pressed) updateValue(mouse.x)
     }
 
+    // Only emit the change; the parent owns `value` so its binding to the
+    // external state (e.g. root.volume) is never broken by this component.
     function updateValue(x) {
       var v = Math.max(0, Math.min(hudSlider.maxValue, Math.round(x / hudSlider.width * hudSlider.maxValue)))
-      hudSlider.value = v
       hudSlider.changed(v)
     }
   }
