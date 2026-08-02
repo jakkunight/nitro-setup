@@ -18,6 +18,11 @@ ShellRoot {
   property string cpu: "--"
   property string mem: "--"
   property string disk: "--"
+  // raw stats (KiB) kept for the hover popup's total / used-percent readout
+  property int memUsed: 0
+  property int memTotal: 0
+  property int diskUsed: 0
+  property int diskTotal: 0
   property string netRx: "--"
   property string netTx: "--"
   property string temp: "--"
@@ -42,6 +47,20 @@ ShellRoot {
     var g = parseInt(hex.slice(3, 5), 16) / 255
     var b = parseInt(hex.slice(5, 7), 16) / 255
     return Qt.rgba(r, g, b, a)
+  }
+
+  // Formats a KiB value with base-1024 units (KiB/MiB/GiB/TiB), never KB/MB/GB.
+  // The stats script reports /proc/meminfo and `df -Pk` in KiB already.
+  function formatKiB(kib) {
+    var units = ["KiB", "MiB", "GiB", "TiB"]
+    var i = 0
+    var v = kib
+    while (v >= 1024 && i < units.length - 1) {
+      v /= 1024
+      i++
+    }
+    var text = v >= 100 ? v.toFixed(0) : String(parseFloat(v.toFixed(1)))
+    return text + " " + units[i]
   }
 
   function gotoWorkspace(id) {
@@ -92,6 +111,7 @@ ShellRoot {
     model: Quickshell.screens
 
     PanelWindow {
+      id: panel
       required property var modelData
       screen: modelData
 
@@ -199,8 +219,47 @@ ShellRoot {
             StatBlock { label: "NET RX"; value: root.netRx; accent: Colors.base0C }
             StatBlock { label: "NET TX"; value: root.netTx; accent: Colors.base0D }
             StatBlock { label: "CPU"; value: root.cpu; accent: Colors.base0E }
-            StatBlock { label: "RAM"; value: root.mem; accent: Colors.base0A }
-            StatBlock { label: "DISK"; value: root.disk; accent: Colors.base0B }
+
+            // hoverable RAM readout (hover pops up total + used %)
+            Item {
+              implicitWidth: ramBlock.implicitWidth
+              implicitHeight: ramBlock.implicitHeight
+
+              StatBlock {
+                id: ramBlock
+                label: "RAM"
+                value: root.mem
+                accent: Colors.base0A
+              }
+
+              MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered: showStatsPopup(ramBlock, "RAM", root.memUsed, root.memTotal)
+                onExited: hideStatsPopup()
+              }
+            }
+
+            // hoverable DISK readout (hover pops up total + used %)
+            Item {
+              implicitWidth: diskBlock.implicitWidth
+              implicitHeight: diskBlock.implicitHeight
+
+              StatBlock {
+                id: diskBlock
+                label: "DISK"
+                value: root.disk
+                accent: Colors.base0B
+              }
+
+              MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered: showStatsPopup(diskBlock, "DISK", root.diskUsed, root.diskTotal)
+                onExited: hideStatsPopup()
+              }
+            }
+
             StatBlock { label: "TEMP"; value: root.temp; accent: Colors.base09 }
 
             // audio
@@ -304,6 +363,90 @@ ShellRoot {
           }
         }
       }
+
+      // ---- RAM / DISK hover popup ----
+      // One xdg_popup per screen, positioned under the hovered block using the
+      // same anchor/onAnchoring pattern as Quickshell's built-in Tooltip.
+      function showStatsPopup(item, title, usedKiB, totalKiB) {
+        hudPopup.anchorItem = item
+        hudPopup.popupTitle = title
+        hudPopup.popupUsed = root.formatKiB(usedKiB)
+        hudPopup.popupTotal = root.formatKiB(totalKiB)
+        hudPopup.popupPercent = totalKiB > 0 ? Math.round(usedKiB / totalKiB * 100) + "%" : "0%"
+        hudPopup.visible = true
+      }
+
+      function hideStatsPopup() {
+        hudPopup.visible = false
+      }
+
+      PopupWindow {
+        id: hudPopup
+        visible: false
+        width: 220
+        height: content.implicitHeight + 20
+
+        property Item anchorItem: null
+        property string popupTitle: ""
+        property string popupUsed: "--"
+        property string popupTotal: "--"
+        property string popupPercent: "--"
+
+        // repositioned on each show: mapped from the hovered block into the
+        // panel window's coordinate space, then nudged below the block
+        anchor {
+          window: panel
+          adjustment: PopupAdjustment.Flip | PopupAdjustment.Slide
+          gravity: Edges.Bottom | Edges.Right
+
+          onAnchoring: {
+            var pos = panel.contentItem.mapFromItem(
+              hudPopup.anchorItem,
+              hudPopup.anchorItem.width / 2 - hudPopup.width / 2,
+              hudPopup.anchorItem.height + 6
+            )
+            hudPopup.anchor.rect.x = pos.x
+            hudPopup.anchor.rect.y = pos.y
+          }
+        }
+
+        Rectangle {
+          anchors.fill: parent
+          radius: 6
+          color: root.withAlpha(Colors.base00, 0.95)
+          border.color: Colors.base03
+          border.width: 1
+
+          Column {
+            id: content
+            anchors.fill: parent
+            anchors.margins: 10
+            spacing: 4
+
+            Text {
+              text: hudPopup.popupTitle
+              color: Colors.base04
+              font.family: Colors.fontFamily
+              font.pixelSize: 12
+            }
+
+            Text {
+              text: "Total: " + hudPopup.popupTotal
+              color: Colors.base05
+              font.family: Colors.fontFamily
+              font.pixelSize: 13
+            }
+
+            Text {
+              text: "Used: " + hudPopup.popupUsed + " (" + hudPopup.popupPercent + ")"
+              color: Colors.base0C
+              font.family: Colors.fontFamily
+              font.pixelSize: 13
+              font.weight: Font.DemiBold
+            }
+          }
+        }
+      }
     }
   }
 
@@ -384,8 +527,12 @@ ShellRoot {
         try {
           var o = JSON.parse(this.text.trim())
           root.cpu = o.cpu + "%"
-          root.mem = o.mem + "%"
-          root.disk = o.disk + "%"
+          root.mem = root.formatKiB(o.memused) + " / " + root.formatKiB(o.memtotal)
+          root.disk = root.formatKiB(o.diskused) + " / " + root.formatKiB(o.disktotal)
+          root.memUsed = parseInt(o.memused, 10)
+          root.memTotal = parseInt(o.memtotal, 10)
+          root.diskUsed = parseInt(o.diskused, 10)
+          root.diskTotal = parseInt(o.disktotal, 10)
           root.netRx = o.netrx + " KB/s"
           root.netTx = o.nettx + " KB/s"
           root.temp = o.temp + "°C"

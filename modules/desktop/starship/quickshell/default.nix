@@ -47,17 +47,22 @@ in
           CPU=$(( (CPU_DT - CPU_IDLE_DT) * 100 / CPU_DT ))
         fi
 
-        # Memory percent
+        # Memory percent + absolute usage (KiB; /proc/meminfo reports KiB)
         read -r MEM_TOTAL < <(awk '/^MemTotal:/{print $2}' /proc/meminfo)
         read -r MEM_AVAIL < <(awk '/^MemAvailable:/{print $2}' /proc/meminfo)
         MEM=0
+        MEM_USED=0
         if [ "$MEM_TOTAL" -gt 0 ]; then
-          MEM=$(( (MEM_TOTAL - MEM_AVAIL) * 100 / MEM_TOTAL ))
+          MEM_USED=$(( MEM_TOTAL - MEM_AVAIL ))
+          [ "$MEM_USED" -lt 0 ] && MEM_USED=0
+          MEM=$(( MEM_USED * 100 / MEM_TOTAL ))
         fi
 
-        # Root filesystem usage
-        DISK=$(${pkgs.coreutils}/bin/df -P / | awk 'NR==2 {gsub("%","",$5); print $5}')
-        [ -z "$DISK" ] && DISK=0
+        # Root filesystem usage (df -Pk reports 1024-byte blocks, i.e. KiB)
+        read -r DISK_TOTAL DISK_USED DISK < <(${pkgs.coreutils}/bin/df -Pk / | awk 'NR==2 {gsub("%","",$5); print $2, $3, $5}')
+        DISK=''${DISK:-0}
+        DISK_TOTAL=''${DISK_TOTAL:-0}
+        DISK_USED=''${DISK_USED:-0}
 
         # Network rate in KB/s
         NET_RX=$(( (N2_RX - N1_RX) / 1024 ))
@@ -74,11 +79,15 @@ in
         ${pkgs.jq}/bin/jq -nc \
           --arg cpu "$CPU" \
           --arg mem "$MEM" \
+          --arg memused "$MEM_USED" \
+          --arg memtotal "$MEM_TOTAL" \
           --arg disk "$DISK" \
+          --arg diskused "$DISK_USED" \
+          --arg disktotal "$DISK_TOTAL" \
           --arg netrx "$NET_RX" \
           --arg nettx "$NET_TX" \
           --arg temp "$TEMP" \
-          '{cpu: $cpu, mem: $mem, disk: $disk, netrx: $netrx, nettx: $nettx, temp: $temp}'
+          '{cpu: $cpu, mem: $mem, memused: $memused, memtotal: $memtotal, disk: $disk, diskused: $diskused, disktotal: $disktotal, netrx: $netrx, nettx: $nettx, temp: $temp}'
       '';
 
       # Scans the desktop application dirs for *.desktop entries and emits a
