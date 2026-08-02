@@ -1,6 +1,7 @@
 import Quickshell
 import Quickshell.Io
 import Quickshell.Hyprland
+import Quickshell.Services.Notifications
 import QtQuick
 import QtQuick.Layouts
 
@@ -40,6 +41,19 @@ ShellRoot {
   // true while a `brightnessctl set` is in flight so the polling process does
   // not overwrite the optimistic UI value with a stale reading.
   property bool backlightApplying: false
+
+  // mic (capture) mute state + input level.
+  property int micVolume: 0
+  property bool micMuted: false
+  property bool micApplying: false
+
+  // bluetooth adapter power state (polled), so the toggle can flip it.
+  property bool bluetooth: false
+  property bool bluetoothApplying: false
+
+  // notification daemon state
+  property int notificationCount: 0
+  property bool doNotDisturb: false
 
   // ---- helpers ----
   function withAlpha(hex, a) {
@@ -92,6 +106,29 @@ ShellRoot {
 
   function toggleMute() {
     volMute.exec([Paths.wpctl, "set-mute", "@DEFAULT_AUDIO_SINK@", "toggle"])
+  }
+
+  function adjustMicVolume(delta) {
+    var v = Math.max(0, Math.min(100, root.micVolume + delta))
+    root.micVolume = v
+    root.setMicVolume(v)
+  }
+
+  function setMicVolume(v) {
+    root.micApplying = true
+    micSet.exec([Paths.wpctl, "set-volume", "-l", "1", "@DEFAULT_AUDIO_SOURCE@", (v / 100).toFixed(2)])
+    micApplyHold.restart()
+  }
+
+  function toggleMicMute() {
+    micMute.exec([Paths.wpctl, "set-mute", "@DEFAULT_AUDIO_SOURCE@", "toggle"])
+  }
+
+  function toggleBluetooth() {
+    root.bluetoothApplying = true
+    var cmd = root.bluetooth ? "off" : "on"
+    bluetoothToggle.exec([Paths.bluetoothctl, "power", cmd])
+    bluetoothApplyHold.restart()
   }
 
   function adjustBacklight(delta) {
@@ -323,6 +360,67 @@ ShellRoot {
               }
             }
 
+            // mic (capture) mute + input level
+            Item {
+              Layout.alignment: Qt.AlignVCenter
+              implicitWidth: micCol.implicitWidth
+              implicitHeight: micCol.implicitHeight
+
+              Column {
+                id: micCol
+                spacing: 4
+
+                Text {
+                  text: root.micMuted ? "MIC OFF" : "MIC " + root.micVolume + "%"
+                  color: root.micMuted ? Colors.base08 : Colors.base05
+                  font.family: Colors.fontFamily
+                  font.pixelSize: 13
+                  font.weight: Font.DemiBold
+                }
+
+                HudSlider {
+                  value: root.micVolume
+                  maxValue: 100
+                  onChanged: function (v) {
+                    root.micVolume = v
+                    root.setMicVolume(v)
+                  }
+                }
+
+                // mic mute toggle
+                Rectangle {
+                  width: 40
+                  height: 20
+                  radius: 3
+                  color: "transparent"
+                  border.color: root.micMuted ? Colors.base08 : Colors.base03
+                  border.width: 1
+
+                  Text {
+                    anchors.centerIn: parent
+                    text: "MUTE"
+                    color: root.micMuted ? Colors.base08 : Colors.base05
+                    font.family: Colors.fontFamily
+                    font.pixelSize: 11
+                  }
+
+                  MouseArea {
+                    anchors.fill: parent
+                    onClicked: root.toggleMicMute()
+                  }
+                }
+              }
+
+              // transparent overlay: wheel over the whole mic block
+              MouseArea {
+                anchors.fill: parent
+                acceptedButtons: Qt.NoButton
+                onWheel: function (wheel) {
+                  root.adjustMicVolume(wheel.angleDelta.y > 0 ? 5 : -5)
+                }
+              }
+            }
+
             // backlight
             Item {
               Layout.alignment: Qt.AlignVCenter
@@ -357,6 +455,54 @@ ShellRoot {
                 acceptedButtons: Qt.NoButton
                 onWheel: function (wheel) {
                   root.adjustBacklight(wheel.angleDelta.y > 0 ? 5 : -5)
+                }
+              }
+            }
+
+            // bluetooth toggle (click toggles adapter power; reflects state)
+            Item {
+              Layout.alignment: Qt.AlignVCenter
+              implicitWidth: btBlock.implicitWidth
+              implicitHeight: btBlock.implicitHeight
+
+              StatBlock {
+                id: btBlock
+                label: "BT"
+                value: root.bluetooth ? "ON" : "OFF"
+                accent: root.bluetooth ? Colors.base0B : Colors.base08
+              }
+
+              MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                onClicked: root.toggleBluetooth()
+              }
+            }
+
+            // notification indicator (count; click toggles DND, double-click clears)
+            Item {
+              Layout.alignment: Qt.AlignVCenter
+              implicitWidth: notifBlock.implicitWidth
+              implicitHeight: notifBlock.implicitHeight
+
+              StatBlock {
+                id: notifBlock
+                label: "NOTIF"
+                value: root.notificationCount > 0 ? String(root.notificationCount) : "—"
+                accent: root.doNotDisturb ? Colors.base08 : (root.notificationCount > 0 ? Colors.base0B : Colors.base04)
+              }
+
+              MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                onClicked: root.doNotDisturb = !root.doNotDisturb
+                onDoubleClicked: {
+                  var notifs = notifServer.trackedNotifications.values
+                  for (var i = 0; i < notifs.length; i++) {
+                    notifs[i].dismiss()
+                  }
                 }
               }
             }
@@ -527,8 +673,8 @@ ShellRoot {
         try {
           var o = JSON.parse(this.text.trim())
           root.cpu = o.cpu + "%"
-          root.mem = root.formatKiB(o.memused) + " / " + root.formatKiB(o.memtotal)
-          root.disk = root.formatKiB(o.diskused) + " / " + root.formatKiB(o.disktotal)
+          root.mem = root.formatKiB(o.memused)
+          root.disk = root.formatKiB(o.diskused)
           root.memUsed = parseInt(o.memused, 10)
           root.memTotal = parseInt(o.memtotal, 10)
           root.diskUsed = parseInt(o.diskused, 10)
@@ -622,5 +768,132 @@ ShellRoot {
   Process { id: wsDispatch }
   Process { id: volSet }
   Process { id: volMute }
+  Process { id: micSet }
+  Process { id: micMute }
+  Process { id: bluetoothToggle }
   Process { id: backlightSet }
+
+  // audio mic (capture) volume / mute state. Mirrors the sink volGet above so
+  // the MUTE toggle and slider reflect the default audio source (the mic).
+  Process {
+    id: micGet
+    command: [Paths.wpctl, "get-volume", "@DEFAULT_AUDIO_SOURCE@"]
+    running: true
+    stdout: StdioCollector {
+      onStreamFinished: {
+        try {
+          var s = this.text.trim()
+          var m = s.match(/([\d.]+)/)
+          var parsed = m ? Math.round(parseFloat(m[1]) * 100) : 0
+          if (!root.micApplying) root.micVolume = parsed
+          root.micMuted = s.indexOf("MUTED") !== -1
+        } catch (e) {}
+      }
+    }
+  }
+
+  Timer {
+    interval: 1000
+    running: true
+    repeat: true
+    onTriggered: micGet.running = true
+  }
+
+  // window during which a just-issued `wpctl set-volume @DEFAULT_AUDIO_SOURCE@`
+  // is expected to land; the micGet poll will not overwrite the UI meanwhile.
+  Timer {
+    id: micApplyHold
+    interval: 400
+    repeat: false
+    onTriggered: root.micApplying = false
+  }
+
+  // bluetooth adapter power state (bluetoothctl show -> "Powered: yes/no").
+  Process {
+    id: bluetoothGet
+    command: [Paths.bluetoothctl, "show"]
+    running: true
+    stdout: StdioCollector {
+      onStreamFinished: {
+        try {
+          if (!root.bluetoothApplying) root.bluetooth = this.text.indexOf("Powered: yes") !== -1
+        } catch (e) {}
+      }
+    }
+  }
+
+  Timer {
+    interval: 3000
+    running: true
+    repeat: true
+    onTriggered: bluetoothGet.running = true
+  }
+
+  // window during which a just-issued `bluetoothctl power` toggle is expected
+  // to land; the bluetoothGet poll will not overwrite the UI meanwhile.
+  Timer {
+    id: bluetoothApplyHold
+    interval: 800
+    repeat: false
+    onTriggered: root.bluetoothApplying = false
+  }
+
+  // ---- notification daemon ----
+  // Registers as org.freedesktop.Notifications on the D-Bus session bus,
+  // receives notifications from any app, and displays them as popup bubbles
+  // stacked in the top-right corner of each screen. Replaces swaync/mako.
+  NotificationServer {
+    id: notifServer
+    keepOnReload: true
+    bodySupported: true
+    actionsSupported: true
+    inlineReplySupported: false
+    imageSupported: true
+    actionIconsSupported: true
+    persistenceSupported: false
+    
+
+    onNotification: function(notification) {
+      notification.tracked = true
+    }
+  }
+
+  // Update the in-bar notification count whenever tracked notifications change.
+  Connections {
+    target: notifServer
+    function onTrackedNotificationsChanged() {
+      root.notificationCount = notifServer.trackedNotifications.count
+    }
+  }
+
+  // One popup panel per screen, bound to the server's trackedNotifications.
+  Variants {
+    model: Quickshell.screens
+
+    PanelWindow {
+      required property var modelData
+      screen: modelData
+      anchors { top: true; right: true }
+      exclusiveZone: 0
+      margins { top: 8; right: 12; left: 0; bottom: 0 }
+      color: "transparent"
+      visible: notifServer.trackedNotifications.count > 0 && !root.doNotDisturb
+
+      Column {
+        anchors.fill: parent
+        anchors.bottom: parent.bottom
+        spacing: 6
+        transformOrigin: Item.BottomRight
+
+        Repeater {
+          model: notifServer.trackedNotifications
+
+          NotificationPopup {
+            notification: modelData
+            colorRoot: root
+          }
+        }
+      }
+    }
+  }
 }

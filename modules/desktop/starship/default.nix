@@ -42,7 +42,6 @@ in
           ghostty
           zen-browser
           hyprwall
-          swaync
           # ashell
           hyprlock
           hypridle

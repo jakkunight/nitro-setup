@@ -95,9 +95,14 @@ in
       # dirs come first so a duplicate basename prefers the user's copy.
       starshipApps = pkgs.writeShellScriptBin "starship-apps" ''
         # shellcheck disable=SC1091
+        set -u
 
-        # Cache the scan for an hour so repeated launcher invocations are instant.
-        CACHE_DIR="/tmp/starship-apps"
+        # Cache the scan so repeated launcher invocations are instant. The scan
+        # below is a pure-bash loop with a single jq pass, so even a cold (cache
+        # miss) run completes in a few dozen milliseconds instead of spawning jq
+        # once per application.
+        CACHE_DIR="$HOME/.cache/starship-apps"
+        if [ -n "$XDG_CACHE_HOME" ]; then CACHE_DIR="$XDG_CACHE_HOME/starship-apps"; fi
         CACHE="$CACHE_DIR/apps.json"
         ${pkgs.coreutils}/bin/mkdir -p "$CACHE_DIR"
         if [ -f "$CACHE" ]; then
@@ -113,15 +118,15 @@ in
         for d in "$HOME/.nix-profile/share" "/run/current-system/sw/share"; do
           dirs="$dirs:$d/applications"
         done
-        while IFS= read -r d; do
-          [ -n "$d" ] && dirs="$dirs:$d/applications"
-        done < <(echo "$XDG_DATA_DIRS" | ${pkgs.coreutils}/bin/tr ':' '\n')
+         if [ -n "$XDG_DATA_DIRS" ]; then
+           while IFS= read -r d; do
+             [ -n "$d" ] && dirs="$dirs:$d/applications"
+           done < <(printf '%s\n' "$XDG_DATA_DIRS" | tr ':' '\n')
+         fi
 
         tmp="$(${pkgs.coreutils}/bin/mktemp)"
         trap '${pkgs.coreutils}/bin/rm -f "$tmp"' EXIT
 
-        seen=""
-        seen_names=""
         old_ifs="$IFS"
         IFS=:
         for dir in $dirs; do
@@ -129,9 +134,7 @@ in
           [ -d "$dir" ] || continue
           for f in "$dir"/*.desktop; do
             [ -f "$f" ] || continue
-            base="$(${pkgs.coreutils}/bin/basename "$f")"
-            case " $seen " in *" $base "*) continue ;; esac
-            seen="$seen $base"
+
 
             name=""
             generic=""
@@ -141,25 +144,25 @@ in
             nodisplay=""
             section=""
             while IFS= read -r line || [ -n "$line" ]; do
-              line="$(${pkgs.coreutils}/bin/tr -d '\r' <<< "$line")"
               [ -n "$line" ] || continue
               case "$line" in
                 '#'*) continue ;;
               esac
               case "$line" in
                 '['*']')
-                  section="$(${pkgs.coreutils}/bin/tr -d '[]' <<< "$line")"
+                  section="$line"
                   continue
                   ;;
               esac
-              [ "$section" = "Desktop Entry" ] || continue
-              case "$line" in
-                'Name='*) name="$(${pkgs.coreutils}/bin/cut -d= -f2- <<< "$line")" ;;
-                'GenericName='*) generic="$(${pkgs.coreutils}/bin/cut -d= -f2- <<< "$line")" ;;
-                'Icon='*) icon="$(${pkgs.coreutils}/bin/cut -d= -f2- <<< "$line")" ;;
-                'Type='*) type="$(${pkgs.coreutils}/bin/cut -d= -f2- <<< "$line")" ;;
-                'NoDisplay=true'*) nodisplay=1 ;;
-                'Hidden=true'*) hidden=1 ;;
+              [ "$section" = "[Desktop Entry]" ] || continue
+              IFS='=' read -r key rest <<< "$line"
+              case "$key" in
+                Name) name="$rest" ;;
+                GenericName) generic="$rest" ;;
+                Icon) icon="$rest" ;;
+                Type) type="$rest" ;;
+                NoDisplay) [ "$rest" = "true" ] && nodisplay=1 ;;
+                Hidden) [ "$rest" = "true" ] && hidden=1 ;;
               esac
             done < "$f"
 
@@ -168,24 +171,26 @@ in
             [ -z "$nodisplay" ] || continue
             [ -z "$hidden" ] || continue
 
-            # One entry per app name (e.g. kdenlive.desktop vs
-            # org.kde.kdenlive.desktop both claim "Kdenlive").
-            lc_name="$(${pkgs.coreutils}/bin/tr 'A-Z' 'a-z' <<< "$name")"
-            case " $seen_names " in *" $lc_name "*) continue ;; esac
-            seen_names="$seen_names $lc_name"
-
-            ${pkgs.jq}/bin/jq -nc \
-              --arg name "$name" \
-              --arg generic "$generic" \
-              --arg icon "$icon" \
-              --arg path "$f" \
-              '{name: $name, generic: $generic, icon: $icon, path: $path}' >> "$tmp"
+            # Emit a tab-separated record. None of these fields ever contain a
+            # TAB, so a single jq pass below builds the whole JSON array
+            # without spawning jq once per application (the old bottleneck).
+            # Duplicate app names are de-duplicated by jq (first occurrence
+            # wins, so a user copy in an earlier dir beats a system copy).
+            ${pkgs.coreutils}/bin/printf '%s\t%s\t%s\t%s\n' "$name" "$generic" "$icon" "$f" >> "$tmp"
           done
         done
         IFS="$old_ifs"
 
-        ${pkgs.jq}/bin/jq -s '.' "$tmp" | ${pkgs.coreutils}/bin/tee "$CACHE" > /dev/null
-        ${pkgs.coreutils}/bin/cat "$CACHE"
+        ${pkgs.jq}/bin/jq -Rn \
+          '[ inputs
+             | split("\t")
+             | select(length >= 4)
+             | {name: .[0], generic: .[1], icon: .[2], path: .[3]} ]
+          | reduce .[] as $x ({seen:{}, out:[]};
+              ($x.name | ascii_downcase) as $k
+              | if .seen[$k] then . else .seen[$k] = true | .out = (.out + [$x]) end)
+          | .out' \
+          "$tmp" | ${pkgs.coreutils}/bin/tee "$CACHE"
       '';
 
       # A JS palette file that the QML can import (import "colors.js" as Colors).
@@ -240,6 +245,7 @@ in
         var hyprctl = "${inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland}/bin/hyprctl";
         var wpctl = "${pkgs.wireplumber}/bin/wpctl";
         var brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+        var bluetoothctl = "${pkgs.bluez}/bin/bluetoothctl";
         var stats = "${starshipStats}/bin/starship-stats";
         var face = "${config.home.homeDirectory}/.face";
         var userName = "${config.home.username}";
@@ -252,7 +258,9 @@ in
         quickshell
         brightnessctl
         wireplumber
+        bluez
         glib.bin
+        libnotify
         starshipStats
         starshipApps
       ];
@@ -266,6 +274,7 @@ in
         "quickshell/components/StatBlock.qml".source = ./components/StatBlock.qml;
         "quickshell/components/HudSlider.qml".source = ./components/HudSlider.qml;
         "quickshell/components/UserBadge.qml".source = ./components/UserBadge.qml;
+        "quickshell/components/NotificationPopup.qml".source = ./components/NotificationPopup.qml;
       };
 
       systemd.user.services.quickshell = {

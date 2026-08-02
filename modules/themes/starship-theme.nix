@@ -22,7 +22,7 @@ in
       {
         imports = with self.modules.nixos; [
           stylix
-          kanagawa
+          colors
         ];
 
         console = {
@@ -89,7 +89,7 @@ in
       in
       {
         imports = with self.modules.homeManager; [
-          kanagawa
+          colors
         ];
         home.pointerCursor.enable = true;
         stylix.targets.qt.enable = false;
