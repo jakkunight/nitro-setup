@@ -55,14 +55,14 @@ in
               fullscreen_opacity = 1.0;
               blur = {
                 enabled = true;
-                size = 6;
-                passes = 3;
+                size = 2;
+                passes = 2;
                 ignore_opacity = true;
                 new_optimizations = true;
-                xray = true;
-                contrast = 1.0;
-                brightness = 1.0;
-                noise = 0.0;
+                xray = false;
+                contrast = 0.8;
+                brightness = 0.8;
+                noise = 0.2;
               };
               shadow = {
                 enabled = false;

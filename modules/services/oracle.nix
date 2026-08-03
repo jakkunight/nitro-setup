@@ -16,6 +16,9 @@ in
         enable = true;
         openFirewall = true;
         volumeName = "oracledb";
+        memoryLimit = "1G";
+        memoryReservation = "512M";
+        swapLimit = "512M";
       };
     };
 }

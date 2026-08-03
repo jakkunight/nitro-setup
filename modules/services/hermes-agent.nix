@@ -30,12 +30,12 @@ in
           base_url = "http//localhost:8080/v1";
         };
         display = {
-          compact = false;
+          compact = true;
           personality = "kawaii";
         };
         memory = {
           memory_enabled = true;
-          user_profile_enabled = true;
+          user_profile_enabled = false;
         };
       };
     };
