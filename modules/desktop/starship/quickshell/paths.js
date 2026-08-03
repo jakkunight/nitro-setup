@@ -3,5 +3,5 @@ var Paths = {
   stats: "stats",
   wpctl: "wpctl",
   brightnessctl: "brightnessctl",
-  bluetoothctl: "bluetoothctl"
-}
+  bluetoothctl: "bluetoothctl",
+};

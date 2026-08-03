@@ -8,5 +8,5 @@ var Colors = {
   base0A: "#44475a",
   base0C: "#90a4ae",
   base0D: "#007acc",
-  base0E: "#004d40"
-}
+  base0E: "#004d40",
+};
