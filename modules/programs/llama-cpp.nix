@@ -1,18 +1,21 @@
 let
   feature = "llama-cpp";
-
 in
-{ inputs, ... }: {
+{ inputs, ... }:
+let
+  pkgs-stable = import inputs.nixpkgs-stable {
+    system = "x86_64-linux";
+    config.allowUnfree = true;
+  };
+in
+{
   flake.modules.nixos.${feature} =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
-      nixpkgs.config = {
-        allowUnfree = true;
-      };
+      nixpkgs.config.allowUnfree = true;
       environment.systemPackages = with pkgs; [
-        (llama-cpp.override { cudaSupport = true; })
+        (pkgs-stable.llama-cpp.override { cudaSupport = true; })
         llmfit
-        llama-swap
       ];
       # services = {
       #   llama-cpp = {
@@ -29,9 +32,8 @@ in
     {
       nixpkgs.config.allowUnfree = true;
       home.packages = with pkgs; [
-        (llama-cpp.override { cudaSupport = true; })
+        (pkgs-stable.llama-cpp.override { cudaSupport = true; })
         llmfit
-        llama-swap
       ];
     };
 }

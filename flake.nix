@@ -4,6 +4,7 @@
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     # nixpkgs.url = "https://flakehub.com/f/DeterminateSystems/nixpkgs-weekly/*";
     nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/26.05";
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
     # all other inputs your flake needs, like nixpkgs.
