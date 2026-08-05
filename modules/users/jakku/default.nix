@@ -88,13 +88,13 @@ in
         imports = with self.modules.homeManager; [
           devenv
           core
-          # kanagawa-theme
+          kanagawa-theme
           # tokyonight-theme
           # pandora-theme
           zed
           gaming
-          # nightmare-desktop
-          starship-desktop
+          nightmare-desktop
+          # starship-desktop
           swaync
           kde
           libreoffice

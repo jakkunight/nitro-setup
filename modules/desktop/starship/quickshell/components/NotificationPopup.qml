@@ -21,6 +21,11 @@ Item {
   // Passed from the parent shell for color alpha helper.
   required property var colorRoot
 
+  // When true the bubble never auto-dismisses; it only disappears when the
+  // notification is explicitly dismissed/closed (used by the notification
+  // center so its history is not emptied by popup timeouts).
+  property bool persistent: false
+
   implicitWidth: 360
   implicitHeight: contentCol.implicitHeight + 24
 

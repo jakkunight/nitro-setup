@@ -37,11 +37,11 @@ in
             zram
             # Disabled due to errors
             # inputs.determinate.nixosModules.default
-            # kanagawa-theme
+            kanagawa-theme
             # tokyonight-theme
             silent-sddm
-            # nightmare-desktop
-            starship-desktop
+            nightmare-desktop
+            # starship-desktop
             jakku
           ];
           # Enable flakes!

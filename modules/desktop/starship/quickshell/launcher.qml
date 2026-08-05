@@ -86,8 +86,25 @@ ShellRoot {
   }
 
   function launchApp(app) {
-    // `gio launch <path>` starts the app from its .desktop file, detached so
-    // it outlives this launcher instance.
+    // Prefer Quickshell's desktop-entry index: it parses the Exec line into a
+    // safe argv list and runs with the entry's working directory, avoiding
+    // `gio launch`'s failures with %-field codes and session-env differences.
+    // launchApp's entry.execute() is equivalent to execDetached, so the app
+    // outlives this launcher instance.
+    if (app && app.path) {
+      var slash = app.path.lastIndexOf("/")
+      var base = slash >= 0 ? app.path.substring(slash + 1) : app.path
+      var entry = base ? DesktopEntries.byId(base) : null
+      if (!entry && base && base.indexOf(".desktop") === base.length - 8)
+        entry = DesktopEntries.byId(base.substring(0, base.length - 8))
+      if (!entry) entry = DesktopEntries.heuristicLookup(app.name)
+      if (entry) {
+        entry.execute()
+        Qt.quit()
+        return
+      }
+    }
+    // Fallback: gio launch works for plain desktop entries without field codes.
     Quickshell.execDetached([Paths.gio, "launch", app.path])
     Qt.quit()
   }
@@ -117,6 +134,11 @@ ShellRoot {
     onVisibleChanged: {
       if (visible) searchInput.forceActiveFocus()
     }
+
+    // This instance is launched on demand and starts already visible, so
+    // onVisibleChanged may never fire; grab focus unconditionally at startup
+    // so the Keys handlers (Enter/Esc/Up/Down) actually receive input.
+    Component.onCompleted: searchInput.forceActiveFocus()
 
     // full-screen backdrop: clicking anywhere outside the card dismisses the
     // launcher, without relying on fragile focus-change tracking.

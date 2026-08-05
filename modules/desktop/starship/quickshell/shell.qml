@@ -1,7 +1,11 @@
+//@ pragma UseQApplication
+// UseQApplication is required for system tray context menus (platform menus)
+// to work; see https://quickshell.org/docs/v0.3.0/guide/advanced.
 import Quickshell
 import Quickshell.Io
 import Quickshell.Hyprland
 import Quickshell.Services.Notifications
+import Quickshell.Services.SystemTray
 import QtQuick
 import QtQuick.Layouts
 
@@ -151,6 +155,8 @@ ShellRoot {
       id: panel
       required property var modelData
       screen: modelData
+      // notification center visibility (per-screen; toggled by the NOTIF block)
+      property bool notifCenterVisible: false
 
       anchors {
         top: true
@@ -480,7 +486,35 @@ ShellRoot {
               }
             }
 
-            // notification indicator (count; click toggles DND, double-click clears)
+            // system tray (native Quickshell StatusNotifier host)
+            Item {
+              Layout.alignment: Qt.AlignVCenter
+              implicitWidth: trayRow.implicitWidth
+              implicitHeight: trayRow.implicitHeight
+              visible: SystemTray.items.count > 0
+
+              Row {
+                id: trayRow
+                spacing: 4
+
+                Repeater {
+                  model: SystemTray.items
+
+                  delegate: TrayIcon {
+                    id: trayDelegate
+                    required property var modelData
+                    item: modelData
+                    panelWindow: panel
+                    onHovered: function (trayItem) {
+                      panel.showTrayTooltip(trayItem, trayDelegate)
+                    }
+                    onExited: panel.hideTrayTooltip()
+                  }
+                }
+              }
+            }
+
+            // notification indicator (count; click opens the center, double-click clears)
             Item {
               Layout.alignment: Qt.AlignVCenter
               implicitWidth: notifBlock.implicitWidth
@@ -497,7 +531,7 @@ ShellRoot {
                 anchors.fill: parent
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
-                onClicked: root.doNotDisturb = !root.doNotDisturb
+                onClicked: panel.notifCenterVisible = !panel.notifCenterVisible
                 onDoubleClicked: {
                   var notifs = notifServer.trackedNotifications.values
                   for (var i = 0; i < notifs.length; i++) {
@@ -524,6 +558,18 @@ ShellRoot {
 
       function hideStatsPopup() {
         hudPopup.visible = false
+      }
+
+      function showTrayTooltip(item, target) {
+        trayTooltip.tooltipText = item ? item.tooltipTitle : ""
+        trayTooltip.targetItem = target
+        trayTooltip.width = trayTooltipText.implicitWidth + 20
+        trayTooltip.height = trayTooltipText.implicitHeight + 12
+        trayTooltip.visible = true
+      }
+
+      function hideTrayTooltip() {
+        trayTooltip.visible = false
       }
 
       PopupWindow {
@@ -589,6 +635,180 @@ ShellRoot {
               font.family: Colors.fontFamily
               font.pixelSize: 13
               font.weight: Font.DemiBold
+            }
+          }
+        }
+      }
+
+      // ---- system tray tooltip ----
+      PopupWindow {
+        id: trayTooltip
+        visible: false
+        color: "transparent"
+
+        property string tooltipText: ""
+        property Item targetItem: null
+
+        onAnchoring: {
+          if (!trayTooltip.targetItem) return
+          var pos = panel.contentItem.mapFromItem(trayTooltip.targetItem, 0, 0)
+          anchor.rect.x = pos.x - trayTooltip.width / 2
+          anchor.rect.y = pos.y - trayTooltip.height - 6
+        }
+
+        Rectangle {
+          anchors.fill: parent
+          color: root.withAlpha(Colors.base01, 0.95)
+          border.color: Colors.base0C
+          border.width: 1
+          radius: 4
+
+          Text {
+            id: trayTooltipText
+            anchors.centerIn: parent
+            text: trayTooltip.tooltipText
+            color: Colors.base05
+            font.family: Colors.fontFamily
+            font.pixelSize: 12
+          }
+        }
+      }
+
+      // ---- notification center ----
+      PopupWindow {
+        id: notifCenter
+        visible: panel.notifCenterVisible
+        width: 380
+        height: 560
+        color: "transparent"
+
+        onAnchoring: {
+          if (!panel) return
+          anchor.rect.x = panel.width - notifCenter.width - 12
+          anchor.rect.y = panel.height + 12
+          anchor.rect.width = notifCenter.width
+          anchor.rect.height = notifCenter.height
+        }
+
+        onVisibleChanged: {
+          if (!visible) panel.notifCenterVisible = false
+        }
+
+        Rectangle {
+          anchors.fill: parent
+          color: root.withAlpha(Colors.base00, 0.95)
+          border.color: Colors.base0C
+          border.width: 1
+          radius: 10
+
+          Column {
+            anchors.fill: parent
+            anchors.margins: 14
+            spacing: 12
+
+            // header
+            Row {
+              width: parent.width
+              spacing: 8
+
+              Text {
+                text: "Notifications"
+                color: Colors.base05
+                font.family: Colors.fontFamily
+                font.pixelSize: 15
+                font.weight: Font.DemiBold
+              }
+
+              Item { width: 1; height: 1; Layout.fillWidth: true }
+
+              // DND toggle
+              Rectangle {
+                id: notifDndButton
+                width: notifDndText.implicitWidth + 16
+                height: 24
+                radius: 4
+                color: root.doNotDisturb ? Colors.base08 : Colors.base01
+                border.color: root.doNotDisturb ? Colors.base08 : Colors.base03
+
+                Text {
+                  id: notifDndText
+                  anchors.centerIn: parent
+                  text: root.doNotDisturb ? "Muted" : "Mute"
+                  color: Colors.base05
+                  font.family: Colors.fontFamily
+                  font.pixelSize: 12
+                }
+
+                MouseArea {
+                  anchors.fill: parent
+                  hoverEnabled: true
+                  cursorShape: Qt.PointingHandCursor
+                  onClicked: root.doNotDisturb = !root.doNotDisturb
+                }
+              }
+
+              // close button
+              Rectangle {
+                width: 24
+                height: 24
+                radius: 4
+                color: Colors.base01
+                border.color: Colors.base03
+
+                Text {
+                  anchors.centerIn: parent
+                  text: "×"
+                  color: Colors.base05
+                  font.family: Colors.fontFamily
+                  font.pixelSize: 14
+                }
+
+                MouseArea {
+                  anchors.fill: parent
+                  hoverEnabled: true
+                  cursorShape: Qt.PointingHandCursor
+                  onClicked: notifCenter.visible = false
+                }
+              }
+            }
+
+            // list
+            ListView {
+              id: notifList
+              width: parent.width
+              height: parent.height - 36
+              clip: true
+              spacing: 8
+
+              model: notifServer.trackedNotifications
+
+              delegate: Item {
+                width: notifList.width
+                height: notificationCard.implicitHeight
+
+                NotificationPopup {
+                  id: notificationCard
+                  anchors.horizontalCenter: parent.horizontalCenter
+                  width: parent.width - 8
+                  notification: modelData
+                  colorRoot: root
+                  persistent: true
+                }
+              }
+
+              // empty state
+              onCountChanged: notifEmpty.visible = notifList.count === 0
+              Component.onCompleted: notifEmpty.visible = notifList.count === 0
+
+              Text {
+                id: notifEmpty
+                anchors.centerIn: parent
+                text: "No notifications"
+                color: Colors.base04
+                font.family: Colors.fontFamily
+                font.pixelSize: 13
+                visible: false
+              }
             }
           }
         }
