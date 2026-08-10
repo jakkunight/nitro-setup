@@ -100,6 +100,9 @@
     llama-cpp-turboquant = {
       url = "github:TheTom/llama-cpp-turboquant";
     };
+    llama-cpp = {
+      url = "github:ggml-org/llama.cpp";
+    };
     scarlett2-firmware-nix = {
       url = "github:jakkunight/scarlett2-firmware-nix";
     };

@@ -8,7 +8,7 @@ in
     {
       nixpkgs.config.allowUnfree = true;
       environment.systemPackages = with pkgs; [
-        (llama-cpp.override { cudaSupport = true; })
+        (inputs.llama-cpp.packages.${pkgs.stdenv.hostPlatform.system}.cuda)
         llmfit
       ];
       # services = {
@@ -26,7 +26,7 @@ in
     {
       nixpkgs.config.allowUnfree = true;
       home.packages = with pkgs; [
-        (llama-cpp.override { cudaSupport = true; })
+        (inputs.llama-cpp.packages.${pkgs.stdenv.hostPlatform.system}.cuda)
         llmfit
       ];
     };
