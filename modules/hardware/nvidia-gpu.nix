@@ -4,7 +4,12 @@ in
 {
   flake.modules = {
     nixos.${feature} =
-      { config, pkgs, ... }:
+      {
+        config,
+        pkgs,
+        lib,
+        ...
+      }:
       {
         # Enable unfree packages:
         nixpkgs.config.allowUnfree = true;
@@ -23,7 +28,11 @@ in
 
         hardware.nvidia = {
           package = config.boot.kernelPackages.nvidiaPackages.production;
-          open = false;
+          # Use open = lib.mkDefault false; for compatibility.
+          # For newer cards (RTX 30xx/40xx), set open = true via
+          # your host config or specialisation to use the open-source
+          # kernel driver.
+          open = lib.mkDefault false;
           modesetting = {
             enable = true;
           };

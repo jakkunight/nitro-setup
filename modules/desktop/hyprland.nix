@@ -51,15 +51,26 @@ in
           nvidia-vaapi-driver
           egl-wayland
         ];
+        # Sync mode (default) - NVIDIA handles display, full power.
+        # Set NVIDIA env vars for GLX/VAAPI when using sync mode.
+        # In ON-THE-FLY (offload) mode, the specialisation in
+        # nvidia-prime.nix overrides these to use mesa/iHD for the
+        # iGPU path, so prime-run can selectively bind the dGPU.
         environment.variables = lib.mkIf (builtins.elem "nvidia" config.services.xserver.videoDrivers) {
-          LIBVA_DRIVER_NAME = "nvidia";
-          __GLX_VENDOR_LIBRARY_NAME = "nvidia";
           NIXOS_OZONE_WL = "1";
           AQ_DRM_DEVICES = "/dev/dri/card0:/dev/dri/card1";
-          NVD_BACKEND = "direct";
           ELECTRON_OZONE_PLATFORM_HINT = "auto";
-          # OZONE_PLATFORM_HINT = "wayland";
         };
+        # Sync mode NVIDIA-specific env vars:
+        # These are overridden by the ON-THE-FLY specialisation to use
+        # mesa/iHD for the iGPU path.
+        environment.sessionVariables =
+          lib.mkIf (builtins.elem "nvidia" config.services.xserver.videoDrivers)
+            {
+              LIBVA_DRIVER_NAME = lib.mkDefault "nvidia";
+              __GLX_VENDOR_LIBRARY_NAME = lib.mkDefault "nvidia";
+              NVD_BACKEND = lib.mkDefault "direct";
+            };
       };
     homeManager.${feature} =
       { pkgs, ... }:
