@@ -26,8 +26,6 @@ in
     {
       home.packages = with pkgs; [
         llama-swap
-        (llama-cpp.override { cudaSupport = true; })
-        lmstudio
         # vllm
         llmfit
       ];

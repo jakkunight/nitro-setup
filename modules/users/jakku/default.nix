@@ -115,10 +115,6 @@ in
           username = "${user}";
           homeDirectory = "/home/${user}";
           stateVersion = "26.11";
-          packages = with pkgs; [
-            (llama-cpp.override { cudaSupport = true; })
-
-          ];
         };
       };
     }
