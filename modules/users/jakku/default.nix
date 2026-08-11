@@ -47,7 +47,7 @@ in
             multimedia-production
             # dns-over-tls
             devenv
-            # hermes-agent
+            hermes-agent
             scarlett2-firmware
             nmap
             gparted

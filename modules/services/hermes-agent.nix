@@ -19,6 +19,7 @@ in
       addToSystemPackages = true;
       extraDependencyGroups = [
         "messaging"
+        "matrix"
         "voice"
       ];
       extraPackages = with pkgs; [
@@ -35,7 +36,7 @@ in
         };
         memory = {
           memory_enabled = true;
-          user_profile_enabled = false;
+          user_profile_enabled = true;
         };
       };
     };
