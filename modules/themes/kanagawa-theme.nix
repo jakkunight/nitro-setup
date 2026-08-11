@@ -20,7 +20,7 @@ in
       let
         wallpaper = "${
           self.packages.${pkgs.stdenv.hostPlatform.system}.jakkunight-wallpapers
-        }/share/wallpapers/jakkunight-wallpaper-9.png";
+        }/share/wallpapers/jakkunight-wallpaper-8.png";
       in
       {
         imports = with self.modules.nixos; [
@@ -90,7 +90,7 @@ in
       let
         wallpaper = "${
           self.packages.${pkgs.stdenv.hostPlatform.system}.jakkunight-wallpapers
-        }/share/wallpapers/jakkunight-wallpaper-9.png";
+        }/share/wallpapers/jakkunight-wallpaper-8.png";
       in
       {
         imports = with self.modules.homeManager; [
