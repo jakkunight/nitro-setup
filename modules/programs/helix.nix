@@ -27,7 +27,7 @@ in
         ];
       };
     homeManager.${feature} =
-      { pkgs, ... }:
+      { pkgs, lib, ... }:
       {
         home.packages = with pkgs; [
           helix
@@ -55,7 +55,7 @@ in
             editor = {
               text-width = 80; # default
               soft-wrap = {
-                enable = true;
+                enable = lib.mkDefault true;
                 wrap-indicator = "󰁕";
                 wrap-at-text-width = true;
               };

@@ -33,7 +33,7 @@ in
             trim-trailing-whitespace = true;
             trim-final-newlines = true;
             soft-wrap = {
-              enable = true;
+              enable = false;
               wrap-indicator = lib.mkForce "↪";
             };
             inline-diagnostics = {
