@@ -10,10 +10,6 @@ in
     imports = [
       inputs.hermes-agent.nixosModules.default
     ];
-    environment.systemPackages = with pkgs; [
-      ddgr
-      python314Packages.ddgs
-    ];
     services.hermes-agent = {
       enable = true;
       addToSystemPackages = true;
@@ -24,6 +20,9 @@ in
       ];
       extraPackages = with pkgs; [
         python314Packages.ddgs
+        python314Packages.sounddevice
+        python314Packages.numpy
+        portaudio
       ];
       settings = {
         model = {

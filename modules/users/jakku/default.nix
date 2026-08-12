@@ -48,6 +48,7 @@ in
             # dns-over-tls
             devenv
             hermes-agent
+            searxng
             scarlett2-firmware
             nmap
             gparted
@@ -73,7 +74,7 @@ in
 
           environment.systemPackages = with pkgs; [
             pi-coding-agent
-
+            portaudio
           ];
 
           environment.sessionVariables = {
