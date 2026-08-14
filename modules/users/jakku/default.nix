@@ -59,6 +59,8 @@ in
             handy
             wtype
             llama-cpp
+            opencode
+            openspec
           ];
           users.users.${user} = {
             useDefaultShell = false;
@@ -111,6 +113,7 @@ in
           obs-studio-nvidia
           opencode
           llama-cpp
+          openspec
         ];
         home = {
           username = "${user}";
