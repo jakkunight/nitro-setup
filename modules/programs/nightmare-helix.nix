@@ -117,6 +117,10 @@ in
                 "-"
               ];
             };
+            qmlls = {
+              command = "${pkgs.qt6.qtdeclarative}/bin/qmlls";
+              args = [ ];
+            };
           };
           language = [
             {
@@ -269,6 +273,14 @@ in
               language-servers = [
                 "sqruff"
                 "scls"
+              ];
+            }
+            {
+              name = "qml";
+              auto-format = true;
+              language-servers = [
+                "scls"
+                "qmlls"
               ];
             }
           ];
