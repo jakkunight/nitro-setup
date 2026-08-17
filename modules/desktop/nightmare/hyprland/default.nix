@@ -45,6 +45,9 @@ in
               modal_parent_blocking = true;
               # snap = { };
             };
+            cursor = {
+              no_hardware_cursors = 0;
+            };
             decoration = {
               rounding = 0;
               # active_opacity = 0.90;
@@ -62,7 +65,7 @@ in
                 noise = 0.0;
               };
               shadow = {
-                enabled = false;
+                enabled = true;
                 range = 8;
                 render_power = 3;
                 offset = [
@@ -71,7 +74,7 @@ in
                 ];
               };
               glow = {
-                enabled = false;
+                enabled = true;
                 range = 20;
                 render_power = 3;
                 color = lib.mkForce config.lib.stylix.colors.withHashtag.base0D;

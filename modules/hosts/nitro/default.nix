@@ -37,6 +37,7 @@ in
             zram
             # Disabled due to errors
             # inputs.determinate.nixosModules.default
+            # cyberpunk-theme
             kanagawa-theme
             # tokyonight-theme
             silent-sddm

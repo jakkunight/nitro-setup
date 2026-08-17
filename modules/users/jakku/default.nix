@@ -91,6 +91,7 @@ in
         imports = with self.modules.homeManager; [
           devenv
           core
+          # cyberpunk-theme
           kanagawa-theme
           # tokyonight-theme
           # pandora-theme

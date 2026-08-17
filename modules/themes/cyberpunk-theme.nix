@@ -1,5 +1,5 @@
 let
-  feature = "kanagawa-theme";
+  feature = "cyberpunk-theme";
   # wallpaper = "${self.packages.${pkgs.stdenv.hostPlatform.system}.wanderer-wallpapers}/share/wallpapers/wanderer-scaramouche-aranaras-wallpaper.jpg";
   # wallpaper = "${self.packages.${pkgs.stdenv.hostPlatform.system}.wanderer-wallpapers}/share/wallpapers/AthenaOS-wallpaper.png";
 
@@ -25,7 +25,7 @@ in
       {
         imports = with self.modules.nixos; [
           stylix
-          kanagawa
+          cyberpunk
         ];
 
         console = {
@@ -94,7 +94,7 @@ in
       in
       {
         imports = with self.modules.homeManager; [
-          kanagawa
+          cyberpunk
         ];
         home.pointerCursor.enable = true;
         stylix.targets.qt.enable = false;
