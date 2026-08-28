@@ -75,7 +75,7 @@ in
               };
               glow = {
                 enabled = true;
-                range = 20;
+                range = 8;
                 render_power = 3;
                 color = lib.mkForce config.lib.stylix.colors.withHashtag.base0D;
                 color_inactive = lib.mkForce config.lib.stylix.colors.withHashtag.base04;
