@@ -27,7 +27,13 @@ in
         ];
 
         hardware.nvidia = {
-          package = config.boot.kernelPackages.nvidiaPackages.production;
+          # Your driver options (from NixOS Wiki):
+          # - `stable`
+          # - `beta`
+          # - `production`
+          # - `latest`
+          # - `legacy_xxx`
+          package = config.boot.kernelPackages.nvidiaPackages.stable;
           # Use open = lib.mkDefault false; for compatibility.
           # For newer cards (RTX 30xx/40xx), set open = true via
           # your host config or specialisation to use the open-source
