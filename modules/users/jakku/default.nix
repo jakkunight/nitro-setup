@@ -77,6 +77,9 @@ in
           environment.systemPackages = with pkgs; [
             pi-coding-agent
             portaudio
+            typstPackages.mmdr
+            typstPackages.oxdraw
+            markless
           ];
 
           environment.sessionVariables = {
