@@ -48,7 +48,7 @@ in
             # dns-over-tls
             devenv
             hermes-agent
-            searxng
+            # searxng
             scarlett2-firmware
             nmap
             gparted
