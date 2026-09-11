@@ -80,6 +80,10 @@ in
             typstPackages.mmdr
             typstPackages.oxdraw
             markless
+            rustscan
+            netscanner
+            netscan
+            droidcam
           ];
 
           environment.sessionVariables = {
