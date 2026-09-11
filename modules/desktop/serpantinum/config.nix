@@ -2,7 +2,10 @@ let
   feature = "serpantinum-shell";
 in
 { self, inputs, ... }: {
-  flake.modules.nixos.${feature} = { pkgs, ... }: { };
+  flake.modules.nixos.${feature} = { lib, ... }: {
+    services.tlp.pd.enable = lib.mkForce false;
+    services.tlp.enable = lib.mkForce false;
+  };
   flake.modules.homeManager.${feature} = { pkgs, lib, ... }: {
     home.packages = with pkgs; [
       easyeffects
@@ -43,7 +46,7 @@ in
         };
 
         theme = {
-          fontFamily = "Adwaita Mono";
+          fontFamily = "Mononoki Nerd Font";
           borderRadius = 12;
           matugen = true;
         };
