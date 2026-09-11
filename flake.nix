@@ -51,6 +51,7 @@
     hyprland = {
       url = "github:hyprwm/Hyprland";
     };
+    serpantinum.url = "github:ilyamiro/serpantinum";
     # hyprland-plugins = {
     #   url = "github:hyprwm/hyprland-plugins";
     #   inputs.hyprland.follows = "hyprland";
