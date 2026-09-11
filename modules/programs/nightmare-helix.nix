@@ -45,6 +45,12 @@ in
         };
         languages = {
           language-server = {
+            superhtml = {
+              command = "${pkgs.superhtml}/bin/superhtml";
+              args = [
+                "lsp"
+              ];
+            };
             scls = {
               command = "${pkgs.simple-completion-language-server}/bin/simple-completion-language-server";
               config = {
@@ -211,7 +217,17 @@ in
             {
               name = "html";
               auto-format = true;
+              formatter = {
+                command = "${pkgs.superhtml}/bin/superhtml";
+                args = [
+                  "fmt"
+                  "--check"
+                  "--stdin"
+                ];
+
+              };
               language-servers = [
+                "superhtml"
                 "scls"
               ];
             }
