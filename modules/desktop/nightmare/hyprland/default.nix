@@ -54,7 +54,7 @@ in
               # inactive_opacity = 0.85;
               fullscreen_opacity = 1.0;
               blur = {
-                enabled = true;
+                enabled = false;
                 size = 8;
                 passes = 2;
                 ignore_opacity = true;
@@ -65,7 +65,7 @@ in
                 noise = 0.0;
               };
               shadow = {
-                enabled = true;
+                enabled = false;
                 range = 8;
                 render_power = 3;
                 offset = [
@@ -74,7 +74,7 @@ in
                 ];
               };
               glow = {
-                enabled = true;
+                enabled = false;
                 range = 8;
                 render_power = 3;
                 color = lib.mkForce config.lib.stylix.colors.withHashtag.base0D;
