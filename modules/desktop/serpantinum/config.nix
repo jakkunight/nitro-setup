@@ -1,12 +1,19 @@
 let
-  feature = "serpantinum-shell";
+  feature = "serpantinum-desktop";
 in
 { self, inputs, ... }: {
   flake.modules.nixos.${feature} = { lib, ... }: {
+    imports = with self.modules.nixos; [
+      serpantinum-shell
+    ];
     services.tlp.pd.enable = lib.mkForce false;
     services.tlp.enable = lib.mkForce false;
   };
   flake.modules.homeManager.${feature} = { pkgs, lib, ... }: {
+    imports = with self.modules.homeManager; [
+      serpantinum-shell
+      nightmare-helix
+    ];
     home.packages = with pkgs; [
       easyeffects
       wl-clipboard-rs
