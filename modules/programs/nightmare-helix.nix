@@ -24,6 +24,7 @@ in
         python314Packages.python-lsp-server
         simple-completion-language-server
         markdown-oxide
+        tailwindcss-language-server
       ];
       programs.helix = {
         defaultEditor = true;
@@ -236,12 +237,24 @@ in
               auto-format = true;
               language-servers = [
                 "scls"
+                "tailwindcss-language-server"
+                "vscode-css-languageserver"
               ];
             }
             {
               name = "javascript";
               auto-format = true;
+              formatter = {
+                command = "${pkgs.deno}/bin/deno";
+                args = [
+                  "fmt"
+                  "-"
+                  "--ext"
+                  "js"
+                ];
+              };
               language-servers = [
+                "typescript-language-server"
                 "scls"
               ];
             }
