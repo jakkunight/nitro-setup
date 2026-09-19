@@ -42,7 +42,7 @@ in
             # tokyonight-theme
             silent-sddm
             nightmare-desktop
-            serpantinum-shell
+            # serpantinum-shell
             # starship-desktop
             jakku
           ];
