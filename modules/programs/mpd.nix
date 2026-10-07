@@ -27,12 +27,16 @@ in
         };
         services.mpdris2 = {
           enable = true;
-          mpd = {
-            host = "127.0.0.1";
-            port = 6600;
-          };
-          multimediaKeys = true;
-          notifications = true;
+          # settings = {
+          #   Connection = {
+          #     host = "127.0.0.1";
+          #     port = 6600;
+          #   };
+          #   Bling = {
+          #     mmkeys = true;
+          #     notify = true;
+          #   };
+          # };
         };
         services.mpris-proxy.enable = true;
         home.packages = with pkgs; [

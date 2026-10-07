@@ -12,7 +12,6 @@ in
     (self.lib.factory.mkNvidiaPrimeConfig {
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:1:0:0";
-      amdgpuBusId = "";
     })
     (self.lib.diskoLayoutFactory.mkSimpleNoSwap {
       device = "/dev/nvme0n1";
@@ -31,6 +30,7 @@ in
             nvidia-gpu
             nvidia-prime
             pipewire
+            slow_network
             yorha-grub
             # zen-kernel
             latest-kernel
@@ -67,6 +67,14 @@ in
             yazi
             btop-cuda
           ];
+
+          boot = {
+            loader = {
+              systemd-boot = {
+                configurationLimit = 3;
+              };
+            };
+          };
 
           services.tlp = {
             enable = true;

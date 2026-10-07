@@ -42,7 +42,7 @@ in
             asciinema
             obs-studio-nvidia
             podman
-            nix-auth
+            # nix-auth
             wireshark
             multimedia-production
             # dns-over-tls
@@ -84,6 +84,7 @@ in
             netscanner
             netscan
             droidcam
+            termusic
           ];
 
           environment.sessionVariables = {

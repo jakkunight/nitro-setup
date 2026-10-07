@@ -42,11 +42,12 @@ in
               extend_border_grab_area = true;
               hover_icon_on_border = true;
               allow_tearing = true;
-              modal_parent_blocking = true;
+              # modal_parent_blocking = true;
               # snap = { };
             };
             cursor = {
-              no_hardware_cursors = 0;
+              no_hardware_cursors = 2;
+              use_cpu_buffer = 2;
             };
             decoration = {
               rounding = 0;

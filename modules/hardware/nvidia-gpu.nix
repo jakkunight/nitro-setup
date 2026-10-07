@@ -2,58 +2,66 @@ let
   feature = "nvidia-gpu";
 in
 {
-  flake.modules = {
-    nixos.${feature} =
-      {
-        config,
-        pkgs,
-        lib,
-        ...
-      }:
-      {
-        # Enable unfree packages:
-        nixpkgs.config.allowUnfree = true;
-        # Enable OpenGL:
-        hardware.graphics = {
-          # Use this from NixOS 24.11+
-          enable = true;
-          enable32Bit = true;
-        };
+  flake.modules.nixos.${feature} =
+    {
+      config,
+      pkgs,
+      ...
+    }:
+    {
+      nixpkgs.config.allowUnfree = true;
 
-        # Enable NVIDIA drivers:
-        services.xserver.videoDrivers = [
-          "modsetting"
-          "nvidia"
-        ];
-
-        hardware.nvidia = {
-          # Your driver options (from NixOS Wiki):
-          # - `stable`
-          # - `beta`
-          # - `production`
-          # - `latest`
-          # - `legacy_xxx`
-          # package = pkgs.linuxKernel.packages.linux_7_2.nvidia_x11;
-          package = config.boot.kernelPackages.nvidiaPackages.latest;
-          # Use open = lib.mkDefault false; for compatibility.
-          # For newer cards (RTX 30xx/40xx), set open = true via
-          # your host config or specialisation to use the open-source
-          # kernel driver.
-          open = lib.mkDefault false;
-          modesetting = {
-            enable = true;
-          };
-          nvidiaSettings = true;
-        };
-
-        boot.kernelParams = [
-          "nvidia-drm.fbdev=1"
-          "NVreg_EnableGpuFirmware=0"
-        ];
-
-        environment.systemPackages = with pkgs; [
-          nvtopPackages.nvidia
-        ];
+      hardware.graphics = {
+        enable = true;
+        enable32Bit = true;
       };
-  };
+
+      services.xserver.videoDrivers = [
+        "modesetting"
+        "nvidia"
+      ];
+
+      hardware.nvidia = {
+        # Use the stable NVIDIA driver from the current kernel package set.
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+        # NVIDIA open kernel module.
+        # Recommended for supported Turing+ GPUs.
+        open = true;
+
+        # Required/recommended for Wayland.
+        modesetting.enable = true;
+
+        nvidiaSettings = true;
+
+        # Keep the persistence daemon available.
+        nvidiaPersistenced = true;
+
+        # Enable suspend/resume VRAM preservation.
+        powerManagement.enable = true;
+      };
+
+      boot.kernelParams = [
+        "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+        "nvidia.NVreg_TemporaryFilePath=/var/tmp"
+      ];
+
+      boot.initrd.kernelModules = [
+        "nvidia"
+        "nvidia_modeset"
+        "nvidia_uvm"
+        "nvidia_drm"
+      ];
+
+      environment.systemPackages = with pkgs; [
+        nvtopPackages.nvidia
+        lshw
+        pciutils
+        mesa-demos
+        vulkan-tools
+        libva-utils
+        vdpauinfo
+        egl-wayland
+      ];
+    };
 }

@@ -24,6 +24,7 @@ in
             bluetooth
             networking
             pipewire
+            slow_network
             yorha-grub
             # zen-kernel # Since it's vulnerable to Copy.fail exploit.
             latest-kernel

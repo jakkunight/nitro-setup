@@ -7,14 +7,15 @@ in
     nixos.${feature} =
       { pkgs, ... }:
       {
-        # Hyprland:
         nix.settings = {
           substituters = [
             "https://hyprland.cachix.org"
           ];
+
           trusted-substituters = [
             "https://hyprland.cachix.org"
           ];
+
           trusted-public-keys = [
             "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
           ];
@@ -22,72 +23,59 @@ in
 
         programs.hyprland = {
           enable = true;
+
           package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+
           portalPackage =
             inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-          withUWSM = false;
+
+          withUWSM = true;
+
           xwayland.enable = true;
         };
+
         environment.variables = {
           OZONE_PLATFORM_HINT = "wayland";
         };
       };
+
     nixos."${feature}-nvidia" =
       {
         pkgs,
-        lib,
-        config,
         ...
       }:
       {
-        # Hyprland:
+        # Keep the graphics stack provided by nixpkgs unless a specific
+        # Hyprland/Mesa compatibility issue requires an override.
         hardware.graphics = {
-          # package = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa;
+          enable = true;
           enable32Bit = true;
-          # package32 =
-          #   inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pkgsi686Linux.mesa;
         };
-        boot.kernelParams = [
-          "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-        ];
+
         environment.systemPackages = with pkgs; [
           nvidia-vaapi-driver
           egl-wayland
         ];
-        environment.variables = lib.mkIf (builtins.elem "nvidia" config.services.xserver.videoDrivers) {
-          NIXOS_OZONE_WL = "1";
-          AQ_DRM_DEVICES = "/dev/dri/card0:/dev/dri/card1";
-          ELECTRON_OZONE_PLATFORM_HINT = "auto";
-        };
-        environment.sessionVariables =
-          lib.mkIf (builtins.elem "nvidia" config.services.xserver.videoDrivers)
-            {
-              LIBVA_DRIVER_NAME = lib.mkDefault "nvidia";
-              __GLX_VENDOR_LIBRARY_NAME = lib.mkDefault "nvidia";
-              NVD_BACKEND = lib.mkDefault "direct";
-            };
       };
+
     homeManager.${feature} =
-      { pkgs, ... }:
+      {
+        pkgs,
+        ...
+      }:
       {
         wayland.windowManager.hyprland = {
           enable = true;
-          # Use the flake package:
+
           package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-          portalPackage =
-            inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-          # Set this if using NixOS Home-Manager module:
-          # package = null;
-          # portalPackage = null;
-          # Set this to true if not using UWSM:
-          systemd.enable = true;
+
+          portalPackage = pkgs.xdg-desktop-portal-hyprland;
+
+          # UWSM owns the graphical session.
+          systemd.enable = false;
         };
 
-        services = {
-          hyprpolkitagent = {
-            enable = true;
-          };
-        };
+        services.hyprpolkitagent.enable = true;
       };
   };
 }

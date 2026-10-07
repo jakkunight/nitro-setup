@@ -13,9 +13,9 @@ in
     homeManager.${feature} =
       { pkgs, ... }:
       {
-		home.packages = with pkgs; [
-			openspec
-		];
+        home.packages = with pkgs; [
+          openspec
+        ];
       };
   };
 }

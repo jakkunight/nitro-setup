@@ -16,14 +16,14 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-auth.url = "github:numtide/nix-auth";
-    waybar-git = {
-      url = "github:Alexays/Waybar";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    musnix = {
-      url = "github:musnix/musnix";
-    };
+    # nix-auth.url = "github:numtide/nix-auth";
+    # waybar-git = {
+    #   url = "github:Alexays/Waybar";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # musnix = {
+    #   url = "github:musnix/musnix";
+    # };
     # nixos-generators = {
     #   url = "github:nix-community/nixos-generators";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -88,19 +88,19 @@
       url = "github:jakkunight/yorha-grub-theme";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    milk-grub-theme.url = "github:gemakfy/MilkGrub";
+    # milk-grub-theme.url = "github:gemakfy/MilkGrub";
     silentSDDM = {
       url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     treefmt-nix.url = "github:numtide/treefmt-nix/";
-    oisd = {
-      url = "https://big.oisd.nl/domainswild";
-      flake = false;
-    };
-    llama-cpp-turboquant = {
-      url = "github:TheTom/llama-cpp-turboquant";
-    };
+    # oisd = {
+    #   url = "https://big.oisd.nl/domainswild";
+    #   flake = false;
+    # };
+    # llama-cpp-turboquant = {
+    #   url = "github:TheTom/llama-cpp-turboquant";
+    # };
     llama-cpp = {
       url = "github:ggml-org/llama.cpp";
     };
