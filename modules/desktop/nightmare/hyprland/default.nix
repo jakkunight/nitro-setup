@@ -36,8 +36,8 @@ in
               border_size = 2;
               gaps_in = 0;
               gaps_out = 0;
-              gaps_workspaces = 0;
-              float_gaps = 0;
+              # gaps_workspaces = 0;
+              # float_gaps = 0;
               resize_on_border = true;
               extend_border_grab_area = true;
               hover_icon_on_border = true;

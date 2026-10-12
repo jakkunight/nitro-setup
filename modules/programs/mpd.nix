@@ -15,6 +15,7 @@ in
           musicDirectory = "${config.home.homeDirectory}/Music";
           playlistDirectory = "${config.home.homeDirectory}/Music/Playlists";
           extraConfig = ''
+            log_level "verbose"
             audio_output {
               type "pipewire"
               name "My PipeWire Output"
