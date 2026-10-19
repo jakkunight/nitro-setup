@@ -7,6 +7,7 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/26.05";
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
+    den.url = "github:denful/den";
     # all other inputs your flake needs, like nixpkgs.
     home-manager = {
       url = "github:nix-community/home-manager/";

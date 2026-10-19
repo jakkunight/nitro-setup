@@ -188,6 +188,21 @@
         "type": "github"
       }
     },
+    "den": {
+      "locked": {
+        "lastModified": 1792194182,
+        "narHash": "sha256-zvs+W7zVQj890E/f5tgiO2S39WdrZ6d7MbpmOlgcsBA=",
+        "owner": "denful",
+        "repo": "den",
+        "rev": "436350eea1cde7d059877ed04bbd5d35852e3097",
+        "type": "github"
+      },
+      "original": {
+        "owner": "denful",
+        "repo": "den",
+        "type": "github"
+      }
+    },
     "determinate": {
       "inputs": {
         "determinate-nixd-aarch64-darwin": "determinate-nixd-aarch64-darwin",
@@ -1651,6 +1666,7 @@
     "root": {
       "inputs": {
         "awww": "awww",
+        "den": "den",
         "determinate": "determinate",
         "devenv": "devenv",
         "disko": "disko",
