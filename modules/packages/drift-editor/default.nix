@@ -28,7 +28,7 @@ in
         nativeBuildInputs = with pkgs; [
           cmake
           zstd
-          openssl_3
+          openssl
           ffmpeg
           qt6Packages.wrapQtAppsHook
           qt6Packages.qtbase
