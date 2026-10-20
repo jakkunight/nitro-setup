@@ -1,6 +1,7 @@
 {
   inputs,
   withSystem,
+  den,
   ...
 }:
 {
@@ -16,7 +17,7 @@
         };
       };
     };
-  flake.modules.nixos.nixpkgs = {
+  den.aspects.nixpkgs.nixos = {
     imports = [
       inputs.nixpkgs.nixosModules.readOnlyPkgs
       (

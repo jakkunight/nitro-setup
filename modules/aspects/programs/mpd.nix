@@ -1,0 +1,49 @@
+let
+  feature = "mpd";
+in
+{
+  den.aspects.${feature}.homeManager =
+    {
+      config,
+      pkgs,
+      den,
+      ...
+    }:
+    {
+      services.mpd = {
+        enable = true;
+        musicDirectory = "${config.home.homeDirectory}/Music";
+        playlistDirectory = "${config.home.homeDirectory}/Music/Playlists";
+        extraConfig = ''
+          log_level "verbose"
+          audio_output {
+            type "pipewire"
+            name "My PipeWire Output"
+          }
+        '';
+        network.startWhenNeeded = true;
+      };
+      services.playerctld = {
+        enable = true;
+      };
+      services.mpdris2 = {
+        enable = true;
+        # settings = {
+        #   Connection = {
+        #     host = "127.0.0.1";
+        #     port = 6600;
+        #   };
+        #   Bling = {
+        #     mmkeys = true;
+        #     notify = true;
+        #   };
+        # };
+      };
+      services.mpris-proxy.enable = true;
+      home.packages = with pkgs; [
+        mpd
+        mpdris2
+      ];
+    };
+
+}
