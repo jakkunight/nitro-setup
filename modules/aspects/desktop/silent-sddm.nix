@@ -1,4 +1,8 @@
-{ inputs, self, ... }:
+{
+  inputs,
+  self,
+  ...
+}:
 {
   den.aspects."silent-sddm".nixos =
     {
@@ -12,8 +16,6 @@
       imports = [
         inputs.silentSDDM.nixosModules.default
       ];
-      # Use Haveged to speed up the boot time:
-      services.haveged.enable = true;
 
       # Config silent SDDM:
       programs.silentSDDM =

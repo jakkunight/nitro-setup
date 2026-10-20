@@ -20,7 +20,7 @@
     nixos =
       { pkgs, ... }:
       {
-        system.stateVersion = lib.mkDefault "26.05";
+        system.stateVersion = lib.mkDefault "26.11";
         programs.nh.enable = lib.mkDefault true;
         programs.git.enable = lib.mkDefault true;
         environment.systemPackages = with pkgs; [
@@ -32,7 +32,7 @@
       };
 
     homeManager = {
-      home.stateVersion = lib.mkDefault "26.05";
+      home.stateVersion = lib.mkDefault "26.11";
     };
   };
 

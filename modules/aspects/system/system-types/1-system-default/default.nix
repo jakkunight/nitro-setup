@@ -39,6 +39,6 @@
     time.timeZone = "America/Asuncion";
     services.xserver.xkb.layout = "latam";
     services.libinput.enable = true;
-    system.stateVersion = "26.05";
+    system.stateVersion = "26.11";
   };
 }

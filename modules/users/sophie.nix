@@ -1,140 +1,18 @@
 let
   user = "sophie";
+  importAspect = import ../_lib/aspect-class.nix;
 in
-{
-  self,
-  lib,
-  inputs,
-  den,
-  ...
-}:
+{ den, ... }:
 {
   den.aspects.${user} = {
-    nixos =
-      { pkgs, ... }:
-      {
-        imports =
-          with den.aspects;
-          map
-            (
-              a:
-              if builtins.isAttrs a && a ? nixos then
-                (
-                  let
-                    v = a.nixos;
-                  in
-                  if builtins.isAttrs v && v ? __contentValues then
-                    { imports = map (d: d.value) v.__contentValues; }
-                  else
-                    v
-                )
-              else if builtins.isAttrs a && a ? provides then
-                { }
-              else
-                a
-            )
-            [
-              core
-              gaming
-              libvirt
-            ];
-
-        users.groups.${user} = { };
-        users.users.${user} = {
-          group = user;
-          isNormalUser = true;
-          useDefaultShell = false;
-          shell = pkgs.zsh;
-          extraGroups = [
-            "wheel"
-            "networkmanager"
-            "input"
-            "libvirtd"
-          ];
-          uid = 1002;
-          initialPassword = user;
-        };
-
-        home-manager = {
-          useGlobalPkgs = false;
-          useUserPackages = false;
-          backupFileExtension = "backup";
-        };
-
-        environment.sessionVariables = {
-          EDITOR = "hx";
-        };
-      };
-
-    homeManager =
-      { pkgs, ... }:
-      {
-        imports =
-          with den.aspects;
-          map
-            (
-              a:
-              if builtins.isAttrs a && a ? homeManager then
-                (
-                  let
-                    v = a.homeManager;
-                  in
-                  if builtins.isAttrs v && v ? __contentValues then
-                    { imports = map (d: d.value) v.__contentValues; }
-                  else
-                    v
-                )
-              else if builtins.isAttrs a && a ? provides then
-                { }
-              else
-                a
-            )
-            [
-              core
-              pandora-theme
-              gaming
-              nightmare-desktop
-              swaync
-              libreoffice
-              nightmare-helix
-              krita
-            ];
-        home = {
-          stateVersion = "26.05";
-          uid = 1002;
-        };
-      };
+    nixos.imports = map (importAspect "nixos") [
+      den.aspects."${user}-account"
+      den.aspects."${user}-os"
+    ];
+    homeManager.imports = map (importAspect "homeManager") [
+      den.aspects."${user}-home"
+    ];
   };
-
-  den.aspects."${user}-system-secrets".nixos =
-    { pkgs, ... }:
-    {
-      imports = [
-        inputs.sops-nix.nixosModules.sops
-      ];
-
-      environment.systemPackages = with pkgs; [
-        sops
-        ssh-to-age
-      ];
-
-      sops = {
-        defaultSopsFile = ./sophie/secrets.yaml;
-        defaultSopsFormat = "yaml";
-        age = {
-          keyFile = "/home/${user}/.config/sops/age/keys.txt";
-          generateKey = false;
-        };
-        secrets = builtins.listToAttrs (
-          map (x: {
-            name = x;
-            value = {
-              owner = user;
-            };
-          }) [ "sophie" ]
-        );
-      };
-    };
 
   den.homes.x86_64-linux.${user} = {
     includes = [

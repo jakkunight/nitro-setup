@@ -514,20 +514,35 @@ los `.nix` bajo `./modules` como módulos de flake-parts.
 - `modules/hosts/{nitro,germain}.nix` usan `den.hosts.x86_64-linux.<host>` y
   `den.aspects.<host>`.
 - Los offline installers se declaran como hosts Den: `<host>-offline-installer`.
-- Los valores específicos de Nvidia Prime y disko se mantienen en el host o en
-  helpers; no se introdujo una capa de settings innecesaria.
+- La configuración de Nvidia Prime vive en `aspects/hardware/nvidia-prime.nix`;
+  locale, TLP, VMware, Determinate, haveged y boot-tuning son aspectos atómicos.
+- El disko específico de cada host sigue en `_lib/disko-simple-no-swap.nix`.
 
 ### Fase 5 — Eliminar factories y código muerto
 
 ✅ Completado.
 
 - `modules/factories/` eliminado.
-- `nvidia-prime` se inlinó en `modules/hosts/nitro.nix`.
+- `nvidia-prime` → `modules/aspects/hardware/nvidia-prime.nix`.
 - `mkSimpleNoSwap` → `modules/_lib/disko-simple-no-swap.nix`.
 - `mkOfflineInstaller` → `modules/_lib/offline-installer.nix`.
 - `modules/_lib/` queda fuera de `import-tree` por la regla de paths con `/_`.
 
-### Fase 6 — Documentación
+### Fase 6 — SRP y módulos atómicos
+
+✅ Completado.
+
+- `modules/users/{jakku,ballade,sophie}.nix` quedan como composición de
+  `account`, `os`, `home` y `secrets` (un archivo por responsabilidad). Los
+  secrets permanecen inactivos, igual que antes de la migración.
+- `nightmare-desktop` deja de contener configuración inline: `zsh`, `kitty`,
+  `hypridle`, `hyprlock`, `ashell`, `wofi` y `zen-browser` son aspectos propios.
+- `obs-studio-nvidia`, `ollama-cuda` y `ollama-vulkan` dejan de compartir
+  archivo con su aspecto base.
+- El desenvuelto de `__contentValues` se centraliza en
+  `modules/_lib/aspect-class.nix`.
+
+### Fase 7 — Documentación
 
 ✅ Completado (sin commit).
 

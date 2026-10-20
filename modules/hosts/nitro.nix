@@ -41,47 +41,33 @@
                 bluetooth
                 networking
                 nvidia-gpu
+                nvidia-prime
                 pipewire
                 slow_network
+                boot-tuning
                 yorha-grub
                 latest-kernel
+                locale
+                tlp
+                vmware
                 zram
                 kanagawa-theme
+                haveged
                 silent-sddm
                 nightmare-desktop
               ]
           )
           ++ [
             (import ../_lib/disko-simple-no-swap.nix { inherit inputs; } {
-              device = "/dev/nvme0n1";
+              device = lib.mkDefault "/dev/nvme0n1";
               deviceName = "nitro";
             })
           ];
-
-        hardware.nvidia.prime = {
-          offload = {
-            enable = true;
-            enableOffloadCmd = true;
-          };
-          sync.enable = false;
-          nvidiaBusId = "PCI:1:0:0";
-          intelBusId = "PCI:0:2:0";
-        };
-        hardware.nvidia.powerManagement = {
-          enable = lib.mkDefault true;
-          finegrained = lib.mkDefault false;
-        };
 
         nix.settings.experimental-features = lib.mkDefault [
           "nix-command"
           "flakes"
         ];
-        i18n.defaultLocale = "es_PY.UTF-8";
-        time.timeZone = "America/Asuncion";
-        services.xserver = {
-          xkb.layout = "latam";
-        };
-        services.libinput.enable = true;
 
         environment.systemPackages = with pkgs; [
           gparted-full
@@ -92,18 +78,6 @@
           # zellijPlugins.zjstatus
           # zellijPlugins.zjframes
         ];
-
-        virtualisation.vmware = {
-          host.enable = true;
-          guest.enable = true;
-        };
-
-        services.tlp = {
-          enable = true;
-          pd = {
-            enable = true;
-          };
-        };
       };
   };
 

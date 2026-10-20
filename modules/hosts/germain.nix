@@ -45,10 +45,13 @@
                 networking
                 pipewire
                 slow_network
+                boot-tuning
                 yorha-grub
                 latest-kernel
-                inputs.determinate.nixosModules.default
+                locale
+                determinate
                 pandora-theme
+                haveged
                 silent-sddm
                 nightmare-desktop
                 kde
@@ -62,12 +65,6 @@
             })
           ];
 
-        i18n.defaultLocale = "es_PY.UTF-8";
-        time.timeZone = "America/Asuncion";
-        services.xserver = {
-          xkb.layout = "latam";
-        };
-        services.libinput.enable = true;
       };
   };
 

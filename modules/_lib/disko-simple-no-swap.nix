@@ -1,6 +1,6 @@
 { inputs }:
 { device, deviceName }:
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     inputs.disko.nixosModules.disko
@@ -12,7 +12,7 @@
     disk = {
       "${deviceName}" = {
         type = "disk";
-        inherit device;
+        device = lib.mkDefault device;
         content = {
           type = "gpt";
           partitions = {

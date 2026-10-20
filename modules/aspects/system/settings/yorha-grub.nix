@@ -11,11 +11,6 @@ in
       ...
     }:
     {
-      hardware.bluetooth.powerOnBoot = lib.mkForce false;
-      systemd.services = {
-        systemd-udev-settle.enable = false;
-        NetworkManager-wait-online.enable = false;
-      };
       boot.loader = {
         efi = {
           canTouchEfiVariables = true;
