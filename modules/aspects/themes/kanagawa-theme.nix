@@ -59,8 +59,8 @@ in
           image = "${wallpaper}";
           fonts = {
             serif = {
-              package = pkgs.nerd-fonts.mononoki;
-              name = "MononokiNerdFontPropo";
+              package = pkgs.nerd-fonts._0xproto;
+              name = "0xProto Nerd Font";
               # package = inputs.genshin-font.packages.${pkgs.stdenv.hostPlatform.system}.default;
               # name = "GenshinImpact";
             };
@@ -68,8 +68,8 @@ in
             sansSerif = config.stylix.fonts.serif;
 
             monospace = {
-              package = pkgs.nerd-fonts.mononoki;
-              name = "MononokiNerdFontMono";
+              package = pkgs.nerd-fonts._0xproto;
+              name = "0xProto Nerd Font Mono";
             };
 
             emoji = {
@@ -146,15 +146,15 @@ in
             serif = {
               # package = inputs.genshin-font.packages.${pkgs.stdenv.hostPlatform.system}.default;
               # name = "GenshinImpact";
-              package = pkgs.nerd-fonts.mononoki;
-              name = "MononokiNerdFontPropo";
+              package = pkgs.nerd-fonts._0xproto;
+              name = "0xProto Nerd Font";
             };
 
             sansSerif = config.stylix.fonts.serif;
 
             monospace = {
-              package = pkgs.nerd-fonts.mononoki;
-              name = "MononokiNerdFontMono";
+              package = pkgs.nerd-fonts._0xproto;
+              name = "0xProto Nerd Font Mono";
             };
 
             emoji = {

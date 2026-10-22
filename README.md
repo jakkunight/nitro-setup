@@ -1,9 +1,7 @@
 # My Setup Settings (v0.9.0b)
 
 This is a NixOS configuration built on the [Den](https://github.com/denful/den)
-framework, [`flake-parts`](https://flake.parts/), and the allmighty
-[Determinate Nix](https://docs.determinate.systems/determinate-nix/) Nix
-distribution.
+framework, [`flake-parts`](https://flake.parts/).
 
 Den provides the entity/aspect model: hosts, users, and standalone home
 configurations are declared as entities, while reusable configuration lives in
@@ -23,6 +21,7 @@ than by module class.
 ## Setup goals
 
 - Make the desktop to look as simple as possible, yet simple to use.
+- Make my setup to run a custom **Quickshell shell**
 - Make an efficient setup with low battery usage.
 - Have some fun.
 

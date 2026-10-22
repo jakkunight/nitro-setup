@@ -55,6 +55,8 @@
                 haveged
                 silent-sddm
                 nightmare-desktop
+                wireguard-client
+                remote-deploy-client
               ]
           )
           ++ [

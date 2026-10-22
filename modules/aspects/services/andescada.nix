@@ -4,6 +4,7 @@ in
 {
   self,
   den,
+  inputs,
   ...
 }:
 {
@@ -15,6 +16,7 @@ in
       ...
     }:
     let
+      pkgs-strongswan = inputs.nixpkgs-strongswan.legacyPackages.${pkgs.stdenv.hostPlatform.system};
       andescada-updown = pkgs.writeShellScriptBin "andescada-updown" ''
         echo "[UPDOWN] Initilizing script..."
         case "$PLUTO_VERB" in
@@ -51,8 +53,8 @@ in
       };
 
       environment.systemPackages = with pkgs; [
-        strongswan
-        strongswanNM
+        pkgs-strongswan.strongswan
+        pkgs-strongswan.strongswanNM
         andescada-updown
       ];
       # The swanctl command complains when the following directories don't exist:
@@ -128,30 +130,35 @@ in
         '';
       };
       environment.etc."swanctl/swanctl.conf".source =
-        config.sops.templates."strongswan-swanctl.conf".path;
+        lib.mkForce
+          config.sops.templates."strongswan-swanctl.conf".path;
       environment.etc."strongswan.conf".text = "";
-      systemd.services.strongswan-swanctl = {
-        description = "strongSwan IPsec IKEv1/IKEv2 daemon using swanctl";
-        wantedBy = [ ];
-        wants = [ "network-online.target" ];
-        after = [ "network-online.target" ];
-        path = with pkgs; [
-          kmod
-          iproute2
-          iptables
-          util-linux
-        ];
-        restartTriggers = [
-          config.environment.etc."swanctl/swanctl.conf".source
-          config.environment.etc."strongswan.conf".source
-        ];
-        serviceConfig = {
-          ExecStart = "${pkgs.strongswan}/sbin/charon-systemd";
-          Type = "notify";
-          ExecStartPost = "${pkgs.strongswan}/sbin/swanctl --load-all --noprompt";
-          ExecReload = "${pkgs.strongswan}/sbin/swanctl --reload";
-          Restart = "on-abnormal";
-        };
+      # systemd.services.strongswan-swanctl = {
+      #   description = "strongSwan IPsec IKEv1/IKEv2 daemon using swanctl";
+      #   wantedBy = [ ];
+      #   wants = [ "network-online.target" ];
+      #   after = [ "network-online.target" ];
+      #   path = with pkgs; [
+      #     kmod
+      #     iproute2
+      #     iptables
+      #     util-linux
+      #   ];
+      #   restartTriggers = [
+      #     config.environment.etc."swanctl/swanctl.conf".source
+      #     config.environment.etc."strongswan.conf".source
+      #   ];
+      #   serviceConfig = {
+      #     ExecStart = "${pkgs-strongswan.strongswan}/sbin/charon-systemd";
+      #     Type = "notify";
+      #     ExecStartPost = "${pkgs-strongswan.strongswan}/sbin/swanctl --load-all --noprompt";
+      #     ExecReload = "${pkgs-strongswan.strongswan}/sbin/swanctl --reload";
+      #     Restart = "on-abnormal";
+      #   };
+      # };
+      services.strongswan-swanctl = {
+        enable = true;
+        package = pkgs-strongswan.strongswan;
       };
     };
 

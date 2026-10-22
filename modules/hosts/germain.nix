@@ -56,6 +56,8 @@
                 nightmare-desktop
                 kde
                 cinnamon
+                wireguard-server
+                remote-deploy-server
               ]
           )
           ++ [
