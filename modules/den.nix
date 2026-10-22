@@ -29,6 +29,25 @@
           inputs.disko.packages.${pkgs.stdenv.hostPlatform.system}.disko
         ];
         environment.etc.nixos-setup.source = lib.mkDefault ../.;
+        fonts.packages = lib.mkAfter (
+          with pkgs.nerd-fonts;
+          [
+            _0xproto
+            mononoki
+            hack
+            caskaydia-cove
+            caskaydia-mono
+            profont
+            bigblue-terminal
+            departure-mono
+            zed-mono
+            terminess-ttf
+            fira-code
+            fira-mono
+            proggy-clean-tt
+            googlesanscode
+          ]
+        );
       };
 
     homeManager = {
