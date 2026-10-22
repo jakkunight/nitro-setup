@@ -21,7 +21,7 @@ in
           systemd.enable = true;
           style = lib.mkAfter ''
             * {
-              font-family: "0xProto Nerd Font", monospace;
+              font-family: "0xProtoNerdFont";
             }
           '';
         };
