@@ -100,10 +100,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     treefmt-nix.url = "github:numtide/treefmt-nix/";
-    # oisd = {
-    #   url = "https://big.oisd.nl/domainswild";
-    #   flake = false;
-    # };
+    oisd = {
+      url = "https://big.oisd.nl/domainswild";
+      flake = false;
+    };
     # llama-cpp-turboquant = {
     #   url = "github:TheTom/llama-cpp-turboquant";
     # };

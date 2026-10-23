@@ -1625,6 +1625,18 @@
         "type": "github"
       }
     },
+    "oisd": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-Lk+kdbZ6Cc+M9TKqPOJrB23pAtMoCWN9L3+LfSNMk+Y=",
+        "type": "file",
+        "url": "https://big.oisd.nl/domainswild"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://big.oisd.nl/domainswild"
+      }
+    },
     "oracle-database": {
       "inputs": {
         "flake-parts": "flake-parts_6",
@@ -1735,6 +1747,7 @@
         "nixpkgs": "nixpkgs_7",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-strongswan": "nixpkgs-strongswan",
+        "oisd": "oisd",
         "oracle-database": "oracle-database",
         "scarlett2-firmware-nix": "scarlett2-firmware-nix",
         "serpantinum": "serpantinum",

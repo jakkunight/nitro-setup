@@ -40,6 +40,7 @@
                 disk
                 bluetooth
                 networking
+                dns-over-tls
                 nvidia-gpu
                 nvidia-prime
                 pipewire

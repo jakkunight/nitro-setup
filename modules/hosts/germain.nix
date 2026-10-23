@@ -43,6 +43,7 @@
                 disk
                 bluetooth
                 networking
+                dns-over-tls
                 pipewire
                 slow_network
                 boot-tuning
