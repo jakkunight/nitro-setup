@@ -12,8 +12,6 @@ in
       ...
     }:
     {
-      home.packages = [ pkgs.nerd-fonts._0xproto ];
-
       programs = {
         waybar = {
           enable = true;
@@ -21,7 +19,7 @@ in
           systemd.enable = true;
           style = lib.mkAfter ''
             * {
-              font-family: "0xProtoNerdFont";
+              font-family: "${config.stylix.fonts.serif.name or "monospace"}";
             }
           '';
         };
